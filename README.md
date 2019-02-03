@@ -1,4 +1,4 @@
 # voidgame
 void productions' game
-# src
+# Logo
   ![alt text](https://raw.githubusercontent.com/zeddo123/voidgame/master/src/logo.PNG)
