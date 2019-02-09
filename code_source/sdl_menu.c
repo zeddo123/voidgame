@@ -13,6 +13,7 @@ int main(void)
 
 	int dx_cursor = 0,dy_cursor = 0;
 	char job = 1;
+	char in_menu = 1;
 
 	if(SDL_Init(SDL_INIT_VIDEO) != 0){
 		printf("unable to init SDL %d\n", SDL_GetError());
@@ -59,6 +60,7 @@ int main(void)
 				switch(event.key.keysym.sym){
 					case SDLK_ESCAPE:
 						menu = SDL_DisplayFormat(IMG_Load("../src/menu1.png"));
+						in_menu = 1;
 						break;
 				}
 			case SDL_MOUSEBUTTONDOWN:
@@ -69,8 +71,10 @@ int main(void)
 							
 							if(dy_cursor >= 371 && dy_cursor <= 529){
 								menu = SDL_DisplayFormat(IMG_Load("../src/play.jpg")); //load the game to the player
+								in_menu = 0;
 							}else if (dy_cursor >= 596 && dy_cursor <= 754){
 								menu = SDL_DisplayFormat(IMG_Load("../src/settings.jpg")); //load the setting to the user
+								in_menu = 0;
 							}else if (dy_cursor >= 821 && dy_cursor <= 979){
 								job = 0;
 							}
@@ -81,22 +85,24 @@ int main(void)
 				break;
 		}
 		
-		SDL_GetMouseState(&dx_cursor,&dy_cursor);
-		if(dx_cursor >= 434 && dx_cursor <= 1486){
+		if(in_menu){
+			
+			SDL_GetMouseState(&dx_cursor,&dy_cursor);
+			if(dx_cursor >= 434 && dx_cursor <= 1486){
 							
-			if(dy_cursor >= 371 && dy_cursor <= 529){
-				menu = SDL_DisplayFormat(IMG_Load("../src/menu1_play_mouseover.png")); //load the mouseover play
-			}else if (dy_cursor >= 596 && dy_cursor <= 754){
-				menu = SDL_DisplayFormat(IMG_Load("../src/menu1_set_mouseover.png")); //load the mouseover settings
-			}else if (dy_cursor >= 821 && dy_cursor <= 979){
-				menu = SDL_DisplayFormat(IMG_Load("../src/menu1_quit_mouseover.png")); //load the mouseover quit
+				if(dy_cursor >= 371 && dy_cursor <= 529){
+					menu = SDL_DisplayFormat(IMG_Load("../src/menu1_play_mouseover.png")); //load the mouseover play
+				}else if (dy_cursor >= 596 && dy_cursor <= 754){
+					menu = SDL_DisplayFormat(IMG_Load("../src/menu1_set_mouseover.png")); //load the mouseover settings
+				}else if (dy_cursor >= 821 && dy_cursor <= 979){
+					menu = SDL_DisplayFormat(IMG_Load("../src/menu1_quit_mouseover.png")); //load the mouseover quit
+				}else{
+					menu = SDL_DisplayFormat(IMG_Load("../src/menu1.png"));
+				}
 			}else{
 				menu = SDL_DisplayFormat(IMG_Load("../src/menu1.png"));
 			}
-		}else{
-			menu = SDL_DisplayFormat(IMG_Load("../src/menu1.png"));
 		}
-		
 		SDL_BlitSurface(menu,&positionScreen,screen,&positionDestination);
 		SDL_Flip(screen);
 
