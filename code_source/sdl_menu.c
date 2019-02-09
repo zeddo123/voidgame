@@ -1,3 +1,4 @@
+//the menu app
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 
