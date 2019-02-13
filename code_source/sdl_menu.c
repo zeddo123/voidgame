@@ -1,6 +1,9 @@
 //the menu app
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
+#include <SDL/SDL_mixer.h>
+
+#define twist(a,b,c) a = 0; b = 1; c = 1;
 
 int main(void)
 {
@@ -12,22 +15,33 @@ int main(void)
 
 	SDL_Event event;
 
+	Mix_Music *music = NULL; //pointer of the music
+
+	Mix_Chunk *effect = NULL; //pointer of the sound effect
+
 	int dx_cursor = 0,dy_cursor = 0;
 	char job = 1;
 	char in_menu = 1;
+	char over_play = 1, over_set = 1, over_quit = 1;
 
 	if(SDL_Init(SDL_INIT_VIDEO) != 0){
-		printf("unable to init SDL %d\n", SDL_GetError());
+		printf("unable to init SDL %s\n", SDL_GetError());
 		return 1;
 	}
 
-	screen = SDL_SetVideoMode(1920,1080,0,SDL_HWSURFACE | SDL_DOUBLEBUF);
+	if(Mix_OpenAudio(22050,MIX_DEFAULT_FORMAT,2,4096) != 0){
+		return 1;
+	}
+	
+	SDL_WM_SetCaption("Menu of the game",NULL); //set the caption
+
+	screen = SDL_SetVideoMode(0,0,0,SDL_HWSURFACE | SDL_DOUBLEBUF);
 	if(screen == NULL){
 		printf("unable to set video mode %s\n", SDL_GetError());
 		return 1;
 	}
 
-	SDL_Surface *tmp = IMG_Load("../src/menu1.png");
+	SDL_Surface *tmp = IMG_Load("../src/menu1.png"); // load the background
 	if (tmp == NULL){
 		printf("unable to load image %s\n", SDL_GetError());
 		return 1;
@@ -40,14 +54,33 @@ int main(void)
 		return 1;
 	}
 
+	music = Mix_LoadMUS("../src/music.wav"); // load the music
+	if(music == NULL){
+		printf("->cant load the music \n");
+		return 1;
+	}
+
+	effect = Mix_LoadWAV("../src/effect1.wav");//load the sound effects
+	if(effect == NULL){
+		printf("->cant load the sound effect %s\n",Mix_GetError());
+		return 1;
+	}
+
+
+
 	//iniatilizing the positions
 	positionScreen.x = 0;
 	positionScreen.y = 0;
 	positionScreen.w = menu->w;
 	positionScreen.h = menu->h;
 
+	//starting everything
 	SDL_BlitSurface(menu,&positionScreen,screen,&positionDestination);
-		SDL_Flip(screen);
+	SDL_Flip(screen);
+	if(Mix_PlayMusic(music,-1) == 0){ //play music
+		printf("cant play music ->%s\n",Mix_GetError());
+		return 1;
+	}
 
 	while(job){
 		SDL_PollEvent(&event);
@@ -68,7 +101,7 @@ int main(void)
 				switch(event.button.button){
 					case SDL_BUTTON_LEFT:
 						SDL_GetMouseState(&dx_cursor,&dy_cursor);
-						if(dx_cursor >= 434 && dx_cursor <= 1486){
+						if(dx_cursor >= 434 && dx_cursor <= 1486 && in_menu != 0){
 							
 							if(dy_cursor >= 371 && dy_cursor <= 529){
 								menu = SDL_DisplayFormat(IMG_Load("../src/play.jpg")); //load the game to the player
@@ -91,16 +124,38 @@ int main(void)
 			SDL_GetMouseState(&dx_cursor,&dy_cursor);
 			if(dx_cursor >= 434 && dx_cursor <= 1486){
 							
-				if(dy_cursor >= 371 && dy_cursor <= 529){
+				if(dy_cursor >= 371 && dy_cursor <= 529 && over_play != 0){
+					twist(over_play,over_quit,over_set);
 					menu = SDL_DisplayFormat(IMG_Load("../src/menu1_play_mouseover.png")); //load the mouseover play
-				}else if (dy_cursor >= 596 && dy_cursor <= 754){
+					if(Mix_PlayChannel(-1,effect,0) != 0){
+						printf("cant play sound effects\n");
+						job = 0;
+					}
+
+				}else if (dy_cursor >= 596 && dy_cursor <= 754 && over_set != 0){
+					twist(over_set,over_play,over_quit);
 					menu = SDL_DisplayFormat(IMG_Load("../src/menu1_set_mouseover.png")); //load the mouseover settings
-				}else if (dy_cursor >= 821 && dy_cursor <= 979){
+					if(Mix_PlayChannel(-1,effect,0) != 0){
+						printf("cant play sound effects\n");
+						job = 0;
+					}
+
+				}else if (dy_cursor >= 821 && dy_cursor <= 979 && over_quit != 0){
+					twist(over_quit,over_play,over_set);
 					menu = SDL_DisplayFormat(IMG_Load("../src/menu1_quit_mouseover.png")); //load the mouseover quit
+					if(Mix_PlayChannel(-1,effect,0) != 0){
+						printf("cant play sound effects\n");
+						job = 0;
+					}
+				
 				}else{
+					twist(over_quit,over_play,over_set);
+					over_quit = 0;
 					menu = SDL_DisplayFormat(IMG_Load("../src/menu1.png"));
 				}
 			}else{
+				twist(over_quit,over_play,over_set);
+				over_quit = 0;
 				menu = SDL_DisplayFormat(IMG_Load("../src/menu1.png"));
 			}
 		}
@@ -110,7 +165,8 @@ int main(void)
 	}
 
 	SDL_FreeSurface(menu);
-
+	Mix_FreeMusic(music);
+	Mix_CloseAudio();
 	SDL_Quit();
 
 	return 0;
