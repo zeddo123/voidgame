@@ -145,7 +145,7 @@ int main(void)
 					}
 				}else{
 					twist(over_quit,over_play,over_set);
-					over_quit = 0;
+					over_quit = 1;
 					menu = SDL_DisplayFormat(IMG_Load("../src/menu1.png"));
 				}
 			}else{
