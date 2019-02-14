@@ -29,7 +29,7 @@ int main(void)
 		return 1;
 	}
 
-	if(Mix_OpenAudio(22050,MIX_DEFAULT_FORMAT,2,4096) != 0){
+	if(Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,MIX_DEFAULT_CHANNELS,1024) != 0){
 		return 1;
 	}
 	
@@ -77,11 +77,12 @@ int main(void)
 	//starting everything
 	SDL_BlitSurface(menu,&positionScreen,screen,&positionDestination);
 	SDL_Flip(screen);
-	if(Mix_PlayMusic(music,-1) == 0){ //play music
+	
+	if(Mix_PlayMusic(music,-1) == 1){ //play music
 		printf("cant play music ->%s\n",Mix_GetError());
 		return 1;
 	}
-
+	
 	while(job){
 		SDL_PollEvent(&event);
 
@@ -124,30 +125,24 @@ int main(void)
 			SDL_GetMouseState(&dx_cursor,&dy_cursor);
 			if(dx_cursor >= 434 && dx_cursor <= 1486){
 							
-				if(dy_cursor >= 371 && dy_cursor <= 529 && over_play != 0){
-					twist(over_play,over_quit,over_set);
-					menu = SDL_DisplayFormat(IMG_Load("../src/menu1_play_mouseover.png")); //load the mouseover play
-					if(Mix_PlayChannel(-1,effect,0) != 0){
-						printf("cant play sound effects\n");
-						job = 0;
+				if(dy_cursor >= 371 && dy_cursor <= 529){
+					if(over_play != 0){
+						twist(over_play,over_quit,over_set);
+						menu = SDL_DisplayFormat(IMG_Load("../src/menu1_play_mouseover.png")); //load the mouseover play
+						Mix_PlayChannel(-1,effect,0);
 					}
-
-				}else if (dy_cursor >= 596 && dy_cursor <= 754 && over_set != 0){
-					twist(over_set,over_play,over_quit);
-					menu = SDL_DisplayFormat(IMG_Load("../src/menu1_set_mouseover.png")); //load the mouseover settings
-					if(Mix_PlayChannel(-1,effect,0) != 0){
-						printf("cant play sound effects\n");
-						job = 0;
+				}else if (dy_cursor >= 596 && dy_cursor <= 754){
+					if(over_set != 0){
+						twist(over_set,over_play,over_quit);
+						menu = SDL_DisplayFormat(IMG_Load("../src/menu1_set_mouseover.png")); //load the mouseover settings
+						Mix_PlayChannel(-1,effect,0);
 					}
-
-				}else if (dy_cursor >= 821 && dy_cursor <= 979 && over_quit != 0){
-					twist(over_quit,over_play,over_set);
-					menu = SDL_DisplayFormat(IMG_Load("../src/menu1_quit_mouseover.png")); //load the mouseover quit
-					if(Mix_PlayChannel(-1,effect,0) != 0){
-						printf("cant play sound effects\n");
-						job = 0;
+				}else if (dy_cursor >= 821 && dy_cursor <= 979){
+					if(over_quit != 0){
+						twist(over_quit,over_play,over_set);
+						menu = SDL_DisplayFormat(IMG_Load("../src/menu1_quit_mouseover.png")); //load the mouseover quit
+						Mix_PlayChannel(-1,effect,0);
 					}
-				
 				}else{
 					twist(over_quit,over_play,over_set);
 					over_quit = 0;
