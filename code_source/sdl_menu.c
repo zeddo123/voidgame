@@ -2,6 +2,7 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_mixer.h>
+#include "SDL_menu_header.h"
 
 #define twist(a,b,c) a = 0; b = 1; c = 1;
 
@@ -12,15 +13,20 @@ int main(void)
 
 	SDL_Rect positionScreen;
 	SDL_Rect positionDestination = {0, 0, 0, 0};
+	SDL_Rect positionPlayer;
 
 	SDL_Event event;
+	SDL_Event event_in_game;
 
 	Mix_Music *music = NULL; //pointer of the music
 
 	Mix_Chunk *effect = NULL; //pointer of the sound effect
 
+	hero player;
+
 	int dx_cursor = 0,dy_cursor = 0;
 	char job = 1;
+	char game = 1;
 	char in_menu = 1;
 	char over_play = 1, over_set = 1, over_quit = 1;
 
@@ -73,6 +79,8 @@ int main(void)
 	positionScreen.y = 0;
 	positionScreen.w = menu->w;
 	positionScreen.h = menu->h;
+	positionPlayer.x = 500;
+	positionPlayer.y = 500;
 
 	//starting everything
 	SDL_BlitSurface(menu,&positionScreen,screen,&positionDestination);
@@ -105,8 +113,47 @@ int main(void)
 						if(dx_cursor >= 434 && dx_cursor <= 1486 && in_menu != 0){
 							
 							if(dy_cursor >= 371 && dy_cursor <= 529){
-								menu = SDL_DisplayFormat(IMG_Load("../src/play.jpg")); //load the game to the player
+								
 								in_menu = 0;
+								menu = SDL_DisplayFormat(IMG_Load("../src/play.jpg")); //load the game to the player
+								image_player = SDL_DisplayFormat(IMG_Load("hero"));
+								
+								SDL_BlitSurface(menu,&positionScreen,screen,&positionDestination);
+								SDL_BlitSurface(image_player,&positionScreen,screen,positionPlayer);
+								SDL_Flip(screen);
+								
+								player.x = 500;
+								player.y = 500;
+
+								while(game){
+									SDL_PollEvent(&event_in_game);
+									switch(event_in_game.type){
+										case SDL_QUIT:
+											printf("..Quiting the game..\n");
+											game = 0;
+											break;
+										case SDL_KEYDOWN:
+											switch(event.key.keysym.sym){
+												case SDLK_ESCAPE:
+													menu = SDL_DisplayFormat(IMG_Load("../src/menu1.png"));
+													in_menu = 1;
+													game = 0;
+													break;
+											}
+										case SDL_MOUSEBUTTONDOWN:
+											switch(event_in_game.button.button){
+												case SDL_BUTTON_LEFT:
+													SDL_GetMouseState(&dx_cursor_in_game,&dy_cursor_in_game);
+													player.x = dx_cursor_in_game;
+													player.y = dy_cursor_in_game;
+													positionPlayer.x = player.x;
+													positionPlayer.y = player.y;
+													SDL_BlitSurface(image_player,&positionScreen,screen,positionPlayer);
+													SDL_Flip(screen);
+													break;
+											}
+									}
+								}
 							}else if (dy_cursor >= 596 && dy_cursor <= 754){
 								menu = SDL_DisplayFormat(IMG_Load("../src/settings.jpg")); //load the setting to the user
 								in_menu = 0;
@@ -150,7 +197,7 @@ int main(void)
 				}
 			}else{
 				twist(over_quit,over_play,over_set);
-				over_quit = 0;
+				over_quit = 1;
 				menu = SDL_DisplayFormat(IMG_Load("../src/menu1.png"));
 			}
 		}
