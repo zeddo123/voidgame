@@ -4,3 +4,5 @@ typedef struct{
 	int vdx;
 	int vdy;
 }hero;
+
+void move(int dx, int dy);

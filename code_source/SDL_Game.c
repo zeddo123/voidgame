@@ -10,6 +10,8 @@ int main(void)
 {
 	SDL_Surface *screen = NULL;
 	SDL_Surface *menu = NULL;
+	SDL_Surface *game_surface = NULL;
+	SDL_Surface *image_player = NULL;
 
 	SDL_Rect positionScreen;
 	SDL_Rect positionDestination = {0, 0, 0, 0};
@@ -25,6 +27,7 @@ int main(void)
 	hero player;
 
 	int dx_cursor = 0,dy_cursor = 0;
+	int dx_cursor_in_game = 0,dy_cursor_in_game = 0;
 	char job = 1;
 	char game = 1;
 	char in_menu = 1;
@@ -109,51 +112,77 @@ int main(void)
 			case SDL_MOUSEBUTTONDOWN:
 				switch(event.button.button){
 					case SDL_BUTTON_LEFT:
+
 						SDL_GetMouseState(&dx_cursor,&dy_cursor);
 						if(dx_cursor >= 434 && dx_cursor <= 1486 && in_menu != 0){
 							
+							// player wants to play
 							if(dy_cursor >= 371 && dy_cursor <= 529){
 								
 								in_menu = 0;
-								menu = SDL_DisplayFormat(IMG_Load("../src/play.jpg")); //load the game to the player
-								image_player = SDL_DisplayFormat(IMG_Load("hero"));
+								game_surface = SDL_DisplayFormat(IMG_Load("../src/play.jpg")); //load the game to the player
+								image_player = IMG_Load("../src/hero1.PNG");
 								
-								SDL_BlitSurface(menu,&positionScreen,screen,&positionDestination);
-								SDL_BlitSurface(image_player,&positionScreen,screen,positionPlayer);
+								SDL_BlitSurface(game_surface,&positionScreen,screen,&positionDestination);
+								SDL_BlitSurface(image_player,&positionScreen,screen,&positionPlayer);
 								SDL_Flip(screen);
 								
-								player.x = 500;
-								player.y = 500;
+								player.dx = 500;
+								player.dy = 500;
 
 								while(game){
-									SDL_PollEvent(&event_in_game);
+									SDL_WaitEvent(&event_in_game);
 									switch(event_in_game.type){
 										case SDL_QUIT:
 											printf("..Quiting the game..\n");
+											job = 0;
 											game = 0;
 											break;
 										case SDL_KEYDOWN:
-											switch(event.key.keysym.sym){
+											switch(event_in_game.key.keysym.sym){
 												case SDLK_ESCAPE:
-													menu = SDL_DisplayFormat(IMG_Load("../src/menu1.png"));
-													in_menu = 1;
 													game = 0;
+													in_menu = 1;
 													break;
+												case SDLK_UP:
+													player.dy -= 4;
+													positionPlayer.y = player.dy;
+													break;
+												case SDLK_DOWN:
+													player.dy += 4;
+													positionPlayer.y = player.dy;
+													break;
+												case SDLK_LEFT:
+													player.dx -= 4;
+													positionPlayer.x = player.dx;
+													break;
+												case SDLK_RIGHT:
+													player.dx += 4;
+													positionPlayer.x = player.dx;
+													break; 
 											}
+											break;
 										case SDL_MOUSEBUTTONDOWN:
 											switch(event_in_game.button.button){
 												case SDL_BUTTON_LEFT:
 													SDL_GetMouseState(&dx_cursor_in_game,&dy_cursor_in_game);
-													player.x = dx_cursor_in_game;
-													player.y = dy_cursor_in_game;
-													positionPlayer.x = player.x;
-													positionPlayer.y = player.y;
-													SDL_BlitSurface(image_player,&positionScreen,screen,positionPlayer);
-													SDL_Flip(screen);
+													
+													player.dx = dx_cursor_in_game-413;
+													player.dy = dy_cursor_in_game-628;
+													positionPlayer.x = player.dx;
+													positionPlayer.y = player.dy;
+
+													
 													break;
 											}
+											break;
 									}
+
+									SDL_BlitSurface(game_surface,&positionScreen,screen,&positionDestination);
+									SDL_BlitSurface(image_player,&positionScreen,screen,&positionPlayer);
+									SDL_Flip(screen);
 								}
+
 							}else if (dy_cursor >= 596 && dy_cursor <= 754){
 								menu = SDL_DisplayFormat(IMG_Load("../src/settings.jpg")); //load the setting to the user
 								in_menu = 0;
