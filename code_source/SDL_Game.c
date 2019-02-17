@@ -22,7 +22,7 @@ int main(void)
 
 	Mix_Chunk *effect = NULL; //pointer of the sound effect
 
-	hero player;
+	hero player = {0,0,68,25};
 
 	int dx_cursor = 0,dy_cursor = 0;
 	int dx_cursor_in_game = 0,dy_cursor_in_game = 0;
@@ -40,9 +40,9 @@ int main(void)
 		return 1;
 	}
 	
-	SDL_WM_SetCaption("Menu of the game",NULL); //set the caption
+	SDL_WM_SetCaption("void prod game",NULL); //set the caption
 
-	screen = SDL_SetVideoMode(0,0,0,SDL_HWSURFACE | SDL_DOUBLEBUF);
+	screen = SDL_SetVideoMode(SCREEN_WIDTH,SCREEN_HEIGHT,0,SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_RESIZABLE);
 	if(screen == NULL){
 		printf("unable to set video mode %s\n", SDL_GetError());
 		return 1;
@@ -93,7 +93,7 @@ int main(void)
 	}
 	
 	while(job){
-		SDL_PollEvent(&event);
+		SDL_WaitEvent(&event);
 
 		switch(event.type){
 			case SDL_QUIT:
@@ -103,30 +103,30 @@ int main(void)
 			case SDL_KEYDOWN:
 				switch(event.key.keysym.sym){
 					case SDLK_ESCAPE:
-						menu = SDL_DisplayFormat(IMG_Load("../src/menu1.png"));
+						menu = SDL_DisplayFormat(IMG_Load(MENU_FILE));
 						in_menu = 1;
 						break;
 				}
+				break;
 			case SDL_MOUSEBUTTONDOWN:
 				switch(event.button.button){
 					case SDL_BUTTON_LEFT:
 
 						SDL_GetMouseState(&dx_cursor,&dy_cursor);
-						if(dx_cursor >= 434 && dx_cursor <= 1486 && in_menu != 0){
+						if(dx_cursor >= FROM && dx_cursor <= TO && in_menu != 0){
 							
 							// player wants to play
-							if(dy_cursor >= 371 && dy_cursor <= 529){
-
+							if(dy_cursor >= PLAY_FROM && dy_cursor <= PLAY_TO){
 								in_menu = 0;
+								game = 1;
 								game_surface = SDL_DisplayFormat(IMG_Load("../src/play.jpg")); //load the game to the player
-								image_player = IMG_Load("../src/hero1.PNG");
+								image_player = IMG_Load("../src/hero1t.PNG");
 
 								SDL_BlitSurface(game_surface,&positionScreen,screen,&positionDestination);
 								SDL_BlitSurface(image_player,&positionScreen,screen,&positionPlayer);
 								SDL_Flip(screen);
-								
-								move(&player,500,500,1);
-
+								moveToMouse(&player,500,500);
+								SDL_EnableKeyRepeat(10,10);
 								while(game){
 									
 									eventHandler(&player,&positionPlayer,&game,&in_menu,&job);
@@ -138,10 +138,12 @@ int main(void)
 
 								SDL_FreeSurface(image_player);
 								SDL_FreeSurface(game_surface);
-							}else if (dy_cursor >= 596 && dy_cursor <= 754){
+							
+							}else if (dy_cursor >= SET_FROM && SET_TO <= 754){
 								menu = SDL_DisplayFormat(IMG_Load("../src/settings.jpg")); //load the setting to the user
 								in_menu = 0;
-							}else if (dy_cursor >= 821 && dy_cursor <= 979){
+							
+							}else if (dy_cursor >= QUIT_FROM && dy_cursor <= QUIT_TO){
 								job = 0;
 							}
 
@@ -154,35 +156,35 @@ int main(void)
 		if(in_menu){
 			
 			SDL_GetMouseState(&dx_cursor,&dy_cursor);
-			if(dx_cursor >= 434 && dx_cursor <= 1486){
+			if(dx_cursor >= FROM && dx_cursor <= TO){
 							
-				if(dy_cursor >= 371 && dy_cursor <= 529){
+				if(dy_cursor >= PLAY_FROM && dy_cursor <= PLAY_TO){
 					if(over_play != 0){
 						twist(over_play,over_quit,over_set);
-						menu = SDL_DisplayFormat(IMG_Load("../src/menu1_play_mouseover.png")); //load the mouseover play
+						menu = SDL_DisplayFormat(IMG_Load(MENU_FILE_PLAY)); //load the mouseover play
 						Mix_PlayChannel(-1,effect,0);
 					}
-				}else if (dy_cursor >= 596 && dy_cursor <= 754){
+				}else if (dy_cursor >= SET_FROM && dy_cursor <= SET_TO){
 					if(over_set != 0){
 						twist(over_set,over_play,over_quit);
-						menu = SDL_DisplayFormat(IMG_Load("../src/menu1_set_mouseover.png")); //load the mouseover settings
+						menu = SDL_DisplayFormat(IMG_Load(MENU_FILE_SET)); //load the mouseover settings
 						Mix_PlayChannel(-1,effect,0);
 					}
-				}else if (dy_cursor >= 821 && dy_cursor <= 979){
+				}else if (dy_cursor >= QUIT_FROM && dy_cursor <= QUIT_TO){
 					if(over_quit != 0){
 						twist(over_quit,over_play,over_set);
-						menu = SDL_DisplayFormat(IMG_Load("../src/menu1_quit_mouseover.png")); //load the mouseover quit
+						menu = SDL_DisplayFormat(IMG_Load(MENU_FILE_QUIT)); //load the mouseover quit
 						Mix_PlayChannel(-1,effect,0);
 					}
 				}else{
 					twist(over_quit,over_play,over_set);
 					over_quit = 1;
-					menu = SDL_DisplayFormat(IMG_Load("../src/menu1.png"));
+					menu = SDL_DisplayFormat(IMG_Load(MENU_FILE));
 				}
 			}else{
 				twist(over_quit,over_play,over_set);
 				over_quit = 1;
-				menu = SDL_DisplayFormat(IMG_Load("../src/menu1.png"));
+				menu = SDL_DisplayFormat(IMG_Load(MENU_FILE));
 			}
 		}
 		SDL_BlitSurface(menu,&positionScreen,screen,&positionDestination);
