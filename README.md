@@ -1,5 +1,5 @@
-# voidgame
+# Voidgame
 void productions' game
-# Logo
+# Coat of arms
   ![alt text](https://raw.githubusercontent.com/zeddo123/voidgame/master/src/logo.PNG)
 # Src
