@@ -6,6 +6,26 @@ void moveToMouse(hero *player, int dx, int dy){
 	player->dy = dy;
 }
 
+void nextFrame(int *frame, int maxframes){
+	if(*frame + 1 < maxframes){
+		(*frame)++;
+	}else{
+		(*frame) = 0;
+	}
+}
+
+int checkImageLoad(SDL_Surface *set[], int index, int maxIndex){
+	if(index >= maxIndex){
+		return 1;
+	}else{
+		if(set[index] != NULL){
+			return checkImageLoad(set,index+1,maxIndex);
+		}else{
+			printf("unable to load image %s\n", SDL_GetError());
+			return 0;
+		}
+	}
+}
 void move(hero *player, int xy, int i){
 	if(xy == 1){
 		player->dx += i*STEP;
