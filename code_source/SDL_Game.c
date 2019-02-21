@@ -2,6 +2,7 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_mixer.h>
+#include <SDL/SDL_ttf.h>
 #include "SDL_Game.h"
 
 int main(void)
@@ -11,6 +12,7 @@ int main(void)
 	SDL_Surface *image_player = NULL;
 	SDL_Surface *menu = NULL;
 	SDL_Surface *menu_frame[8];
+	SDL_Surface *font_surface = NULL;
 
 	SDL_Rect positionScreen;
 	SDL_Rect positionDestination = {0, 0, 0, 0};
@@ -19,11 +21,15 @@ int main(void)
 	SDL_Event event;
 	SDL_Event event_in_game;
 
+	SDL_Color fontColor = {255, 255, 255};
+
 	Uint32 oldTime = 0, currentTime = 0;
 
 	Mix_Music *music = NULL; //pointer of the music
 
 	Mix_Chunk *effect = NULL; //pointer of the sound effect
+
+	TTF_Font *font;
 
 	hero player = {0,0,68,25};
 
@@ -43,7 +49,10 @@ int main(void)
 	if(Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,MIX_DEFAULT_CHANNELS,1024) != 0){
 		return 1;
 	}
-	
+
+	font = TTF_OpenFont("../src/font/Baron Neue Black Italic.otf",12);
+	font_surface = TTF_RenderText_Solid(font,"game under the GPL 2.0 licence",fontColor);
+
 	SDL_WM_SetCaption("void prod game",NULL); //set the caption
 
 	screen = SDL_SetVideoMode(SCREEN_WIDTH,SCREEN_HEIGHT,0,SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_RESIZABLE);
@@ -97,7 +106,7 @@ int main(void)
 	//starting everything
 	SDL_BlitSurface(menu_frame[next],&positionScreen,screen,&positionDestination);
 	SDL_Flip(screen);
-	
+
 	if(Mix_PlayMusic(music,-1) == 1){ //play music
 		printf("cant play music ->%s\n",Mix_GetError());
 		return 1;
@@ -126,7 +135,7 @@ int main(void)
 
 						SDL_GetMouseState(&dx_cursor,&dy_cursor);
 						if(dx_cursor >= FROM && dx_cursor <= TO && in_menu != 0){
-							
+
 							// player wants to play
 							if(dy_cursor >= PLAY_FROM && dy_cursor <= PLAY_TO){
 								in_menu = 0;
@@ -219,6 +228,7 @@ int main(void)
 			}
 		}
 		SDL_BlitSurface(menu,&positionScreen,screen,&positionDestination);
+		SDL_BlitSurface(font_surface,&positionScreen,screen,&positionDestination);
 		SDL_Flip(screen);
 
 	}
