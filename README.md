@@ -1,7 +1,7 @@
 # Voidgame
 void productions' game
 # Logo
-  ![alt text](https://raw.githubusercontent.com/zeddo123/voidgame/master/voidgame/src/design/logo_void/logo_void_png.png)
+  ![alt text](https://raw.githubusercontent.com/zeddo123/voidgame/master/voidgame/src/design/logo_void/logo_void_jpeg.jpg)
 # Coat of arms
   ![alt text](https://raw.githubusercontent.com/zeddo123/voidgame/master/src/design/coat of arms/logo.PNG)
 # Game Logo
