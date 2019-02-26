@@ -13,11 +13,20 @@ int main(void)
 	SDL_Surface *menu = NULL;
 	SDL_Surface *menu_frame[8];
 	SDL_Surface *font_surface = NULL;
+	SDL_Surface *play[2];
+	SDL_Surface *set[2];
+	SDL_Surface *quit[2];
+	SDL_Surface *logo = NULL;
+
 
 	SDL_Rect positionScreen;
 	SDL_Rect positionDestination = {0, 0, 0, 0};
 	SDL_Rect positionPlayer;
 	SDL_Rect positionText;
+	SDL_Rect positionPlay;
+	SDL_Rect positionQuit;
+	SDL_Rect positionSet;
+	SDL_Rect positionLogo;
 
 	SDL_Event event;
 	SDL_Event event_in_game;
@@ -30,7 +39,7 @@ int main(void)
 
 	Mix_Chunk *effect = NULL; //pointer of the sound effect
 
-	TTF_Font *font;
+	TTF_Font *font = NULL;
 
 	hero player = {0,0,68,25};
 
@@ -40,7 +49,7 @@ int main(void)
 	char job = 1;
 	char game = 1;
 	char in_menu = 1;
-	char over_play = 1, over_set = 1, over_quit = 1;
+	char over_play = 1, over_set = 1, over_quit = 1, licence = 1;
 
 	if(SDL_Init(SDL_INIT_VIDEO) != 0){
 		printf("unable to init SDL %s\n", SDL_GetError());
@@ -55,9 +64,9 @@ int main(void)
 		return 1;
 	}
 
-	font = TTF_OpenFont("../src/font/Monaco.ttf",23);
-	font_surface = TTF_RenderText_Solid(font,"game under the GPL 2.0 licence",fontColor);
-	if(font_surface == NULL){
+	font = TTF_OpenFont("../src/font/Monaco.ttf",30);
+	font_surface = TTF_RenderText_Blended(font,"game under the GPL 2.0 licence",fontColor);
+	if(font_surface == NULL || font == NULL){
 		printf("unable to TTF_RenderText_Solid\n");
 		return 1;
 	}
@@ -80,16 +89,26 @@ int main(void)
 	menu_frame[6] = IMG_Load(MENU_FILE_FRAME_7);
 	menu_frame[7] = IMG_Load(MENU_FILE_FRAME_8);
 
-	if(checkImageLoad(menu_frame,0,8) != 1){
-		return 1;
-	}
+	//load the play botton
+	play[1] = IMG_Load(PLAY_B_STATIC);
+	play[0] = IMG_Load(PLAY_B_OVER);
 
-	for(int i = 0;i < 8;i++){
-		menu_frame[i] = SDL_DisplayFormat(menu_frame[i]);
-	}
-	if(checkImageLoad(menu_frame,0,8) != 1){
-		return 1;
-	}
+	//load the setting botton
+	set[1] = IMG_Load(SET_B_STATIC);
+	set[0] = IMG_Load(SET_B_OVER);
+
+	//load the quit botton
+	quit[1] = IMG_Load(QUIT_B_STATIC);
+	quit[0] = IMG_Load(QUIT_B_OVER);
+
+	//load logo
+	logo = IMG_Load(LOGO);
+
+	displayFormatFrame(menu_frame,8);
+	displayFormatFrame(play,3);
+	displayFormatFrame(set,3);
+	displayFormatFrame(quit,3);
+
 
 	music = Mix_LoadMUS("../src/sound/music.wav"); // load the music
 	if(music == NULL){
@@ -109,10 +128,34 @@ int main(void)
 	positionScreen.y = 0;
 	positionScreen.w = SCREEN_WIDTH;
 	positionScreen.h = SCREEN_HEIGHT;
+
+	positionPlay.x = FROM;
+	positionPlay.y = PLAY_FROM;
+	positionPlay.w = play[0]->w;
+	positionPlay.h = play[0]->h;
+
+	positionQuit.x = FROM;
+	positionQuit.y = QUIT_FROM;
+	positionQuit.w = quit[0]->w;
+	positionQuit.h = quit[0]->h;
+
+	positionSet.x = FROM;
+	positionSet.y = SET_FROM;
+	positionSet.w = set[0]->w;
+	positionSet.h = set[0]->h;
+	
 	positionPlayer.x = 500;
 	positionPlayer.y = 500;
-	positionText.x = 500;
-	positionText.y = 500;
+
+	positionText.x = 0;
+	positionText.y = SCREEN_HEIGHT - 2.55*font_surface->h;
+	positionText.w = font_surface->w;
+	positionText.h = font_surface->h;
+
+	positionLogo.x = SCREEN_WIDTH - logo->w-20;
+	positionLogo.y = 20;
+	positionLogo.w = logo->w;
+	positionLogo.h = logo->h;
 
 	//starting everything
 	SDL_BlitSurface(menu_frame[next],&positionScreen,screen,&positionDestination);
@@ -198,49 +241,54 @@ int main(void)
 				
 				if(dy_cursor >= PLAY_FROM && dy_cursor <= PLAY_TO){
 					if(over_play != 0){
-						next = 0;
-						twist(over_play,over_quit,over_set);
-						menu = SDL_DisplayFormat(IMG_Load(MENU_FILE_PLAY)); //load the mouseover play
+						twist(over_play,over_quit,over_set,licence);
 						Mix_PlayChannel(-1,effect,0);
 					}
 				}else if (dy_cursor >= SET_FROM && dy_cursor <= SET_TO){
 					if(over_set != 0){
-						next = 0;
-						twist(over_set,over_play,over_quit);
-						menu = SDL_DisplayFormat(IMG_Load(MENU_FILE_SET)); //load the mouseover settings
+						twist(over_set,over_play,over_quit,licence);
 						Mix_PlayChannel(-1,effect,0);
 					}
 				}else if (dy_cursor >= QUIT_FROM && dy_cursor <= QUIT_TO){
 					if(over_quit != 0){
-						next = 0;
-						twist(over_quit,over_play,over_set);
-						menu = SDL_DisplayFormat(IMG_Load(MENU_FILE_QUIT)); //load the mouseover quit
+						twist(over_quit,over_play,over_set,licence);
 						Mix_PlayChannel(-1,effect,0);
 					}
 				}else{
-					currentTime = SDL_GetTicks();
-					if(currentTime - oldTime > 500){
-						menu = menu_frame[next];
-						nextFrame(&next,8);
-						oldTime = currentTime;
-					}
-					twist(over_quit,over_play,over_set);
+					twist(over_quit,over_play,over_set,licence);
 					over_quit = 1;
 				}
+			}else if (dx_cursor >= 0 && dx_cursor <= 100){
+				if(dy_cursor >= SCREEN_HEIGHT - 100 && dy_cursor <= SCREEN_HEIGHT){
+					if(licence != 0){
+						twist(licence,over_set,over_play,over_quit);
+					}
+				} 
 			}else{
-				currentTime = SDL_GetTicks();
-				if(currentTime - oldTime > 500){
-					menu = menu_frame[next];
-					nextFrame(&next,8);
-					oldTime = currentTime;
-				}
-				twist(over_quit,over_play,over_set);
+				twist(over_quit,over_play,over_set,licence);
 				over_quit = 1;
 			}
+		
+		currentTime = SDL_GetTicks();
+		if(currentTime - oldTime > 500){
+			menu = menu_frame[next];
+			nextFrame(&next,8);
+			oldTime = currentTime;
 		}
+
 		SDL_BlitSurface(menu,&positionScreen,screen,&positionDestination);
-		SDL_BlitSurface(font_surface,&positionText,screen,NULL);
+		if(licence == 0){
+			SDL_BlitSurface(font_surface,NULL,screen,&positionText);
+		}
+		SDL_BlitSurface(logo,NULL,screen,&positionLogo);
+
+		SDL_BlitSurface(play[over_play],NULL,screen,&positionPlay);
+		SDL_BlitSurface(quit[over_quit],NULL,screen,&positionQuit);
+		SDL_BlitSurface(set[over_set],NULL,screen,&positionSet);
+
 		SDL_Flip(screen);
+		
+		}
 
 	}
 
@@ -248,11 +296,17 @@ int main(void)
 	SDL_FreeSurface(font_surface);
 	SDL_FreeSurface(image_player);
 	SDL_FreeSurface(game_surface);
+	SDL_FreeSurface(logo);
 
 	for(int i = 0;i < 8;i++){
 		SDL_FreeSurface(menu_frame[i]);
 	}
 
+	for(int i = 0;i < 3;i++){
+		SDL_FreeSurface(play[i]);
+		SDL_FreeSurface(set[i]);
+		SDL_FreeSurface(quit[i]);
+	}
 	Mix_FreeMusic(music);
 	Mix_CloseAudio();
 	TTF_CloseFont(font);

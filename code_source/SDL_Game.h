@@ -1,6 +1,6 @@
 #include <SDL/SDL.h>
 
-#define twist(a,b,c) a = 0; b = 1; c = 1;
+#define twist(a,b,c,d) a = 0; b = 1; c = 1; d = 1;
 
 #define STEP 4
 #define SCREEN_WIDTH 1920
@@ -30,6 +30,13 @@
 	#define MENU_FILE_PLAY "../src/design/new_menu/menu_gif/new_menu_1920_play.gif"
 	#define MENU_FILE_SET "../src/design/new_menu/menu_gif/new_menu_1920_setting.gif"
 	#define MENU_FILE_QUIT "../src/design/new_menu/menu_gif/new_menu_1920_quit.gif"
+	#define LOGO "../src/design/logo_jeu/logo_jeu_low_png.png"
+	#define PLAY_B_STATIC "../src/design/botton/play/b_play.png"
+	#define PLAY_B_OVER "../src/design/botton/play/b_play_over.png"
+	#define QUIT_B_STATIC "../src/design/botton/quit/b_quit.png"
+	#define QUIT_B_OVER "../src/design/botton/quit/b_quit_over.png"
+	#define SET_B_STATIC "../src/design/botton/setting/b_setting.png"
+	#define SET_B_OVER "../src/design/botton/setting/b_setting_over.png"
 #endif
 
 #ifdef HD
@@ -55,6 +62,13 @@
 	#define MENU_FILE_PLAY "../src/design/new_menu/menu_gif/new_menu_720_play.gif"
 	#define MENU_FILE_SET "../src/design/new_menu/menu_gif/new_menu_720_setting.gif"
 	#define MENU_FILE_QUIT "../src/design/new_menu/menu_gif/new_menu_720_quit.gif"
+	#define LOGO "../src/design/logo_jeu/logo_jeu_low_png.png"
+	#define PLAY_B_STATIC "../src/design/botton/play/b_play.png"
+	#define PLAY_B_OVER "../src/design/botton/play/b_play_over.png"
+	#define QUIT_B_STATIC "../src/design/botton/quit/b_quit.png"
+	#define QUIT_B_OVER "../src/design/botton/quit/b_quit_over.png"
+	#define SET_B_STATIC "../src/design/botton/setting/b_setting.png"
+	#define SET_B_OVER "../src/design/botton/setting/b_setting_over.png"
 #endif
 
 typedef struct{
@@ -69,5 +83,7 @@ void move(hero *player, int xy, int i);
 void eventHandler(hero *player, SDL_Rect *positionPlayer, char *ptr_game, char *ptr_in_menu, char *ptr_job);
 
 int checkImageLoad(SDL_Surface *set[], int index, int maxIndex);
+
+void displayFormatFrame(SDL_Surface *set[], int maxframes);
 
 void nextFrame(int *frame, int maxframes);

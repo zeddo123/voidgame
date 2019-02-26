@@ -1,6 +1,21 @@
 #include "SDL_Game.h"
 #include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
 
+void displayFormatFrame(SDL_Surface *set[], int maxframes){
+	if(checkImageLoad(set,0,maxframes) != 1){
+		printf("error on loading %s",IMG_GetError());
+		exit(0);
+	}
+
+	for(int i = 0;i < maxframes;i++){
+		set[i] = SDL_DisplayFormat(set[i]);
+	}
+	if(checkImageLoad(set,0,maxframes) != 1){
+		printf("error on loading %s",IMG_GetError());
+		exit(0);
+	}
+}
 void moveToMouse(hero *player, int dx, int dy){
 	player->dx = dx;
 	player->dy = dy;
