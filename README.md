@@ -5,5 +5,5 @@ void productions' game
 # Coat of arms
   ![alt text](https://raw.githubusercontent.com/zeddo123/voidgame/master/src/design/logo.PNG)
 # Game Logo
-  ![alt text](https://raw.githubusercontent.com/zeddo123/voidgame/master/src/design/logo_jeu_png.PNG)
+  ![alt text](https://raw.githubusercontent.com/zeddo123/voidgame/master/src/design/logo_jeu_png.png)
 # Src
