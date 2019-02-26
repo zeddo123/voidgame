@@ -3,9 +3,9 @@
 #define twist(a,b,c) a = 0; b = 1; c = 1;
 
 #define STEP 4
-#define SCREEN_WIDTH 1280
-#define SCREEN_HEIGHT 720
-#define HD // or HD
+#define SCREEN_WIDTH 1920
+#define SCREEN_HEIGHT 1080
+#define FHD // or HD
 
 #ifdef FHD
 //positions of the buttons

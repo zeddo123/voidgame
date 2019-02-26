@@ -17,6 +17,7 @@ int main(void)
 	SDL_Rect positionScreen;
 	SDL_Rect positionDestination = {0, 0, 0, 0};
 	SDL_Rect positionPlayer;
+	SDL_Rect positionText;
 
 	SDL_Event event;
 	SDL_Event event_in_game;
@@ -46,12 +47,20 @@ int main(void)
 		return 1;
 	}
 
+	if(TTF_Init() == -1){
+		return 1;
+	}
+
 	if(Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,MIX_DEFAULT_CHANNELS,1024) != 0){
 		return 1;
 	}
 
-	font = TTF_OpenFont("../src/font/Baron Neue Black Italic.otf",12);
+	font = TTF_OpenFont("../src/font/Monaco.ttf",23);
 	font_surface = TTF_RenderText_Solid(font,"game under the GPL 2.0 licence",fontColor);
+	if(font_surface == NULL){
+		printf("unable to TTF_RenderText_Solid\n");
+		return 1;
+	}
 
 	SDL_WM_SetCaption("void prod game",NULL); //set the caption
 
@@ -102,6 +111,8 @@ int main(void)
 	positionScreen.h = SCREEN_HEIGHT;
 	positionPlayer.x = 500;
 	positionPlayer.y = 500;
+	positionText.x = 500;
+	positionText.y = 500;
 
 	//starting everything
 	SDL_BlitSurface(menu_frame[next],&positionScreen,screen,&positionDestination);
@@ -184,7 +195,7 @@ int main(void)
 			
 			SDL_GetMouseState(&dx_cursor,&dy_cursor);
 			if(dx_cursor >= FROM && dx_cursor <= TO){
-							
+				
 				if(dy_cursor >= PLAY_FROM && dy_cursor <= PLAY_TO){
 					if(over_play != 0){
 						next = 0;
@@ -228,14 +239,24 @@ int main(void)
 			}
 		}
 		SDL_BlitSurface(menu,&positionScreen,screen,&positionDestination);
-		SDL_BlitSurface(font_surface,&positionScreen,screen,&positionDestination);
+		SDL_BlitSurface(font_surface,&positionText,screen,NULL);
 		SDL_Flip(screen);
 
 	}
 
 	SDL_FreeSurface(menu);
+	SDL_FreeSurface(font_surface);
+	SDL_FreeSurface(image_player);
+	SDL_FreeSurface(game_surface);
+
+	for(int i = 0;i < 8;i++){
+		SDL_FreeSurface(menu_frame[i]);
+	}
+
 	Mix_FreeMusic(music);
 	Mix_CloseAudio();
+	TTF_CloseFont(font);
+	TTF_Quit();
 	SDL_Quit();
 
 	return 0;
