@@ -18,25 +18,24 @@
 	#define QUIT_FROM 632
 	#define QUIT_TO 778
 
-	#define MENU_FILE_FRAME_1 "../src/design/new_menu/menu_1080p/1/menu_frame1_1080.png"
-	#define MENU_FILE_FRAME_2 "../src/design/new_menu/menu_1080p/1/menu_frame2_1080p.png"
-	#define MENU_FILE_FRAME_3 "../src/design/new_menu/menu_1080p/1/menu_frame3_1080p.png"
-	#define MENU_FILE_FRAME_4 "../src/design/new_menu/menu_1080p/1/menu_frame4_1080.png"
-	#define MENU_FILE_FRAME_5 "../src/design/new_menu/menu_1080p/1/menu_frame5_1080.png"
-	#define MENU_FILE_FRAME_6 "../src/design/new_menu/menu_1080p/1/menu_frame6_1080.png"
-	#define MENU_FILE_FRAME_7 "../src/design/new_menu/menu_1080p/1/menu_frame7_1080.png"
-	#define MENU_FILE_FRAME_8 "../src/design/new_menu/menu_1080p/1/menu_frame8_1080.png"
+	#define MENU_FILE_FRAME_1 "../src/design/Main_menu/lastmenu_f1_1080.png"
+	#define MENU_FILE_FRAME_2 "../src/design/Main_menu/lastmenu_f2_1080.png"
+	#define MENU_FILE_FRAME_3 "../src/design/Main_menu/lastmenu_f3_1080.png"
+	#define MENU_FILE_FRAME_4 "../src/design/Main_menu/lastmenu_f4_1080.png"
+	#define MENU_FILE_FRAME_5 "../src/design/Main_menu/lastmenu_f5_1080.png"
+	#define MENU_FILE_FRAME_6 "../src/design/Main_menu/lastmenu_f6_1080.png"
+	#define MENU_FILE_FRAME_7 "../src/design/Main_menu/lastmenu_f7_1080.png"
 
 	#define MENU_FILE_PLAY "../src/design/new_menu/menu_gif/new_menu_1920_play.gif"
 	#define MENU_FILE_SET "../src/design/new_menu/menu_gif/new_menu_1920_setting.gif"
 	#define MENU_FILE_QUIT "../src/design/new_menu/menu_gif/new_menu_1920_quit.gif"
-	#define LOGO "../src/design/logo_jeu/logo_jeu_low_png.png"
-	#define PLAY_B_STATIC "../src/design/botton/play/b_play.png"
-	#define PLAY_B_OVER "../src/design/botton/play/b_play_over.png"
-	#define QUIT_B_STATIC "../src/design/botton/quit/b_quit.png"
-	#define QUIT_B_OVER "../src/design/botton/quit/b_quit_over.png"
-	#define SET_B_STATIC "../src/design/botton/setting/b_setting.png"
-	#define SET_B_OVER "../src/design/botton/setting/b_setting_over.png"
+	#define LOGO "../src/design/logo_jeu/game_logo_2_2_low.png"
+	#define PLAY_B_STATIC "../src/design/botton/play/b_play_low.png"
+	#define PLAY_B_OVER "../src/design/botton/play/b_play_over_low.png"
+	#define QUIT_B_STATIC "../src/design/botton/quit/b_quit_low.png"
+	#define QUIT_B_OVER "../src/design/botton/quit/b_quit_over_low.png"
+	#define SET_B_STATIC "../src/design/botton/setting/b_setting_low.png"
+	#define SET_B_OVER "../src/design/botton/setting/b_setting_over_low.png"
 #endif
 
 #ifdef HD
@@ -50,25 +49,24 @@
 	#define QUIT_FROM 422
 	#define QUIT_TO 520
 
-	#define MENU_FILE_FRAME_1 "../src/design/new_menu/menu_720p/1/menu_frame1_720p.png"
-	#define MENU_FILE_FRAME_2 "../src/design/new_menu/menu_720p/1/menu_frame2_720p.png"
-	#define MENU_FILE_FRAME_3 "../src/design/new_menu/menu_720p/1/menu_frame3_720p.png"
-	#define MENU_FILE_FRAME_4 "../src/design/new_menu/menu_720p/1/menu_frame4_720p.png"
-	#define MENU_FILE_FRAME_5 "../src/design/new_menu/menu_720p/1/menu_frame5_720p.png"
-	#define MENU_FILE_FRAME_6 "../src/design/new_menu/menu_720p/1/menu_frame6_720p.png"
-	#define MENU_FILE_FRAME_7 "../src/design/new_menu/menu_720p/1/menu_frame7_720p.png"
-	#define MENU_FILE_FRAME_8 "../src/design/new_menu/menu_720p/1/menu_frame8_720p.png"
+	#define MENU_FILE_FRAME_1 "../src/design/Main_menu/lastmenu_f1_1080.png"
+	#define MENU_FILE_FRAME_2 "../src/design/Main_menu/lastmenu_f2_1080.png"
+	#define MENU_FILE_FRAME_3 "../src/design/Main_menu/lastmenu_f3_1080.png"
+	#define MENU_FILE_FRAME_4 "../src/design/Main_menu/lastmenu_f4_1080.png"
+	#define MENU_FILE_FRAME_5 "../src/design/Main_menu/lastmenu_f5_1080.png"
+	#define MENU_FILE_FRAME_6 "../src/design/Main_menu/lastmenu_f6_1080.png"
+	#define MENU_FILE_FRAME_7 "../src/design/Main_menu/lastmenu_f7_1080.png"
 
 	#define MENU_FILE_PLAY "../src/design/new_menu/menu_gif/new_menu_720_play.gif"
 	#define MENU_FILE_SET "../src/design/new_menu/menu_gif/new_menu_720_setting.gif"
 	#define MENU_FILE_QUIT "../src/design/new_menu/menu_gif/new_menu_720_quit.gif"
 	#define LOGO "../src/design/logo_jeu/logo_jeu_low_png.png"
-	#define PLAY_B_STATIC "../src/design/botton/play/b_play.png"
-	#define PLAY_B_OVER "../src/design/botton/play/b_play_over.png"
-	#define QUIT_B_STATIC "../src/design/botton/quit/b_quit.png"
-	#define QUIT_B_OVER "../src/design/botton/quit/b_quit_over.png"
-	#define SET_B_STATIC "../src/design/botton/setting/b_setting.png"
-	#define SET_B_OVER "../src/design/botton/setting/b_setting_over.png"
+	#define PLAY_B_STATIC "../src/design/botton/play/b_play_low.png"
+	#define PLAY_B_OVER "../src/design/botton/play/b_play_over_low.png"
+	#define QUIT_B_STATIC "../src/design/botton/quit/b_quit_low.png"
+	#define QUIT_B_OVER "../src/design/botton/quit/b_quit_over_low.png"
+	#define SET_B_STATIC "../src/design/botton/setting/b_setting_low.png"
+	#define SET_B_OVER "../src/design/botton/setting/b_setting_over_low.png"
 #endif
 
 typedef struct{

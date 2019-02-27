@@ -11,7 +11,8 @@ int main(void)
 	SDL_Surface *game_surface = NULL;
 	SDL_Surface *image_player = NULL;
 	SDL_Surface *menu = NULL;
-	SDL_Surface *menu_frame[8];
+	SDL_Surface *menu_setting = NULL;
+	SDL_Surface *menu_frame[7];
 	SDL_Surface *font_surface = NULL;
 	SDL_Surface *play[2];
 	SDL_Surface *set[2];
@@ -87,7 +88,6 @@ int main(void)
 	menu_frame[4] = IMG_Load(MENU_FILE_FRAME_5);
 	menu_frame[5] = IMG_Load(MENU_FILE_FRAME_6);
 	menu_frame[6] = IMG_Load(MENU_FILE_FRAME_7);
-	menu_frame[7] = IMG_Load(MENU_FILE_FRAME_8);
 
 	//load the play botton
 	play[1] = IMG_Load(PLAY_B_STATIC);
@@ -104,7 +104,7 @@ int main(void)
 	//load logo
 	logo = IMG_Load(LOGO);
 
-	displayFormatFrame(menu_frame,8);
+	displayFormatFrame(menu_frame,7);
 	displayFormatFrame(play,3);
 	displayFormatFrame(set,3);
 	displayFormatFrame(quit,3);
@@ -178,7 +178,7 @@ int main(void)
 					case SDLK_ESCAPE:
 						next = 0;
 						menu = menu_frame[next];
-						nextFrame(&next,8);
+						nextFrame(&next,7);
 						in_menu = 1;
 						break;
 				}
@@ -188,10 +188,10 @@ int main(void)
 					case SDL_BUTTON_LEFT:
 
 						SDL_GetMouseState(&dx_cursor,&dy_cursor);
-						if(dx_cursor >= FROM && dx_cursor <= TO && in_menu != 0){
+						if(dx_cursor >= FROM && dx_cursor <= play[0]->w + FROM && in_menu != 0){
 
 							// player wants to play
-							if(dy_cursor >= PLAY_FROM && dy_cursor <= PLAY_TO){
+							if(dy_cursor >= PLAY_FROM && dy_cursor <= play[0]->h + PLAY_FROM){
 								in_menu = 0;
 								next = 0;
 								game = 1;
@@ -216,13 +216,16 @@ int main(void)
 								SDL_FreeSurface(game_surface);
 							}
 							//open the settings
-							if (dy_cursor >= SET_FROM && SET_TO <= 754){
+							if (dy_cursor >= SET_FROM && dy_cursor <= set[0]->h + SET_FROM){
 								next = 0;
-								menu = SDL_DisplayFormat(IMG_Load("../src/settings.jpg")); //load the setting to the user
+								menu_setting = SDL_DisplayFormat(IMG_Load("../src/design/bazar/wallhaven-553699.png")); //load the setting to the user
+								SDL_BlitSurface(menu_setting,&positionScreen,screen,&positionDestination);
+								SDL_BlitSurface(logo,NULL,screen,&positionLogo);
+								SDL_Flip(screen);
 								in_menu = 0;
 							}
 							//quit the game
-							if (dy_cursor >= QUIT_FROM && dy_cursor <= QUIT_TO){
+							if (dy_cursor >= QUIT_FROM && dy_cursor <= quit[0]->h + QUIT_FROM){
 								job = 0;
 								in_menu = 0;
 							}
@@ -237,19 +240,19 @@ int main(void)
 		if(in_menu){
 			
 			SDL_GetMouseState(&dx_cursor,&dy_cursor);
-			if(dx_cursor >= FROM && dx_cursor <= TO){
+			if(dx_cursor >= FROM && dx_cursor <= play[0]->w + FROM){
 				
-				if(dy_cursor >= PLAY_FROM && dy_cursor <= PLAY_TO){
+				if(dy_cursor >= PLAY_FROM && dy_cursor <= play[0]->h + PLAY_FROM){
 					if(over_play != 0){
 						twist(over_play,over_quit,over_set,licence);
 						Mix_PlayChannel(-1,effect,0);
 					}
-				}else if (dy_cursor >= SET_FROM && dy_cursor <= SET_TO){
+				}else if (dy_cursor >= SET_FROM && dy_cursor <= set[0]->h + SET_FROM){
 					if(over_set != 0){
 						twist(over_set,over_play,over_quit,licence);
 						Mix_PlayChannel(-1,effect,0);
 					}
-				}else if (dy_cursor >= QUIT_FROM && dy_cursor <= QUIT_TO){
+				}else if (dy_cursor >= QUIT_FROM && dy_cursor <= quit[0]->h + QUIT_FROM){
 					if(over_quit != 0){
 						twist(over_quit,over_play,over_set,licence);
 						Mix_PlayChannel(-1,effect,0);
@@ -272,7 +275,7 @@ int main(void)
 		currentTime = SDL_GetTicks();
 		if(currentTime - oldTime > 500){
 			menu = menu_frame[next];
-			nextFrame(&next,8);
+			nextFrame(&next,7);
 			oldTime = currentTime;
 		}
 
