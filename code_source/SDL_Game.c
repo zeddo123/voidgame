@@ -34,7 +34,7 @@ int main(void)
 
 	SDL_Color fontColor = {255, 255, 255};
 
-	Uint32 oldTime = 0, currentTime = 0;
+	Uint32 oldTime = 0, currentTime = 0, oldTimeKey = 0;
 
 	Mix_Music *music = NULL; //pointer of the music
 
@@ -51,6 +51,7 @@ int main(void)
 	char game = 1;
 	char in_menu = 1;
 	char over_play = 1, over_set = 1, over_quit = 1, licence = 1;
+	int menu_key = -1;
 
 	if(SDL_Init(SDL_INIT_VIDEO) != 0){
 		printf("unable to init SDL %s\n", SDL_GetError());
@@ -65,8 +66,8 @@ int main(void)
 		return 1;
 	}
 
-	font = TTF_OpenFont("../src/font/Monaco.ttf",30);
-	font_surface = TTF_RenderText_Blended(font,"game under the GPL 2.0 licence",fontColor);
+	font = TTF_OpenFont("../src/font/Baron Neue.otf",30);
+	font_surface = TTF_RenderText_Blended(font,"void prod .Inc\tgame under the GPL 2.0 licence",fontColor);
 	if(font_surface == NULL || font == NULL){
 		printf("unable to TTF_RenderText_Solid\n");
 		return 1;
@@ -181,6 +182,28 @@ int main(void)
 						nextFrame(&next,7);
 						in_menu = 1;
 						break;
+					case SDLK_DOWN:
+						currentTime = SDL_GetTicks();
+						if(currentTime - oldTimeKey > 10){
+							if(menu_key == 0){
+								menu_key = 2;
+							}else{
+								menu_key--; 
+							}
+							oldTimeKey = currentTime;
+						}
+						break;
+					case SDLK_UP:
+						currentTime = SDL_GetTicks();
+						if(currentTime - oldTimeKey > 10){
+							if(menu_key == 2){
+								menu_key = 0;
+							}else{
+								menu_key++; 
+							}
+							oldTimeKey = currentTime;
+						}
+						break;
 				}
 				break;
 			case SDL_MOUSEBUTTONDOWN:
@@ -245,16 +268,19 @@ int main(void)
 				if(dy_cursor >= PLAY_FROM && dy_cursor <= play[0]->h + PLAY_FROM){
 					if(over_play != 0){
 						twist(over_play,over_quit,over_set,licence);
+						menu_key = -1;
 						Mix_PlayChannel(-1,effect,0);
 					}
 				}else if (dy_cursor >= SET_FROM && dy_cursor <= set[0]->h + SET_FROM){
 					if(over_set != 0){
 						twist(over_set,over_play,over_quit,licence);
+						menu_key = -1;
 						Mix_PlayChannel(-1,effect,0);
 					}
 				}else if (dy_cursor >= QUIT_FROM && dy_cursor <= quit[0]->h + QUIT_FROM){
 					if(over_quit != 0){
 						twist(over_quit,over_play,over_set,licence);
+						menu_key = -1;
 						Mix_PlayChannel(-1,effect,0);
 					}
 				}else{
@@ -280,14 +306,35 @@ int main(void)
 		}
 
 		SDL_BlitSurface(menu,&positionScreen,screen,&positionDestination);
+		
 		if(licence == 0){
 			SDL_BlitSurface(font_surface,NULL,screen,&positionText);
 		}
 		SDL_BlitSurface(logo,NULL,screen,&positionLogo);
+		
+		if(menu_key == -1){
+			SDL_BlitSurface(play[over_play],NULL,screen,&positionPlay);
+		}else if(menu_key == 0){
+			SDL_BlitSurface(play[0],NULL,screen,&positionPlay);
+		}else{
+			SDL_BlitSurface(play[1],NULL,screen,&positionPlay);
+		}
 
-		SDL_BlitSurface(play[over_play],NULL,screen,&positionPlay);
-		SDL_BlitSurface(quit[over_quit],NULL,screen,&positionQuit);
-		SDL_BlitSurface(set[over_set],NULL,screen,&positionSet);
+		if(menu_key == -1){
+			SDL_BlitSurface(quit[over_quit],NULL,screen,&positionQuit);
+		}else if(menu_key == 1){
+			SDL_BlitSurface(quit[0],NULL,screen,&positionQuit);
+		}else{
+			SDL_BlitSurface(quit[1],NULL,screen,&positionQuit);
+		}
+
+		if(menu_key == -1){
+			SDL_BlitSurface(set[over_set],NULL,screen,&positionSet);
+		}else if (menu_key == 2){
+			SDL_BlitSurface(set[0],NULL,screen,&positionSet);
+		}else{
+			SDL_BlitSurface(set[1],NULL,screen,&positionSet);
+		}
 
 		SDL_Flip(screen);
 		

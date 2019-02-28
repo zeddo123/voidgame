@@ -29,7 +29,7 @@
 	#define MENU_FILE_PLAY "../src/design/new_menu/menu_gif/new_menu_1920_play.gif"
 	#define MENU_FILE_SET "../src/design/new_menu/menu_gif/new_menu_1920_setting.gif"
 	#define MENU_FILE_QUIT "../src/design/new_menu/menu_gif/new_menu_1920_quit.gif"
-	#define LOGO "../src/design/logo_jeu/game_logo_2_2_low.png"
+	#define LOGO "../src/design/logo_jeu/png-white-contour.png"
 	#define PLAY_B_STATIC "../src/design/botton/play/b_play_low.png"
 	#define PLAY_B_OVER "../src/design/botton/play/b_play_over_low.png"
 	#define QUIT_B_STATIC "../src/design/botton/quit/b_quit_low.png"
