@@ -5,6 +5,7 @@
 #include <SDL/SDL_ttf.h>
 #include "SDL_Game.h"
 
+
 int main(void)
 {
 	SDL_Surface *screen = NULL;
@@ -191,6 +192,7 @@ int main(void)
 								menu_key--; 
 							}
 							oldTimeKey = currentTime;
+							Mix_PlayChannel(-1,effect,0);
 						}
 						break;
 					case SDLK_UP:
@@ -202,6 +204,7 @@ int main(void)
 								menu_key++; 
 							}
 							oldTimeKey = currentTime;
+							Mix_PlayChannel(-1,effect,0);
 						}
 						break;
 				}
