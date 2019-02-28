@@ -5,6 +5,7 @@
 #include <SDL/SDL_ttf.h>
 #include "SDL_Game.h"
 
+
 int main(void)
 {
 	SDL_Surface *screen = NULL;
