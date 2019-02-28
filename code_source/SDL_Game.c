@@ -11,9 +11,10 @@ int main(void)
 	SDL_Surface *screen = NULL;
 	SDL_Surface *game_surface = NULL;
 	SDL_Surface *image_player = NULL;
+	SDL_Surface *image_villain = NULL;
 	SDL_Surface *menu = NULL;
 	SDL_Surface *menu_setting = NULL;
-	SDL_Surface *menu_frame[7];
+	SDL_Surface *menu_frame[19];
 	SDL_Surface *font_surface = NULL;
 	SDL_Surface *play[2];
 	SDL_Surface *set[2];
@@ -24,6 +25,7 @@ int main(void)
 	SDL_Rect positionScreen;
 	SDL_Rect positionDestination = {0, 0, 0, 0};
 	SDL_Rect positionPlayer;
+	SDL_Rect positionVillain;
 	SDL_Rect positionText;
 	SDL_Rect positionPlay;
 	SDL_Rect positionQuit;
@@ -43,7 +45,7 @@ int main(void)
 
 	TTF_Font *font = NULL;
 
-	hero player = {0,0,68,25};
+	hero player = {0,0,68,25}, villain = {0,0,46,20};
 
 	int dx_cursor = 0,dy_cursor = 0;
 	int next = 0;
@@ -53,6 +55,7 @@ int main(void)
 	char in_menu = 1;
 	char over_play = 1, over_set = 1, over_quit = 1, licence = 1;
 	int menu_key = -1;
+	int orientation = 1;
 
 	if(SDL_Init(SDL_INIT_VIDEO) != 0){
 		printf("unable to init SDL %s\n", SDL_GetError());
@@ -83,13 +86,7 @@ int main(void)
 	}
 
 	// load the background
-	menu_frame[0] = IMG_Load(MENU_FILE_FRAME_1);
-	menu_frame[1] = IMG_Load(MENU_FILE_FRAME_2);
-	menu_frame[2] = IMG_Load(MENU_FILE_FRAME_3);
-	menu_frame[3] = IMG_Load(MENU_FILE_FRAME_4);
-	menu_frame[4] = IMG_Load(MENU_FILE_FRAME_5);
-	menu_frame[5] = IMG_Load(MENU_FILE_FRAME_6);
-	menu_frame[6] = IMG_Load(MENU_FILE_FRAME_7);
+	loadFrames(menu_frame,19,"../src/design/zoom_menu/frames.txt");
 
 	//load the play botton
 	play[1] = IMG_Load(PLAY_B_STATIC);
@@ -106,7 +103,7 @@ int main(void)
 	//load logo
 	logo = IMG_Load(LOGO);
 
-	displayFormatFrame(menu_frame,7);
+	displayFormatFrame(menu_frame,19);
 	displayFormatFrame(play,3);
 	displayFormatFrame(set,3);
 	displayFormatFrame(quit,3);
@@ -149,6 +146,9 @@ int main(void)
 	positionPlayer.x = 500;
 	positionPlayer.y = 500;
 
+	positionVillain.x = SCREEN_WIDTH - 100;
+	positionVillain.y = SCREEN_HEIGHT / 2;
+
 	positionText.x = 0;
 	positionText.y = SCREEN_HEIGHT - 2.55*font_surface->h;
 	positionText.w = font_surface->w;
@@ -180,7 +180,7 @@ int main(void)
 					case SDLK_ESCAPE:
 						next = 0;
 						menu = menu_frame[next];
-						nextFrame(&next,7);
+						nextFrame(&next,19);
 						in_menu = 1;
 						break;
 					case SDLK_DOWN:
@@ -221,20 +221,30 @@ int main(void)
 								in_menu = 0;
 								next = 0;
 								game = 1;
-								game_surface = SDL_DisplayFormat(IMG_Load("../src/play.jpg")); //load the game to the player
+								game_surface = SDL_DisplayFormat(IMG_Load("../src/design/map/map-alpha.jpg")); //load the game to the player
 								image_player = IMG_Load("../src/characters/hero1t.PNG");
+								image_villain = IMG_Load("../src/characters/hero2t.png");
+								villain.dx = positionVillain.x;
+								villain.dy = positionVillain.y;
 
 								SDL_BlitSurface(game_surface,&positionScreen,screen,&positionDestination);
 								SDL_BlitSurface(image_player,&positionScreen,screen,&positionPlayer);
+								SDL_BlitSurface(image_villain,&positionScreen,screen,&positionVillain);
+								
+								
 								SDL_Flip(screen);
 								moveToMouse(&player,500,500);
 								SDL_EnableKeyRepeat(10,10);
 								while(game){
 									
 									eventHandler(&player,&positionPlayer,&game,&in_menu,&job);
-									
+									moveBetweenTwo(&villain,1,SCREEN_WIDTH/2,SCREEN_WIDTH,&orientation);
+									positionVillain.x = villain.dx;
+									positionVillain.y = villain.dy;
+
 									SDL_BlitSurface(game_surface,&positionScreen,screen,&positionDestination);
 									SDL_BlitSurface(image_player,&positionScreen,screen,&positionPlayer);
+									SDL_BlitSurface(image_villain,&positionScreen,screen,&positionVillain);
 									SDL_Flip(screen);
 								}
 
@@ -302,9 +312,9 @@ int main(void)
 			}
 		
 		currentTime = SDL_GetTicks();
-		if(currentTime - oldTime > 500){
+		if(currentTime - oldTime > 200){
 			menu = menu_frame[next];
-			nextFrame(&next,7);
+			nextFrame(&next,19);
 			oldTime = currentTime;
 		}
 
@@ -348,10 +358,11 @@ int main(void)
 	SDL_FreeSurface(menu);
 	SDL_FreeSurface(font_surface);
 	SDL_FreeSurface(image_player);
+	SDL_FreeSurface(image_villain);
 	SDL_FreeSurface(game_surface);
 	SDL_FreeSurface(logo);
 
-	for(int i = 0;i < 8;i++){
+	for(int i = 0;i < 19;i++){
 		SDL_FreeSurface(menu_frame[i]);
 	}
 

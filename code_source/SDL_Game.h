@@ -18,14 +18,6 @@
 	#define QUIT_FROM 632
 	#define QUIT_TO 778
 
-	#define MENU_FILE_FRAME_1 "../src/design/Main_menu/lastmenu_f1_1080.png"
-	#define MENU_FILE_FRAME_2 "../src/design/Main_menu/lastmenu_f2_1080.png"
-	#define MENU_FILE_FRAME_3 "../src/design/Main_menu/lastmenu_f3_1080.png"
-	#define MENU_FILE_FRAME_4 "../src/design/Main_menu/lastmenu_f4_1080.png"
-	#define MENU_FILE_FRAME_5 "../src/design/Main_menu/lastmenu_f5_1080.png"
-	#define MENU_FILE_FRAME_6 "../src/design/Main_menu/lastmenu_f6_1080.png"
-	#define MENU_FILE_FRAME_7 "../src/design/Main_menu/lastmenu_f7_1080.png"
-
 	#define MENU_FILE_PLAY "../src/design/new_menu/menu_gif/new_menu_1920_play.gif"
 	#define MENU_FILE_SET "../src/design/new_menu/menu_gif/new_menu_1920_setting.gif"
 	#define MENU_FILE_QUIT "../src/design/new_menu/menu_gif/new_menu_1920_quit.gif"
@@ -84,4 +76,8 @@ int checkImageLoad(SDL_Surface *set[], int index, int maxIndex);
 
 void displayFormatFrame(SDL_Surface *set[], int maxframes);
 
+void moveBetweenTwo(hero *entit, int axe, int a, int b, int *i);
+
 void nextFrame(int *frame, int maxframes);
+
+void loadFrames(SDL_Surface *set[], int maxframes, char file_name[]);

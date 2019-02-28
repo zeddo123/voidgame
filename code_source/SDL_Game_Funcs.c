@@ -2,6 +2,25 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 
+void loadFrames(SDL_Surface *set[], int maxframes, char file_name[]){
+	FILE *ptr_file = fopen(file_name,"r");
+
+	char *string = NULL;
+	string = malloc(sizeof(char)*100);
+
+	if(string == NULL){
+		printf("allocation prob\n");
+		exit(0);
+	}
+
+	for(int i = 0;i < maxframes;i++){
+		fscanf(ptr_file,"%s\n",string);
+		set[i] = IMG_Load(string);
+	}
+
+	free(string);
+}
+
 void displayFormatFrame(SDL_Surface *set[], int maxframes){
 	if(checkImageLoad(set,0,maxframes) != 1){
 		printf("error on loading %s",IMG_GetError());
@@ -16,6 +35,7 @@ void displayFormatFrame(SDL_Surface *set[], int maxframes){
 		exit(0);
 	}
 }
+
 void moveToMouse(hero *player, int dx, int dy){
 	player->dx = dx;
 	player->dy = dy;
@@ -41,6 +61,7 @@ int checkImageLoad(SDL_Surface *set[], int index, int maxIndex){
 		}
 	}
 }
+
 void move(hero *player, int xy, int i){
 	if(xy == 1){
 		player->dx += i*STEP;
@@ -59,7 +80,7 @@ void eventHandler(hero *player, SDL_Rect *positionPlayer, char *ptr_game, char *
 	
 	SDL_Event event;
 	int dx_cursor_in_game,dy_cursor_in_game;
-	SDL_WaitEvent(&event);
+	SDL_PollEvent(&event);
 	switch(event.type){
 		case SDL_QUIT:
 			printf("..Quiting the game..\n");
@@ -100,4 +121,15 @@ void eventHandler(hero *player, SDL_Rect *positionPlayer, char *ptr_game, char *
 	positionPlayer->x = player->dx;
 	positionPlayer->y = player->dy;
 
+}
+
+void moveBetweenTwo(hero *entit, int axe, int a, int b, int *i){
+	entit->dx += (*i) * STEP;
+	if(entit->dx >= b){
+		(*i) *= -1;
+		entit->dx += (*i) * STEP;
+	}else if(entit->dx <= a){
+		(*i) *= -1;
+		entit->dx += (*i) * STEP;
+	}
 }
