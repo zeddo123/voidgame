@@ -123,13 +123,30 @@ void eventHandler(hero *player, SDL_Rect *positionPlayer, char *ptr_game, char *
 
 }
 
-void moveBetweenTwo(hero *entit, int axe, int a, int b, int *i){
-	entit->dx += (*i) * STEP;
-	if(entit->dx >= b){
-		(*i) *= -1;
-		entit->dx += (*i) * STEP;
-	}else if(entit->dx <= a){
-		(*i) *= -1;
-		entit->dx += (*i) * STEP;
+void moveBetweenTwo(hero *entit, int axe, int a, int b, Uint32 *oldTime){
+	Uint32 currentTime = SDL_GetTicks();
+	if(currentTime - (*oldTime) > 10){
+		entit->dx += entit->orientation * STEP;
+		if(entit->dx >= b){
+			entit->orientation *= -1;
+			entit->dx += entit->orientation * STEP;
+		}else if(entit->dx <= a){
+			entit->orientation *= -1;
+			entit->dx += entit->orientation * STEP;
+		}
+		*oldTime = currentTime;
 	}
+}
+
+int moveInMenuByKeyboard(int pointeur, int operation, int a, int b, Uint32 *oldTime){
+	Uint32 currentTime = SDL_GetTicks();
+	if(currentTime - (*oldTime) > 100){
+		if(pointeur == a){
+			pointeur = b;
+		}else{
+			pointeur += operation; 
+		}
+		*oldTime = currentTime;
+	}
+	return pointeur;
 }

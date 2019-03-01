@@ -38,7 +38,7 @@ int main(void)
 
 	SDL_Color fontColor = {255, 255, 255};
 
-	Uint32 oldTime = 0, currentTime = 0, oldTimeKey = 0;
+	Uint32 oldTime = 0, currentTime = 0, oldTimeKey = -100, oldTimeEntite = 0;
 
 	Mix_Music *music = NULL; //pointer of the music
 
@@ -56,7 +56,6 @@ int main(void)
 	char in_menu = 1;
 	char over_play = 1, over_set = 1, over_quit = 1, licence = 1;
 	int menu_key = -1;
-	int orientation = 1;
 
 	if(SDL_Init(SDL_INIT_VIDEO) != 0){
 		printf("unable to init SDL %s\n", SDL_GetError());
@@ -190,29 +189,13 @@ int main(void)
 						nextFrame(&next,19);
 						in_menu = 1;
 						break;
-					case SDLK_DOWN:
-						currentTime = SDL_GetTicks();
-						if(currentTime - oldTimeKey > 10){
-							if(menu_key == 0){
-								menu_key = 2;
-							}else{
-								menu_key--; 
-							}
-							oldTimeKey = currentTime;
-							Mix_PlayChannel(-1,effect,0);
-						}
-						break;
 					case SDLK_UP:
-						currentTime = SDL_GetTicks();
-						if(currentTime - oldTimeKey > 10){
-							if(menu_key == 2){
-								menu_key = 0;
-							}else{
-								menu_key++; 
-							}
-							oldTimeKey = currentTime;
-							Mix_PlayChannel(-1,effect,0);
-						}
+						menu_key = moveInMenuByKeyboard(menu_key,1,2,0,&oldTimeKey);
+						Mix_PlayChannel(-1,effect,0);
+						break;
+					case SDLK_DOWN:
+						menu_key = moveInMenuByKeyboard(menu_key,-1,0,2,&oldTimeKey);
+						Mix_PlayChannel(-1,effect,0);
 						break;
 				}
 				break;
@@ -233,6 +216,7 @@ int main(void)
 								image_villain = IMG_Load("../src/characters/hero2t.png");
 								villain.dx = positionVillain.x;
 								villain.dy = positionVillain.y;
+								villain.orientation = 1;
 
 								SDL_BlitSurface(game_surface,&positionScreen,screen,&positionDestination);
 								SDL_BlitSurface(image_player,&positionScreen,screen,&positionPlayer);
@@ -241,11 +225,11 @@ int main(void)
 								
 								SDL_Flip(screen);
 								moveToMouse(&player,500,500);
-								SDL_EnableKeyRepeat(10,10);
+								SDL_EnableKeyRepeat(10,15);
 								while(game){
 									
 									eventHandler(&player,&positionPlayer,&game,&in_menu,&job);
-									moveBetweenTwo(&villain,1,SCREEN_WIDTH/2,SCREEN_WIDTH,&orientation);
+									moveBetweenTwo(&villain,1,SCREEN_WIDTH/2,SCREEN_WIDTH,&oldTimeEntite);
 									positionVillain.x = villain.dx;
 									positionVillain.y = villain.dy;
 

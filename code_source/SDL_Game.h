@@ -57,6 +57,7 @@
 typedef struct{
 	int dx, dy;
 	int height, width;
+	int orientation;
 }hero;
 
 void moveToMouse(hero *player, int dx, int dy);
@@ -69,7 +70,9 @@ int checkImageLoad(SDL_Surface *set[], int index, int maxIndex);
 
 void displayFormatFrame(SDL_Surface *set[], int maxframes);
 
-void moveBetweenTwo(hero *entit, int axe, int a, int b, int *i);
+void moveBetweenTwo(hero *entit, int axe, int a, int b, Uint32 *oldTime);
+
+int moveInMenuByKeyboard(int pointeur, int operation, int a, int b, Uint32 *oldTime);
 
 void nextFrame(int *frame, int maxframes);
 
