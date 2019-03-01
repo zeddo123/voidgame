@@ -31,6 +31,7 @@ int main(void)
 	SDL_Rect positionQuit;
 	SDL_Rect positionSet;
 	SDL_Rect positionLogo;
+	SDL_Rect logoCrop;
 
 	SDL_Event event;
 	SDL_Event event_in_game;
@@ -128,17 +129,17 @@ int main(void)
 	positionScreen.w = SCREEN_WIDTH;
 	positionScreen.h = SCREEN_HEIGHT;
 
-	positionPlay.x = FROM;
+	positionPlay.x = 150 + logo->w/ 2 - play[0]->w / 2;
 	positionPlay.y = PLAY_FROM;
 	positionPlay.w = play[0]->w;
 	positionPlay.h = play[0]->h;
 
-	positionQuit.x = FROM;
+	positionQuit.x = 150 + logo->w/ 2 - quit[0]->w / 2;
 	positionQuit.y = QUIT_FROM;
 	positionQuit.w = quit[0]->w;
 	positionQuit.h = quit[0]->h;
 
-	positionSet.x = FROM;
+	positionSet.x = 150 + logo->w/ 2 - set[0]->w / 2;
 	positionSet.y = SET_FROM;
 	positionSet.w = set[0]->w;
 	positionSet.h = set[0]->h;
@@ -154,10 +155,16 @@ int main(void)
 	positionText.w = font_surface->w;
 	positionText.h = font_surface->h;
 
-	positionLogo.x = SCREEN_WIDTH - logo->w-20;
-	positionLogo.y = 20;
+	positionLogo.x = 150;
+	positionLogo.y = 0;
 	positionLogo.w = logo->w;
 	positionLogo.h = logo->h;
+
+	logoCrop.x = 0;
+	logoCrop.y = 40;
+	logoCrop.w = logo->w;
+	logoCrop.h = logo->h;
+
 
 	//starting everything
 	SDL_BlitSurface(menu_frame[next],&positionScreen,screen,&positionDestination);
@@ -323,7 +330,7 @@ int main(void)
 		if(licence == 0){
 			SDL_BlitSurface(font_surface,NULL,screen,&positionText);
 		}
-		SDL_BlitSurface(logo,NULL,screen,&positionLogo);
+		SDL_BlitSurface(logo,&logoCrop,screen,&positionLogo);
 		
 		if(menu_key == -1){
 			SDL_BlitSurface(play[over_play],NULL,screen,&positionPlay);

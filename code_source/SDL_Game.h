@@ -9,25 +9,18 @@
 
 #ifdef FHD
 //positions of the buttons
-	#define FROM 32
-	#define TO 895
-	#define PLAY_FROM 168
-	#define PLAY_TO 314
-	#define SET_FROM 398
-	#define SET_TO 554
-	#define QUIT_FROM 632
-	#define QUIT_TO 778
+	#define FROM 250
+	#define PLAY_FROM 248
+	#define SET_FROM 448
+	#define QUIT_FROM 682
 
-	#define MENU_FILE_PLAY "../src/design/new_menu/menu_gif/new_menu_1920_play.gif"
-	#define MENU_FILE_SET "../src/design/new_menu/menu_gif/new_menu_1920_setting.gif"
-	#define MENU_FILE_QUIT "../src/design/new_menu/menu_gif/new_menu_1920_quit.gif"
-	#define LOGO "../src/design/logo_jeu/png-white-contour.png"
-	#define PLAY_B_STATIC "../src/design/botton/play/b_play_low.png"
-	#define PLAY_B_OVER "../src/design/botton/play/b_play_over_low.png"
-	#define QUIT_B_STATIC "../src/design/botton/quit/b_quit_low.png"
-	#define QUIT_B_OVER "../src/design/botton/quit/b_quit_over_low.png"
-	#define SET_B_STATIC "../src/design/botton/setting/b_setting_low.png"
-	#define SET_B_OVER "../src/design/botton/setting/b_setting_over_low.png"
+	#define LOGO "../src/design/final menu/menu_no_buttons.png"
+	#define PLAY_B_STATIC "../src/design/final menu/play_button_0.png"
+	#define PLAY_B_OVER "../src/design/final menu/play_button_1.png"
+	#define QUIT_B_STATIC "../src/design/final menu/quit_button_0.png"
+	#define QUIT_B_OVER "../src/design/final menu/quit_button_1.png"
+	#define SET_B_STATIC "../src/design/final menu/settings_button_0.png"
+	#define SET_B_OVER "../src/design/final menu/settings_button_1.png"
 #endif
 
 #ifdef HD
