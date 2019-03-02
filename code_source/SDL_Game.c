@@ -1,8 +1,4 @@
 //the main code of the game
-#include <SDL/SDL.h>
-#include <SDL/SDL_image.h>
-#include <SDL/SDL_mixer.h>
-#include <SDL/SDL_ttf.h>
 #include "SDL_Game.h"
 
 
@@ -123,47 +119,23 @@ int main(void)
 
 
 	//iniatilizing the positions
-	positionScreen.x = 0;
-	positionScreen.y = 0;
-	positionScreen.w = SCREEN_WIDTH;
-	positionScreen.h = SCREEN_HEIGHT;
+	positionScreen = initPosition(positionScreen,0,0,SCREEN_WIDTH,SCREEN_WIDTH);
 
-	positionPlay.x = 150 + logo->w/ 2 - play[0]->w / 2;
-	positionPlay.y = PLAY_FROM;
-	positionPlay.w = play[0]->w;
-	positionPlay.h = play[0]->h;
+	positionPlay = initPosition(positionPlay,150 + logo->w/ 2 - play[0]->w / 2,PLAY_FROM,play[0]->w,play[0]->h);
 
-	positionQuit.x = 150 + logo->w/ 2 - quit[0]->w / 2;
-	positionQuit.y = QUIT_FROM;
-	positionQuit.w = quit[0]->w;
-	positionQuit.h = quit[0]->h;
+	positionQuit = initPosition(positionQuit,150 + logo->w/ 2 - quit[0]->w / 2,QUIT_FROM,quit[0]->w,quit[0]->h);
 
-	positionSet.x = 150 + logo->w/ 2 - set[0]->w / 2;
-	positionSet.y = SET_FROM;
-	positionSet.w = set[0]->w;
-	positionSet.h = set[0]->h;
-	
-	positionPlayer.x = 500;
-	positionPlayer.y = 500;
+	positionSet = initPosition(positionSet,150 + logo->w/ 2 - set[0]->w / 2,SET_FROM,set[0]->w,set[0]->h);
 
-	positionVillain.x = SCREEN_WIDTH - 100;
-	positionVillain.y = SCREEN_HEIGHT / 2;
+	positionPlayer = initPosition(positionPlayer,500,500,-1,-1);
 
-	positionText.x = 0;
-	positionText.y = SCREEN_HEIGHT - 2.55*font_surface->h;
-	positionText.w = font_surface->w;
-	positionText.h = font_surface->h;
+	positionVillain = initPosition(positionVillain,SCREEN_WIDTH - 100,SCREEN_HEIGHT / 2,-1,-1);
 
-	positionLogo.x = 150;
-	positionLogo.y = 0;
-	positionLogo.w = logo->w;
-	positionLogo.h = logo->h;
+	positionText = initPosition(positionText,0,SCREEN_HEIGHT - 2.55*font_surface->h,font_surface->w,font_surface->h);
 
-	logoCrop.x = 0;
-	logoCrop.y = 40;
-	logoCrop.w = logo->w;
-	logoCrop.h = logo->h;
+	positionLogo = initPosition(positionLogo,150,0,logo->w,logo->h);
 
+	logoCrop = initPosition(logoCrop,0,40,logo->w,logo->h);
 
 	//starting everything
 	SDL_BlitSurface(menu_frame[next],&positionScreen,screen,&positionDestination);
@@ -173,6 +145,7 @@ int main(void)
 		printf("cant play music ->%s\n",Mix_GetError());
 		return 1;
 	}
+
 	while(job){
 		SDL_PollEvent(&event);
 

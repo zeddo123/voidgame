@@ -1,4 +1,14 @@
+#ifndef GAME_H_INCLUDED
+#define GAME_H_INCLUDED
+
 #include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
+#include <SDL/SDL_mixer.h>
+#include <SDL/SDL_ttf.h>
+
+#include "SDL_Init.h"
+#include "SDL_char.h"
+#include "SDL_move.h"
 
 #define twist(a,b,c,d) a = 0; b = 1; c = 1; d = 1;
 
@@ -54,26 +64,8 @@
 	#define SET_B_OVER "../src/design/botton/setting/b_setting_over_low.png"
 #endif
 
-typedef struct{
-	int dx, dy;
-	int height, width;
-	int orientation;
-}hero;
-
-void moveToMouse(hero *player, int dx, int dy);
-
-void move(hero *player, int xy, int i);
-
 void eventHandler(hero *player, SDL_Rect *positionPlayer, char *ptr_game, char *ptr_in_menu, char *ptr_job);
-
-int checkImageLoad(SDL_Surface *set[], int index, int maxIndex);
-
-void displayFormatFrame(SDL_Surface *set[], int maxframes);
-
-void moveBetweenTwo(hero *entit, int axe, int a, int b, Uint32 *oldTime);
 
 int moveInMenuByKeyboard(int pointeur, int operation, int a, int b, Uint32 *oldTime);
 
-void nextFrame(int *frame, int maxframes);
-
-void loadFrames(SDL_Surface *set[], int maxframes, char file_name[]);
+#endif
