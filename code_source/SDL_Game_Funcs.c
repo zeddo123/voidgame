@@ -1,6 +1,207 @@
 #include "SDL_Game.h"
 
-void eventHandler(hero *player, SDL_Rect *positionPlayer, char *ptr_game, char *ptr_in_menu, char *ptr_job){
+void menuEventHandler(SDL_Surface *menu, char *ptr_job, int *ptr_menuFrame, int *ptr_menuKey, char *ptr_in_menu, Mix_Chunk *effect, Uint32 *oldTimeKey,SDL_Rect positionScreen, SDL_Surface *screen, SDL_Rect positionText, SDL_Surface *font, SDL_Rect logoCrop, SDL_Rect positionLogo, SDL_Surface *logo, SDL_Surface *play[], SDL_Surface *set[], SDL_Surface *quit[], SDL_Rect positionNewGame, SDL_Surface *newGame[], SDL_Rect positionLoadGame, SDL_Surface *loadGame[], SDL_Rect positionBack, SDL_Surface *back[] ,SDL_Surface *background[], SDL_Surface *menu_frame[], SDL_Surface *menu_setting){
+	SDL_Event event;
+	int dx_cursor, dy_cursor;
+	SDL_PollEvent(&event);
+
+	switch(event.type){
+		case SDL_QUIT:
+			printf("..Quiting the menu..\n");
+			*ptr_job = 0;
+			break;
+		case SDL_KEYDOWN:
+			switch(event.key.keysym.sym){
+				case SDLK_ESCAPE:
+					*ptr_menuFrame = 0;
+					menu = menu_frame[*ptr_menuFrame];
+					nextFrame(ptr_menuFrame,19);
+					*ptr_in_menu = 1;
+					break;
+				case SDLK_DOWN:
+					*ptr_menuKey = moveInMenuByKeyboard(*ptr_menuKey,1,2,0,oldTimeKey);
+					Mix_PlayChannel(-1,effect,0);
+					break;
+				case SDLK_UP:
+					*ptr_menuKey = moveInMenuByKeyboard(*ptr_menuKey,-1,0,2,oldTimeKey);
+					Mix_PlayChannel(-1,effect,0);
+					break;
+			}
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+			switch(event.button.button){
+				case SDL_BUTTON_LEFT:
+
+					SDL_GetMouseState(&dx_cursor,&dy_cursor);
+					if(dx_cursor >= FROM && dx_cursor <= play[0]->w + FROM && *ptr_in_menu != 0){
+
+						// PLAY MENU
+						if(dy_cursor >= PLAY_FROM && dy_cursor <= play[0]->h + PLAY_FROM){
+							playMenu(ptr_job,effect,
+									positionScreen,screen,
+									positionText,font,
+									logoCrop,positionLogo,logo,
+									positionNewGame,newGame,
+									positionLoadGame,loadGame,
+									positionBack,back,background);
+
+							*ptr_menuFrame = 0;
+							menu = menu_frame[*ptr_menuFrame];
+							nextFrame(ptr_menuFrame,19);
+							*ptr_in_menu = 1;
+						}
+						//open the settings
+						if (dy_cursor >= SET_FROM && dy_cursor <= set[0]->h + SET_FROM){
+							*ptr_menuFrame = 0;
+							//load the setting to the user
+							SDL_BlitSurface(menu_setting,NULL,screen,NULL);
+							SDL_BlitSurface(logo,NULL,screen,&positionLogo);
+							SDL_Flip(screen);
+							*ptr_in_menu = 0;
+						}
+						//quit the game
+						if (dy_cursor >= QUIT_FROM && dy_cursor <= quit[0]->h + QUIT_FROM){
+							*ptr_job = 0;
+							*ptr_in_menu = 1;
+						}
+
+					}
+					break;
+
+			}
+			break;
+	}
+}
+
+void playMenu(char *ptr_job, Mix_Chunk *effect, SDL_Rect positionScreen, SDL_Surface *screen, SDL_Rect positionText, SDL_Surface *font, SDL_Rect logoCrop, SDL_Rect positionLogo, SDL_Surface *logo, SDL_Rect positionNewGame, SDL_Surface *newGame[], SDL_Rect positionLoadGame, SDL_Surface *loadGame[], SDL_Rect positionBack, SDL_Surface *back[], SDL_Surface *background[]){
+	char job = 1;
+	char in_menu = 1;
+	int next = 0;
+	int playmenu_key = -1;
+	int dx_cursor, dy_cursor;
+	int over_new = 1, over_load = 1, over_back = 1, licence = 1;
+	SDL_Surface *playMenu;
+	Uint32 oldTimeKey , oldTimeBackground, currentTime;
+	SDL_Event event;
+
+
+	while(job){
+
+		SDL_PollEvent(&event);
+		switch(event.type){
+			case SDL_QUIT:
+				printf("..Quiting..\n");
+				job = 0;
+				*ptr_job = 0;
+				break;
+			case SDL_KEYDOWN:
+				switch(event.key.keysym.sym){
+					case SDLK_ESCAPE:
+						next = 0;
+						playMenu = background[next];
+						nextFrame(&next,19);
+						in_menu = 1;
+						job = 0;
+						break;
+					case SDLK_DOWN:
+						playmenu_key = moveInMenuByKeyboard(playmenu_key,1,2,0,&oldTimeKey);
+						Mix_PlayChannel(-1,effect,0);
+						break;
+					case SDLK_UP:
+						playmenu_key = moveInMenuByKeyboard(playmenu_key,-1,0,2,&oldTimeKey);
+						Mix_PlayChannel(-1,effect,0);
+						break;
+				}
+				break;
+			case SDL_MOUSEBUTTONDOWN:
+				switch(event.button.button){
+					case SDL_BUTTON_LEFT:
+
+						SDL_GetMouseState(&dx_cursor,&dy_cursor);
+						if(dx_cursor >= FROM && dx_cursor <= newGame[0]->w + FROM && in_menu != 0){
+
+							// player wants to play
+							if(dy_cursor >= PLAY_FROM && dy_cursor <= newGame[0]->h + PLAY_FROM){
+								play(&in_menu,&job,positionScreen,screen);
+								in_menu = 1;
+							}
+							//Load game
+							if (dy_cursor >= SET_FROM && dy_cursor <= loadGame[0]->h + SET_FROM){
+								next = 0;
+								//CODE TO LOAD GAME HERE!!!!
+								in_menu = 0;
+							}
+							//return 
+							if (dy_cursor >= QUIT_FROM && dy_cursor <= back[0]->h + QUIT_FROM){
+								job = 0;
+								in_menu = 0;
+							}
+
+						}
+						break;
+
+				}
+				break;
+		}
+		
+		
+		if(in_menu){
+			overWhat(effect,&playmenu_key,FROM,FROM + newGame[0]->w,
+					PLAY_FROM,PLAY_FROM + newGame[0]->h,
+					SET_FROM,SET_FROM + loadGame[0]->h,
+					QUIT_FROM,QUIT_FROM + back[0]->h,
+					0,100,
+					SCREEN_HEIGHT - 100,SCREEN_HEIGHT,
+					&over_new,&over_load,&over_back,&licence);
+
+			currentTime = SDL_GetTicks();
+			if(currentTime - oldTimeBackground > 200){
+				playMenu = background[next];
+				nextFrame(&next,7);
+				oldTimeBackground = currentTime;
+			}
+			menuBlitter(positionScreen,screen,playMenu,positionText,font,logoCrop,positionLogo,logo,positionNewGame,newGame,positionLoadGame,loadGame,positionBack,back,over_new,over_load,over_back,licence,playmenu_key);
+
+		}
+	}
+}
+
+void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface *screen){
+	//player->image = IMG_Load("../src/characters/hero1t.PNG");
+	SDL_Surface *game_surface = SDL_DisplayFormat(IMG_Load("../src/design/map/map-alpha.jpg"));
+	char game = 1;
+	Uint32 oldTimeEntite = 0;
+	hero villain,player;
+
+	villain.image = malloc(sizeof(SDL_Rect));
+	villain.image = IMG_Load("../src/characters/hero2t.png");
+	villain.position = initPosition(villain.position,SCREEN_WIDTH - 100,SCREEN_HEIGHT / 2,-1,-1);
+	villain.orientation = 1;
+
+	player.image = malloc(sizeof(SDL_Rect));
+	player.image = IMG_Load("../src/characters/hero1t.PNG");
+	player.position = initPosition(player.position,500,500,player.image->w,player.image->h);
+	player.orientation = 1;
+
+
+	moveToMouse(&player,500,500);
+	SDL_EnableKeyRepeat(10,15);
+	while(game){
+		eventHandler(&player,&game,ptr_in_menu,ptr_job);
+		moveBetweenTwo(&villain,1,SCREEN_WIDTH/2,SCREEN_WIDTH,&oldTimeEntite);
+
+		SDL_BlitSurface(game_surface,&positionScreen,screen,NULL);
+		SDL_BlitSurface(player.image,&positionScreen,screen,&player.position);
+		SDL_BlitSurface(villain.image,&positionScreen,screen,&villain.position);
+		SDL_Flip(screen);
+	}
+
+	SDL_FreeSurface(game_surface);
+	SDL_FreeSurface(villain.image);
+	SDL_FreeSurface(player.image);
+}
+
+void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job){
 	
 	SDL_Event event;
 	int dx_cursor_in_game,dy_cursor_in_game;
@@ -37,13 +238,85 @@ void eventHandler(hero *player, SDL_Rect *positionPlayer, char *ptr_game, char *
 			switch(event.button.button){
 				case SDL_BUTTON_LEFT:
 					SDL_GetMouseState(&dx_cursor_in_game,&dy_cursor_in_game);
-					moveToMouse(player,dx_cursor_in_game-player->width,dy_cursor_in_game-player->height);
+					moveToMouse(player,dx_cursor_in_game - player->position.w,dy_cursor_in_game-player->position.h);
 					break;
 			}
 			break;
 	}
-	positionPlayer->x = player->dx;
-	positionPlayer->y = player->dy;
+}
+
+void overWhat(Mix_Chunk *effect, int *menu_key, int x1a, int x1b, int y1a, int y1b, int y2a, int y2b, int y3a, int y3b, int x2a, int x2b, int y4a, int y4b, int *button1, int *button2, int *button3, int *button4){
+	/*	XXa : coordonnees de debut
+		XXb : coordonnees de fin
+	*/
+	int dx_cursor, dy_cursor;
+
+	SDL_GetMouseState(&dx_cursor,&dy_cursor);
+	if(dx_cursor >= x1a && dx_cursor <= x1b){
+				
+		if(dy_cursor >= y1a && dy_cursor <= y1b){
+			if(*button1 != 0){
+				twist(button1,button2,button3,button4);
+				Mix_PlayChannel(-1,effect,0);
+				*menu_key = -1;
+			}
+		}else if (dy_cursor >= y2a && dy_cursor <= y2b){
+			if(*button2 != 0){
+				twist(button2,button1,button3,button4);
+				Mix_PlayChannel(-1,effect,0);
+				*menu_key = -1;
+			}
+		}else if (dy_cursor >= y3a && dy_cursor <= y3b){
+			if(*button3 != 0){
+				twist(button3,button2,button1,button4);
+				Mix_PlayChannel(-1,effect,0);
+				*menu_key = -1;
+			}
+		}else{
+			twist(button3,button2,button1,button4);
+			*button3 = 1;
+		
+		}
+	}else if (dx_cursor >= x2a && dx_cursor <= x2b){
+		if(dy_cursor >= y4a && dy_cursor <= y3b){
+			if(*button4 != 0){
+				twist(button4,button2,button3,button1);
+			}
+		} 
+	}else{
+		twist(button3,button2,button1,button4);
+		*button3 = 1;
+	}
+}
+
+void menuBlitter(SDL_Rect positionScreen,SDL_Surface *screen,SDL_Surface *background, SDL_Rect positionText,SDL_Surface *font, SDL_Rect logoCrop, SDL_Rect positionLogo, SDL_Surface *logo, SDL_Rect positionB1, SDL_Surface *button1[], SDL_Rect positionB2, SDL_Surface *button2[], SDL_Rect positionB3, SDL_Surface *button3[], int over_b1, int over_b2, int over_b3, int over_b4, int menu_key){
+	
+	SDL_BlitSurface(background,&positionScreen,screen,NULL);
+		
+	if(over_b4 == 0){
+		SDL_BlitSurface(font,NULL,screen,&positionText);
+	}
+	SDL_BlitSurface(logo,&logoCrop,screen,&positionLogo);
+		
+	if(menu_key == -1){
+		SDL_BlitSurface(button1[over_b1],NULL,screen,&positionB1);
+		SDL_BlitSurface(button2[over_b2],NULL,screen,&positionB2);
+		SDL_BlitSurface(button3[over_b3],NULL,screen,&positionB3);
+	}else if(menu_key == 0){
+		SDL_BlitSurface(button1[0],NULL,screen,&positionB1);
+		SDL_BlitSurface(button2[1],NULL,screen,&positionB2);
+		SDL_BlitSurface(button3[1],NULL,screen,&positionB3);
+	}else if(menu_key == 1){
+		SDL_BlitSurface(button1[1],NULL,screen,&positionB1);
+		SDL_BlitSurface(button2[0],NULL,screen,&positionB2);
+		SDL_BlitSurface(button3[1],NULL,screen,&positionB3);
+	}else if (menu_key == 2){
+		SDL_BlitSurface(button1[1],NULL,screen,&positionB1);
+		SDL_BlitSurface(button2[1],NULL,screen,&positionB2);
+		SDL_BlitSurface(button3[0],NULL,screen,&positionB3);
+	}
+	SDL_Flip(screen);
+		
 }
 
 int moveInMenuByKeyboard(int pointeur, int operation, int a, int b, Uint32 *oldTime){
@@ -57,4 +330,11 @@ int moveInMenuByKeyboard(int pointeur, int operation, int a, int b, Uint32 *oldT
 		*oldTime = currentTime;
 	}
 	return pointeur;
+}
+
+void twist(int *a, int *b, int *c, int *d){
+	*a = 0;
+	*b = 1;
+	*c = 1;
+	*d = 1;
 }

@@ -3,9 +3,9 @@
 #define CHAR_H_INCLUDED
 
 struct hero{
-	int dx, dy;
-	int height, width;
 	int orientation;
+	SDL_Surface *image;
+	SDL_Rect position;
 };
 typedef struct hero hero;
 
