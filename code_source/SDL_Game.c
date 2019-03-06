@@ -155,7 +155,7 @@ int main(void)
 	positionLoadGame = initPosition(positionLoadGame,150 + logo->w/ 2 - loadGame[0]->w / 2,SET_FROM,loadGame[0]->w,loadGame[0]->h);
 	
 
-	positionText = initPosition(positionText,logo->w,900,font_surface->w,font_surface->h);
+	positionText = initPosition(positionText, positionPlay.x+300, positionQuit.y + positionQuit.h + 70,font_surface->w,font_surface->h);
 
 	positionLogo = initPosition(positionLogo,150,0,logo->w,logo->h);
 
@@ -174,7 +174,7 @@ int main(void)
 		
 		if(in_menu){
 			
-			overWhat(effect,&menu_key,positionPlay.x,positionPlay.x + positionPlay.w, positionPlay.y,positionPlay.y+positionPlay.h, positionSet.y,positionSet.y + positionSet.h, positionQuit.y,positionQuit.y + positionQuit.h, 0,100,0,100, &over_play,&over_set,&over_quit,&licence);
+			overWhat(effect,&menu_key,positionPlay.x,positionPlay.x + positionPlay.w, positionPlay.y,positionPlay.y+positionPlay.h, positionSet.y,positionSet.y + positionSet.h, positionQuit.y,positionQuit.y + positionQuit.h, positionPlay.x,positionPlay.x+positionPlay.w,positionQuit.h+positionQuit.y+50,1080, &over_play,&over_set,&over_quit,&licence);
 
 			currentTime = SDL_GetTicks();
 			if(currentTime - oldTime > 200){

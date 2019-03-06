@@ -1,4 +1,5 @@
 #include "SDL_Game.h"
+/*_______________________________MAIN MENU EVENT HANDLER_________________________________*/
 
 void menuEventHandler(SDL_Surface *menu, char *ptr_job, int *ptr_menuFrame, int *ptr_menuKey, char *ptr_in_menu, Mix_Chunk *effect, Uint32 *oldTimeKey,SDL_Rect positionScreen, SDL_Surface *screen, SDL_Rect positionText, SDL_Surface *font, SDL_Rect logoCrop, SDL_Rect positionLogo, SDL_Surface *logo, SDL_Surface *play[], SDL_Surface *set[], SDL_Surface *quit[], SDL_Rect positionNewGame, SDL_Surface *newGame[], SDL_Rect positionLoadGame, SDL_Surface *loadGame[], SDL_Rect positionBack, SDL_Surface *back[] ,SDL_Surface *background[], SDL_Surface *menu_frame[], SDL_Surface *menu_setting){
 	SDL_Event event;
@@ -72,6 +73,8 @@ void menuEventHandler(SDL_Surface *menu, char *ptr_job, int *ptr_menuFrame, int 
 			break;
 	}
 }
+
+/*_______________________________PLAY MENU_________________________________*/
 
 void playMenu(char *ptr_job, Mix_Chunk *effect, SDL_Rect positionScreen, SDL_Surface *screen, SDL_Rect positionText, SDL_Surface *font, SDL_Rect logoCrop, SDL_Rect positionLogo, SDL_Surface *logo, SDL_Rect positionNewGame, SDL_Surface *newGame[], SDL_Rect positionLoadGame, SDL_Surface *loadGame[], SDL_Rect positionBack, SDL_Surface *back[], SDL_Surface *background[]){
 	char job = 1;
@@ -166,24 +169,30 @@ void playMenu(char *ptr_job, Mix_Chunk *effect, SDL_Rect positionScreen, SDL_Sur
 	}
 }
 
+/*_______________________________MAIN LOOP OF THE GAME_________________________________*/
+
 void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface *screen){
-	//player->image = IMG_Load("../src/characters/hero1t.PNG");
 	SDL_Surface *game_surface = SDL_DisplayFormat(IMG_Load("../src/design/map/map-alpha.jpg"));
-	char game = 1;
 	Uint32 oldTimeEntite = 0;
 	hero villain,player;
+	object key;
+	enigme firstEnigme;
+	char game = 1;
 
-	villain.image = malloc(sizeof(SDL_Rect));
-	villain.image = IMG_Load("../src/characters/hero2t.png");
-	villain.position = initPosition(villain.position,SCREEN_WIDTH - 100,SCREEN_HEIGHT / 2,-1,-1);
-	villain.orientation = 1;
+	villain = initHero(villain,"../src/characters/hero2t.png",SCREEN_WIDTH - 100,SCREEN_HEIGHT / 2);
+	
+	player = initHero(player,"../src/characters/hero1t.PNG",500,500);
 
-	player.image = malloc(sizeof(SDL_Rect));
-	player.image = IMG_Load("../src/characters/hero1t.PNG");
-	player.position = initPosition(player.position,500,500,player.image->w,player.image->h);
-	player.orientation = 1;
+	key = initObject(key,"../src/design/bazar/key.png",villain.position.x,villain.position.y);
 
-
+	firstEnigme = fetchQuestion("enigme.q","enigme.s");
+	firstEnigme.positionRiddle = initPosition(firstEnigme.positionRiddle,key.position.x,key.position.y,key.position.w,key.position.h);
+	firstEnigme = loadTextForRiddle(firstEnigme);
+	firstEnigme.Background = loadImage(firstEnigme.Background,"../src/design/enigmes/question_box.png");
+	firstEnigme.Button = loadImage(firstEnigme.Button,"../src/design/enigmes/answer_box_0.png");
+	
+	firstEnigme = initPrintRiddle(firstEnigme);
+	
 	moveToMouse(&player,500,500);
 	SDL_EnableKeyRepeat(10,15);
 	while(game){
@@ -193,13 +202,25 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 		SDL_BlitSurface(game_surface,&positionScreen,screen,NULL);
 		SDL_BlitSurface(player.image,&positionScreen,screen,&player.position);
 		SDL_BlitSurface(villain.image,&positionScreen,screen,&villain.position);
+		SDL_BlitSurface(key.image,&positionScreen,screen,&key.position);
+		riddle(firstEnigme,player,screen);
 		SDL_Flip(screen);
 	}
 
 	SDL_FreeSurface(game_surface);
+	
+	SDL_FreeSurface(firstEnigme.Button);
+	SDL_FreeSurface(firstEnigme.Background);
+	SDL_FreeSurface(firstEnigme.Answer1);
+	SDL_FreeSurface(firstEnigme.Answer2);
+	SDL_FreeSurface(firstEnigme.Answer3);
+	SDL_FreeSurface(firstEnigme.Answer4);
+	
 	SDL_FreeSurface(villain.image);
 	SDL_FreeSurface(player.image);
 }
+
+/*_______________________________GAME EVENT HANDLER_________________________________*/
 
 void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job){
 	
@@ -245,57 +266,68 @@ void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job
 	}
 }
 
+
+/*_______________________________MOUSEOVER && KEYBOARDOVER HANDLER_________________________________*/
+
+
 void overWhat(Mix_Chunk *effect, int *menu_key, int x1a, int x1b, int y1a, int y1b, int y2a, int y2b, int y3a, int y3b, int x2a, int x2b, int y4a, int y4b, int *button1, int *button2, int *button3, int *button4){
 	/*	XXa : coordonnees de debut
 		XXb : coordonnees de fin
 	*/
 	int dx_cursor, dy_cursor;
-
+	
 	SDL_GetMouseState(&dx_cursor,&dy_cursor);
 	if(dx_cursor >= x1a && dx_cursor <= x1b){
 				
 		if(dy_cursor >= y1a && dy_cursor <= y1b){
+		
 			if(*button1 != 0){
 				twist(button1,button2,button3,button4);
 				Mix_PlayChannel(-1,effect,0);
 				*menu_key = -1;
 			}
+		
 		}else if (dy_cursor >= y2a && dy_cursor <= y2b){
+		
 			if(*button2 != 0){
 				twist(button2,button1,button3,button4);
 				Mix_PlayChannel(-1,effect,0);
 				*menu_key = -1;
 			}
+		
 		}else if (dy_cursor >= y3a && dy_cursor <= y3b){
+		
 			if(*button3 != 0){
 				twist(button3,button2,button1,button4);
 				Mix_PlayChannel(-1,effect,0);
 				*menu_key = -1;
 			}
+		
+		}else if(dy_cursor >= y4a && dy_cursor <= y4b){
+		
+			if(*button4 != 0){
+				twist(button4,button2,button3,button1);
+			} 
+		
 		}else{
 			twist(button3,button2,button1,button4);
 			*button3 = 1;
 		
 		}
-	}else if (dx_cursor >= x2a && dx_cursor <= x2b){
-		if(dy_cursor >= y4a && dy_cursor <= y3b){
-			if(*button4 != 0){
-				twist(button4,button2,button3,button1);
-			}
-		} 
 	}else{
 		twist(button3,button2,button1,button4);
 		*button3 = 1;
 	}
 }
 
+
+/*_______________________________MENU BLITTER_________________________________*/
+
+
 void menuBlitter(SDL_Rect positionScreen,SDL_Surface *screen,SDL_Surface *background, SDL_Rect positionText,SDL_Surface *font, SDL_Rect logoCrop, SDL_Rect positionLogo, SDL_Surface *logo, SDL_Rect positionB1, SDL_Surface *button1[], SDL_Rect positionB2, SDL_Surface *button2[], SDL_Rect positionB3, SDL_Surface *button3[], int over_b1, int over_b2, int over_b3, int over_b4, int menu_key){
 	
 	SDL_BlitSurface(background,&positionScreen,screen,NULL);
 		
-	if(over_b4 == 0){
-		SDL_BlitSurface(font,NULL,screen,&positionText);
-	}
 	SDL_BlitSurface(logo,&logoCrop,screen,&positionLogo);
 		
 	if(menu_key == -1){
@@ -315,9 +347,14 @@ void menuBlitter(SDL_Rect positionScreen,SDL_Surface *screen,SDL_Surface *backgr
 		SDL_BlitSurface(button2[1],NULL,screen,&positionB2);
 		SDL_BlitSurface(button3[0],NULL,screen,&positionB3);
 	}
+	if(over_b4 == 0){
+		SDL_BlitSurface(font,NULL,screen,&positionText);
+	}
 	SDL_Flip(screen);
 		
 }
+
+/*_______________________________NAVIGATE IN THE MENU WITH KEYBOARD_________________________________*/
 
 int moveInMenuByKeyboard(int pointeur, int operation, int a, int b, Uint32 *oldTime){
 	Uint32 currentTime = SDL_GetTicks();
@@ -331,6 +368,8 @@ int moveInMenuByKeyboard(int pointeur, int operation, int a, int b, Uint32 *oldT
 	}
 	return pointeur;
 }
+
+/*_______________________________MOUSEOVER OPTIMIZATION_________________________________*/
 
 void twist(int *a, int *b, int *c, int *d){
 	*a = 0;

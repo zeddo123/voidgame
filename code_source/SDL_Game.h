@@ -10,7 +10,6 @@
 #include "SDL_char.h"
 #include "SDL_move.h"
 
-
 #define STEP 4
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
@@ -34,14 +33,14 @@
 	#define SET_B_STATIC "../src/design/final menu/settings_button_0.png"
 	#define SET_B_OVER "../src/design/final menu/settings_button_1.png"
 	
-	#define NEWGAME_B_STATIC "../src/design/botton/newgame/b_newgame_low.png"
-	#define NEWGAME_B_OVER "../src/design/botton/newgame/b_newgame_over_low.png"
+	#define NEWGAME_B_STATIC "../src/design/final menu/newgame_button_0.png"
+	#define NEWGAME_B_OVER "../src/design/final menu/newgame_button_1.png"
 
-	#define BACK_B_STATIC "../src/design/botton/return/b_return_low.png"
-	#define BACK_B_OVER "../src/design/botton/return/b_return_over_low.png"
+	#define BACK_B_STATIC "../src/design/final menu/return_button_0.png"
+	#define BACK_B_OVER "../src/design/final menu/return_button_1.png"
 
-	#define LOADGAME_B_STATIC "../src/design/botton/loadgame/b_loadgame_low.png"
-	#define LOADGAME_B_OVER "../src/design/botton/loadgame/b_loadgame_over_low.png"
+	#define LOADGAME_B_STATIC "../src/design/final menu/loadgame_button_0.png"
+	#define LOADGAME_B_OVER "../src/design/final menu/loadgame_button_1.png"
 
 #endif
 
