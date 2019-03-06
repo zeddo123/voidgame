@@ -155,7 +155,7 @@ int main(void)
 	positionLoadGame = initPosition(positionLoadGame,150 + logo->w/ 2 - loadGame[0]->w / 2,SET_FROM,loadGame[0]->w,loadGame[0]->h);
 	
 
-	positionText = initPosition(positionText,0,SCREEN_HEIGHT - 2.55*font_surface->h,font_surface->w,font_surface->h);
+	positionText = initPosition(positionText,logo->w,900,font_surface->w,font_surface->h);
 
 	positionLogo = initPosition(positionLogo,150,0,logo->w,logo->h);
 

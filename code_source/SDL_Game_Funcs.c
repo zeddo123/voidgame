@@ -120,7 +120,7 @@ void playMenu(char *ptr_job, Mix_Chunk *effect, SDL_Rect positionScreen, SDL_Sur
 						SDL_GetMouseState(&dx_cursor,&dy_cursor);
 						if(dx_cursor >= FROM && dx_cursor <= newGame[0]->w + FROM && in_menu != 0){
 
-							// player wants to play
+							//play
 							if(dy_cursor >= PLAY_FROM && dy_cursor <= newGame[0]->h + PLAY_FROM){
 								play(&in_menu,&job,positionScreen,screen);
 								in_menu = 1;
@@ -151,7 +151,7 @@ void playMenu(char *ptr_job, Mix_Chunk *effect, SDL_Rect positionScreen, SDL_Sur
 					SET_FROM,SET_FROM + loadGame[0]->h,
 					QUIT_FROM,QUIT_FROM + back[0]->h,
 					0,100,
-					SCREEN_HEIGHT - 100,SCREEN_HEIGHT,
+					0,100,
 					&over_new,&over_load,&over_back,&licence);
 
 			currentTime = SDL_GetTicks();
