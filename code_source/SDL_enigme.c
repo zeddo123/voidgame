@@ -75,7 +75,7 @@ enigme fetchQuestion(char file_q[], char file_a[]){
 void riddle(enigme e, hero player, SDL_Surface *screen){
 	int job = 1;
 
-	if(collisionBox(player.position,e.positionRiddle)){
+	if(collisionBox(player.position,e.positionRiddle) == 1){
 		SDL_BlitSurface(e.Background,NULL,screen,&e.positionBackground);
 		
 		SDL_BlitSurface(e.Button,NULL,screen,&e.positionButton1);

@@ -1,4 +1,5 @@
 #include "SDL_Game.h"
+#include "SDL_scrolling.h"
 /*_______________________________MAIN MENU EVENT HANDLER_________________________________*/
 
 void menuEventHandler(SDL_Surface *menu, char *ptr_job, int *ptr_menuFrame, int *ptr_menuKey, char *ptr_in_menu, Mix_Chunk *effect, Uint32 *oldTimeKey,SDL_Rect positionScreen, SDL_Surface *screen, SDL_Rect positionText, SDL_Surface *font, SDL_Rect logoCrop, SDL_Rect positionLogo, SDL_Surface *logo, SDL_Surface *play[], SDL_Surface *set[], SDL_Surface *quit[], SDL_Rect positionNewGame, SDL_Surface *newGame[], SDL_Rect positionLoadGame, SDL_Surface *loadGame[], SDL_Rect positionBack, SDL_Surface *back[] ,SDL_Surface *background[], SDL_Surface *menu_frame[], SDL_Surface *menu_setting){
@@ -172,11 +173,12 @@ void playMenu(char *ptr_job, Mix_Chunk *effect, SDL_Rect positionScreen, SDL_Sur
 /*_______________________________MAIN LOOP OF THE GAME_________________________________*/
 
 void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface *screen){
-	SDL_Surface *game_surface = SDL_DisplayFormat(IMG_Load("../src/design/map/map-alpha.jpg"));
+	SDL_Surface *game_surface = SDL_DisplayFormat(IMG_Load("../src/design/map/template.png"));
 	Uint32 oldTimeEntite = 0;
 	hero villain,player;
 	object key;
 	enigme firstEnigme;
+	SDL_Rect camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	char game = 1;
 
 	villain = initHero(villain,"../src/characters/hero2t.png",SCREEN_WIDTH - 100,SCREEN_HEIGHT / 2);
@@ -199,7 +201,9 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 		eventHandler(&player,&game,ptr_in_menu,ptr_job);
 		moveBetweenTwo(&villain,1,SCREEN_WIDTH/2,SCREEN_WIDTH,&oldTimeEntite);
 
-		SDL_BlitSurface(game_surface,&positionScreen,screen,NULL);
+		camera = moveCamera(camera,player,game_surface);
+		
+		SDL_BlitSurface(game_surface,&camera,screen,NULL);
 		SDL_BlitSurface(player.image,&positionScreen,screen,&player.position);
 		SDL_BlitSurface(villain.image,&positionScreen,screen,&villain.position);
 		SDL_BlitSurface(key.image,&positionScreen,screen,&key.position);

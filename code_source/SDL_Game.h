@@ -39,7 +39,7 @@
 	#define BACK_B_STATIC "../src/design/final menu/return_button_0.png"
 	#define BACK_B_OVER "../src/design/final menu/return_button_1.png"
 
-	#define LOADGAME_B_STATIC "../src/design/final menu/loadgame_button_0.png"
+	#define LOADGAME_B_STATIC "../src/design/final menu/loadgame_button_1.png"
 	#define LOADGAME_B_OVER "../src/design/final menu/loadgame_button_1.png"
 
 #endif

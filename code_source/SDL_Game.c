@@ -73,7 +73,7 @@ int main(void)
 		return 1;
 	}
 
-	SDL_WM_SetCaption("void prod game",NULL); //set the caption
+	SDL_WM_SetCaption("Escapeism",NULL); //set the caption
 
 	screen = SDL_SetVideoMode(SCREEN_WIDTH,SCREEN_HEIGHT,0,SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_RESIZABLE);
 	if(screen == NULL){
