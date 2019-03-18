@@ -102,9 +102,9 @@ object initObject(object o, char image_name[], int x, int y){
 
 enigme loadTextForRiddle(enigme e){
 	TTF_Font *font = NULL;
-	SDL_Color fontColor = {0, 0, 0};
+	SDL_Color fontColor = {63, 13, 58};
 
-	font = TTF_OpenFont("../src/font/Baron Neue.otf",30);
+	font = TTF_OpenFont("../src/font/Baron Neue.otf",50);
 
 	e.Question = TTF_RenderText_Blended(font,e.question,fontColor);
 	if(e.Question == NULL || font == NULL){
@@ -157,6 +157,7 @@ enigme initPrintRiddle(enigme e){
 	int xAnswer2, yAnswer2;
 	int xAnswer3, yAnswer3;
 	int xAnswer4, yAnswer4;
+	int xQuestion, yQuestion;
 
 	xBackground = (SCREEN_WIDTH / 2) - (e.Background->w/2);
 	yBackground = (SCREEN_HEIGHT / 2) - (e.Background->h/2);
@@ -168,18 +169,20 @@ enigme initPrintRiddle(enigme e){
 	xA3 = xBackground + 25;
 	xA4 = e.Button->w + xA3 + 50;
 
-	xAnswer1 = (xA1 + e.Button->w) / 2 - (e.Answer1->w / 2);
-	yAnswer1 = (yA1 + e.Button->h) / 2 - (e.Answer1->h / 2);
+	xAnswer1 = xA1;
+	yAnswer1 = yA1;
 
-	xAnswer2 = (xA2 + e.Button->w) / 2 - (e.Answer2->w / 2);
-	yAnswer2 = (yA1 + e.Button->h) / 2 - (e.Answer2->h / 2);
+	xAnswer2 = xA2;
+	yAnswer2 = yA1;
 
-	xAnswer3 = (xA3 + e.Button->w) / 2 - (e.Answer3->w / 2);
-	yAnswer3 = (yA3 + e.Button->h) / 2 - (e.Answer3->h / 2);
+	xAnswer3 = xA3;
+	yAnswer3 = yA3;
 
-	xAnswer4 = (xA4 + e.Button->w) / 2 - (e.Answer4->w / 2);
-	yAnswer4 = (yA3 + e.Button->h) / 2 - (e.Answer4->h / 2);
+	xAnswer4 = xA4;
+	yAnswer4 = yA3;
 
+	xQuestion = (xBackground + e.Background->w / 2) - (e.Question->w / 2);
+	yQuestion = yBackground + 20;
 
 	e.positionButton1 = initPosition(e.positionButton1,xA1,yA1,e.Button->w,e.Button->h);
 	e.positionButton2 = initPosition(e.positionButton2,xA2,yA1,e.Button->w,e.Button->h);
@@ -187,6 +190,7 @@ enigme initPrintRiddle(enigme e){
 	e.positionButton4 = initPosition(e.positionButton2,xA4,yA3,e.Button->w,e.Button->h);
 
 	e.positionBackground = initPosition(e.positionBackground,xBackground,yBackground,e.Background->w,e.Background->h);
+	e.positionQuestion = initPosition(e.positionQuestion,xQuestion,yQuestion,e.Question->w,e.Question->h);
 	e.positionAnswer1 = initPosition(e.positionAnswer1,xAnswer1,yAnswer1,e.Answer1->w,e.Answer1->h);
 	e.positionAnswer2 = initPosition(e.positionAnswer2,xAnswer2,yAnswer2,e.Answer2->w,e.Answer2->h);
 	e.positionAnswer3 = initPosition(e.positionAnswer3,xAnswer3,yAnswer3,e.Answer3->w,e.Answer3->h);
