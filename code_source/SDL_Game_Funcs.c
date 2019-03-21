@@ -183,7 +183,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 
 	villain = initHero(villain,"../src/characters/hero2t.png",SCREEN_WIDTH - 100,SCREEN_HEIGHT / 2);
 	
-	player = initHero(player,"../src/characters/hero1t.PNG",500,500);
+	player = initHero(player,"../src/characters/hero1t.PNG",1,SCREEN_HEIGHT / 2);
 
 	key = initObject(key,"../src/design/bazar/key.png",villain.position.x,villain.position.y);
 
