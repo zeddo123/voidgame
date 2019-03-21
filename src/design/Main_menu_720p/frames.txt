@@ -1,0 +1,7 @@
+../src/design/Main_menu_720p/lastmenu_f1_720.png
+../src/design/Main_menu_720p/lastmenu_f2_720.png
+../src/design/Main_menu_720p/lastmenu_f3_720.png
+../src/design/Main_menu_720p/lastmenu_f4_720.png
+../src/design/Main_menu_720p/lastmenu_f5_720.png
+../src/design/Main_menu_720p/lastmenu_f6_720.png
+../src/design/Main_menu_720p/lastmenu_f7_720.png

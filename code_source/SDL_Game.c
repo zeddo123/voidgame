@@ -82,9 +82,9 @@ int main(void)
 	}
 
 	// load the menu background
-	loadFrames(menu_frame,19,"../src/design/zoom_menu/frames.txt");
+	loadFrames(menu_frame,19,MAIN_MENU);
 	// load the play menu
-	loadFrames(playmenu,7,"../src/design/Main_menu/frames.txt");
+	loadFrames(playmenu,7,PLAY_MENU);
 
 	//load the play botton
 	play[1] = IMG_Load(PLAY_B_STATIC);
