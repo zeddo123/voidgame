@@ -33,3 +33,48 @@ void moveBetweenTwo(hero *entit, int axe, int a, int b, Uint32 *oldTime){
 		*oldTime = currentTime;
 	}
 }
+
+void moveBetweenTwoRandom(hero *entit, int axe, int a, int b, Uint32 *oldTime, int *randpoint){
+	Uint32 currentTime = SDL_GetTicks();
+	fprintf(stderr, "%d\n", *randpoint);
+	// random between A and B
+	if(*randpoint == -1){
+		*randpoint = rand()%(b-a) + a;
+
+	}	
+
+	if(currentTime - (*oldTime) > 20){
+		
+		if(entit->position.x >= *randpoint){
+        	
+        	if(entit->orientation == -1){
+        		if(entit->position.x - a == 0){
+					*randpoint = -1;	
+				}else{
+					*randpoint = rand()%(entit->position.x - a) + a;
+				}
+			}else {
+				if(b - entit->position.x == 0){
+					*randpoint = -1;	
+				}else{
+					*randpoint = rand()%(b - entit->position.x) + (b-a);
+				}
+				
+			}
+		
+		}
+
+
+		if (entit->position.x < *randpoint){
+			entit->orientation = 1;
+		}else if (entit->position.x > *randpoint){
+			entit->orientation = -1;
+		}
+		
+		entit->position.x += entit->orientation * STEP;
+
+		*oldTime = currentTime;
+	}
+
+
+}

@@ -185,8 +185,12 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	TTF_Font *font = NULL;
 	SDL_Color fontColor = {63, 13, 58};
 	char game = 1;
+<<<<<<< HEAD
 	char buffer[5];
 	health vie;
+=======
+	int randpoint = -1;
+>>>>>>> master
 
 	//init TTF Font
 	font = TTF_OpenFont("../src/font/Baron Neue.otf",50);
@@ -216,7 +220,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	SDL_EnableKeyRepeat(10,15);
 	while(game){
 		eventHandler(&player,&game,ptr_in_menu,ptr_job);
-		moveBetweenTwo(&villain,1,SCREEN_WIDTH/2,SCREEN_WIDTH,&oldTimeEntite);
+		moveBetweenTwoRandom(&villain,1,SCREEN_WIDTH/2,SCREEN_WIDTH,&oldTimeEntite,&randpoint);
 
 		camera = moveCamera(camera,player,game_surface); // gestion de la camera (scrolling)
 		
