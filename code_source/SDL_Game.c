@@ -112,6 +112,9 @@ int main(void)
 
 	//load logo
 	logo = IMG_Load(LOGO);
+	if(logo == NULL){
+		fprintf(stderr, "Error loading %s\n", SDL_GetError());
+	}
 
 	//menu setting
 	menu_setting = SDL_DisplayFormat(IMG_Load("../src/design/bazar/wallhaven-553699.png"));
