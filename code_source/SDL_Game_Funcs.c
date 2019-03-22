@@ -180,6 +180,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	enigme firstEnigme;
 	SDL_Rect camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	char game = 1;
+	int randpoint = -1;
 
 	villain = initHero(villain,"../src/characters/hero2t.png",SCREEN_WIDTH - 100,SCREEN_HEIGHT / 2);
 	
@@ -199,7 +200,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	SDL_EnableKeyRepeat(10,15);
 	while(game){
 		eventHandler(&player,&game,ptr_in_menu,ptr_job);
-		moveBetweenTwo(&villain,1,SCREEN_WIDTH/2,SCREEN_WIDTH,&oldTimeEntite);
+		moveBetweenTwoRandom(&villain,1,SCREEN_WIDTH/2,SCREEN_WIDTH,&oldTimeEntite,&randpoint);
 
 		camera = moveCamera(camera,player,game_surface);
 		

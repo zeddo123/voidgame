@@ -9,6 +9,8 @@
 
 void moveBetweenTwo(hero *entit, int axe, int a, int b, Uint32 *oldTime);
 
+void moveBetweenTwoRandom(hero *entit, int axe, int a, int b, Uint32 *oldTime, int *randpoint);
+
 void moveToMouse(hero *player, int dx, int dy);
 
 void move(hero *player, int xy, int i);

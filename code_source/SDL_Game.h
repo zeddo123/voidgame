@@ -11,9 +11,9 @@
 #include "SDL_move.h"
 
 #define STEP 4
-#define SCREEN_WIDTH 1920
-#define SCREEN_HEIGHT 1080
-#define FHD // or HD
+#define SCREEN_WIDTH 1280
+#define SCREEN_HEIGHT 720
+#define HD // or HD
 
 #ifdef FHD
 //positions of the buttons
