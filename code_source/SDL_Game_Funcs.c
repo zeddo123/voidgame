@@ -1,5 +1,8 @@
+#include <string.h>
 #include "SDL_Game.h"
 #include "SDL_scrolling.h"
+#include "SDL_gestion.h"
+
 /*_______________________________MAIN MENU EVENT HANDLER_________________________________*/
 
 void menuEventHandler(SDL_Surface *menu, char *ptr_job, int *ptr_menuFrame, int *ptr_menuKey, char *ptr_in_menu, Mix_Chunk *effect, Uint32 *oldTimeKey,SDL_Rect positionScreen, SDL_Surface *screen, SDL_Rect positionText, SDL_Surface *font, SDL_Rect logoCrop, SDL_Rect positionLogo, SDL_Surface *logo, SDL_Surface *play[], SDL_Surface *set[], SDL_Surface *quit[], SDL_Rect positionNewGame, SDL_Surface *newGame[], SDL_Rect positionLoadGame, SDL_Surface *loadGame[], SDL_Rect positionBack, SDL_Surface *back[] ,SDL_Surface *background[], SDL_Surface *menu_frame[], SDL_Surface *menu_setting){
@@ -179,10 +182,25 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	object key;
 	enigme firstEnigme;
 	SDL_Rect camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+	TTF_Font *font = NULL;
+	SDL_Color fontColor = {63, 13, 58};
 	char game = 1;
+	char buffer[5];
+	health vie;
+	int randpoint = -1;
+
+	//init TTF Font
+	font = TTF_OpenFont("../src/font/Baron Neue.otf",50);
+
+	//Init health
+	vie.vie = 1000;
+	sprintf(buffer, "%d", vie.vie);
+	vie.font_vie = TTF_RenderText_Blended(font,buffer,fontColor);
+	vie.position = initPosition(vie.position,50,20,vie.font_vie->w,vie.font_vie->h);
+	
 
 	villain = initHero(villain,"../src/characters/hero2t.png",SCREEN_WIDTH - 100,SCREEN_HEIGHT / 2);
-	
+
 	player = initHero(player,"../src/characters/hero1t.PNG",1,SCREEN_HEIGHT / 2);
 
 	key = initObject(key,"../src/design/bazar/key.png",villain.position.x,villain.position.y);
@@ -199,17 +217,24 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	SDL_EnableKeyRepeat(10,15);
 	while(game){
 		eventHandler(&player,&game,ptr_in_menu,ptr_job);
-		moveBetweenTwo(&villain,1,SCREEN_WIDTH/2,SCREEN_WIDTH,&oldTimeEntite);
+		moveBetweenTwoRandom(&villain,1,SCREEN_WIDTH/2,SCREEN_WIDTH,&oldTimeEntite,&randpoint);
 
-		camera = moveCamera(camera,player,game_surface);
+		camera = moveCamera(camera,player,game_surface); // gestion de la camera (scrolling)
+		
+		vie = gestionVie(player, villain, vie); // gestion de points de vie
 		
 		SDL_BlitSurface(game_surface,&camera,screen,NULL);
 		SDL_BlitSurface(player.image,&positionScreen,screen,&player.position);
 		SDL_BlitSurface(villain.image,&positionScreen,screen,&villain.position);
 		SDL_BlitSurface(key.image,&positionScreen,screen,&key.position);
+		sprintf(buffer, "%d", vie.vie);
+		vie.font_vie = TTF_RenderText_Blended(font,buffer,fontColor);
+		SDL_BlitSurface(vie.font_vie,NULL,screen,&vie.position);
 		riddle(firstEnigme,player,screen);
 		SDL_Flip(screen);
+
 	}
+	TTF_CloseFont(font);
 
 	SDL_FreeSurface(game_surface);
 	
@@ -220,8 +245,12 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	SDL_FreeSurface(firstEnigme.Answer3);
 	SDL_FreeSurface(firstEnigme.Answer4);
 	
+	SDL_FreeSurface(vie.font_vie);
+
 	SDL_FreeSurface(villain.image);
 	SDL_FreeSurface(player.image);
+
+	SDL_FreeSurface(key.image);
 }
 
 /*_______________________________GAME EVENT HANDLER_________________________________*/
