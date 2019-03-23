@@ -177,7 +177,7 @@ void playMenu(char *ptr_job, Mix_Chunk *effect, SDL_Rect positionScreen, SDL_Sur
 
 void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface *screen){
 	SDL_Surface *game_surface = SDL_DisplayFormat(IMG_Load("../src/design/map/template.png"));
-	Uint32 oldTimeEntite = 0;
+	Uint32 oldTimeEntite = 0, oldTimeDamage = 0;
 	hero villain,player;
 	object key;
 	enigme firstEnigme;
@@ -221,7 +221,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 
 		camera = moveCamera(camera,player,game_surface); // gestion de la camera (scrolling)
 		
-		vie = gestionVie(player, villain, vie); // gestion de points de vie
+		vie = gestionVie(player, villain, vie, &oldTimeDamage); // gestion de points de vie
 		
 		SDL_BlitSurface(game_surface,&camera,screen,NULL);
 		SDL_BlitSurface(player.image,&positionScreen,screen,&player.position);
