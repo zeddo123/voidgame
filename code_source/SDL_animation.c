@@ -145,8 +145,8 @@ void show(hero *player)
 
 
     //Declaration
-    SDL_Rect clips[player->orientation][5];
-    int FRAMES_PER_SECOND = 60;
+
+
     SDL_Surface *allFrames;
     SDL_Surface *screen;
 
