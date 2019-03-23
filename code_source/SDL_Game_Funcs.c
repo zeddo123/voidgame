@@ -227,7 +227,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 		SDL_BlitSurface(player.image,&positionScreen,screen,&player.position);
 		SDL_BlitSurface(villain.image,&positionScreen,screen,&villain.position);
 		SDL_BlitSurface(key.image,&positionScreen,screen,&key.position);
-		sprintf(buffer, "%d", vie.vie);
+		sprintf(buffer, " %d", vie.vie);
 		vie.font_vie = TTF_RenderText_Blended(font,buffer,fontColor);
 		SDL_BlitSurface(vie.font_vie,NULL,screen,&vie.position);
 		riddle(firstEnigme,player,screen);
