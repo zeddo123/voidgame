@@ -2,6 +2,7 @@
 #include "SDL_Game.h"
 #include "SDL_scrolling.h"
 #include "SDL_gestion.h"
+#include "SDL_animation.h"
 
 /*_______________________________MAIN MENU EVENT HANDLER_________________________________*/
 
@@ -182,6 +183,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	object key;
 	enigme firstEnigme;
 	SDL_Rect camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+<<<<<<< HEAD
 	TTF_Font *font = NULL;
 	SDL_Color fontColor = {63, 13, 58};
 	char game = 1;
@@ -198,6 +200,14 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	vie.font_vie = TTF_RenderText_Blended(font,buffer,fontColor);
 	vie.position = initPosition(vie.position,50,20,vie.font_vie->w,vie.font_vie->h);
 	
+=======
+	//animation declaration
+	char game = 1;
+	int quit, FRAMES_PER_SECOND, paused, started, startTicks , pausedTicks;
+	SDL_Event animEvent;
+
+
+>>>>>>> testing
 
 	villain = initHero(villain,"../src/characters/hero2t.png",SCREEN_WIDTH - 100,SCREEN_HEIGHT / 2);
 
@@ -216,8 +226,20 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	moveToMouse(&player,500,500);
 	SDL_EnableKeyRepeat(10,15);
 	while(game){
+        //Mise en route du timer
+        start(&started,&paused,&startTicks);
+		
 		eventHandler(&player,&game,ptr_in_menu,ptr_job);
+<<<<<<< HEAD
 		moveBetweenTwoRandom(&villain,1,SCREEN_WIDTH/2,SCREEN_WIDTH,&oldTimeEntite,&randpoint);
+=======
+		
+        show(&player);
+
+        //On rend la main tant qu'on en a pas besoin
+
+		moveBetweenTwo(&villain,1,SCREEN_WIDTH/2,SCREEN_WIDTH,&oldTimeEntite);
+>>>>>>> testing
 
 		camera = moveCamera(camera,player,game_surface); // gestion de la camera (scrolling)
 		
@@ -232,7 +254,14 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 		SDL_BlitSurface(vie.font_vie,NULL,screen,&vie.position);
 		riddle(firstEnigme,player,screen);
 		SDL_Flip(screen);
+<<<<<<< HEAD
 
+=======
+        
+        while( get_ticks(started,paused,startTicks,pausedTicks) < 1000 / FRAMES_PER_SECOND){
+            //Attente...
+        }
+>>>>>>> testing
 	}
 	TTF_CloseFont(font);
 
@@ -250,7 +279,10 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	SDL_FreeSurface(villain.image);
 	SDL_FreeSurface(player.image);
 
+<<<<<<< HEAD
 	SDL_FreeSurface(key.image);
+=======
+>>>>>>> testing
 }
 
 /*_______________________________GAME EVENT HANDLER_________________________________*/
