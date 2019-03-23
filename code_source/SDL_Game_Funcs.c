@@ -3,6 +3,7 @@
 #include "SDL_scrolling.h"
 #include "SDL_gestion.h"
 #include "SDL_animation.h"
+#include "SDL_collision.h"
 
 /*_______________________________MAIN MENU EVENT HANDLER_________________________________*/
 
@@ -177,10 +178,13 @@ void playMenu(char *ptr_job, Mix_Chunk *effect, SDL_Rect positionScreen, SDL_Sur
 /*_______________________________MAIN LOOP OF THE GAME_________________________________*/
 
 void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface *screen){
-	SDL_Surface *game_surface = SDL_DisplayFormat(IMG_Load("../src/design/map/template.png"));
+
+	SDL_Rect positionRelative;
+	SDL_Surface *game_surface = SDL_DisplayFormat(IMG_Load("../src/design/map/map.png"));
 	Uint32 oldTimeEntite = 0, oldTimeDamage = 0;
 	hero villain,player;
-	object key;
+	object key, circle;
+	Circle c;
 	enigme firstEnigme;
 	SDL_Rect camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	TTF_Font *font = NULL;
@@ -211,6 +215,10 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 
 	key = initObject(key,"../src/design/bazar/key.png",villain.position.x,villain.position.y);
 
+	circle = initObject(circle,"../src/design/bazar/circle.png",200,200);
+	c.x = circle.position.x;
+	c.y = circle.position.y;
+	c.r = circle.position.w / 2;
 	firstEnigme = fetchQuestion("enigme.q","enigme.s");
 	firstEnigme.positionRiddle = initPosition(firstEnigme.positionRiddle,key.position.x,key.position.y,key.position.w,key.position.h);
 	firstEnigme = loadTextForRiddle(firstEnigme);
@@ -219,8 +227,9 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	
 	firstEnigme = initPrintRiddle(firstEnigme);
 	
-	moveToMouse(&player,500,500);
+	moveToMouse(&player,1000,1000);
 	SDL_EnableKeyRepeat(10,15);
+	
 	while(game){
         //Mise en route du timer
         start(&started,&paused,&startTicks);
@@ -233,18 +242,28 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 
 
 		camera = moveCamera(camera,player,game_surface); // gestion de la camera (scrolling)
-		
+
+		positionRelative.x = player.position.x - camera.x;
+		positionRelative.y = player.position.y - camera.y;
+
 		vie = gestionVie(player, villain, vie, &oldTimeDamage); // gestion de points de vie
 		
 		SDL_BlitSurface(game_surface,&camera,screen,NULL);
-		SDL_BlitSurface(player.image,&positionScreen,screen,&player.position);
 		SDL_BlitSurface(villain.image,&positionScreen,screen,&villain.position);
 		SDL_BlitSurface(key.image,&positionScreen,screen,&key.position);
-		
+
+		SDL_BlitSurface(circle.image,&positionScreen,screen,&circle.position);
+
+		SDL_BlitSurface(player.image,NULL,screen,&positionRelative);
+
+		if(collisionBxC(c,player.position) == 1){
+			vie.vie -= 1;
+		}
+
 		sprintf(buffer, " %d", vie.vie);
 		vie.font_vie = TTF_RenderText_Blended(font,buffer,fontColor);
 		SDL_BlitSurface(vie.font_vie,NULL,screen,&vie.position);
-		
+
 		riddle(firstEnigme,player,screen);
 		
 		SDL_Flip(screen);

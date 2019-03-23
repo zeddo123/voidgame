@@ -8,12 +8,12 @@ void moveToMouse(hero *player, int dx, int dy){
 void move(hero *player, int xy, int i){
 	if(xy == 1){
 		player->position.x += i*STEP;
-		if((player->position.x < 0) || (player->position.x + player->position.w) > SCREEN_WIDTH){
+		if((player->position.x < 0) || (player->position.x + player->position.w) > 8000){
 			player->position.x -= i*STEP;
 		}
 	}else{
 		player->position.y += i*STEP;
-		if((player->position.y < 0) || (player->position.y + player->position.h) > SCREEN_HEIGHT){
+		if((player->position.y < 0) || (player->position.y + player->position.h) > 8000){
 			player->position.y -= i*STEP;
 		}
 	}
