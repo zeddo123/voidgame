@@ -13,6 +13,5 @@ struct health{
 
 typedef struct health health;
 
-health gestionVie(hero player, hero villain, health vie);
-
+health gestionVie(hero player, hero villain, health vie, Uint32 *oldTime);
 #endif

@@ -36,7 +36,6 @@ void moveBetweenTwo(hero *entit, int axe, int a, int b, Uint32 *oldTime){
 
 void moveBetweenTwoRandom(hero *entit, int axe, int a, int b, Uint32 *oldTime, int *randpoint){
 	Uint32 currentTime = SDL_GetTicks();
-	fprintf(stderr, "%d\n", *randpoint);
 	// random between A and B
 	if(*randpoint == -1){
 		*randpoint = rand()%(b-a) + a;

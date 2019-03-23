@@ -57,25 +57,25 @@
 	#define MAIN_MENU "../src/design/zoom_menu_720p/frames.txt"
 	#define PLAY_MENU "../src/design/Main_menu_720p/frames.txt"
 
-	#define LOGO "../src/design/final menu/menu_no_buttons.png"
+	#define LOGO "../src/design/final menu/menu_no_buttons_720.png"
 
-	#define PLAY_B_STATIC "../src/design/final menu/play_button_0.png"
-	#define PLAY_B_OVER "../src/design/final menu/play_button_1.png"
+	#define PLAY_B_STATIC "../src/design/final menu/play_button_0_720.png"
+	#define PLAY_B_OVER "../src/design/final menu/play_button_1_720.png"
 
-	#define QUIT_B_STATIC "../src/design/final menu/quit_button_0.png"
-	#define QUIT_B_OVER "../src/design/final menu/quit_button_1.png"
+	#define QUIT_B_STATIC "../src/design/final menu/quit_button_0_720.png"
+	#define QUIT_B_OVER "../src/design/final menu/quit_button_1_720.png"
 
-	#define SET_B_STATIC "../src/design/final menu/settings_button_0.png"
-	#define SET_B_OVER "../src/design/final menu/settings_button_1.png"
+	#define SET_B_STATIC "../src/design/final menu/settings_button_0_720.png"
+	#define SET_B_OVER "../src/design/final menu/settings_button_1_720.png"
 	
-	#define NEWGAME_B_STATIC "../src/design/final menu/newgame_button_0.png"
-	#define NEWGAME_B_OVER "../src/design/final menu/newgame_button_1.png"
+	#define NEWGAME_B_STATIC "../src/design/final menu/newgame_button_0_720.png"
+	#define NEWGAME_B_OVER "../src/design/final menu/newgame_button_1_720.png"
 
-	#define BACK_B_STATIC "../src/design/final menu/return_button_0.png"
-	#define BACK_B_OVER "../src/design/final menu/return_button_1.png"
+	#define BACK_B_STATIC "../src/design/final menu/return_button_0_720.png"
+	#define BACK_B_OVER "../src/design/final menu/return_button_1_720.png"
 
-	#define LOADGAME_B_STATIC "../src/design/final menu/loadgame_button_0.png"
-	#define LOADGAME_B_OVER "../src/design/final menu/loadgame_button_1.png"
+	#define LOADGAME_B_STATIC "../src/design/final menu/loadgame_button_0_720.png"
+	#define LOADGAME_B_OVER "../src/design/final menu/loadgame_button_1_720.png"
 
 #endif
 
