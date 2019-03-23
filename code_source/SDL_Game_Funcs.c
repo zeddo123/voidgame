@@ -1,5 +1,6 @@
 #include "SDL_Game.h"
 #include "SDL_scrolling.h"
+#include "SDL_animation.h"
 /*_______________________________MAIN MENU EVENT HANDLER_________________________________*/
 
 void menuEventHandler(SDL_Surface *menu, char *ptr_job, int *ptr_menuFrame, int *ptr_menuKey, char *ptr_in_menu, Mix_Chunk *effect, Uint32 *oldTimeKey,SDL_Rect positionScreen, SDL_Surface *screen, SDL_Rect positionText, SDL_Surface *font, SDL_Rect logoCrop, SDL_Rect positionLogo, SDL_Surface *logo, SDL_Surface *play[], SDL_Surface *set[], SDL_Surface *quit[], SDL_Rect positionNewGame, SDL_Surface *newGame[], SDL_Rect positionLoadGame, SDL_Surface *loadGame[], SDL_Rect positionBack, SDL_Surface *back[] ,SDL_Surface *background[], SDL_Surface *menu_frame[], SDL_Surface *menu_setting){
@@ -179,7 +180,12 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	object key;
 	enigme firstEnigme;
 	SDL_Rect camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+	//animation declaration
 	char game = 1;
+	int quit, FRAMES_PER_SECOND, paused, started, startTicks , pausedTicks;
+	SDL_Event animEvent;
+
+
 
 	villain = initHero(villain,"../src/characters/hero2t.png",SCREEN_WIDTH - 100,SCREEN_HEIGHT / 2);
 	
@@ -198,7 +204,15 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	moveToMouse(&player,500,500);
 	SDL_EnableKeyRepeat(10,15);
 	while(game){
+        //Mise en route du timer
+        start(&started,&paused,&startTicks);
+		
 		eventHandler(&player,&game,ptr_in_menu,ptr_job);
+		
+        show(&player);
+
+        //On rend la main tant qu'on en a pas besoin
+
 		moveBetweenTwo(&villain,1,SCREEN_WIDTH/2,SCREEN_WIDTH,&oldTimeEntite);
 
 		camera = moveCamera(camera,player,game_surface);
@@ -209,6 +223,10 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 		SDL_BlitSurface(key.image,&positionScreen,screen,&key.position);
 		riddle(firstEnigme,player,screen);
 		SDL_Flip(screen);
+        
+        while( get_ticks(started,paused,startTicks,pausedTicks) < 1000 / FRAMES_PER_SECOND){
+            //Attente...
+        }
 	}
 
 	SDL_FreeSurface(game_surface);
@@ -222,6 +240,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	
 	SDL_FreeSurface(villain.image);
 	SDL_FreeSurface(player.image);
+
 }
 
 /*_______________________________GAME EVENT HANDLER_________________________________*/

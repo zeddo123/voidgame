@@ -6,6 +6,12 @@ struct hero{
 	int orientation;
 	SDL_Surface *image;
 	SDL_Rect position;
+	SDL_Rect clipsRight[4];
+	SDL_Rect clipsLeft[4];
+	int speed;
+	int pos;
+	int frame;
+	int status;
 };
 
 typedef struct{

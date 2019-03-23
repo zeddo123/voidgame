@@ -7,8 +7,9 @@
 #include <SDL/SDL_ttf.h>
 
 #include "SDL_Init.h"
-#include "SDL_char.h"
+#include "SDL_char.h"	
 #include "SDL_move.h"
+#include "SDL_animation.h"
 
 #define STEP 4
 #define SCREEN_WIDTH 1920
