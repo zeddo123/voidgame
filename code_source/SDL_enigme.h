@@ -5,6 +5,9 @@
 #include "SDL_char.h"
 #include "SDL_collision.h"
 
+#define ANSWER_STATIC "../src/design/enigmes/answer_box_1.png"
+#define ANSWER_OVER "../src/design/enigmes/answer_box_0.png"
+
 struct Enigme{
 	char question[256];
 	char answer1[256];
@@ -12,6 +15,7 @@ struct Enigme{
 	char answer3[256];
 	char answer4[256];
 	int solution;
+
 	SDL_Surface *Button;
 	SDL_Surface *Background;
 	
@@ -20,6 +24,7 @@ struct Enigme{
 	SDL_Surface *Answer2;
 	SDL_Surface *Answer3;
 	SDL_Surface *Answer4;
+	
 	SDL_Rect positionBackground;
 	SDL_Rect positionQuestion;
 	SDL_Rect positionAnswer1;
@@ -32,12 +37,8 @@ struct Enigme{
 	SDL_Rect positionButton2;
 	SDL_Rect positionButton3;
 	SDL_Rect positionButton4;
-
-#define ANSWER_STATIC "../src/design/enigmes/answer_box_1.png"
-#define ANSWER_OVER "../src/design/enigmes/answer_box_0.png"
-
-
 };
+
 typedef struct Enigme enigme;
 
 int findIndex(char string[], char x);
@@ -48,6 +49,6 @@ void riddle(enigme e, hero player, SDL_Surface *screen);
 
 enigme fetchQuestion(char file_q[], char file_a[]);
 
-int answer_selection ( enigme e , SDL_Rect positionButton1 , SDL_Rect positionButton2 , SDL_Rect positionButton3 , SDL_Rect positionButton4 );
+int getSelection(enigme e, int *answer_selected);
 
-int verify_answer ( enigme e );
+int verifyAnswer(enigme e, answer_selected);
