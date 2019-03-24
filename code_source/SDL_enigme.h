@@ -33,6 +33,10 @@ struct Enigme{
 	SDL_Rect positionButton3;
 	SDL_Rect positionButton4;
 
+#define ANSWER_STATIC "../src/design/enigmes/answer_box_1.png"
+#define ANSWER_OVER "../src/design/enigmes/answer_box_0.png"
+
+
 };
 typedef struct Enigme enigme;
 
@@ -43,3 +47,7 @@ void erase(char string[], int pos);
 void riddle(enigme e, hero player, SDL_Surface *screen);
 
 enigme fetchQuestion(char file_q[], char file_a[]);
+
+int answer_selection ( enigme e , SDL_Rect positionButton1 , SDL_Rect positionButton2 , SDL_Rect positionButton3 , SDL_Rect positionButton4 );
+
+int verify_answer ( enigme e );
