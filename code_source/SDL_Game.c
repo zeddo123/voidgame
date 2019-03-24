@@ -87,34 +87,31 @@ int main(void)
 	loadFrames(playmenu,7,PLAY_MENU);
 
 	//load the play botton
-	play[1] = IMG_Load(PLAY_B_STATIC);
-	play[0] = IMG_Load(PLAY_B_OVER);
+	play[1] = loadImage(PLAY_B_STATIC);
+	play[0] = loadImage(PLAY_B_OVER);
 
 	//load the setting botton
-	set[1] = IMG_Load(SET_B_STATIC);
-	set[0] = IMG_Load(SET_B_OVER);
+	set[1] = loadImage(SET_B_STATIC);
+	set[0] = loadImage(SET_B_OVER);
 
 	//load the quit botton
-	quit[1] = IMG_Load(QUIT_B_STATIC);
-	quit[0] = IMG_Load(QUIT_B_OVER);
+	quit[1] = loadImage(QUIT_B_STATIC);
+	quit[0] = loadImage(QUIT_B_OVER);
 
 	//load the new game botton
-	newGame[1] = IMG_Load(NEWGAME_B_STATIC);
-	newGame[0] = IMG_Load(NEWGAME_B_OVER);
+	newGame[1] = loadImage(NEWGAME_B_STATIC);
+	newGame[0] = loadImage(NEWGAME_B_OVER);
 
 	//load the load game botton
-	loadGame[1] = IMG_Load(LOADGAME_B_STATIC);
-	loadGame[0] = IMG_Load(LOADGAME_B_OVER);
+	loadGame[1] = loadImage(LOADGAME_B_STATIC);
+	loadGame[0] = loadImage(LOADGAME_B_OVER);
 
 	//load the return botton
-	back[1] = IMG_Load(BACK_B_STATIC);
-	back[0] = IMG_Load(BACK_B_OVER);
+	back[1] = loadImage(BACK_B_STATIC);
+	back[0] = loadImage(BACK_B_OVER);
 
 	//load logo
-	logo = IMG_Load(LOGO);
-	if(logo == NULL){
-		fprintf(stderr, "Error loading %s\n", SDL_GetError());
-	}
+	logo = loadImage(LOGO);
 
 	//menu setting
 	menu_setting = SDL_DisplayFormat(IMG_Load("../src/design/bazar/wallhaven-553699.png"));

@@ -138,8 +138,8 @@ enigme loadTextForRiddle(enigme e){
 }
 
 
-SDL_Surface* loadImage(SDL_Surface *s, char file_name[]){
-	s = NULL;
+SDL_Surface* loadImage(char file_name[]){
+	SDL_Surface *s = NULL;
 	s = IMG_Load(file_name);
 	if(s == NULL){
 		fprintf(stderr, "%s\n",SDL_GetError());
@@ -164,10 +164,10 @@ enigme initPrintRiddle(enigme e){
 	
 	yA1 = (yBackground + e.Background->h) / 2;
 	xA1 = xBackground + 25;
-	xA2 = e.Button->w + xA1 + 50;
-	yA3 = yA1 + e.Button->h + 25;
+	xA2 = e.Button[0]->w + xA1 + 50;
+	yA3 = yA1 + e.Button[0]->h + 25;
 	xA3 = xBackground + 25;
-	xA4 = e.Button->w + xA3 + 50;
+	xA4 = e.Button[0]->w + xA3 + 50;
 
 	xAnswer1 = xA1;
 	yAnswer1 = yA1;
@@ -184,10 +184,10 @@ enigme initPrintRiddle(enigme e){
 	xQuestion = (xBackground + e.Background->w / 2) - (e.Question->w / 2);
 	yQuestion = yBackground + 20;
 
-	e.positionButton1 = initPosition(e.positionButton1,xA1,yA1,e.Button->w,e.Button->h);
-	e.positionButton2 = initPosition(e.positionButton2,xA2,yA1,e.Button->w,e.Button->h);
-	e.positionButton3 = initPosition(e.positionButton3,xA3,yA3,e.Button->w,e.Button->h);
-	e.positionButton4 = initPosition(e.positionButton2,xA4,yA3,e.Button->w,e.Button->h);
+	e.positionButton1 = initPosition(e.positionButton1,xA1,yA1,e.Button[0]->w,e.Button[0]->h);
+	e.positionButton2 = initPosition(e.positionButton2,xA2,yA1,e.Button[0]->w,e.Button[0]->h);
+	e.positionButton3 = initPosition(e.positionButton3,xA3,yA3,e.Button[0]->w,e.Button[0]->h);
+	e.positionButton4 = initPosition(e.positionButton2,xA4,yA3,e.Button[0]->w,e.Button[0]->h);
 
 	e.positionBackground = initPosition(e.positionBackground,xBackground,yBackground,e.Background->w,e.Background->h);
 	e.positionQuestion = initPosition(e.positionQuestion,xQuestion,yQuestion,e.Question->w,e.Question->h);

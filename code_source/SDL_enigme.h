@@ -16,7 +16,7 @@ struct Enigme{
 	char answer4[256];
 	int solution;
 
-	SDL_Surface *Button;
+	SDL_Surface *Button[2];
 	SDL_Surface *Background;
 	
 	SDL_Surface *Question;
@@ -45,10 +45,10 @@ int findIndex(char string[], char x);
 
 void erase(char string[], int pos);
 
-void riddle(enigme e, hero player, SDL_Surface *screen);
+int riddle(enigme e, hero player, SDL_Surface *screen);
 
 enigme fetchQuestion(char file_q[], char file_a[]);
 
 int getSelection(enigme e, int *answer_selected);
 
-int verifyAnswer(enigme e, answer_selected);
+int verifyAnswer(enigme e, int answer_selected);

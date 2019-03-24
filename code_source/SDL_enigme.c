@@ -83,6 +83,7 @@ int riddle(enigme e, hero player, SDL_Surface *screen){
 	int answer_selected = 1;
 	int locked = 0;
 	int test;
+	int over1, over2, over3, over4;
 
 	if(collisionBox(player.position,e.positionRiddle) == 1){
 		while(job){
@@ -97,23 +98,47 @@ int riddle(enigme e, hero player, SDL_Surface *screen){
 					return 0;
 				}
 			}
+
+			if(answer_selected == 1){
+				over1 = 1;
+				over2 = 0;
+				over3 = 0;
+				over4 = 0;
+			}else if(answer_selected == 2){
+				over1 = 0;
+				over2 = 1;
+				over3 = 0;
+				over4 = 0;
+			}else if(answer_selected == 3){
+				over1 = 0;
+				over2 = 0;
+				over3 = 1;
+				over4 = 0;
+			}else if(answer_selected == 4){
+				over1 = 0;
+				over2 = 0;
+				over3 = 0;
+				over4 = 1;
+			}
 			SDL_BlitSurface(e.Background,NULL,screen,&e.positionBackground);
 		
-			SDL_BlitSurface(e.Button,NULL,screen,&e.positionButton1);
-			SDL_BlitSurface(e.Button,NULL,screen,&e.positionButton2);
-			SDL_BlitSurface(e.Button,NULL,screen,&e.positionButton3);
-			SDL_BlitSurface(e.Button,NULL,screen,&e.positionButton4);
+			SDL_BlitSurface(e.Button[over1],NULL,screen,&e.positionButton1);
+			SDL_BlitSurface(e.Button[over2],NULL,screen,&e.positionButton2);
+			SDL_BlitSurface(e.Button[over3],NULL,screen,&e.positionButton3);
+			SDL_BlitSurface(e.Button[over4],NULL,screen,&e.positionButton4);
 
 			SDL_BlitSurface(e.Question,NULL,screen,&e.positionQuestion);
 			SDL_BlitSurface(e.Answer1,NULL,screen,&e.positionAnswer1);
 			SDL_BlitSurface(e.Answer2,NULL,screen,&e.positionAnswer2);
 			SDL_BlitSurface(e.Answer3,NULL,screen,&e.positionAnswer3);
 			SDL_BlitSurface(e.Answer4,NULL,screen,&e.positionAnswer4);
-			//SDL_Flip(screen);
+			
+			SDL_Flip(screen);
 		}	
 	}else{
 		return -1;
 	}
+}
 
 int getSelection(enigme e, int *answer_selected){
 	/*
@@ -137,28 +162,28 @@ int getSelection(enigme e, int *answer_selected){
 					break;
 
 				case SDLK_DOWN:
-					if ((answer_selected == 3)||(answer_selected == 4))
+					if ((*answer_selected == 3) || (*answer_selected == 4))
 						*answer_selected = *answer_selected;
 					else
 						*answer_selected = *answer_selected + 2;
 						break;
 					return 1;
 				case SDLK_UP:
-					if ((answer_selected == 1)||(answer_selected == 2))
+					if ((*answer_selected == 1) || (*answer_selected == 2))
 						*answer_selected = *answer_selected;
 					else
 						*answer_selected = *answer_selected-2;
 					return 1;
 					break;
 				case SDLK_RIGHT:
-					if ((answer_selected == 2)||(answer_selected == 4))
+					if ((*answer_selected == 2) || (*answer_selected == 4))
 						*answer_selected = *answer_selected;
 					else
 						*answer_selected = *answer_selected+1;
 					return 1;
 					break;
 				case SDLK_LEFT:
-					if ((*answer_selected == 1)||(*answer_selected == 3))
+					if ((*answer_selected == 1) || (*answer_selected == 3))
 						*answer_selected = *answer_selected;
 					else
 						*answer_selected = *answer_selected - 1;
@@ -168,22 +193,24 @@ int getSelection(enigme e, int *answer_selected){
 		case SDL_MOUSEBUTTONDOWN:
 			switch(event.button.button){
 				case SDL_BUTTON_LEFT:
-					SDL_GetMousweState(&dx_cursor,&dy_cursor);
-					if (dy_cursor >= e.positionButton1.y)&&(dy_cursor<=((e.positionButton1.y)+(e.positionButton1.h)))){
-						if (dx_cursor >= e.positionButton1.x) && (dx_cursor<=((e.positionButton1.x)+(e.positionButton1.w)))){
+				
+					SDL_GetMouseState(&dx_cursor,&dy_cursor);
+				
+					if ((dy_cursor >= e.positionButton1.y)&&(dy_cursor<=((e.positionButton1.y)+(e.positionButton1.h)))){
+						if ((dx_cursor >= e.positionButton1.x) && (dx_cursor<=((e.positionButton1.x)+(e.positionButton1.w)))){
 							*answer_selected = 1;
 							return 0;
-						}else if (dx_cursor >= e.positionButton2.x)&&(dx_cursor<=((e.positionButton2.x)+(e.positionButton2.w)))){
+						}else if((dx_cursor >= e.positionButton2.x)&&(dx_cursor<=((e.positionButton2.x)+(e.positionButton2.w)))){
 							*answer_selected = 2;
 							return 0;
 						}
 					}
 
-					if (dy_cursor >= e.positionButton3.y)&&(dy_cursor<=((e.positionButton3.y)+(e.positionButton3.h)))){
-						if (dx_cursor >= e.positionButton3.x)&&(dx_cursor<=((e.positionButton3.x)+(e.positionButton3.w)))){
+					if ((dy_cursor >= e.positionButton3.y)&&(dy_cursor<=((e.positionButton3.y)+(e.positionButton3.h)))){
+						if ((dx_cursor >= e.positionButton3.x)&&(dx_cursor<=((e.positionButton3.x)+(e.positionButton3.w)))){
 							*answer_selected = 3;
 							return 0;
-						}else if (dx_cursor >= e.positionButton4.x)&&(dx_cursor<=((e.positionButton4.x)+(e.positionButton4.w)))){
+						}else if ((dx_cursor >= e.positionButton4.x)&&(dx_cursor<=((e.positionButton4.x)+(e.positionButton4.w)))){
 							*answer_selected = 4;
 							return 0;
 						}
@@ -194,6 +221,6 @@ int getSelection(enigme e, int *answer_selected){
 	}
 }
 
-int verifyAnswer(enigme e, answer_selected){
+int verifyAnswer(enigme e, int answer_selected){
 	return e.solution == answer_selected;
 }

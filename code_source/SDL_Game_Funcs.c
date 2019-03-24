@@ -206,8 +206,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	vie.font_vie = TTF_RenderText_Blended(font,buffer,fontColor);
 	vie.position = initPosition(vie.position,50,20,vie.font_vie->w,vie.font_vie->h);
 	
-
-	//animation declaration
+	//init position and images
 
 	villain = initHero(villain,"../src/characters/hero2t.png",SCREEN_WIDTH - 100,SCREEN_HEIGHT / 2);
 
@@ -219,14 +218,20 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	c.x = circle.position.x;
 	c.y = circle.position.y;
 	c.r = circle.position.w / 2;
+
+	//Init riddle
+
 	firstEnigme = fetchQuestion("enigme.q","enigme.s");
 	firstEnigme.positionRiddle = initPosition(firstEnigme.positionRiddle,key.position.x,key.position.y,key.position.w,key.position.h);
 	firstEnigme = loadTextForRiddle(firstEnigme);
-	firstEnigme.Background = loadImage(firstEnigme.Background,"../src/design/enigmes/question_box.png");
-	firstEnigme.Button = loadImage(firstEnigme.Button,"../src/design/enigmes/answer_box_0.png");
+	
+	firstEnigme.Background = loadImage("../src/design/enigmes/question_box.png");
+	firstEnigme.Button[0] = loadImage("../src/design/enigmes/answer_box_0.png"); //non selected
+	firstEnigme.Button[1] = loadImage("../src/design/enigmes/answer_box_1.png"); //selected	
 	
 	firstEnigme = initPrintRiddle(firstEnigme);
 	
+
 	moveToMouse(&player,1000,1000);
 	SDL_EnableKeyRepeat(10,15);
 	
@@ -277,7 +282,8 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 
 	SDL_FreeSurface(game_surface);
 	
-	SDL_FreeSurface(firstEnigme.Button);
+	SDL_FreeSurface(firstEnigme.Button[0]);
+	SDL_FreeSurface(firstEnigme.Button[1]);
 	SDL_FreeSurface(firstEnigme.Background);
 	SDL_FreeSurface(firstEnigme.Answer1);
 	SDL_FreeSurface(firstEnigme.Answer2);

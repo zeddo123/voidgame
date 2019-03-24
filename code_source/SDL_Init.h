@@ -15,7 +15,7 @@ void nextFrame(int *frame, int maxframes);
 
 void loadFrames(SDL_Surface *set[], int maxframes, char file_name[]);
 
-SDL_Surface* loadImage(SDL_Surface *s, char file_name[]);
+SDL_Surface* loadImage(char file_name[]);
 
 SDL_Rect initPosition(SDL_Rect position, int x, int y, int w, int h);
 
