@@ -1,4 +1,5 @@
 #include "SDL_enigme.h"
+#include <string.h>
 
 int findIndex(char string[], char x){
 	for(int i = 0;i < strlen(string);i++){
@@ -92,4 +93,89 @@ void riddle(enigme e, hero player, SDL_Surface *screen){
 	}else{
 		return;
 	}
+
+int answer_selection ( enigme e , SDL_Rect positionButton1 , SDL_Rect positionButton2 , SDL_Rect positionButton3 , SDL_Rect positionButton4 )
+true_answer=
+{
+	int answer_selected =1;
+	int dx_cursor, dy_cursor;
+	SDL_Event event;
+	
+	while(job){
+		SDL_WaitEvent(&event);
+		
+		switch(event.type){ 
+			case SDL_KEYDOWN:
+				switch(event.key.keysym.sym){
+					case SDLK_ESCAPE:
+						job=0;
+
+						break;
+					case SDLK_DOWN:
+						if ((answer_selected == 3)||(answer_selected == 4))
+							answer_selected=answer_selected;
+						else
+							answer_selected=answer_selected+2;
+						
+						break;
+					case SDLK_UP:
+						if ((answer_selected == 1)||(answer_selected == 2))
+							answer_selected=answer_selected;
+						else
+							answer_selected=answer_selected-2;
+						
+						break;
+					case SDLK_RIGHT:
+						if ((answer_selected == 2)||(answer_selected == 4))
+							answer_selected = answer_selected;
+						else
+							answer_selected = answer_selected+1;
+						
+						break;
+					case SDLK_LEFT:
+						if ((answer_selected == 1)||(answer_selected == 3))
+							answer_selected=answer_selected;
+						else
+							answer_selected=answer_selected-1;
+						break;
+				}
+				break;
+			case SDL_MOUSEBUTTONDOWN:
+				switch(event.button.button){
+					case SDL_BUTTON_LEFT:
+						SDL_GetMousweState(&dx_cursor,&dy_cursor);
+
+						// les buttons eli lfou9
+						if (dy_cursor >= e.positionButton1.y)&&(dy_cursor<=((e.positionButton1.y)+(e.positionButton1.h))))
+							{ if (dx_cursor >= e.positionButton1.x)&&(dx_cursor<=((e.positionButton1.x)+(e.positionButton1.w))))
+								answer_selected=1;
+							else if (dx_cursor >= e.positionButton2.x)&&(dx_cursor<=((e.positionButton2.x)+(e.positionButton2.w))))
+								{
+								 answer_selected=2;
+								}}
+
+						// les buttons eli louta
+						if (dy_cursor >= e.positionButton3.y)&&(dy_cursor<=((e.positionButton3.y)+(e.positionButton3.h))))
+							{ if (dx_cursor >= e.positionButton3.x)&&(dx_cursor<=((e.positionButton3.x)+(e.positionButton3.w))))
+								answer_selected=3;
+							else if (dx_cursor >= e.positionButton4.x)&&(dx_cursor<=((e.positionButton4.x)+(e.positionButton4.w))))
+								{
+								 answer_selected=4;
+								}}
+
+}
+
+int verify_answer ( enigme e )
+{
+int test;
+int user_answer;
+int true_answer;
+int longeur_question;
+test=0; // initialement l reponse 8alta
+user_answer=answer_selection ( e , positionButton1 ,positionButton2 ,positionButton3 ,positionButton4 );
+longeur_question=strlen(e.question);
+true_answer=atoi(question[longeur_question]);
+if ( user_answer=true_answer)
+	{ test=1;} // la reponse choisie s7i7a
+return test;
 }
