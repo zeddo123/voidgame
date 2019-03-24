@@ -22,3 +22,11 @@ SDL_Rect moveCamera(SDL_Rect camera, hero player, SDL_Surface *game){
 	
 	return camera;
 }
+
+SDL_Rect makeItRelative(SDL_Rect positionEntit, SDL_Rect camera){
+	SDL_Rect positionRelative;
+	positionRelative.x = positionEntit.x - camera.x;
+	positionRelative.y = positionEntit.y - camera.y;
+
+	return positionRelative;
+}

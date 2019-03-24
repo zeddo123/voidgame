@@ -193,7 +193,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	char game = 1;
 	health vie;
 	int randpoint = -1;
-	int quit, FRAMES_PER_SECOND=60, paused, started, startTicks , pausedTicks;
+	int quit, FRAMES_PER_SECOND = 60, paused, started, startTicks , pausedTicks;
 	SDL_Event animEvent;
 
 
@@ -248,18 +248,21 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 
 		camera = moveCamera(camera,player,game_surface); // gestion de la camera (scrolling)
 
-		positionRelative.x = player.position.x - camera.x;
-		positionRelative.y = player.position.y - camera.y;
-
 		vie = gestionVie(player, villain, vie, &oldTimeDamage); // gestion de points de vie
+
+		player.positionRelative = makeItRelative(player.position,camera);
+		villain.positionRelative = makeItRelative(villain.position,camera);
+		key.positionRelative = makeItRelative(key.position,camera);
+		circle.positionRelative = makeItRelative(circle.position,camera);
 		
-		SDL_BlitSurface(game_surface,&camera,screen,NULL);
-		SDL_BlitSurface(villain.image,&positionScreen,screen,&villain.position);
-		SDL_BlitSurface(key.image,&positionScreen,screen,&key.position);
+		SDL_BlitSurface(game_surface,&camera,screen,NULL); //show background
+		
+		SDL_BlitSurface(villain.image,&positionScreen,screen,&villain.positionRelative);
+		SDL_BlitSurface(key.image,&positionScreen,screen,&key.positionRelative);
 
-		SDL_BlitSurface(circle.image,&positionScreen,screen,&circle.position);
+		SDL_BlitSurface(circle.image,&positionScreen,screen,&circle.positionRelative);
 
-		SDL_BlitSurface(player.image,NULL,screen,&positionRelative);
+		SDL_BlitSurface(player.image,NULL,screen,&player.positionRelative);
 
 		if(collisionBxC(c,player.position) == 1){
 			vie.vie -= 1;
