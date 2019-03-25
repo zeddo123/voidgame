@@ -192,6 +192,8 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	char buffer[5];
 	char game = 1;
 	health vie;
+	int xKEY;
+	keys number_key;
 	int randpoint = -1;
 	int quit, FRAMES_PER_SECOND = 60, paused, started, startTicks , pausedTicks;
 	SDL_Event animEvent;
@@ -205,6 +207,13 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	sprintf(buffer, "%d", vie.vie);
 	vie.font_vie = TTF_RenderText_Blended(font,buffer,fontColor);
 	vie.position = initPosition(vie.position,50,20,vie.font_vie->w,vie.font_vie->h);
+	
+	//Init health
+	vie.vie = 1000;
+	sprintf(buffer, "%d", vie.vie);
+	vie.font_vie = TTF_RenderText_Blended(font,buffer,fontColor);
+	vie.position = initPosition(vie.position,50,20,vie.font_vie->w,vie.font_vie->h);
+
 	
 	//init position and images
 
@@ -273,6 +282,10 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 		SDL_BlitSurface(vie.font_vie,NULL,screen,&vie.position);
 
 		riddle(firstEnigme,player,screen);
+		
+		xKEY = riddle(firstEnigme,player,screen);
+		number_key = gestionKey(number_key,xKEY);
+		xKEY = 0;
 		
 		SDL_Flip(screen);
 
