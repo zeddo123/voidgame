@@ -13,5 +13,16 @@ struct health{
 
 typedef struct health health;
 
+struct keys{
+	int keys;
+	SDL_Rect position;
+	SDL_Surface *font_key;
+};
+
+typedef struct keys keys;
+
 health gestionVie(hero player, hero villain, health vie, Uint32 *oldTime);
+
+keys gestionKey(keys key, int x);
+
 #endif
