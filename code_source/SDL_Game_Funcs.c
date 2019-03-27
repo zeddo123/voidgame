@@ -178,24 +178,36 @@ void playMenu(char *ptr_job, Mix_Chunk *effect, SDL_Rect positionScreen, SDL_Sur
 /*_______________________________MAIN LOOP OF THE GAME_________________________________*/
 
 void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface *screen){
-
-	SDL_Rect positionRelative;
+	// Load map and Calque Map(black and white)
 	SDL_Surface *game_surface = SDL_DisplayFormat(IMG_Load("../src/design/map/map.png"));
+	SDL_Surface *calque_surface = SDL_DisplayFormat(IMG_Load("../src/design/map/map_back_white.png"));
+
 	Uint32 oldTimeEntite = 0, oldTimeDamage = 0;
-	hero villain,player;
+	
+	hero villain, player;
+	
 	object key, circle;
 	Circle c;
+	
 	enigme firstEnigme;
-	SDL_Rect camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+	
+	SDL_Rect camera = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
+	
 	TTF_Font *font = NULL;
 	SDL_Color fontColor = {63, 13, 58};
+	
 	char buffer[5];
 	char game = 1;
+	
 	health vie;
+	
 	int xKEY;
 	keys number_key;
+	
 	int randpoint = -1;
-	int quit, FRAMES_PER_SECOND = 60, paused, started, startTicks , pausedTicks;
+	
+	int quit, FRAMES_PER_SECOND = 120, paused, started, startTicks , pausedTicks;
+	
 	SDL_Event animEvent;
 
 
@@ -217,11 +229,11 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	
 	//init position and images
 
-	villain = initHero(villain,"../src/characters/hero2t.png",SCREEN_WIDTH - 100,SCREEN_HEIGHT / 2);
+	villain = initHero(villain,"../src/characters/hero2t.png",5320,7427);
 
 	player = initHero(player,"../src/characters/hero1t.PNG",1,SCREEN_HEIGHT / 2);
 
-	key = initObject(key,"../src/design/bazar/key.png",villain.position.x,villain.position.y);
+	key = initObject(key,"../src/design/bazar/key.png",5321,7427);
 
 	circle = initObject(circle,"../src/design/bazar/circle.png",200,200);
 	c.x = circle.position.x;
@@ -241,16 +253,16 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	firstEnigme = initPrintRiddle(firstEnigme);
 	
 
-	moveToMouse(&player,1000,1000);
+	moveToMouse(&player,2657,7429);
 	SDL_EnableKeyRepeat(10,15);
 	
 	while(game){
         //Mise en route du timer
         start(&started,&paused,&startTicks);
 		
-		eventHandler(&player,&game,ptr_in_menu,ptr_job);
+		eventHandler(&player,&game,ptr_in_menu,ptr_job,calque_surface);
 
-		moveBetweenTwoRandom(&villain,1,SCREEN_WIDTH/2,SCREEN_WIDTH,&oldTimeEntite,&randpoint);
+		moveBetweenTwoRandom(&villain,1,5120,5320,&oldTimeEntite,&randpoint);
 		
 		//show(&player);
 
@@ -297,6 +309,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	TTF_CloseFont(font);
 
 	SDL_FreeSurface(game_surface);
+	SDL_FreeSurface(calque_surface);
 	
 	SDL_FreeSurface(firstEnigme.Button[0]);
 	SDL_FreeSurface(firstEnigme.Button[1]);
@@ -317,7 +330,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 
 /*_______________________________GAME EVENT HANDLER_________________________________*/
 
-void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job){
+void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job, SDL_Surface *calque_game){
 	
 	SDL_Event event;
 	int dx_cursor_in_game,dy_cursor_in_game;
@@ -336,16 +349,26 @@ void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job
 					*ptr_in_menu = 1;
 					break;
 				case SDLK_UP:
-					move(player,0,-1);
+					if(collision_Parfaite(calque_game,player->image,player->position,STEP,0) != 1){
+						move(player,0,-1);
+					}
 					break;
+				
 				case SDLK_DOWN:
-					move(player,0,1);
+					if(collision_Parfaite(calque_game,player->image,player->position,STEP,1) != 1){
+						move(player,0,1);
+					}
 					break;
+				
 				case SDLK_LEFT:
-					move(player,1,-1);
+					if(collision_Parfaite(calque_game,player->image,player->position,STEP,3) != 1){
+						move(player,1,-1);
+					}
 					break;
 				case SDLK_RIGHT:
-					move(player,1,1);;
+					if(collision_Parfaite(calque_game,player->image,player->position,STEP,2) != 1){
+						move(player,1,1);
+					}
 					break; 
 			}
 			break;

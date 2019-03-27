@@ -12,10 +12,10 @@
 #include "SDL_animation.h"
 #include "SDL_collision.h"
 
-#define STEP 20
-#define SCREEN_WIDTH 1920
-#define SCREEN_HEIGHT 1080
-#define FHD // or HD
+#define STEP 10
+#define SCREEN_WIDTH 1280
+#define SCREEN_HEIGHT 720
+#define HD // or HD
 
 #ifdef FHD
 //positions of the buttons
@@ -81,7 +81,7 @@
 
 #endif
 
-void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job);
+void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job, SDL_Surface *calque_game);
 
 void menuEventHandler(SDL_Surface *menu, char *ptr_job, int *ptr_menuFrame, int *ptr_menuKey, char *ptr_in_menu, Mix_Chunk *effect, Uint32 *oldTimeKey,
 				SDL_Rect positionScreen, SDL_Surface *screen,
