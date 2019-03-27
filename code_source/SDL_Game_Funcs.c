@@ -196,12 +196,12 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	TTF_Font *font = NULL;
 	SDL_Color fontColor = {63, 13, 58};
 	
-	char buffer[5];
+	char bufferVie[5],bufferKey[10];
 	char game = 1;
 	
 	health vie;
 	
-	int xKEY;
+	int xKEY = -1;
 	keys number_key;
 	
 	int randpoint = -1;
@@ -216,15 +216,15 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 
 	//Init health
 	vie.vie = 1000;
-	sprintf(buffer, "%d", vie.vie);
-	vie.font_vie = TTF_RenderText_Blended(font,buffer,fontColor);
+	sprintf(bufferVie, "%d", vie.vie);
+	vie.font_vie = TTF_RenderText_Blended(font,bufferVie,fontColor);
 	vie.position = initPosition(vie.position,50,20,vie.font_vie->w,vie.font_vie->h);
 	
-	//Init health
-	vie.vie = 1000;
-	sprintf(buffer, "%d", vie.vie);
-	vie.font_vie = TTF_RenderText_Blended(font,buffer,fontColor);
-	vie.position = initPosition(vie.position,50,20,vie.font_vie->w,vie.font_vie->h);
+	//Init number keys
+	number_key.keys = 0;
+	sprintf(bufferKey, "Key : %d", number_key.keys);
+	number_key.font_key = TTF_RenderText_Blended(font,bufferKey,fontColor);
+	number_key.position = initPosition(number_key.position,SCREEN_WIDTH - 199,20,number_key.font_key->w,number_key.font_key->h);
 
 	
 	//init position and images
@@ -260,7 +260,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
         //Mise en route du timer
         start(&started,&paused,&startTicks);
 		
-		eventHandler(&player,&game,ptr_in_menu,ptr_job,calque_surface);
+		eventHandler(&player,&game,ptr_in_menu,ptr_job,calque_surface,camera);
 
 		moveBetweenTwoRandom(&villain,1,5120,5320,&oldTimeEntite,&randpoint);
 		
@@ -288,17 +288,22 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 		if(collisionBxC(c,player.position) == 1){
 			vie.vie -= 1;
 		}
-
-		sprintf(buffer, " %d", vie.vie);
-		vie.font_vie = TTF_RenderText_Blended(font,buffer,fontColor);
-		SDL_BlitSurface(vie.font_vie,NULL,screen,&vie.position);
-
-		riddle(firstEnigme,player,screen);
 		
-		xKEY = riddle(firstEnigme,player,screen);
+		if(xKEY == -1){
+			xKEY = riddle(firstEnigme,player,screen);
+		}
+		
 		number_key = gestionKey(number_key,xKEY);
-		xKEY = 0;
 		
+
+		sprintf(bufferVie, " %d", vie.vie);
+		vie.font_vie = TTF_RenderText_Blended(font,bufferVie,fontColor);
+		SDL_BlitSurface(vie.font_vie,NULL,screen,&vie.position);
+		
+		sprintf(bufferKey, "Key : %d", number_key.keys);
+		number_key.font_key = TTF_RenderText_Blended(font,bufferKey,fontColor);
+		SDL_BlitSurface(number_key.font_key,NULL,screen,&number_key.position);
+
 		SDL_Flip(screen);
 
         while( get_ticks(started,paused,startTicks,pausedTicks) < 1000 / FRAMES_PER_SECOND){
@@ -330,7 +335,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 
 /*_______________________________GAME EVENT HANDLER_________________________________*/
 
-void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job, SDL_Surface *calque_game){
+void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job, SDL_Surface *calque_game, SDL_Rect camera){
 	
 	SDL_Event event;
 	int dx_cursor_in_game,dy_cursor_in_game;
@@ -377,7 +382,7 @@ void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job
 			switch(event.button.button){
 				case SDL_BUTTON_LEFT:
 					SDL_GetMouseState(&dx_cursor_in_game,&dy_cursor_in_game);
-					moveToMouse(player,dx_cursor_in_game - player->position.w,dy_cursor_in_game-player->position.h);
+					moveToMouse(player,dx_cursor_in_game - player->position.w + camera.x,dy_cursor_in_game-player->position.h + camera.y);
 					break;
 			}
 			break;
@@ -469,7 +474,6 @@ void menuBlitter(SDL_Rect positionScreen,SDL_Surface *screen,SDL_Surface *backgr
 		SDL_BlitSurface(font,NULL,screen,&positionText);
 	}
 	SDL_Flip(screen);
-		
 }
 
 /*_______________________________NAVIGATE IN THE MENU WITH KEYBOARD_________________________________*/

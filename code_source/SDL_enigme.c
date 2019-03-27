@@ -27,7 +27,7 @@ enigme fetchQuestion(char file_q[], char file_a[]){
 	enigme e;
 	FILE* fq = fopen(file_q,"r");
 	FILE* fa = fopen(file_a,"r");
-	int num_q = rand() % 10;
+	int num_q = rand() % 6;
 	char question[256];
 	char answer[256];
 	int i = 1, j = 1;

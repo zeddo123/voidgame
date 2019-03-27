@@ -14,9 +14,10 @@ health gestionVie(hero player, hero villain, health vie, Uint32 *oldTime){
 }
 
 keys gestionKey(keys key, int x){
-	
+	int key1 = 0;
 	if (x == 1){
-		key.keys += 1;
+		key1 = 1;
 	}
+	key.keys = key1;
 	return key ;
 }
