@@ -81,7 +81,8 @@
 
 #endif
 
-void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job, SDL_Surface *calque_game,  SDL_Rect camera);
+void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job, 
+					SDL_Surface *calque_game, SDL_Rect camera, SDL_Rect *positionMouse);
 
 void menuEventHandler(SDL_Surface *menu, char *ptr_job, int *ptr_menuFrame, int *ptr_menuKey, char *ptr_in_menu, Mix_Chunk *effect, Uint32 *oldTimeKey,
 				SDL_Rect positionScreen, SDL_Surface *screen,

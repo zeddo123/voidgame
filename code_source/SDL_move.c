@@ -5,6 +5,23 @@ void moveToMouse(hero *player, int dx, int dy){
 	player->position.y = dy;
 }
 
+void moveToMouseDynamic(hero *player, int dx, int dy){
+	if(player->moveWithMouse == 1){
+		if(player->position.x < dx && (dx - player->position.x) > STEP){
+			player->position.x += STEP;
+		
+		}else if(player->position.x > dx && (player->position.x - dx) > STEP){
+			player->position.x -= STEP;
+		}
+
+		if(player->position.y < dy && (dy - player->position.y) > STEP){
+			player->position.y += STEP;
+
+		}else if(player->position.y > dy && (player->position.y - dy) > STEP){
+			player->position.y -= STEP;
+		}
+	}
+}
 void move(hero *player, int xy, int i){
 	if(xy == 1){
 		player->position.x += i*STEP;

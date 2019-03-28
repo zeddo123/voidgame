@@ -94,7 +94,7 @@ object initObject(object o, char image_name[], int x, int y){
 	if(o.image == NULL){
 		fprintf(stderr, "%s\n",SDL_GetError());
 	}
-
+	o.state = 1;
 	o.position = initPosition(o.position,x,y,o.image->w,o.image->h);
 
 	return o;

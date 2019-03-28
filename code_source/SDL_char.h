@@ -4,6 +4,7 @@
 
 struct hero{
 	int orientation;
+	int moveWithMouse;
 	SDL_Surface *image;
 	SDL_Rect position;
 	SDL_Rect positionRelative;
@@ -21,6 +22,7 @@ typedef struct{
 	SDL_Surface *image;
 	SDL_Rect position;
 	SDL_Rect positionRelative;
+	int state;
 }object;
 
 typedef struct hero hero;

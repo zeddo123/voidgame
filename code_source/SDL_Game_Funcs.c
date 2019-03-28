@@ -182,6 +182,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	SDL_Surface *game_surface = SDL_DisplayFormat(IMG_Load("../src/design/map/map.png"));
 	SDL_Surface *calque_surface = SDL_DisplayFormat(IMG_Load("../src/design/map/map_back_white.png"));
 
+	SDL_Rect positionMouse;
 	Uint32 oldTimeEntite = 0, oldTimeDamage = 0;
 	
 	hero villain, player;
@@ -260,7 +261,9 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
         //Mise en route du timer
         start(&started,&paused,&startTicks);
 		
-		eventHandler(&player,&game,ptr_in_menu,ptr_job,calque_surface,camera);
+		eventHandler(&player,&game,ptr_in_menu,ptr_job,calque_surface,camera,&positionMouse);
+
+		moveToMouseDynamic(&player,positionMouse.x,positionMouse.y);
 
 		moveBetweenTwoRandom(&villain,1,5120,5320,&oldTimeEntite,&randpoint);
 		
@@ -279,7 +282,10 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 		SDL_BlitSurface(game_surface,&camera,screen,NULL); //show background
 		
 		SDL_BlitSurface(villain.image,&positionScreen,screen,&villain.positionRelative);
-		SDL_BlitSurface(key.image,&positionScreen,screen,&key.positionRelative);
+		
+		if(key.state){
+			SDL_BlitSurface(key.image,&positionScreen,screen,&key.positionRelative);
+		}
 
 		SDL_BlitSurface(circle.image,&positionScreen,screen,&circle.positionRelative);
 
@@ -291,6 +297,9 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 		
 		if(xKEY == -1){
 			xKEY = riddle(firstEnigme,player,screen);
+			if(xKEY != -1){
+				key.state = 0;
+			}
 		}
 		
 		number_key = gestionKey(number_key,xKEY);
@@ -335,7 +344,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 
 /*_______________________________GAME EVENT HANDLER_________________________________*/
 
-void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job, SDL_Surface *calque_game, SDL_Rect camera){
+void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job, SDL_Surface *calque_game, SDL_Rect camera, SDL_Rect *positionMouse){
 	
 	SDL_Event event;
 	int dx_cursor_in_game,dy_cursor_in_game;
@@ -356,23 +365,27 @@ void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job
 				case SDLK_UP:
 					if(collision_Parfaite(calque_game,player->image,player->position,STEP,0) != 1){
 						move(player,0,-1);
+						player->moveWithMouse = 0;
 					}
 					break;
 				
 				case SDLK_DOWN:
 					if(collision_Parfaite(calque_game,player->image,player->position,STEP,1) != 1){
 						move(player,0,1);
+						player->moveWithMouse = 0;
 					}
 					break;
 				
 				case SDLK_LEFT:
 					if(collision_Parfaite(calque_game,player->image,player->position,STEP,3) != 1){
 						move(player,1,-1);
+						player->moveWithMouse = 0;
 					}
 					break;
 				case SDLK_RIGHT:
 					if(collision_Parfaite(calque_game,player->image,player->position,STEP,2) != 1){
 						move(player,1,1);
+						player->moveWithMouse = 0;
 					}
 					break; 
 			}
@@ -382,7 +395,9 @@ void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job
 			switch(event.button.button){
 				case SDL_BUTTON_LEFT:
 					SDL_GetMouseState(&dx_cursor_in_game,&dy_cursor_in_game);
-					moveToMouse(player,dx_cursor_in_game - player->position.w + camera.x,dy_cursor_in_game-player->position.h + camera.y);
+					player->moveWithMouse = 1;
+					positionMouse->x = dx_cursor_in_game - player->position.w + camera.x;
+					positionMouse->y = dy_cursor_in_game-player->position.h + camera.y;					
 					break;
 			}
 			break;

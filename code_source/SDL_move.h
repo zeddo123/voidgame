@@ -13,6 +13,8 @@ void moveBetweenTwoRandom(hero *entit, int axe, int a, int b, Uint32 *oldTime, i
 
 void moveToMouse(hero *player, int dx, int dy);
 
+void moveToMouseDynamic(hero *player, int dx, int dy);
+
 void move(hero *player, int xy, int i);
 
 #endif
