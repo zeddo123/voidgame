@@ -126,7 +126,7 @@ int main(void)
 	displayFormatFrame(back,3);
 
 
-	music = Mix_LoadMUS("../src/sound/music.wav"); // load the music
+	music = Mix_LoadMUS("../src/sound/Dylan_Locke_-_Lasagna_(The_Remix_Instrumental).wav"); // load the music
 	if(music == NULL){
 		printf("->cant load the music \n");
 		return 1;
