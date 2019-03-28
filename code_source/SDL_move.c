@@ -22,6 +22,7 @@ void moveToMouseDynamic(hero *player, int dx, int dy){
 		}
 	}
 }
+
 void move(hero *player, int xy, int i){
 	if(xy == 1){
 		player->position.x += i*STEP;
@@ -56,6 +57,7 @@ void moveBetweenTwoRandom(hero *entit, int axe, int a, int b, Uint32 *oldTime, i
 
 	// random between A and B
 	if(*randpoint == -1){
+		srand(time(NULL));
 		*randpoint = rand()%(b-a) + a;
 
 	}	

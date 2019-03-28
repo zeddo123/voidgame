@@ -1,6 +1,7 @@
 #ifndef MOVE_H_INCLUDED
 #define MOVE_H_INCLUDED
 
+#include <time.h>
 #include <SDL/SDL.h>
 #include "SDL_char.h"
 #include "SDL_Game.h"

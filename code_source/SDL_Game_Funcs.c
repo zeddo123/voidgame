@@ -187,10 +187,10 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	
 	hero villain, player;
 	
-	object key, circle;
+	object key, circle,key2;
 	Circle c;
 	
-	enigme firstEnigme;
+	enigme firstEnigme, secondEnigme;
 	
 	SDL_Rect camera = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
 	
@@ -202,7 +202,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	
 	health vie;
 	
-	int xKEY = -1;
+	int xKEY = -1, xKEY2 = -1;
 	keys number_key;
 	
 	int randpoint = -1;
@@ -236,12 +236,14 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 
 	key = initObject(key,"../src/design/bazar/key.png",5321,7427);
 
+	key2 = initObject(key2,"../src/design/bazar/key.png",5000,7430);
+
 	circle = initObject(circle,"../src/design/bazar/circle.png",200,200);
 	c.x = circle.position.x;
 	c.y = circle.position.y;
 	c.r = circle.position.w / 2;
 
-	//Init riddle
+	//Init riddle 1
 
 	firstEnigme = fetchQuestion("enigme.q","enigme.s");
 	firstEnigme.positionRiddle = initPosition(firstEnigme.positionRiddle,key.position.x,key.position.y,key.position.w,key.position.h);
@@ -252,6 +254,18 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	firstEnigme.Button[1] = loadImage("../src/design/enigmes/answer_box_1.png"); //selected	
 	
 	firstEnigme = initPrintRiddle(firstEnigme);
+	
+	//Init riddle 1
+
+	secondEnigme = createQustion();
+	secondEnigme.positionRiddle = initPosition(secondEnigme.positionRiddle,key2.position.x,key2.position.y,key2.position.w,key2.position.h);
+	secondEnigme = loadTextForRiddle(secondEnigme);
+	
+	secondEnigme.Background = loadImage("../src/design/enigmes/question_box.png");
+	secondEnigme.Button[0] = firstEnigme.Button[0]; //non selected
+	secondEnigme.Button[1] = firstEnigme.Button[1]; //selected	
+	
+	secondEnigme = initPrintRiddle(secondEnigme);
 	
 
 	moveToMouse(&player,2657,7429);
@@ -277,6 +291,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 		player.positionRelative = makeItRelative(player.position,camera);
 		villain.positionRelative = makeItRelative(villain.position,camera);
 		key.positionRelative = makeItRelative(key.position,camera);
+		key2.positionRelative = makeItRelative(key2.position,camera);
 		circle.positionRelative = makeItRelative(circle.position,camera);
 		
 		SDL_BlitSurface(game_surface,&camera,screen,NULL); //show background
@@ -285,6 +300,10 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 		
 		if(key.state){
 			SDL_BlitSurface(key.image,&positionScreen,screen,&key.positionRelative);
+		}
+
+		if(key2.state){
+			SDL_BlitSurface(key2.image,&positionScreen,screen,&key2.positionRelative);	
 		}
 
 		SDL_BlitSurface(circle.image,&positionScreen,screen,&circle.positionRelative);
@@ -302,7 +321,14 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 			}
 		}
 		
-		number_key = gestionKey(number_key,xKEY);
+		if(xKEY2 == -1){
+			xKEY2 = riddle(secondEnigme,player,screen);
+			if(xKEY2 != -1){
+				key2.state = 0;
+			}
+		}
+
+		number_key = gestionKey(number_key,xKEY,xKEY2);
 		
 
 		sprintf(bufferVie, " %d", vie.vie);
@@ -328,10 +354,18 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	SDL_FreeSurface(firstEnigme.Button[0]);
 	SDL_FreeSurface(firstEnigme.Button[1]);
 	SDL_FreeSurface(firstEnigme.Background);
+	SDL_FreeSurface(firstEnigme.Question);
 	SDL_FreeSurface(firstEnigme.Answer1);
 	SDL_FreeSurface(firstEnigme.Answer2);
 	SDL_FreeSurface(firstEnigme.Answer3);
 	SDL_FreeSurface(firstEnigme.Answer4);
+
+	SDL_FreeSurface(secondEnigme.Background);
+	SDL_FreeSurface(secondEnigme.Question);
+	SDL_FreeSurface(secondEnigme.Answer1);
+	SDL_FreeSurface(secondEnigme.Answer2);
+	SDL_FreeSurface(secondEnigme.Answer3);
+	SDL_FreeSurface(secondEnigme.Answer4);
 	
 	SDL_FreeSurface(vie.font_vie);
 

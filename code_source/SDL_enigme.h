@@ -2,6 +2,7 @@
 
 #include <string.h>
 #include <SDL/SDL.h>
+#include <time.h>
 #include "SDL_char.h"
 #include "SDL_collision.h"
 
@@ -48,6 +49,12 @@ void erase(char string[], int pos);
 int riddle(enigme e, hero player, SDL_Surface *screen);
 
 enigme fetchQuestion(char file_q[], char file_a[]);
+
+enigme createQustion();
+
+char *formatCarte(int value, int color);
+
+void generateFake(int value, int color, int *value2, int *color2, int *value3, int *color3, int *value4, int *color4);
 
 int getSelection(enigme e, int *answer_selected);
 

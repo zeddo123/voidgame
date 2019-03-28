@@ -104,7 +104,7 @@ enigme loadTextForRiddle(enigme e){
 	TTF_Font *font = NULL;
 	SDL_Color fontColor = {63, 13, 58};
 
-	font = TTF_OpenFont("../src/font/Baron Neue.otf",50);
+	font = TTF_OpenFont("../src/font/Baron Neue.otf",36);
 
 	e.Question = TTF_RenderText_Blended(font,e.question,fontColor);
 	if(e.Question == NULL || font == NULL){

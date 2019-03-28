@@ -23,6 +23,7 @@ void erase(char string[], int pos){
 }
 
 enigme fetchQuestion(char file_q[], char file_a[]){
+	srand(time(NULL));
 	
 	enigme e;
 	FILE* fq = fopen(file_q,"r");
@@ -71,6 +72,99 @@ enigme fetchQuestion(char file_q[], char file_a[]){
 	fclose(fq);
 	fclose(fa);
 	return e;
+}
+
+enigme createQustion(){
+	srand(time(NULL));
+
+	enigme e;
+	int valueTrue = rand() % (13 - 1) + 1;
+	int colorTrue = rand() % 4; // CHEST : clubs hearts spades Diamants 
+	int value2, value3, value4, color2, color3, color4;
+	e.solution = rand() % 4;
+	
+	generateFake(valueTrue,colorTrue,&value2,&color2,&value3,&color3,&value4,&color4);
+
+	sprintf(e.question,"La Machine tire une Carte au hazard :\n Quelle est cette carte?");
+
+	if(e.solution == 1){
+		sprintf(e.answer1,"%s",formatCarte(valueTrue,colorTrue));
+		sprintf(e.answer2,"%s",formatCarte(value2,color2));
+		sprintf(e.answer3,"%s",formatCarte(value3,color3));
+		sprintf(e.answer4,"%s",formatCarte(value4,color4));
+	}else if(e.solution == 2){
+		sprintf(e.answer2,"%s",formatCarte(valueTrue,colorTrue));
+		sprintf(e.answer1,"%s",formatCarte(value2,color2));
+		sprintf(e.answer3,"%s",formatCarte(value3,color3));
+		sprintf(e.answer4,"%s",formatCarte(value4,color4));
+	}else if(e.solution == 3){
+		sprintf(e.answer3,"%s",formatCarte(valueTrue,colorTrue));
+		sprintf(e.answer1,"%s",formatCarte(value2,color2));
+		sprintf(e.answer2,"%s",formatCarte(value3,color3));
+		sprintf(e.answer4,"%s",formatCarte(value4,color4));
+	}else if(e.solution == 4){
+		sprintf(e.answer4,"%s",formatCarte(valueTrue,colorTrue));
+		sprintf(e.answer1,"%s",formatCarte(value2,color2));
+		sprintf(e.answer2,"%s",formatCarte(value3,color3));
+		sprintf(e.answer3,"%s",formatCarte(value4,color4));
+	}
+
+	return e;
+}
+
+void generateFake(int value, int color, int *value2, int *color2, int *value3, int *color3, int *value4, int *color4){
+	srand(time(NULL));
+	do{
+		*value2 = rand() % (13 - 1) + 1;
+		*color2 = rand() % 4;	
+	}while(*value2 == value && *color2 == color);
+
+	do{
+		*value3 = rand() % (13 - 1) + 1;
+		*color3 = rand() % 4;	
+	}while(*value3 == value && *color3 == color || *value2 == *value3 && *color2 == *color3);
+
+	do{
+		*value4 = rand() % (13 - 1) + 1;
+		*color4 = rand() % 4;	
+	}while(*value4 == value && *color4 == color || *value2 == *value4 && *color2 == *color4 || *value3 == *value4 && *color3 == *color4);
+}
+
+char *formatCarte(int value, int color){
+	char carte[3];
+	char carte_value[3];
+	char carte_color[3];
+
+	if(value > 10){
+		if(value == 11)
+			strcpy(carte_value,"J");
+		
+		if(value == 12)
+			strcpy(carte_value,"Q");
+
+		if(value == 13)
+			strcpy(carte_value,"K");	
+	
+	}else{
+		sprintf(carte_value,"%d",value);
+	}
+
+	if(color == 1)
+		strcpy(carte_color,"C");
+
+	if(color == 2)
+		strcpy(carte_color,"H");
+
+	if(color == 3)
+		strcpy(carte_color,"S");
+
+	if(color == 4)
+		strcpy(carte_color,"D");
+
+	sprintf(carte, "%s:%s",carte_value,carte_color);
+	char *ptr_carte = carte;
+	
+	return ptr_carte;
 }
 
 int riddle(enigme e, hero player, SDL_Surface *screen){
