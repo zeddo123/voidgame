@@ -342,7 +342,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 		SDL_Flip(screen);
 
         while( get_ticks(started,paused,startTicks,pausedTicks) < 1000 / FRAMES_PER_SECOND){
-            //Attente...
+			SDL_Delay( ( 1000 / FRAMES_PER_SECOND) - get_ticks(started, paused, startTicks, pausedTicks));
         }
 
 	}
