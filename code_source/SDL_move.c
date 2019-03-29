@@ -5,19 +5,23 @@ void moveToMouse(hero *player, int dx, int dy){
 	player->position.y = dy;
 }
 
-void moveToMouseDynamic(hero *player, int dx, int dy){
+void moveToMouseDynamic(hero *player, int dx, int dy, SDL_Surface *calque_game){
 	if(player->moveWithMouse == 1){
-		if(player->position.x < dx && (dx - player->position.x) > STEP){
+		if(player->position.x < dx && (dx - player->position.x) > STEP && collision_Parfaite(calque_game,player->position,STEP,3) != 1){
+			player->orientation = 1;
 			player->position.x += STEP;
 		
-		}else if(player->position.x > dx && (player->position.x - dx) > STEP){
+		}else if(player->position.x > dx && (player->position.x - dx) > STEP && collision_Parfaite(calque_game,player->position,STEP,2) != 1){
+			player->orientation = -1;
 			player->position.x -= STEP;
 		}
 
-		if(player->position.y < dy && (dy - player->position.y) > STEP){
+		if(player->position.y < dy && (dy - player->position.y) > STEP && collision_Parfaite(calque_game,player->position,STEP,0) != 0){
+			player->orientation = 0;
 			player->position.y += STEP;
 
-		}else if(player->position.y > dy && (player->position.y - dy) > STEP){
+		}else if(player->position.y > dy && (player->position.y - dy) > STEP && collision_Parfaite(calque_game,player->position,STEP,1) != 1){
+			player->orientation = 0;
 			player->position.y -= STEP;
 		}
 	}

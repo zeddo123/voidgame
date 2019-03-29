@@ -7,28 +7,28 @@ void set_clips(hero *player){
     //On coupe la feuille de sprite à droite 
     player->clipsRight[0].x = 0;
     player->clipsRight[0].y = 0;
-    player->clipsRight[0].w = 130;
-    player->clipsRight[0].h = 716;
+    player->clipsRight[0].w = 35;
+    player->clipsRight[0].h = 142;
 
-    player->clipsRight[1].x = 192;
+    player->clipsRight[1].x = 38;
     player->clipsRight[1].y = 0;
-    player->clipsRight[1].w = 474 - 192;
-    player->clipsRight[1].h = 716;
+    player->clipsRight[1].w = 94 - 38;
+    player->clipsRight[1].h = 142;
 
-    player->clipsRight[2].x = 498;
+    player->clipsRight[2].x = 97;
     player->clipsRight[2].y = 0;
-    player->clipsRight[2].w = 858 - 498;
-    player->clipsRight[2].h = 716;
+    player->clipsRight[2].w = 171 - 97;
+    player->clipsRight[2].h = 142;
 
-    player->clipsRight[3].x = 872;
+    player->clipsRight[3].x = 175;
     player->clipsRight[3].y = 0;
-    player->clipsRight[3].w = 1106 - 872;
-    player->clipsRight[3].h = 716;
+    player->clipsRight[3].w = 221 - 175;
+    player->clipsRight[3].h = 142;
 
-    player->clipsRight[4].x = 1130;
+    player->clipsRight[4].x = 225;
     player->clipsRight[4].y = 0;
-    player->clipsRight[4].w = 1514 - 1130;
-    player->clipsRight[4].h = 712;
+    player->clipsRight[4].w = 305 - 225;
+    player->clipsRight[4].h = 142;
 
     //On coupe la feuille de sprite à gauche 
     /*
@@ -58,7 +58,7 @@ void set_clips(hero *player){
     clipsLeft[4].h = player->postion.h;
     */
 }
-
+/*
 //initialiser les parametres de mouvement / animation
 void build(hero *player){
     player->pos=0;
@@ -66,7 +66,7 @@ void build(hero *player){
     player->frame=0;
     player->status=1;
 }
-
+*/
 
 
 void apply_surface(int x, int y, SDL_Surface* source, SDL_Surface* destination, SDL_Rect* frame){
@@ -123,7 +123,7 @@ void show(hero *player, SDL_Surface *screen){
 }
 
 
-
+/*
 void move_animation(hero *player){
     //Move
     player->pos += player->speed;
@@ -134,7 +134,7 @@ void move_animation(hero *player){
         player->pos -= player->speed;    
     }
 }
-
+*/
 void start(int *started, int *paused, int *startTicks){   
     //Start the timer
     *started = 1;

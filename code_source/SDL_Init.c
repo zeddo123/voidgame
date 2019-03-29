@@ -82,8 +82,10 @@ hero initHero(hero h, char image_name[], int x, int y){
 		fprintf(stderr, "%s\n",SDL_GetError());
 	}
 
-	h.position = initPosition(h.position,x,y,h.image->w,h.image->h);
-	h.orientation = 1;
+	h.position = initPosition(h.position,x,y,h.clipsRight[0].w,h.clipsRight[0].h);
+	h.orientation = 0;
+	h.frame = 0;
+	h.status = 1;
 
 	return h;
 }

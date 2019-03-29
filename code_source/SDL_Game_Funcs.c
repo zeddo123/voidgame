@@ -232,9 +232,8 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 
 	villain = initHero(villain,"../src/characters/hero2t.png",5320,7427);
 
-	player = initHero(player,"../src/characters/rayen(1).png",2260,7645);
-
 	set_clips(&player);
+	player = initHero(player,"../src/characters/rayen(1)(1).png",2260,7645);
 
 	key = initObject(key,"../src/design/bazar/key.png",5321,7427);
 
@@ -269,7 +268,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	
 	secondEnigme = initPrintRiddle(secondEnigme);
 	
-
+	moveToMouse(&player,2260,7427);
 	SDL_EnableKeyRepeat(10,15);
 	
 	while(game){
@@ -278,7 +277,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 		
 		eventHandler(&player,&game,ptr_in_menu,ptr_job,calque_surface,camera,&positionMouse);
 
-		moveToMouseDynamic(&player,positionMouse.x,positionMouse.y);
+		moveToMouseDynamic(&player,positionMouse.x,positionMouse.y,calque_surface);
 
 		moveBetweenTwoRandom(&villain,1,5120,5320,&oldTimeEntite,&randpoint);
 		
@@ -294,7 +293,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 		key2.positionRelative = makeItRelative(key2.position,camera);
 		circle.positionRelative = makeItRelative(circle.position,camera);
 		
-		
+
 		SDL_BlitSurface(game_surface,&camera,screen,NULL); //show background
 		
 		SDL_BlitSurface(villain.image,&positionScreen,screen,&villain.positionRelative);
@@ -381,9 +380,10 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 /*_______________________________GAME EVENT HANDLER_________________________________*/
 
 void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job, SDL_Surface *calque_game, SDL_Rect camera, SDL_Rect *positionMouse){
-	
 	SDL_Event event;
 	int dx_cursor_in_game,dy_cursor_in_game;
+	
+	player->orientation = 0;
 	SDL_PollEvent(&event);
 	switch(event.type){
 		case SDL_QUIT:
@@ -399,28 +399,32 @@ void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job
 					*ptr_in_menu = 1;
 					break;
 				case SDLK_UP:
-					if(collision_Parfaite(calque_game,player->image,player->position,STEP,0) != 1){
+					if(collision_Parfaite(calque_game,player->position,STEP,0) != 1){
 						move(player,0,-1);
 						player->moveWithMouse = 0;
+						player->orientation = 0;
 					}
 					break;
 				
 				case SDLK_DOWN:
-					if(collision_Parfaite(calque_game,player->image,player->position,STEP,1) != 1){
+					if(collision_Parfaite(calque_game,player->position,STEP,1) != 1){
 						move(player,0,1);
 						player->moveWithMouse = 0;
+						player->orientation = 0;
 					}
 					break;
 				
 				case SDLK_LEFT:
-					if(collision_Parfaite(calque_game,player->image,player->position,STEP,3) != 1){
+					if(collision_Parfaite(calque_game,player->position,STEP,3) != 1){
 						move(player,1,-1);
+						player->orientation = -1;
 						player->moveWithMouse = 0;
 					}
 					break;
 				case SDLK_RIGHT:
-					if(collision_Parfaite(calque_game,player->image,player->position,STEP,2) != 1){
+					if(collision_Parfaite(calque_game,player->position,STEP,2) != 1){
 						move(player,1,1);
+						player->orientation = 1;
 						player->moveWithMouse = 0;
 					}
 					break; 

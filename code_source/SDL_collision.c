@@ -102,21 +102,21 @@ SDL_Color GetPixel(SDL_Surface *surface,int x,int y){
     return color;
 }
 
-int collision_Parfaite(SDL_Surface *calque, SDL_Surface *perso, SDL_Rect posperso, int decalage, int direction){
+int collision_Parfaite(SDL_Surface *calque, SDL_Rect posperso, int decalage, int direction){
 	SDL_Color col;
 	int c = 0;
 
 	if(direction == 0){//Up
-		col=GetPixel(calque,posperso.x+perso->w +decalage,posperso.y+(perso->h/2));
+		col=GetPixel(calque,posperso.x + posperso.w +decalage,posperso.y+(posperso.h/2));
 
 	}else if(direction == 1){//Down
-		col=GetPixel(calque,posperso.x ,posperso.y+(perso->h/2)+decalage);
+		col=GetPixel(calque,posperso.x ,posperso.y+(posperso.h/2)+decalage);
 
-	}else if(direction == 2){//Rigth
-		col=GetPixel(calque,posperso.x+(perso->w/2)+decalage ,posperso.y);
+	}else if(direction == 2){//Left
+		col=GetPixel(calque,posperso.x+(posperso.w/2)+decalage ,posperso.y);
 
-	}else if(direction == 3){//Left
-		col=GetPixel(calque,posperso.x+(perso->w/2),posperso.y+perso->h +decalage);
+	}else if(direction == 3){//Rigth
+		col=GetPixel(calque,posperso.x+(posperso.w / 2),posperso.y + posperso.h +decalage);
 
 	}
 
