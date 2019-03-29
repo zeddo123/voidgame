@@ -232,7 +232,9 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 
 	villain = initHero(villain,"../src/characters/hero2t.png",5320,7427);
 
-	player = initHero(player,"../src/characters/hero1t.PNG",1,SCREEN_HEIGHT / 2);
+	player = initHero(player,"../src/characters/rayen(1).png",2260,7645);
+
+	set_clips(&player);
 
 	key = initObject(key,"../src/design/bazar/key.png",5321,7427);
 
@@ -268,7 +270,6 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	secondEnigme = initPrintRiddle(secondEnigme);
 	
 
-	moveToMouse(&player,2657,7429);
 	SDL_EnableKeyRepeat(10,15);
 	
 	while(game){
@@ -281,7 +282,6 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 
 		moveBetweenTwoRandom(&villain,1,5120,5320,&oldTimeEntite,&randpoint);
 		
-		//show(&player);
 
 
 		camera = moveCamera(camera,player,game_surface); // gestion de la camera (scrolling)
@@ -293,6 +293,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 		key.positionRelative = makeItRelative(key.position,camera);
 		key2.positionRelative = makeItRelative(key2.position,camera);
 		circle.positionRelative = makeItRelative(circle.position,camera);
+		
 		
 		SDL_BlitSurface(game_surface,&camera,screen,NULL); //show background
 		
@@ -308,7 +309,8 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 
 		SDL_BlitSurface(circle.image,&positionScreen,screen,&circle.positionRelative);
 
-		SDL_BlitSurface(player.image,NULL,screen,&player.positionRelative);
+		//SDL_BlitSurface(player.image,NULL,screen,&player.positionRelative);
+		show(&player,screen);
 
 		if(collisionBxC(c,player.position) == 1){
 			vie.vie -= 1;
@@ -341,8 +343,8 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 
 		SDL_Flip(screen);
 
-        while( get_ticks(started,paused,startTicks,pausedTicks) < 1000 / FRAMES_PER_SECOND){
-			SDL_Delay( ( 1000 / FRAMES_PER_SECOND) - get_ticks(started, paused, startTicks, pausedTicks));
+        while( get_ticks(&started,&paused,&startTicks,&pausedTicks) < 1000 / FRAMES_PER_SECOND){
+			SDL_Delay( ( 1000 / FRAMES_PER_SECOND) - get_ticks(&started, &paused, &startTicks, &pausedTicks));
         }
 
 	}

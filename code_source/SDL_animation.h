@@ -4,16 +4,16 @@
 #include<stdio.h>
 #include "SDL_char.h"
 
-void set_clips(hero *player);
+void start(int *started, int *paused, int *startTicks);
+
+void move_animation(hero *player);
+
+void show(hero *player, SDL_Surface *screen);
+
+void apply_surface(int x, int y, SDL_Surface* source, SDL_Surface* destination, SDL_Rect* frame);
 
 void build(hero *player);
 
-void show(hero *player);
+void set_clips(hero *player);
 
-void handle_events(hero *player);
-
-void start(int *started, int *paused, int *startTicks);
-
-int get_ticks(int started, int paused, int startTicks, int pausedTicks);
-
-void apply_surface(int x, int y, SDL_Surface* source, SDL_Surface* destination, SDL_Rect* clip); 
+int get_ticks(int *started , int *paused , int *startTicks ,int *pausedTicks);
