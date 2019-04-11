@@ -1,5 +1,4 @@
 #include "SDL_collision.h"
-#include <stdbool.h>
 
 int collisionBox(SDL_Rect a, SDL_Rect b){
 	int leftSideA = a.x;
@@ -79,7 +78,7 @@ int collisionBxC(Circle a, SDL_Rect b){
 
 
 
- bool CollisionTrigoCir ( SDL_Surface *Player , SDL_Surface *C_Object , SDL_Rect Pposition , SDL_Rect Oposition )
+int CollisionTrigoCir ( SDL_Surface *Player , SDL_Surface *C_Object , SDL_Rect Pposition , SDL_Rect Oposition )
  {
 	 int r1,r2 ; //Rayons du cercle 
 	 
@@ -88,22 +87,22 @@ int collisionBxC(Circle a, SDL_Rect b){
 	 
  if   ( (Oposition.x+(Oposition.w/2))-(Pposition.x+(Pposition.w/2)) <= r1 + r2 && (Pposition.x <= Oposition.x+(Oposition.w/2)+r2 ) && (Pposition.y+Pposition.h > ((Oposition.y+(Oposition.h/2)) - r2 ) ) )
      {
-		 return true ; //Collision faite
+		 return 1 ; //Collision faite
 	 }
-   else return false ; 
+   else return 0 ; 
 	 
 	 
  }
 
- bool CollisionTrigoInsc ( SDL_Surface *Player , SDL_Surface *C_Object , SDL_Rect position , SDL_Rect position1 )
+ int CollisionTrigoInsc ( SDL_Surface *Player , SDL_Surface *C_Object , SDL_Rect position , SDL_Rect position1 )
  
  {
 	 //Position=Player position , Position1=Position objet , enemi ...
 	 if ( (position1.x+(position1.w/2))-(position.x+(position.w/2)) <= (position.w/2)+(position1.w/2) && (position.x <= position1.x+position1.w ) && (position.y+position.h > position1.y ) )
      {
-		 return true ; 
+		 return 1 ; 
 	 }
-   else return false ; 
+   else return 0 ; 
 	 
 }
 
