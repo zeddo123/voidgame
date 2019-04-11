@@ -1,4 +1,5 @@
 #include "SDL_collision.h"
+#include <stdbool.h>
 
 int collisionBox(SDL_Rect a, SDL_Rect b){
 	int leftSideA = a.x;
@@ -30,7 +31,7 @@ int collisionBox(SDL_Rect a, SDL_Rect b){
 	return 1;
 }
 
-double distanceSquared(int x1, int y1, int x2, int y2){
+/*double distanceSquared(int x1, int y1, int x2, int y2){
     int deltaX = x2 - x1;
     int deltaY = y2 - y1;
     return deltaX*deltaX + deltaY*deltaY;
@@ -74,6 +75,36 @@ int collisionBxC(Circle a, SDL_Rect b){
     }
 
     return 0;
+}*/
+
+
+
+ bool CollisionTrigoCir ( SDL_Surface *Player , SDL_Surface *C_Object , SDL_Rect Pposition , SDL_Rect Oposition )
+ {
+	 int r1,r2 ; //Rayons du cercle 
+	 
+	       r1=(sqrt(pow(Pposition.h,2)+pow(Pposition.w,2)))/2     ;
+      r2=(sqrt(pow(Oposition.h,2)+pow(Oposition.w,2)))/2 ;
+	 
+ if   ( (Oposition.x+(Oposition.w/2))-(Pposition.x+(Pposition.w/2)) <= r1 + r2 && (Pposition.x <= Oposition.x+(Oposition.w/2)+r2 ) && (Pposition.y+Pposition.h > ((Oposition.y+(Oposition.h/2)) - r2 ) ) )
+     {
+		 return true ; //Collision faite
+	 }
+   else return false ; 
+	 
+	 
+ }
+
+ bool CollisionTrigoInsc ( SDL_Surface *Player , SDL_Surface *C_Object , SDL_Rect position , SDL_Rect position1 )
+ 
+ {
+	 //Position=Player position , Position1=Position objet , enemi ...
+	 if ( (position1.x+(position1.w/2))-(position.x+(position.w/2)) <= (position.w/2)+(position1.w/2) && (position.x <= position1.x+position1.w ) && (position.y+position.h > position1.y ) )
+     {
+		 return true ; 
+	 }
+   else return false ; 
+	 
 }
 
 SDL_Color GetPixel(SDL_Surface *surface,int x,int y){
