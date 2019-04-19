@@ -7,7 +7,7 @@
 
 /*_______________________________MAIN MENU EVENT HANDLER_________________________________*/
 
-void menuEventHandler(SDL_Surface *menu, char *ptr_job, int *ptr_menuFrame, int *ptr_menuKey, char *ptr_in_menu, Mix_Chunk *effect, Uint32 *oldTimeKey,SDL_Rect positionScreen, SDL_Surface *screen, SDL_Rect positionText, SDL_Surface *font, SDL_Rect logoCrop, SDL_Rect positionLogo, SDL_Surface *logo, SDL_Surface *play[], SDL_Surface *set[], SDL_Surface *quit[], SDL_Rect positionNewGame, SDL_Surface *newGame[], SDL_Rect positionLoadGame, SDL_Surface *loadGame[], SDL_Rect positionBack, SDL_Surface *back[] ,SDL_Surface *background[], SDL_Surface *menu_frame[], SDL_Surface *menu_setting){
+void menuEventHandler(SDL_Surface *menu, char *ptr_job, int *ptr_menuFrame, int *ptr_menuKey, char *ptr_in_menu, Mix_Chunk *effect, Uint32 *oldTimeKey,SDL_Rect positionScreen, SDL_Surface *screen, SDL_Rect positionText, SDL_Surface *font, SDL_Rect logoCrop, SDL_Rect positionLogo, SDL_Surface *logo, SDL_Surface *play[], SDL_Surface *set[], SDL_Surface *quit[], SDL_Rect positionNewGame, SDL_Surface *newGame[], SDL_Rect positionLoadGame, SDL_Surface *loadGame[], SDL_Rect positionBack, SDL_Surface *back[] ,SDL_Surface *background[], SDL_Surface *menu_frame[], SDL_Surface *menu_setting, int *oldVolume){
 	SDL_Event event;
 	int dx_cursor, dy_cursor;
 	SDL_PollEvent(&event);
@@ -59,12 +59,11 @@ void menuEventHandler(SDL_Surface *menu, char *ptr_job, int *ptr_menuFrame, int 
 						}
 						//open the settings
 						if (dy_cursor >= SET_FROM && dy_cursor <= set[0]->h + SET_FROM){
+							setting(oldVolume,screen,menu_setting,logo,positionLogo);
+							menu = menu_frame[*ptr_menuFrame];
+							nextFrame(ptr_menuFrame,19);
 							*ptr_menuFrame = 0;
-							//load the setting to the user
-							SDL_BlitSurface(menu_setting,NULL,screen,NULL);
-							SDL_BlitSurface(logo,NULL,screen,&positionLogo);
-							SDL_Flip(screen);
-							*ptr_in_menu = 0;
+							*ptr_in_menu = 1;
 						}
 						//quit the game
 						if (dy_cursor >= QUIT_FROM && dy_cursor <= quit[0]->h + QUIT_FROM){
@@ -164,7 +163,7 @@ void playMenu(char *ptr_job, Mix_Chunk *effect, SDL_Rect positionScreen, SDL_Sur
 					&over_new,&over_load,&over_back,&licence);
 
 			currentTime = SDL_GetTicks();
-			if(currentTime - oldTimeBackground > 200){
+			if(currentTime - oldTimeBackground > 100){
 				playMenu = background[next];
 				nextFrame(&next,7);
 				oldTimeBackground = currentTime;
@@ -175,7 +174,7 @@ void playMenu(char *ptr_job, Mix_Chunk *effect, SDL_Rect positionScreen, SDL_Sur
 	}
 }
 
-/*_______________________________MAIN LOOP OF THE GAME_________________________________*/
+/*_______________________________MAIN LOOP OF THE GAME (SOLO)_________________________________*/
 
 void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface *screen){
 	// Load map and Calque Map(black and white)
@@ -187,8 +186,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	
 	hero villain, player;
 	
-	object key, circle,key2;
-	Circle c;
+	object key, key2;
 	
 	enigme firstEnigme, secondEnigme;
 	
@@ -226,23 +224,17 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 	sprintf(bufferKey, "Key : %d", number_key.keys);
 	number_key.font_key = TTF_RenderText_Blended(font,bufferKey,fontColor);
 	number_key.position = initPosition(number_key.position,SCREEN_WIDTH - 199,20,number_key.font_key->w,number_key.font_key->h);
-
 	
 	//init position and images
-
-	villain = initHero(villain,"../src/characters/hero2t.png",5320,7427);
+	set_clips(&villain);
+	villain = initHero(villain,"../src/characters/Rayen_left_right.png",5320,7427);
 
 	set_clips(&player);
-	player = initHero(player,"../src/characters/rayen(1)(1).png",2260,7645);
+	player = initHero(player,"../src/characters/Rayen_left_right.png",2260,7645);
 
 	key = initObject(key,"../src/design/bazar/key.png",5321,7427);
 
 	key2 = initObject(key2,"../src/design/bazar/key.png",5000,7430);
-
-	circle = initObject(circle,"../src/design/bazar/circle.png",200,200);
-	c.x = circle.position.x;
-	c.y = circle.position.y;
-	c.r = circle.position.w / 2;
 
 	//Init riddle 1
 
@@ -290,13 +282,11 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 		player.positionRelative = makeItRelative(player.position,camera);
 		villain.positionRelative = makeItRelative(villain.position,camera);
 		key.positionRelative = makeItRelative(key.position,camera);
-		key2.positionRelative = makeItRelative(key2.position,camera);
-		circle.positionRelative = makeItRelative(circle.position,camera);
-		
+		key2.positionRelative = makeItRelative(key2.position,camera);		
 
 		SDL_BlitSurface(game_surface,&camera,screen,NULL); //show background
 		
-		SDL_BlitSurface(villain.image,&positionScreen,screen,&villain.positionRelative);
+		//SDL_BlitSurface(villain.image,&positionScreen,screen,&villain.positionRelative);
 		
 		if(key.state){
 			SDL_BlitSurface(key.image,&positionScreen,screen,&key.positionRelative);
@@ -305,15 +295,8 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 		if(key2.state){
 			SDL_BlitSurface(key2.image,&positionScreen,screen,&key2.positionRelative);	
 		}
-
-		SDL_BlitSurface(circle.image,&positionScreen,screen,&circle.positionRelative);
-
-		//SDL_BlitSurface(player.image,NULL,screen,&player.positionRelative);
+		show(&villain,screen);
 		show(&player,screen);
-
-		if(collisionBxC(c,player.position) == 1){
-			vie.vie -= 1;
-		}
 		
 		if(xKEY == -1){
 			xKEY = riddle(firstEnigme,player,screen);
@@ -342,7 +325,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 
 		SDL_Flip(screen);
 
-        while( get_ticks(&started,&paused,&startTicks,&pausedTicks) < 1000 / FRAMES_PER_SECOND){
+        while( get_ticks(&started,&paused,&startTicks,&pausedTicks) < (1000 / FRAMES_PER_SECOND)){
 			SDL_Delay( ( 1000 / FRAMES_PER_SECOND) - get_ticks(&started, &paused, &startTicks, &pausedTicks));
         }
 
@@ -395,8 +378,6 @@ void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job
 		
 			switch(event.key.keysym.sym){
 				case SDLK_ESCAPE:
-					*ptr_game = 0;
-					*ptr_in_menu = 1;
 					break;
 				case SDLK_UP:
 					if(collision_Parfaite(calque_game,player->position,STEP,0) != 1){
@@ -553,4 +534,84 @@ void twist(int *a, int *b, int *c, int *d){
 	*b = 1;
 	*c = 1;
 	*d = 1;
+}
+
+/*_______________________________Volume mixer_________________________________*/
+
+void setVolume(int volumeValue){
+	Mix_VolumeMusic(volumeValue);
+}
+
+/*_______________________________Settings menu_________________________________*/
+
+void setting(int* oldVolume, SDL_Surface* screen, SDL_Surface* menu_setting, SDL_Surface* logo, SDL_Rect positionLogo){
+	int job = 1;
+	
+	SDL_Rect fullBar = {210,PLAY_FROM+50,384,30}; // the Rect of the full volume bar
+	SDL_Rect currBar = {210,PLAY_FROM+50,*oldVolume * 3,30}; // the Rect of the current volume level
+	
+	SDL_Rect volumePosition = {350,PLAY_FROM,0,0};// the Rect of the position of the Text "Volume"
+	
+	SDL_Rect logoCrop = initPosition(logoCrop,0,40,logo->w,logo->h); // cropping the menu
+	
+	Uint32 colorCurr = SDL_MapRGB(screen->format, 130, 71, 152);
+	Uint32 colorFull = SDL_MapRGB(screen->format, 39, 50, 56);
+	SDL_Color white = {255, 255, 255};
+	
+	SDL_Surface *volumeText;
+	TTF_Font *font = NULL;
+	font = TTF_OpenFont("../src/font/blue highway rg.ttf",40);
+
+	volumeText = TTF_RenderText_Blended(font,"Volume",white);
+
+
+
+	while(job){
+		settingsEventHandler(&job,oldVolume,fullBar);
+		currBar.w = *oldVolume * 3;
+		
+		//draw the background
+		SDL_BlitSurface(menu_setting,NULL,screen,NULL);
+		
+		//draw the menu
+		SDL_BlitSurface(logo,&logoCrop,screen,&positionLogo);
+		
+		//draw the text "Volume" above the volume level selector
+		SDL_BlitSurface(volumeText,NULL,screen,&volumePosition);
+		
+		//draw the volume level
+		SDL_FillRect(screen, &fullBar, colorFull);
+		SDL_FillRect(screen, &currBar, colorCurr);
+		
+		SDL_Flip(screen);
+	}
+	SDL_FreeSurface(volumeText);
+	TTF_CloseFont(font);
+
+}
+
+void settingsEventHandler(int *job, int *oldVolume, SDL_Rect fullBar){
+	int dx_cursor, dy_cursor;
+	SDL_Event event;
+
+	SDL_PollEvent(&event);
+	switch(event.type){
+		case SDL_QUIT:
+				printf("..Quiting..\n");
+				*job = 0;
+				break;
+		case SDL_MOUSEBUTTONDOWN:
+			switch(event.button.button){
+				case SDL_BUTTON_LEFT:
+					SDL_GetMouseState(&dx_cursor,&dy_cursor);
+					// Over the volume splider
+					if(dy_cursor >= fullBar.y && dy_cursor <= (fullBar.h + fullBar.y)){
+						if(dx_cursor >= fullBar.x && dx_cursor <= (fullBar.w + fullBar.x)){
+							*oldVolume = (dx_cursor - 210) / 3;
+							setVolume(*oldVolume);
+						}
+					}
+			}
+			break;
+	}
 }

@@ -9,14 +9,11 @@ typedef struct{
     int r;
 }Circle;
 
-/*double distanceSquared(int x1, int y1, int x2, int y2);
+double distanceSquared(int x1, int y1, int x2, int y2);
 
 int collisionBxC(Circle a, SDL_Rect b);
 
-int collisionCxC(Circle a, Circle b);*/
-int CollisionTrigoCir ( SDL_Surface *Player , SDL_Surface *C_Object , SDL_Rect Pposition , SDL_Rect Oposition ) ; 
- 
-int CollisionTrigoInsc ( SDL_Surface *Player , SDL_Surface *C_Object , SDL_Rect position , SDL_Rect position1  ) ; 
+int collisionCxC(Circle a, Circle b);
 
 int collisionBox(SDL_Rect a, SDL_Rect b);
 

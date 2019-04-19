@@ -12,10 +12,10 @@
 #include "SDL_animation.h"
 #include "SDL_collision.h"
 
-#define STEP 10
-#define SCREEN_WIDTH 1280
-#define SCREEN_HEIGHT 720
-#define HD // or HD
+#define STEP 20
+#define SCREEN_WIDTH 1920
+#define SCREEN_HEIGHT 1080
+#define FHD // or HD
 
 #ifdef FHD
 //positions of the buttons
@@ -93,7 +93,8 @@ void menuEventHandler(SDL_Surface *menu, char *ptr_job, int *ptr_menuFrame, int 
 				SDL_Rect positionLoadGame, SDL_Surface *loadGame[], 
 				SDL_Rect positionBack, SDL_Surface *back[], 
 				SDL_Surface *background[], SDL_Surface *menu_frame[],
-				SDL_Surface *menu_setting);
+				SDL_Surface *menu_setting,
+				int *oldVolume);
 
 
 void playMenu(char *ptr_job, Mix_Chunk *effect, 
@@ -122,4 +123,9 @@ int moveInMenuByKeyboard(int pointeur, int operation, int a, int b, Uint32 *oldT
 
 void twist(int *a, int *b, int *c, int *d);
 
+void settingsEventHandler(int *job, int *oldVolume, SDL_Rect fullBar);
+
+void setting(int* oldVolume, SDL_Surface* screen, SDL_Surface* menu_setting, SDL_Surface* logo, SDL_Rect positionLogo);
+
+void setVolume(int volumeValue);
 #endif

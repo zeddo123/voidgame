@@ -31,32 +31,30 @@ void set_clips(hero *player){
     player->clipsRight[4].h = 142;
 
     //On coupe la feuille de sprite à gauche 
-    /*
-    clipsLeft[0].x = 0;
-    clipsLeft[0].y = player->postion.h;
-    clipsLeft[0].w = player->postion.w;
-    clipsLeft[0].h = player->postion.h;
+    player->clipsLeft[0].x = 0;
+    player->clipsLeft[0].y = 145;
+    player->clipsLeft[0].w = 35;
+    player->clipsLeft[0].h = 145;
 
-    clipsLeft[1].x = player->postion.w;
-    clipsLeft[1].y = player->postion.h;
-    clipsLeft[1].w = player->postion.w;
-    clipsLeft[1].h = player->postion.h;
+    player->clipsLeft[1].x = 41;
+    player->clipsLeft[1].y = 145;
+    player->clipsLeft[1].w = 90 - 41;
+    player->clipsLeft[1].h = 283 - 145;
 
-    clipsLeft[2].x = player->postion.w * 2;
-    clipsLeft[2].y = player->postion.h;
-    clipsLeft[2].w = player->postion.w;
-    clipsLeft[2].h = player->postion.h;
+    player->clipsLeft[2].x = 100;
+    player->clipsLeft[2].y = 145;
+    player->clipsLeft[2].w = 100 - 164;
+    player->clipsLeft[2].h = 145;
 
-    clipsLeft[3].x = player->postion.w * 3;
-    clipsLeft[3].y = player->postion.h;
-    clipsLeft[3].w = player->postion.w;
-    clipsLeft[3].h = player->postion.h;
+    player->clipsLeft[3].x = 180;
+    player->clipsLeft[3].y = 145;
+    player->clipsLeft[3].w = 221 - 180;
+    player->clipsLeft[3].h = 145;
 
-    clipsLeft[4].x = player->postion.w * 4;
-    clipsLeft[4].y = player->postion.h;
-    clipsLeft[4].w = player->postion.w;
-    clipsLeft[4].h = player->postion.h;
-    */
+    player->clipsLeft[4].x = 229;
+    player->clipsLeft[4].y = 145;
+    player->clipsLeft[4].w = 306 - 229;
+    player->clipsLeft[4].h = 145;
 }
 /*
 //initialiser les parametres de mouvement / animation

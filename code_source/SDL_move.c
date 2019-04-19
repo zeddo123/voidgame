@@ -43,7 +43,7 @@ void move(hero *player, int xy, int i){
 
 void moveBetweenTwo(hero *entit, int axe, int a, int b, Uint32 *oldTime){
 	Uint32 currentTime = SDL_GetTicks();
-	if(currentTime - (*oldTime) > 10){
+	if(currentTime - (*oldTime) > 50){
 		entit->position.x += entit->orientation * STEP;
 		if(entit->position.x >= b){
 			entit->orientation *= -1;
@@ -66,7 +66,7 @@ void moveBetweenTwoRandom(hero *entit, int axe, int a, int b, Uint32 *oldTime, i
 
 	}	
 
-	if(currentTime - (*oldTime) > 20){
+	if(currentTime - (*oldTime) > 600){
 		
 		if(entit->position.x >= *randpoint){
         	

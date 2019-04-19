@@ -53,6 +53,8 @@ int main(void)
 	int over_play = 1, over_set = 1, over_quit = 1, licence = 1;
 	int menu_key = -1;
 
+	int oldVolume = 128;
+
 	if(SDL_Init(SDL_INIT_VIDEO) != 0){
 		printf("unable to init SDL %s\n", SDL_GetError());
 		return 1;
@@ -170,14 +172,14 @@ int main(void)
 	}
 
 	while(job){
-		menuEventHandler(menu,&job,&next,&menu_key,&in_menu,effect,&oldTimeKey,positionScreen,screen,positionText,font_surface,logoCrop,positionLogo,logo,play,set,quit,positionNewGame,newGame,positionLoadGame,loadGame,positionBack,back,playmenu,menu_frame,menu_setting);
+		menuEventHandler(menu,&job,&next,&menu_key,&in_menu,effect,&oldTimeKey,positionScreen,screen,positionText,font_surface,logoCrop,positionLogo,logo,play,set,quit,positionNewGame,newGame,positionLoadGame,loadGame,positionBack,back,playmenu,menu_frame,menu_setting,&oldVolume);
 		
 		if(in_menu){
 			
 			overWhat(effect,&menu_key,positionPlay.x,positionPlay.x + positionPlay.w, positionPlay.y,positionPlay.y+positionPlay.h, positionSet.y,positionSet.y + positionSet.h, positionQuit.y,positionQuit.y + positionQuit.h, positionPlay.x,positionPlay.x+positionPlay.w,positionQuit.h+positionQuit.y+50,1080, &over_play,&over_set,&over_quit,&licence);
 
 			currentTime = SDL_GetTicks();
-			if(currentTime - oldTime > 200){
+			if(currentTime - oldTime > 100){
 				menu = menu_frame[next];
 				nextFrame(&next,19);
 				oldTime = currentTime;
@@ -204,6 +206,7 @@ int main(void)
 		SDL_FreeSurface(back[i]);
 	}
 	Mix_FreeMusic(music);
+	Mix_FreeChunk(effect);
 	Mix_CloseAudio();
 	TTF_CloseFont(font);
 	TTF_Quit();
