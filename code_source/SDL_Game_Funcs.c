@@ -7,7 +7,7 @@
 
 /*_______________________________MAIN MENU EVENT HANDLER_________________________________*/
 
-void menuEventHandler(SDL_Surface *menu, char *ptr_job, int *ptr_menuFrame, int *ptr_menuKey, char *ptr_in_menu, Mix_Chunk *effect, Uint32 *oldTimeKey,SDL_Rect positionScreen, SDL_Surface *screen, SDL_Rect positionText, SDL_Surface *font, SDL_Rect logoCrop, SDL_Rect positionLogo, SDL_Surface *logo, SDL_Surface *play[], SDL_Surface *set[], SDL_Surface *quit[], SDL_Rect positionNewGame, SDL_Surface *newGame[], SDL_Rect positionLoadGame, SDL_Surface *loadGame[], SDL_Rect positionBack, SDL_Surface *back[] ,SDL_Surface *background[], SDL_Surface *menu_frame[], SDL_Surface *menu_setting, int *oldVolume){
+void menuEventHandler(menu *mainMenu, menu playMenu, menu settingMenu, char *ptr_job, int *ptr_menuFrame, int *ptr_menuKey, char *ptr_in_menu, Mix_Chunk *effect, Uint32 *oldTimeKey, SDL_Surface *screen, int *oldVolume){
 	SDL_Event event;
 	int dx_cursor, dy_cursor;
 	SDL_PollEvent(&event);
@@ -19,10 +19,26 @@ void menuEventHandler(SDL_Surface *menu, char *ptr_job, int *ptr_menuFrame, int 
 			break;
 		case SDL_KEYDOWN:
 			switch(event.key.keysym.sym){
+				case SDLK_RETURN:
+					if(*ptr_menuKey == 0){
+						
+						openPlayMenu(ptr_job,effect,playMenu,screen);
+						*ptr_menuFrame = 0;
+						*ptr_in_menu = 1;
+
+					}else if(*ptr_menuKey == 1){
+						
+						openSettingMenu(oldVolume,screen,settingMenu);
+						*ptr_menuFrame = 0;
+						*ptr_in_menu = 1;
+					
+					}else if(*ptr_menuKey == 2){
+						*ptr_job = 0;
+						*ptr_in_menu = 1;
+					}
+					break;
 				case SDLK_ESCAPE:
 					*ptr_menuFrame = 0;
-					menu = menu_frame[*ptr_menuFrame];
-					nextFrame(ptr_menuFrame,19);
 					*ptr_in_menu = 1;
 					break;
 				case SDLK_DOWN:
@@ -40,33 +56,23 @@ void menuEventHandler(SDL_Surface *menu, char *ptr_job, int *ptr_menuFrame, int 
 				case SDL_BUTTON_LEFT:
 
 					SDL_GetMouseState(&dx_cursor,&dy_cursor);
-					if(dx_cursor >= FROM && dx_cursor <= play[0]->w + FROM && *ptr_in_menu != 0){
+					if(dx_cursor >= mainMenu->b1.position.x && dx_cursor <= mainMenu->b1.position.w + mainMenu->b1.position.x && *ptr_in_menu != 0){
 
 						// PLAY MENU
-						if(dy_cursor >= PLAY_FROM && dy_cursor <= play[0]->h + PLAY_FROM){
-							playMenu(ptr_job,effect,
-									positionScreen,screen,
-									positionText,font,
-									logoCrop,positionLogo,logo,
-									positionNewGame,newGame,
-									positionLoadGame,loadGame,
-									positionBack,back,background);
-
+						if(dy_cursor >= mainMenu->b1.position.y && dy_cursor <= mainMenu->b1.position.h + mainMenu->b1.position.y){
+							openPlayMenu(ptr_job,effect,playMenu,screen);
 							*ptr_menuFrame = 0;
-							menu = menu_frame[*ptr_menuFrame];
-							nextFrame(ptr_menuFrame,19);
 							*ptr_in_menu = 1;
+
 						}
 						//open the settings
-						if (dy_cursor >= SET_FROM && dy_cursor <= set[0]->h + SET_FROM){
-							setting(oldVolume,screen,menu_setting,logo,positionLogo);
-							menu = menu_frame[*ptr_menuFrame];
-							nextFrame(ptr_menuFrame,19);
+						if (dy_cursor >= mainMenu->b2.position.y && dy_cursor <= mainMenu->b2.position.h + mainMenu->b2.position.y){
+							openSettingMenu(oldVolume,screen,settingMenu);
 							*ptr_menuFrame = 0;
 							*ptr_in_menu = 1;
 						}
 						//quit the game
-						if (dy_cursor >= QUIT_FROM && dy_cursor <= quit[0]->h + QUIT_FROM){
+						if (dy_cursor >= mainMenu->b3.position.y && dy_cursor <= mainMenu->b3.position.h + mainMenu->b3.position.y){
 							*ptr_job = 0;
 							*ptr_in_menu = 1;
 						}
@@ -81,14 +87,15 @@ void menuEventHandler(SDL_Surface *menu, char *ptr_job, int *ptr_menuFrame, int 
 
 /*_______________________________PLAY MENU_________________________________*/
 
-void playMenu(char *ptr_job, Mix_Chunk *effect, SDL_Rect positionScreen, SDL_Surface *screen, SDL_Rect positionText, SDL_Surface *font, SDL_Rect logoCrop, SDL_Rect positionLogo, SDL_Surface *logo, SDL_Rect positionNewGame, SDL_Surface *newGame[], SDL_Rect positionLoadGame, SDL_Surface *loadGame[], SDL_Rect positionBack, SDL_Surface *back[], SDL_Surface *background[]){
+void openPlayMenu(char *ptr_job, Mix_Chunk *effect, menu playMenu, SDL_Surface *screen){
 	char job = 1;
 	char in_menu = 1;
+	
 	int next = 0;
 	int playmenu_key = -1;
+	
 	int dx_cursor, dy_cursor;
-	int over_new = 1, over_load = 1, over_back = 1, licence = 1;
-	SDL_Surface *playMenu;
+
 	Uint32 oldTimeKey , oldTimeBackground, currentTime;
 	SDL_Event event;
 
@@ -104,9 +111,21 @@ void playMenu(char *ptr_job, Mix_Chunk *effect, SDL_Rect positionScreen, SDL_Sur
 				break;
 			case SDL_KEYDOWN:
 				switch(event.key.keysym.sym){
+					case SDLK_RETURN:
+						if(playmenu_key == 0){
+							play(&in_menu,&job,screen);
+							in_menu = 1;
+						}else if(playmenu_key == 1){
+							next = 0;
+								//CODE TO LOAD GAME HERE!!!!
+							in_menu = 0;
+						}else if(playmenu_key == 2){
+							job = 0;
+							in_menu = 0;
+						}
+						break;
 					case SDLK_ESCAPE:
 						next = 0;
-						playMenu = background[next];
 						nextFrame(&next,19);
 						in_menu = 1;
 						job = 0;
@@ -126,23 +145,25 @@ void playMenu(char *ptr_job, Mix_Chunk *effect, SDL_Rect positionScreen, SDL_Sur
 					case SDL_BUTTON_LEFT:
 
 						SDL_GetMouseState(&dx_cursor,&dy_cursor);
-						if(dx_cursor >= FROM && dx_cursor <= newGame[0]->w + FROM && in_menu != 0){
+						if(dx_cursor >= playMenu.b1.position.x && dx_cursor <= playMenu.b1.position.w + playMenu.b1.position.x && in_menu != 0){
 
 							//play
-							if(dy_cursor >= PLAY_FROM && dy_cursor <= newGame[0]->h + PLAY_FROM){
-								play(&in_menu,&job,positionScreen,screen);
+							if(dy_cursor >= playMenu.b1.position.y && dy_cursor <= playMenu.b1.position.h + playMenu.b1.position.y){
+								play(&in_menu,&job,screen);
 								in_menu = 1;
 							}
 							//Load game
-							if (dy_cursor >= SET_FROM && dy_cursor <= loadGame[0]->h + SET_FROM){
+							if (dy_cursor >= playMenu.b2.position.y && dy_cursor <= playMenu.b2.position.h + playMenu.b2.position.y){
 								next = 0;
 								//CODE TO LOAD GAME HERE!!!!
-								in_menu = 0;
+								in_menu = 1;
 							}
 							//return 
-							if (dy_cursor >= QUIT_FROM && dy_cursor <= back[0]->h + QUIT_FROM){
+							if (dy_cursor >= playMenu.b3.position.y && dy_cursor <= playMenu.b3.position.h + playMenu.b3.position.y){
+								next = 0;
+								nextFrame(&next,19);
+								in_menu = 1;
 								job = 0;
-								in_menu = 0;
 							}
 
 						}
@@ -154,21 +175,14 @@ void playMenu(char *ptr_job, Mix_Chunk *effect, SDL_Rect positionScreen, SDL_Sur
 		
 		
 		if(in_menu){
-			overWhat(effect,&playmenu_key,FROM,FROM + newGame[0]->w,
-					PLAY_FROM,PLAY_FROM + newGame[0]->h,
-					SET_FROM,SET_FROM + loadGame[0]->h,
-					QUIT_FROM,QUIT_FROM + back[0]->h,
-					0,100,
-					0,100,
-					&over_new,&over_load,&over_back,&licence);
+			playMenu = overWhat(effect,&playmenu_key,playMenu);
 
 			currentTime = SDL_GetTicks();
 			if(currentTime - oldTimeBackground > 100){
-				playMenu = background[next];
 				nextFrame(&next,7);
 				oldTimeBackground = currentTime;
 			}
-			menuBlitter(positionScreen,screen,playMenu,positionText,font,logoCrop,positionLogo,logo,positionNewGame,newGame,positionLoadGame,loadGame,positionBack,back,over_new,over_load,over_back,licence,playmenu_key);
+			menuBlitter(screen,playMenu,playmenu_key,next);
 
 		}
 	}
@@ -176,7 +190,7 @@ void playMenu(char *ptr_job, Mix_Chunk *effect, SDL_Rect positionScreen, SDL_Sur
 
 /*_______________________________MAIN LOOP OF THE GAME (SOLO)_________________________________*/
 
-void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface *screen){
+void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	// Load map and Calque Map(black and white)
 	SDL_Surface *game_surface = SDL_DisplayFormat(IMG_Load("../src/design/map/map.png"));
 	SDL_Surface *calque_surface = SDL_DisplayFormat(IMG_Load("../src/design/map/map_back_white.png"));
@@ -289,11 +303,11 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface
 		//SDL_BlitSurface(villain.image,&positionScreen,screen,&villain.positionRelative);
 		
 		if(key.state){
-			SDL_BlitSurface(key.image,&positionScreen,screen,&key.positionRelative);
+			SDL_BlitSurface(key.image,NULL,screen,&key.positionRelative);
 		}
 
 		if(key2.state){
-			SDL_BlitSurface(key2.image,&positionScreen,screen,&key2.positionRelative);	
+			SDL_BlitSurface(key2.image,NULL,screen,&key2.positionRelative);	
 		}
 		show(&villain,screen);
 		show(&player,screen);
@@ -425,89 +439,86 @@ void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job
 	}
 }
 
-
 /*_______________________________MOUSEOVER && KEYBOARDOVER HANDLER_________________________________*/
 
 
-void overWhat(Mix_Chunk *effect, int *menu_key, int x1a, int x1b, int y1a, int y1b, int y2a, int y2b, int y3a, int y3b, int x2a, int x2b, int y4a, int y4b, int *button1, int *button2, int *button3, int *button4){
-	/*	XXa : coordonnees de debut
-		XXb : coordonnees de fin
-	*/
+menu overWhat(Mix_Chunk *effect, int *menu_key, menu m){
 	int dx_cursor, dy_cursor;
 	
 	SDL_GetMouseState(&dx_cursor,&dy_cursor);
-	if(dx_cursor >= x1a && dx_cursor <= x1b){
+	if(dx_cursor >= m.b1.position.x && dx_cursor <= m.b1.position.x + m.b1.position.w){
 				
-		if(dy_cursor >= y1a && dy_cursor <= y1b){
+		if(dy_cursor >= m.b1.position.y && dy_cursor <= m.b1.position.y + m.b1.position.h){
 		
-			if(*button1 != 0){
-				twist(button1,button2,button3,button4);
+			if(m.over_b1 != 0){
+				twist(&m.over_b1,&m.over_b2,&m.over_b3,&m.over_b4);
 				Mix_PlayChannel(-1,effect,0);
 				*menu_key = -1;
 			}
 		
-		}else if (dy_cursor >= y2a && dy_cursor <= y2b){
+		}else if (dy_cursor >= m.b2.position.y && dy_cursor <= m.b2.position.y + m.b2.position.h){
 		
-			if(*button2 != 0){
-				twist(button2,button1,button3,button4);
+			if(m.over_b2 != 0){
+				twist(&m.over_b2,&m.over_b1,&m.over_b3,&m.over_b4);
 				Mix_PlayChannel(-1,effect,0);
 				*menu_key = -1;
 			}
 		
-		}else if (dy_cursor >= y3a && dy_cursor <= y3b){
+		}else if (dy_cursor >= m.b3.position.y && dy_cursor <= m.b3.position.y + m.b3.position.h){
 		
-			if(*button3 != 0){
-				twist(button3,button2,button1,button4);
+			if(m.over_b3 != 0){
+				twist(&m.over_b3,&m.over_b2,&m.over_b1,&m.over_b4);
 				Mix_PlayChannel(-1,effect,0);
 				*menu_key = -1;
 			}
 		
-		}else if(dy_cursor >= y4a && dy_cursor <= y4b){
+		}else if(dy_cursor >= m.b4.position.y && dy_cursor <= m.b4.position.y + m.b4.position.h){
 		
-			if(*button4 != 0){
-				twist(button4,button2,button3,button1);
+			if(m.over_b4 != 0){
+				twist(&m.over_b4,&m.over_b3,&m.over_b2,&m.over_b1);
 			} 
 		
 		}else{
-			twist(button3,button2,button1,button4);
-			*button3 = 1;
+			twist(&m.over_b3,&m.over_b2,&m.over_b1,&m.over_b4);
+			m.over_b3 = 1;
 		
 		}
 	}else{
-		twist(button3,button2,button1,button4);
-		*button3 = 1;
+		twist(&m.over_b3,&m.over_b2,&m.over_b1,&m.over_b4);
+		m.over_b3 = 1;
 	}
+
+	return m;
 }
 
 
 /*_______________________________MENU BLITTER_________________________________*/
 
 
-void menuBlitter(SDL_Rect positionScreen,SDL_Surface *screen,SDL_Surface *background, SDL_Rect positionText,SDL_Surface *font, SDL_Rect logoCrop, SDL_Rect positionLogo, SDL_Surface *logo, SDL_Rect positionB1, SDL_Surface *button1[], SDL_Rect positionB2, SDL_Surface *button2[], SDL_Rect positionB3, SDL_Surface *button3[], int over_b1, int over_b2, int over_b3, int over_b4, int menu_key){
+void menuBlitter(SDL_Surface *screen, menu m, int menu_key, int next){
 	
-	SDL_BlitSurface(background,&positionScreen,screen,NULL);
+	SDL_BlitSurface(m.background[next],NULL,screen,NULL);
 		
-	SDL_BlitSurface(logo,&logoCrop,screen,&positionLogo);
+	SDL_BlitSurface(m.menuLogo,&m.menuLogoCrop,screen,&m.menuLogoPosition);
 		
 	if(menu_key == -1){
-		SDL_BlitSurface(button1[over_b1],NULL,screen,&positionB1);
-		SDL_BlitSurface(button2[over_b2],NULL,screen,&positionB2);
-		SDL_BlitSurface(button3[over_b3],NULL,screen,&positionB3);
+		SDL_BlitSurface(m.b1.image[m.over_b1],NULL,screen,&m.b1.position);
+		SDL_BlitSurface(m.b2.image[m.over_b2],NULL,screen,&m.b2.position);
+		SDL_BlitSurface(m.b3.image[m.over_b3],NULL,screen,&m.b3.position);
 	}else if(menu_key == 0){
-		SDL_BlitSurface(button1[0],NULL,screen,&positionB1);
-		SDL_BlitSurface(button2[1],NULL,screen,&positionB2);
-		SDL_BlitSurface(button3[1],NULL,screen,&positionB3);
+		SDL_BlitSurface(m.b1.image[0],NULL,screen,&m.b1.position);
+		SDL_BlitSurface(m.b2.image[1],NULL,screen,&m.b2.position);
+		SDL_BlitSurface(m.b3.image[1],NULL,screen,&m.b3.position);
 	}else if(menu_key == 1){
-		SDL_BlitSurface(button1[1],NULL,screen,&positionB1);
-		SDL_BlitSurface(button2[0],NULL,screen,&positionB2);
-		SDL_BlitSurface(button3[1],NULL,screen,&positionB3);
+		SDL_BlitSurface(m.b1.image[1],NULL,screen,&m.b1.position);
+		SDL_BlitSurface(m.b2.image[0],NULL,screen,&m.b2.position);
+		SDL_BlitSurface(m.b3.image[1],NULL,screen,&m.b3.position);
 	}else if (menu_key == 2){
-		SDL_BlitSurface(button1[1],NULL,screen,&positionB1);
-		SDL_BlitSurface(button2[1],NULL,screen,&positionB2);
-		SDL_BlitSurface(button3[0],NULL,screen,&positionB3);
-	}
-	if(over_b4 == 0){
-		SDL_BlitSurface(font,NULL,screen,&positionText);
+		SDL_BlitSurface(m.b1.image[1],NULL,screen,&m.b1.position);
+		SDL_BlitSurface(m.b2.image[1],NULL,screen,&m.b2.position);
+		SDL_BlitSurface(m.b3.image[0],NULL,screen,&m.b3.position);	}
+	if(m.over_b4 == 0){
+		SDL_BlitSurface(m.font.image[0],NULL,screen,&m.font.position);
 	}
 	SDL_Flip(screen);
 }
@@ -516,7 +527,7 @@ void menuBlitter(SDL_Rect positionScreen,SDL_Surface *screen,SDL_Surface *backgr
 
 int moveInMenuByKeyboard(int pointeur, int operation, int a, int b, Uint32 *oldTime){
 	Uint32 currentTime = SDL_GetTicks();
-	if(currentTime - (*oldTime) > 100){
+	if(currentTime - (*oldTime) > 50){
 		if(pointeur == a){
 			pointeur = b;
 		}else{
@@ -544,7 +555,7 @@ void setVolume(int volumeValue){
 
 /*_______________________________Settings menu_________________________________*/
 
-void setting(int* oldVolume, SDL_Surface* screen, SDL_Surface* menu_setting, SDL_Surface* logo, SDL_Rect positionLogo){
+void openSettingMenu(int* oldVolume, SDL_Surface* screen, menu settings){
 	int job = 1;
 	
 	SDL_Rect fullBar = {210,PLAY_FROM+50,384,30}; // the Rect of the full volume bar
@@ -552,45 +563,58 @@ void setting(int* oldVolume, SDL_Surface* screen, SDL_Surface* menu_setting, SDL
 	
 	SDL_Rect volumePosition = {350,PLAY_FROM,0,0};// the Rect of the position of the Text "Volume"
 	
-	SDL_Rect logoCrop = initPosition(logoCrop,0,40,logo->w,logo->h); // cropping the menu
-	
 	Uint32 colorCurr = SDL_MapRGB(screen->format, 130, 71, 152);
 	Uint32 colorFull = SDL_MapRGB(screen->format, 39, 50, 56);
 	SDL_Color white = {255, 255, 255};
 	
-	SDL_Surface *volumeText;
+	SDL_Surface *volumeText = NULL;
 	TTF_Font *font = NULL;
+
+	if(TTF_Init() == -1){
+		exit(0);
+	}
 	font = TTF_OpenFont("../src/font/blue highway rg.ttf",40);
+	
+	if(font == NULL){
+		fprintf(stderr, "Enable to load font from the file\n");
+		return;
+	}
 
 	volumeText = TTF_RenderText_Blended(font,"Volume",white);
-
+	if(volumeText == NULL){
+		fprintf(stderr, "Enable to load TTF font\n");
+		return;
+	}
 
 
 	while(job){
-		settingsEventHandler(&job,oldVolume,fullBar);
+		settingsEventHandler(&job,oldVolume,fullBar,settings);
 		currBar.w = *oldVolume * 3;
 		
 		//draw the background
-		SDL_BlitSurface(menu_setting,NULL,screen,NULL);
+		SDL_BlitSurface(settings.background[0],NULL,screen,NULL);
 		
 		//draw the menu
-		SDL_BlitSurface(logo,&logoCrop,screen,&positionLogo);
-		
-		//draw the text "Volume" above the volume level selector
-		SDL_BlitSurface(volumeText,NULL,screen,&volumePosition);
+		SDL_BlitSurface(settings.menuLogo,&settings.menuLogoCrop,screen,&settings.menuLogoPosition);
 		
 		//draw the volume level
 		SDL_FillRect(screen, &fullBar, colorFull);
 		SDL_FillRect(screen, &currBar, colorCurr);
 		
+		//draw the text "Volume" above the volume level selector
+		SDL_BlitSurface(volumeText,NULL,screen,&volumePosition);
+
+		SDL_BlitSurface(settings.b1.image[0],NULL,screen,&settings.b1.position);
+		
 		SDL_Flip(screen);
 	}
+	
 	SDL_FreeSurface(volumeText);
 	TTF_CloseFont(font);
 
 }
 
-void settingsEventHandler(int *job, int *oldVolume, SDL_Rect fullBar){
+void settingsEventHandler(int *job, int *oldVolume, SDL_Rect fullBar, menu settings){
 	int dx_cursor, dy_cursor;
 	SDL_Event event;
 
@@ -611,6 +635,15 @@ void settingsEventHandler(int *job, int *oldVolume, SDL_Rect fullBar){
 							setVolume(*oldVolume);
 						}
 					}
+
+					if(dx_cursor >= settings.b1.position.x && dx_cursor <= settings.b1.position.w + settings.b1.position.x){
+							//return 
+							if (dy_cursor >= settings.b1.position.y && dy_cursor <= settings.b1.position.h + settings.b1.position.y){
+								*job = 0;
+							}
+
+					}
+
 			}
 			break;
 	}

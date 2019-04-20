@@ -7,6 +7,12 @@
 #include "SDL_enigme.h"
 #include "SDL_Game.h"
 
+menu initMainMenu();
+
+menu initPlayMenu(menu main);
+
+menu initSettingsMenu(menu main);
+
 int checkImageLoad(SDL_Surface *set[], int index, int maxIndex);
 
 void displayFormatFrame(SDL_Surface *set[], int maxframes);

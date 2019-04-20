@@ -6,11 +6,13 @@
 #include <SDL/SDL_mixer.h>
 #include <SDL/SDL_ttf.h>
 
-#include "SDL_Init.h"
+#include "SDL_src_struct.h"
 #include "SDL_char.h"	
 #include "SDL_move.h"
 #include "SDL_animation.h"
 #include "SDL_collision.h"
+#include "SDL_free.h"
+#include "SDL_Init.h"
 
 #define STEP 20
 #define SCREEN_WIDTH 1920
@@ -84,48 +86,24 @@
 void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job, 
 					SDL_Surface *calque_game, SDL_Rect camera, SDL_Rect *positionMouse);
 
-void menuEventHandler(SDL_Surface *menu, char *ptr_job, int *ptr_menuFrame, int *ptr_menuKey, char *ptr_in_menu, Mix_Chunk *effect, Uint32 *oldTimeKey,
-				SDL_Rect positionScreen, SDL_Surface *screen,
-				SDL_Rect positionText, SDL_Surface *font,
-				SDL_Rect logoCrop, SDL_Rect positionLogo, SDL_Surface *logo, 
-				SDL_Surface *play[], SDL_Surface *set[], SDL_Surface *quit[], 
-				SDL_Rect positionNewGame, SDL_Surface *newGame[], 
-				SDL_Rect positionLoadGame, SDL_Surface *loadGame[], 
-				SDL_Rect positionBack, SDL_Surface *back[], 
-				SDL_Surface *background[], SDL_Surface *menu_frame[],
-				SDL_Surface *menu_setting,
-				int *oldVolume);
 
+void menuEventHandler(menu *mainMenu, menu playMenu, menu settingMenu, char *ptr_job, int *ptr_menuFrame, int *ptr_menuKey, char *ptr_in_menu, Mix_Chunk *effect, Uint32 *oldTimeKey, SDL_Surface *screen, int *oldVolume);
 
-void playMenu(char *ptr_job, Mix_Chunk *effect, 
-			SDL_Rect positionScreen, SDL_Surface *screen,
-			SDL_Rect positionText, SDL_Surface *font, 
-			SDL_Rect logoCrop, SDL_Rect positionLogo, SDL_Surface *logo, 
-			SDL_Rect positionNewGame, SDL_Surface *newGame[], 
-			SDL_Rect positionLoadGame, SDL_Surface *loadGame[], 
-			SDL_Rect positionBack, SDL_Surface *back[], 
-			SDL_Surface *background[]);
+void openPlayMenu(char *ptr_job, Mix_Chunk *effect, menu playMenu, SDL_Surface *screen);
 
-void play(char *ptr_in_menu, char *ptr_job, SDL_Rect positionScreen, SDL_Surface *screen);
+void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen);
 
-void overWhat(Mix_Chunk *effect, int *menu_key,int x1a, int x1b, int y1a, int y1b, int y2a, int y2b, int y3a, int y3b, int x2a, int x2b, int y4a, int y4b, int *button1, int *button2, int *button3, int *button4);
+menu overWhat(Mix_Chunk *effect, int *menu_key, menu m);
 
-void menuBlitter(SDL_Rect positionScreen,SDL_Surface *screen,
-				SDL_Surface *background, 
-				SDL_Rect positionText,SDL_Surface *font,
-				SDL_Rect logoCrop, SDL_Rect positionLogo, SDL_Surface *logo,
-				SDL_Rect positionB1, SDL_Surface *button1[],
-				SDL_Rect positionB2, SDL_Surface *button2[],
-				SDL_Rect positionB3, SDL_Surface *button3[],
-				int over_b1, int over_b2, int over_b3, int over_b4, int menu_key);
+void menuBlitter(SDL_Surface *screen, menu m, int menu_key, int next);
 
 int moveInMenuByKeyboard(int pointeur, int operation, int a, int b, Uint32 *oldTime);
 
 void twist(int *a, int *b, int *c, int *d);
 
-void settingsEventHandler(int *job, int *oldVolume, SDL_Rect fullBar);
+void settingsEventHandler(int *job, int *oldVolume, SDL_Rect fullBar, menu settings);
 
-void setting(int* oldVolume, SDL_Surface* screen, SDL_Surface* menu_setting, SDL_Surface* logo, SDL_Rect positionLogo);
+void openSettingMenu(int* oldVolume, SDL_Surface* screen, menu settings);
 
 void setVolume(int volumeValue);
 #endif
