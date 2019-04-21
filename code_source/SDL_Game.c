@@ -86,7 +86,9 @@ int main(void)
 			menuBlitter(screen,mainMenu,menu_key,next);
 		}
 	}
+	
 	SDL_FreeSurface(mainMenu.menuLogo);
+	
 	freeMenu(mainMenu,19);
 	freeMenu(playMenu,7);
 	

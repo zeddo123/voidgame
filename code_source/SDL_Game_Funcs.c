@@ -223,6 +223,9 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	
 	SDL_Event animEvent;
 
+	if(TTF_Init() == -1){
+		exit(0);
+	}
 
 	//init TTF Font
 	font = TTF_OpenFont("../src/font/Baron Neue.otf",50);
