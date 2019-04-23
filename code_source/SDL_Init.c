@@ -194,7 +194,7 @@ int checkImageLoad(SDL_Surface *set[], int index, int maxIndex){
 		if(set[index] != NULL){
 			return checkImageLoad(set,index+1,maxIndex);
 		}else{
-			printf("checkImageLoad[%d] : unable to load image %s\n", SDL_GetError(),index);
+			printf("checkImageLoad[%d] : unable to load image %s\n", index, SDL_GetError());
 			return 0;
 		}
 	}
