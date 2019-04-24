@@ -5,6 +5,7 @@
 #include "SDL_animation.h"
 #include "SDL_collision.h"
 #include "SDL_arduino.h"
+#include "SDL_multiplayer.h"
 
 /*_______________________________MAIN MENU EVENT HANDLER_________________________________*/
 
@@ -114,7 +115,7 @@ void openPlayMenu(char *ptr_job, Mix_Chunk *effect, menu playMenu, SDL_Surface *
 				switch(event.key.keysym.sym){
 					case SDLK_RETURN:
 						if(playmenu_key == 0){
-							play(&in_menu,&job,screen);
+							playMultiplayer(&in_menu,&job,screen);
 							in_menu = 1;
 						}else if(playmenu_key == 1){
 							next = 0;
@@ -150,7 +151,7 @@ void openPlayMenu(char *ptr_job, Mix_Chunk *effect, menu playMenu, SDL_Surface *
 
 							//play
 							if(dy_cursor >= playMenu.b1.position.y && dy_cursor <= playMenu.b1.position.h + playMenu.b1.position.y){
-								play(&in_menu,&job,screen);
+								playMultiplayer(&in_menu,&job,screen);
 								in_menu = 1;
 							}
 							//Load game

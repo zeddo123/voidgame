@@ -11,3 +11,8 @@
 #include "SDL_arduino.h"
 
 void playMultiplayer(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen);
+
+void eventHandlerMultiplayer(hero *player1, hero *player2,
+				char *ptr_game, char *ptr_in_menu, char *ptr_job, SDL_Surface *calque_game,
+				SDL_Rect camera1, SDL_Rect camera2,
+				SDL_Rect *positionMouse1, SDL_Rect *positionMouse2);

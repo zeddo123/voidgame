@@ -19,7 +19,10 @@ void playMultiplayer(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	enigme firstEnigme_player2, secondEnigme_player2;
 
 	SDL_Rect camera1 = {0, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT};
+	SDL_Rect split1 = {0, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT};
+	
 	SDL_Rect camera2 = {SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT};
+	SDL_Rect split2 = {SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT};
 	
 	TTF_Font *font = NULL;
 	SDL_Color fontColor = {63, 13, 58};
@@ -141,11 +144,8 @@ void playMultiplayer(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
         //Mise en route du timer
         start(&started,&paused,&startTicks);
 
-		if(eventHandlerArduino(&player1,calque_surface) == 0)
-			eventHandler(&player1,&game,ptr_in_menu,ptr_job,calque_surface,camera1,&positionMouse1);
-
 		if(eventHandlerArduino(&player2,calque_surface) == 0)
-			eventHandler(&player2,&game,ptr_in_menu,ptr_job,calque_surface,camera2,&positionMouse2);
+			eventHandlerMultiplayer(&player1,&player2,&game,ptr_in_menu,ptr_job,calque_surface,camera1,camera2,&positionMouse1,&positionMouse2);
 
 		moveToMouseDynamic(&player1,positionMouse1.x,positionMouse1.y,calque_surface);
 		moveToMouseDynamic(&player2,positionMouse2.x,positionMouse2.y,calque_surface);
@@ -170,8 +170,8 @@ void playMultiplayer(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 		key_player2.positionRelative = makeItRelative(key_player2.position,camera2);
 		key2_player2.positionRelative = makeItRelative(key2_player2.position,camera2);		
 
-		SDL_BlitSurface(game_surface,&camera1,screen,&camera1); //show background
-		SDL_BlitSurface(game_surface,&camera2,screen,&camera2); //show background
+		SDL_BlitSurface(game_surface,&camera1,screen,&split1); //show background
+		SDL_BlitSurface(game_surface,&camera2,screen,&split2); //show background
 		
 		//SDL_BlitSurface(villain.image,&positionScreen,screen,&villain.positionRelative);
 		
@@ -292,4 +292,106 @@ void playMultiplayer(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	SDL_FreeSurface(key2_player1.image);
 	SDL_FreeSurface(key2_player2.image);
 
+}
+
+void eventHandlerMultiplayer(hero *player1, hero *player2, char *ptr_game, char *ptr_in_menu, char *ptr_job, SDL_Surface *calque_game, SDL_Rect camera1, SDL_Rect camera2, SDL_Rect *positionMouse1, SDL_Rect *positionMouse2){
+	SDL_Event event;
+	int dx_cursor_in_game,dy_cursor_in_game;
+	
+	player1->orientation = 0;
+	player2->orientation = 0;
+	
+	SDL_PollEvent(&event);
+	switch(event.type){
+		case SDL_QUIT:
+			printf("..Quiting the game..\n");
+			*ptr_job = 0;
+			*ptr_game = 0;
+			break;
+		case SDL_KEYDOWN:
+		
+			switch(event.key.keysym.sym){
+				case SDLK_ESCAPE:
+					break;
+				case SDLK_UP:
+					if(collision_Parfaite(calque_game,player1->position,STEP,0) != 1){
+						move(player1,0,-1);
+						player1->moveWithMouse = 0;
+						player1->orientation = 0;
+					}
+					break;
+				
+				case SDLK_DOWN:
+					if(collision_Parfaite(calque_game,player1->position,STEP,1) != 1){
+						move(player1,0,1);
+						player1->moveWithMouse = 0;
+						player1->orientation = 0;
+					}
+					break;
+				
+				case SDLK_LEFT:
+					if(collision_Parfaite(calque_game,player1->position,STEP,3) != 1){
+						move(player1,1,-1);
+						player1->orientation = -1;
+						player1->moveWithMouse = 0;
+					}
+					break;
+				case SDLK_RIGHT:
+					if(collision_Parfaite(calque_game,player1->position,STEP,2) != 1){
+						move(player1,1,1);
+						player1->orientation = 1;
+						player1->moveWithMouse = 0;
+					}
+					break;
+				
+				case SDLK_z:
+					if(collision_Parfaite(calque_game,player2->position,STEP,0) != 1){
+						move(player2,0,-1);
+						player2->moveWithMouse = 0;
+						player2->orientation = 0;
+					}
+					break;
+				
+				case SDLK_s:
+					if(collision_Parfaite(calque_game,player2->position,STEP,1) != 1){
+						move(player2,0,1);
+						player2->moveWithMouse = 0;
+						player2->orientation = 0;
+					}
+					break;
+				
+				case SDLK_q:
+					if(collision_Parfaite(calque_game,player2->position,STEP,3) != 1){
+						move(player2,1,-1);
+						player2->orientation = -1;
+						player2->moveWithMouse = 0;
+					}
+					break;
+				case SDLK_d:
+					if(collision_Parfaite(calque_game,player2->position,STEP,2) != 1){
+						move(player2,1,1);
+						player2->orientation = 1;
+						player2->moveWithMouse = 0;
+					}
+					break;
+			}
+			break;
+
+		case SDL_MOUSEBUTTONDOWN:
+			switch(event.button.button){
+				case SDL_BUTTON_LEFT:
+					SDL_GetMouseState(&dx_cursor_in_game,&dy_cursor_in_game);
+					if(dx_cursor_in_game < SCREEN_WIDTH){
+						player1->moveWithMouse = 1;
+						positionMouse1->x = dx_cursor_in_game - player1->position.w + camera1.x;
+						positionMouse1->y = dy_cursor_in_game - player1->position.h + camera1.y;					
+					}else{
+						player2->moveWithMouse = 1;
+						positionMouse2->x = dx_cursor_in_game - player2->position.w + camera2.x;
+						positionMouse2->y = dy_cursor_in_game - player2->position.h + camera2.y;
+					}
+					break;
+			}
+			break;
+	}
 }
