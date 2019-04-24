@@ -341,7 +341,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 		SDL_BlitSurface(number_key.font_key,NULL,screen,&number_key.position);
 
 		SDL_Flip(screen);
-
+		
         while( get_ticks(&started,&paused,&startTicks,&pausedTicks) < (1000 / FRAMES_PER_SECOND)){
 			SDL_Delay( ( 1000 / FRAMES_PER_SECOND) - get_ticks(&started, &paused, &startTicks, &pausedTicks));
         }
