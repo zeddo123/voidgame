@@ -4,6 +4,7 @@
 #include "SDL_gestion.h"
 #include "SDL_animation.h"
 #include "SDL_collision.h"
+#include "SDL_arduino.h"
 
 /*_______________________________MAIN MENU EVENT HANDLER_________________________________*/
 
@@ -283,8 +284,8 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	while(game){
         //Mise en route du timer
         start(&started,&paused,&startTicks);
-		
-		eventHandler(&player,&game,ptr_in_menu,ptr_job,calque_surface,camera,&positionMouse);
+		if(eventHandlerArduino(&player,calque_surface) == 0)
+			eventHandler(&player,&game,ptr_in_menu,ptr_job,calque_surface,camera,&positionMouse);
 
 		moveToMouseDynamic(&player,positionMouse.x,positionMouse.y,calque_surface);
 
@@ -328,7 +329,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 				key2.state = 0;
 			}
 		}
-
+		turnOnOff(xKEY,xKEY2);
 		number_key = gestionKey(number_key,xKEY,xKEY2);
 		
 
