@@ -115,7 +115,7 @@ void openPlayMenu(char *ptr_job, Mix_Chunk *effect, menu playMenu, SDL_Surface *
 				switch(event.key.keysym.sym){
 					case SDLK_RETURN:
 						if(playmenu_key == 0){
-							playMultiplayer(&in_menu,&job,screen);
+							play(&in_menu,&job,screen);
 							in_menu = 1;
 						}else if(playmenu_key == 1){
 							next = 0;
@@ -151,7 +151,7 @@ void openPlayMenu(char *ptr_job, Mix_Chunk *effect, menu playMenu, SDL_Surface *
 
 							//play
 							if(dy_cursor >= playMenu.b1.position.y && dy_cursor <= playMenu.b1.position.h + playMenu.b1.position.y){
-								playMultiplayer(&in_menu,&job,screen);
+								play(&in_menu,&job,screen);
 								in_menu = 1;
 							}
 							//Load game
@@ -343,7 +343,12 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 		SDL_BlitSurface(number_key.font_key,NULL,screen,&number_key.position);
 
 		SDL_Flip(screen);
-		
+		if(player.position.x > 5311 && player.position.x < 5511 && player.position.y > 7002 && player.position.y < 7323){
+			if(number_key.keys >= 1){
+				SDL_Delay(500);
+				moveToMouse(&player,2089,3826);
+			}
+		}
         while( get_ticks(&started,&paused,&startTicks,&pausedTicks) < (1000 / FRAMES_PER_SECOND)){
 			SDL_Delay( ( 1000 / FRAMES_PER_SECOND) - get_ticks(&started, &paused, &startTicks, &pausedTicks));
         }
