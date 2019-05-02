@@ -2,7 +2,6 @@
 
 int eventHandlerArduino(hero *player, SDL_Surface *calque_game){
 	int event = readFromArd();
-	printf("got -> %d\n",event);
 	player->orientation = 0;
 	switch(event){
 		case 1:

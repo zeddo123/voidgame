@@ -18,11 +18,11 @@ void playMultiplayer(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	enigme firstEnigme_player1, secondEnigme_player1;
 	enigme firstEnigme_player2, secondEnigme_player2;
 
-	SDL_Rect camera1 = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT / 2};
-	SDL_Rect split1 = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT / 2};
+	SDL_Rect camera1 = {0, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT};
+	SDL_Rect split1 = {0, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT};
 	
-	SDL_Rect camera2 = {0, SCREEN_HEIGHT / 2, SCREEN_WIDTH, SCREEN_HEIGHT / 2};
-	SDL_Rect split2 = {0, SCREEN_HEIGHT / 2, SCREEN_WIDTH, SCREEN_HEIGHT / 2};
+	SDL_Rect camera2 = {0, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT};
+	SDL_Rect split2 = {SCREEN_WIDTH/2, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT};
 	
 	TTF_Font *font = NULL;
 	SDL_Color fontColor = {63, 13, 58};
@@ -76,13 +76,13 @@ void playMultiplayer(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	
 	//init position and images
 	set_clips(&villain);
-	villain = initHero(villain,"../src/characters/Rayen_left_right.png",5320,7427);
+	villain = initHero(villain,"../Sprites/Sprites Rayen/sprite_aio_half.png",5320,7427);
 
 	set_clips(&player1);
-	player1 = initHero(player1,"../src/characters/Rayen_left_right.png",2260,7645);
+	player1 = initHero(player1,"../Sprites/Sprites Rayen/sprite_aio_half.png",2260,7645);
 
 	set_clips(&player2);
-	player2 = initHero(player2,"../src/characters/Rayen_left_right.png",2260,7645);
+	player2 = initHero(player2,"../Sprites/Sprites Rayen/sprite_aio_half.png",2260,7645);
 
 	key_player1 = initObject(key_player1,"../src/design/bazar/key.png",5321,7427);
 
@@ -160,15 +160,15 @@ void playMultiplayer(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 		vie_player1 = gestionVie(player1, villain, vie_player1, &oldTimeDamage); // gestion de points de vie
 		vie_player2 = gestionVie(player2, villain, vie_player2, &oldTimeDamage); // gestion de points de vie
 
-		player1.positionRelative = makeItRelative(player1.position,camera1);
+		player1.positionRelative = makeItRelative(player1.position,camera1);		
 		villain.positionRelative = makeItRelative(villain.position,camera1);
 		key_player1.positionRelative = makeItRelative(key_player1.position,camera1);
 		key2_player1.positionRelative = makeItRelative(key2_player1.position,camera1);		
 
-		player2.positionRelative = makeItRelative(player2.position,camera2);
-		villain.positionRelative = makeItRelative(villain.position,camera2);
-		key_player2.positionRelative = makeItRelative(key_player2.position,camera2);
-		key2_player2.positionRelative = makeItRelative(key2_player2.position,camera2);		
+		player2.positionRelative = makeItRelativePlayer2(player2.position,camera2);
+		villain.positionRelative = makeItRelativePlayer2(villain.position,camera2);
+		key_player2.positionRelative = makeItRelativePlayer2(key_player2.position,camera2);
+		key2_player2.positionRelative = makeItRelativePlayer2(key2_player2.position,camera2);		
 
 		SDL_BlitSurface(game_surface,&camera1,screen,&split1); //show background
 		SDL_BlitSurface(game_surface,&camera2,screen,&split2); //show background

@@ -246,10 +246,10 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	
 	//init position and images
 	set_clips(&villain);
-	villain = initHero(villain,"../Nouveau dossier/Sprites Rayen/sprite_aio.png",5320,7427);
+	villain = initHero(villain,"../Sprites/Sprites Rayen/sprite_aio_half.png",5320,7427);
 
 	set_clips(&player);
-	player = initHero(player,"../Nouveau dossier/Sprites Rayen/sprite_aio.png",2260,7645);
+	player = initHero(player,"../Sprites/Sprites Rayen/sprite_aio_half.png",2260,7645);
 
 	key = initObject(key,"../src/design/bazar/key.png",5321,7427);
 
@@ -290,7 +290,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 
 		moveToMouseDynamic(&player,positionMouse.x,positionMouse.y,calque_surface);
 
-		moveBetweenTwoRandom(&villain,1,5120,5320,&oldTimeEntite,&randpoint);
+		moveBetweenTwoRandom(&villain,1,4700,5320,&oldTimeEntite,&randpoint);
 		
 
 
