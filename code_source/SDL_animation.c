@@ -7,54 +7,206 @@ void set_clips(hero *player){
     //On coupe la feuille de sprite à droite 
     player->clipsRight[0].x = 0;
     player->clipsRight[0].y = 0;
-    player->clipsRight[0].w = 35;
-    player->clipsRight[0].h = 142;
+    player->clipsRight[0].w = 209;
+    player->clipsRight[0].h = 326;
 
-    player->clipsRight[1].x = 38;
+    player->clipsRight[1].x = 209;
     player->clipsRight[1].y = 0;
-    player->clipsRight[1].w = 94 - 38;
-    player->clipsRight[1].h = 142;
+    player->clipsRight[1].w = 209;
+    player->clipsRight[1].h = 326;
 
-    player->clipsRight[2].x = 97;
+    player->clipsRight[2].x = 418;
     player->clipsRight[2].y = 0;
-    player->clipsRight[2].w = 171 - 97;
-    player->clipsRight[2].h = 142;
+    player->clipsRight[2].w = 209;
+    player->clipsRight[2].h = 326;
 
-    player->clipsRight[3].x = 175;
+    player->clipsRight[3].x = 627;
     player->clipsRight[3].y = 0;
-    player->clipsRight[3].w = 221 - 175;
-    player->clipsRight[3].h = 142;
+    player->clipsRight[3].w = 209;
+    player->clipsRight[3].h = 326;
 
-    player->clipsRight[4].x = 225;
+    player->clipsRight[4].x = 836;
     player->clipsRight[4].y = 0;
-    player->clipsRight[4].w = 305 - 225;
-    player->clipsRight[4].h = 142;
+    player->clipsRight[4].w = 209;
+    player->clipsRight[4].h = 326;
+
+    player->clipsRight[5].x = 1045;
+    player->clipsRight[5].y = 0;
+    player->clipsRight[5].w = 209;
+    player->clipsRight[5].h = 326;
+
+    player->clipsRight[6].x = 1254;
+    player->clipsRight[6].y = 0;
+    player->clipsRight[6].w = 209;
+    player->clipsRight[6].h = 326;
+
+    player->clipsRight[7].x = 1463;
+    player->clipsRight[7].y = 0;
+    player->clipsRight[7].w = 209;
+    player->clipsRight[7].h = 326;
+
+    player->clipsRight[8].x = 1672;
+    player->clipsRight[8].y = 0;
+    player->clipsRight[8].w = 209;
+    player->clipsRight[8].h = 326;
+
+    player->clipsRight[9].x = 1881;
+    player->clipsRight[9].y = 0;
+    player->clipsRight[9].w = 209;
+    player->clipsRight[9].h = 326;
+
+    player->clipsRight[10].x = 2090;
+    player->clipsRight[10].y = 0;
+    player->clipsRight[10].w = 209;
+    player->clipsRight[10].h = 326;
+
+    player->clipsRight[11].x = 2299;
+    player->clipsRight[11].y = 0;
+    player->clipsRight[11].w = 209;
+    player->clipsRight[11].h = 326;
+
+    player->clipsRight[12].x = 2508;
+    player->clipsRight[12].y = 0;
+    player->clipsRight[12].w = 209;
+    player->clipsRight[12].h = 326;
+
+    player->clipsRight[13].x = 2717;
+    player->clipsRight[13].y = 0;
+    player->clipsRight[13].w = 209;
+    player->clipsRight[13].h = 326;
+
+    player->clipsRight[14].x = 2926;
+    player->clipsRight[14].y = 0;
+    player->clipsRight[14].w = 209;
+    player->clipsRight[14].h = 326;
+
+    player->clipsRight[15].x = 3135;
+    player->clipsRight[15].y = 0;
+    player->clipsRight[15].w = 209;
+    player->clipsRight[15].h = 326;
+
+    player->clipsRight[16].x = 3344;
+    player->clipsRight[16].y = 0;
+    player->clipsRight[16].w = 209;
+    player->clipsRight[16].h = 326;
+
+    player->clipsRight[17].x = 3553;
+    player->clipsRight[17].y = 0;
+    player->clipsRight[17].w = 209;
+    player->clipsRight[17].h = 326;
+
+    player->clipsRight[18].x = 3762;
+    player->clipsRight[18].y = 0;
+    player->clipsRight[18].w = 209;
+    player->clipsRight[18].h = 326;
+
+    player->clipsRight[19].x = 3971;
+    player->clipsRight[19].y = 0;
+    player->clipsRight[19].w = 209;
+    player->clipsRight[19].h = 326;
+
 
     //On coupe la feuille de sprite à gauche 
     player->clipsLeft[0].x = 0;
-    player->clipsLeft[0].y = 145;
-    player->clipsLeft[0].w = 35;
-    player->clipsLeft[0].h = 145;
+    player->clipsLeft[0].y = 326;
+    player->clipsLeft[0].w = 209;
+    player->clipsLeft[0].h = 326;
 
-    player->clipsLeft[1].x = 41;
-    player->clipsLeft[1].y = 145;
-    player->clipsLeft[1].w = 90 - 41;
-    player->clipsLeft[1].h = 283 - 145;
+    player->clipsLeft[1].x = 209;
+    player->clipsLeft[1].y = 326;
+    player->clipsLeft[1].w = 209;
+    player->clipsLeft[1].h = 326;
 
-    player->clipsLeft[2].x = 100;
-    player->clipsLeft[2].y = 145;
-    player->clipsLeft[2].w = 100 - 164;
-    player->clipsLeft[2].h = 145;
+    player->clipsLeft[2].x = 418;
+    player->clipsLeft[2].y = 326;
+    player->clipsLeft[2].w = 209;
+    player->clipsLeft[2].h = 326;
 
-    player->clipsLeft[3].x = 180;
-    player->clipsLeft[3].y = 145;
-    player->clipsLeft[3].w = 221 - 180;
-    player->clipsLeft[3].h = 145;
+    player->clipsLeft[3].x = 627;
+    player->clipsLeft[3].y = 326;
+    player->clipsLeft[3].w = 209;
+    player->clipsLeft[3].h = 326;
 
-    player->clipsLeft[4].x = 229;
-    player->clipsLeft[4].y = 145;
-    player->clipsLeft[4].w = 306 - 229;
-    player->clipsLeft[4].h = 145;
+    player->clipsLeft[4].x = 836;
+    player->clipsLeft[4].y = 326;
+    player->clipsLeft[4].w = 209;
+    player->clipsLeft[4].h = 326;
+
+    player->clipsLeft[5].x = 1045;
+    player->clipsLeft[5].y = 326;
+    player->clipsLeft[5].w = 209;
+    player->clipsLeft[5].h = 326;
+
+    player->clipsLeft[6].x = 1254;
+    player->clipsLeft[6].y = 326;
+    player->clipsLeft[6].w = 209;
+    player->clipsLeft[6].h = 326;
+
+    player->clipsLeft[7].x = 1463;
+    player->clipsLeft[7].y = 326;
+    player->clipsLeft[7].w = 209;
+    player->clipsLeft[7].h = 326;
+
+    player->clipsLeft[8].x = 1672;
+    player->clipsLeft[8].y = 326;
+    player->clipsLeft[8].w = 209;
+    player->clipsLeft[8].h = 326;
+
+    player->clipsLeft[9].x = 1881;
+    player->clipsLeft[9].y = 326;
+    player->clipsLeft[9].w = 209;
+    player->clipsLeft[9].h = 326;
+
+    player->clipsLeft[10].x = 2090;
+    player->clipsLeft[10].y = 326;
+    player->clipsLeft[10].w = 209;
+    player->clipsLeft[10].h = 326;
+
+    player->clipsLeft[11].x = 2299;
+    player->clipsLeft[11].y = 326;
+    player->clipsLeft[11].w = 209;
+    player->clipsLeft[11].h = 326;
+
+    player->clipsLeft[12].x = 2508;
+    player->clipsLeft[12].y = 326;
+    player->clipsLeft[12].w = 209;
+    player->clipsLeft[12].h = 326;
+
+    player->clipsLeft[13].x = 2717;
+    player->clipsLeft[13].y = 326;
+    player->clipsLeft[13].w = 209;
+    player->clipsLeft[13].h = 326;
+
+    player->clipsLeft[14].x = 2926;
+    player->clipsLeft[14].y = 326;
+    player->clipsLeft[14].w = 209;
+    player->clipsLeft[14].h = 326;
+
+    player->clipsLeft[15].x = 3135;
+    player->clipsLeft[15].y = 326;
+    player->clipsLeft[15].w = 209;
+    player->clipsLeft[15].h = 326;
+
+    player->clipsLeft[16].x = 3344;
+    player->clipsLeft[16].y = 326;
+    player->clipsLeft[16].w = 209;
+    player->clipsLeft[16].h = 326;
+
+    player->clipsLeft[17].x = 3553;
+    player->clipsLeft[17].y = 326;
+    player->clipsLeft[17].w = 209;
+    player->clipsLeft[17].h = 326;
+
+    player->clipsLeft[18].x = 3762;
+    player->clipsLeft[18].y = 326;
+    player->clipsLeft[18].w = 209;
+    player->clipsLeft[18].h = 326;
+
+    player->clipsLeft[19].x = 3971;
+    player->clipsLeft[19].y = 326;
+    player->clipsLeft[19].w = 209;
+    player->clipsLeft[19].h = 326;
+
 }
 /*
 //initialiser les parametres de mouvement / animation
@@ -82,12 +234,12 @@ void show(hero *player, SDL_Surface *screen){
     //If player is moving left
     if(player->orientation < 0)
     {
-        //Set the animation to left
+        //Set the animation to Right
         player->status = 0;
         //Move to the next frame in the animation
         player->frame++;
     }
-    //If player is moving right
+    //If player is moving Left
     else if(player->orientation > 0)
     {
         //Set the animation to right
@@ -104,7 +256,7 @@ void show(hero *player, SDL_Surface *screen){
     }
 
     //Loop the animation
-    if(player->frame >= 4)
+    if(player->frame >= 19)
     {
         player->frame = 0;
     }

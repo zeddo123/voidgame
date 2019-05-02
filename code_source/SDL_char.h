@@ -9,8 +9,8 @@ struct hero{
 	SDL_Rect position;
 	SDL_Rect positionRelative;
 
-	SDL_Rect clipsRight[4];
-	SDL_Rect clipsLeft[4];
+	SDL_Rect clipsRight[20];
+	SDL_Rect clipsLeft[20];
 	
 	int speed;
 	int frame;
