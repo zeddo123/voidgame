@@ -18,11 +18,11 @@ void playMultiplayer(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	enigme firstEnigme_player1, secondEnigme_player1;
 	enigme firstEnigme_player2, secondEnigme_player2;
 
-	SDL_Rect camera1 = {0, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT};
-	SDL_Rect split1 = {0, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT};
+	SDL_Rect camera1 = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT / 2};
+	SDL_Rect split1 = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT / 2};
 	
-	SDL_Rect camera2 = {SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT};
-	SDL_Rect split2 = {SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT};
+	SDL_Rect camera2 = {0, SCREEN_HEIGHT / 2, SCREEN_WIDTH, SCREEN_HEIGHT / 2};
+	SDL_Rect split2 = {0, SCREEN_HEIGHT / 2, SCREEN_WIDTH, SCREEN_HEIGHT / 2};
 	
 	TTF_Font *font = NULL;
 	SDL_Color fontColor = {63, 13, 58};
@@ -154,8 +154,8 @@ void playMultiplayer(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 		
 
 
-		camera1 = moveCamera(camera1,player1,game_surface); // gestion de la camera (scrolling)
-		camera2 = moveCamera(camera2,player2,game_surface); // gestion de la camera (scrolling)
+		camera1 = moveCameraPlayer1(camera1,player1,game_surface); // gestion de la camera (scrolling)
+		camera2 = moveCameraPlayer2(camera2,player2,game_surface); // gestion de la camera (scrolling)
 
 		vie_player1 = gestionVie(player1, villain, vie_player1, &oldTimeDamage); // gestion de points de vie
 		vie_player2 = gestionVie(player2, villain, vie_player2, &oldTimeDamage); // gestion de points de vie

@@ -7,6 +7,8 @@
 #include "SDL_enigme.h"
 #include "SDL_Game.h"
 
+menu initSelectMenu();
+
 menu initMainMenu();
 
 menu initPlayMenu(menu main);

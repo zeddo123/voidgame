@@ -115,7 +115,7 @@ void openPlayMenu(char *ptr_job, Mix_Chunk *effect, menu playMenu, SDL_Surface *
 				switch(event.key.keysym.sym){
 					case SDLK_RETURN:
 						if(playmenu_key == 0){
-							play(&in_menu,&job,screen);
+							playMultiplayer(&in_menu,&job,screen);
 							in_menu = 1;
 						}else if(playmenu_key == 1){
 							next = 0;
@@ -657,4 +657,79 @@ void settingsEventHandler(int *job, int *oldVolume, SDL_Rect fullBar, menu setti
 			}
 			break;
 	}
+}
+
+hero selectCharacter(SDL_Surface* screen){
+	menu selectMenu = initSelectMenu();
+	int job = 1;
+	int menu_key = -1;
+	int selected = -1;
+	Uint32 oldTimeKey;
+
+	while(job && selected == -1){
+		selected = eventSelect(selectMenu,&job,&menu_key,&oldTimeKey);
+		menuBlitter(screen,selectMenu,menu_key,0);
+	}
+	if(selected == 0){
+		
+	}else if(selected == 1){
+
+	}else{
+
+	}
+}
+
+int eventSelect(menu m, int *job, int *ptr_menuKey, Uint32 *oldTimeKey){
+	SDL_Event event;
+	int dx_cursor,dy_cursor;
+	SDL_PollEvent(&event);
+
+	switch(event.type){
+		case SDL_QUIT:
+			*job = 0;
+			break;
+		case SDL_KEYDOWN:
+			switch(event.key.keysym.sym){
+				case SDLK_RETURN:
+					return *ptr_menuKey;
+					break;
+				case SDLK_ESCAPE:
+					*job = 1;
+					break;
+				case SDLK_DOWN:
+					*ptr_menuKey = moveInMenuByKeyboard(*ptr_menuKey,1,2,0,oldTimeKey);
+					break;
+				case SDLK_UP:
+					*ptr_menuKey = moveInMenuByKeyboard(*ptr_menuKey,-1,0,2,oldTimeKey);
+					break;
+			}
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+			switch(event.button.button){
+				case SDL_BUTTON_LEFT:
+
+					SDL_GetMouseState(&dx_cursor,&dy_cursor);
+					if(dx_cursor >= m.b1.position.x && dx_cursor <= m.b1.position.w + m.b1.position.x){
+
+						// PLAY MENU
+						if(dy_cursor >= m.b1.position.y && dy_cursor <= m.b1.position.h + m.b1.position.y){
+							return 0;
+
+						}
+						//open the settings
+						if (dy_cursor >= m.b2.position.y && dy_cursor <= m.b2.position.h + m.b2.position.y){
+							return 1;
+						}
+						//quit the game
+						if (dy_cursor >= m.b3.position.y && dy_cursor <= m.b3.position.h + m.b3.position.y){
+							return 2;
+						}
+
+					}
+					break;
+
+			}
+			break;
+	}
+	return -1;
 }

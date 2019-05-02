@@ -38,4 +38,9 @@ void settingsEventHandler(int *job, int *oldVolume, SDL_Rect fullBar, menu setti
 void openSettingMenu(int* oldVolume, SDL_Surface* screen, menu settings);
 
 void setVolume(int volumeValue);
+
+hero selectCharacter(SDL_Surface* screen);
+
+int eventSelect(menu m, int *job, int *ptr_menuKey, Uint32 *oldTimeKey);
+
 #endif

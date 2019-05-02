@@ -29,6 +29,7 @@ struct Menu{
 
 	
 	SDL_Surface **background;
+	SDL_Rect backgroundPosition;
 };
 
 typedef struct Menu menu;

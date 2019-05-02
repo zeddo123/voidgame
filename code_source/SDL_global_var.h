@@ -32,6 +32,18 @@
 
 	#define LOADGAME_B_STATIC "../src/design/final menu/loadgame_button_0.png"
 	#define LOADGAME_B_OVER "../src/design/final menu/loadgame_button_1.png"
+	
+	#define SELECT1_B_STATIC " "
+	#define SELECT1_B_OVER " "
+	
+	#define SELECT2_B_STATIC " "
+	#define SELECT2_B_OVER " "
+	
+	#define SELECT3_B_STATIC " "
+	#define SELECT3_B_OVER " "
+	
+	#define SELECT_MENU " "
+	
 
 #endif
 
