@@ -47,7 +47,7 @@ SDL_Rect moveCameraPlayer1(SDL_Rect camera, hero player, SDL_Surface *game){
 }
 
 SDL_Rect moveCameraPlayer2(SDL_Rect camera, hero player, SDL_Surface *game){
-	camera.x = (player.position.x + player.position.w / 2) - (SCREEN_WIDTH / 2 + SCREEN_WIDTH / 4);
+	camera.x = (player.position.x + player.position.w / 2) - (SCREEN_WIDTH / 4);
 	camera.y = (player.position.y + player.position.h / 2) - SCREEN_HEIGHT / 2;
 	
 	if(camera.x < (0))
@@ -76,7 +76,7 @@ SDL_Rect makeItRelative(SDL_Rect positionEntit, SDL_Rect camera){
 
 SDL_Rect makeItRelativePlayer2(SDL_Rect positionEntit, SDL_Rect camera){
 	SDL_Rect positionRelative;
-	positionRelative.x = positionEntit.x - camera.x;
+	positionRelative.x = positionEntit.x - camera.x + SCREEN_WIDTH / 2;
 	positionRelative.y = positionEntit.y - camera.y;
 
 	return positionRelative;
