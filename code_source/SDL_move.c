@@ -56,7 +56,7 @@ void moveBetweenTwo(hero *entit, int axe, int a, int b, Uint32 *oldTime){
 	}
 }
 
-void moveBetweenTwoRandom(hero *entit, int axe, int a, int b, Uint32 *oldTime, int *randpoint){
+void moveBetweenTwoRandom(ennemi *entit, int axe, int a, int b, Uint32 *oldTime, int *randpoint){
 	Uint32 currentTime = SDL_GetTicks();
 
 	// random between A and B

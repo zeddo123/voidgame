@@ -1,5 +1,5 @@
-game:SDL_Game.o SDL_animation.o SDL_free.o SDL_gestion.o SDL_arduino.o SDL_Game_Funcs.o SDL_Init.o SDL_move.o SDL_enigme.o SDL_collision.o SDL_scrolling.o
-	gcc  SDL_animation.o SDL_gestion.o SDL_scrolling.o SDL_enigme.o SDL_arduino.o SDL_collision.o SDL_Game.o SDL_Game_Funcs.o SDL_Init.o SDL_move.o SDL_free.o -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf -g -o game
+game:AI.o SDL_Game.o SDL_animation.o SDL_free.o SDL_gestion.o SDL_arduino.o SDL_Game_Funcs.o SDL_Init.o SDL_move.o SDL_enigme.o SDL_collision.o SDL_scrolling.o
+	gcc  AI.o SDL_animation.o SDL_gestion.o SDL_scrolling.o SDL_enigme.o SDL_arduino.o SDL_collision.o SDL_Game.o SDL_Game_Funcs.o SDL_Init.o SDL_move.o SDL_free.o -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf -g -lm -o game
 
 
 SDL_Game.o:SDL_Game.c SDL_Game.h
@@ -34,6 +34,9 @@ SDL_animation.o:SDL_animation.h SDL_animation.c
 
 SDL_arduino.o:SDL_arduino.h SDL_arduino.c
 	gcc -c SDL_arduino.c -lSDL -g
+
+AI.o:AI.h AI.c
+	gcc -c AI.c -lSDL -lm -ldl -g 	
 
 clean:
 	rm *.o

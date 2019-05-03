@@ -5,6 +5,8 @@
 #include "SDL_animation.h"
 #include "SDL_collision.h"
 #include "SDL_arduino.h"
+#include "AI.h"
+#include "ennemie.h"
 
 /*_______________________________MAIN MENU EVENT HANDLER_________________________________*/
 
@@ -198,7 +200,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 
 	SDL_Rect positionMouse;
 	Uint32 oldTimeEntite = 0, oldTimeDamage = 0;
-	
+	SDL_Rect pos_e;
 	hero villain, player;
 	
 	object key, key2;
@@ -212,13 +214,13 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	
 	char bufferVie[5],bufferKey[10];
 	char game = 1;
-	
+	ennemi E;
 	health vie;
 	
-	int xKEY = -1, xKEY2 = -1;
+	int xKEY = -1, xKEY2 = -1,follow=0,wait=1,attack=0;
 	keys number_key;
-	
-	int randpoint = -1;
+	int animation2=0;
+	int randpoint = -1,f2=0;
 	
 	int quit, FRAMES_PER_SECOND = 120, paused, started, startTicks , pausedTicks;
 	
@@ -289,7 +291,8 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 
 		moveToMouseDynamic(&player,positionMouse.x,positionMouse.y,calque_surface);
 
-		moveBetweenTwoRandom(&villain,1,5120,5320,&oldTimeEntite,&randpoint);
+		transitionn(&E,player,camera,pos_e,&vie,screen,&f2,&animation2,&follow,&wait,&attack);
+		//moveBetweenTwoRandom(&villain,1,5120,5320,&oldTimeEntite,&randpoint);
 		
 
 
