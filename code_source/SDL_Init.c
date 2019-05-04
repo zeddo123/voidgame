@@ -1,5 +1,52 @@
 #include "SDL_Init.h"
 
+menu initSelectMenu(){
+	menu m;
+	
+	m.b1.image = calloc(2,sizeof(SDL_Surface*));
+	m.b2.image = calloc(2,sizeof(SDL_Surface*));
+	m.b3.image = calloc(2,sizeof(SDL_Surface*));
+
+	m.b1.image[1] = loadImage(SELECT1_B_STATIC);
+	m.b1.image[0] = loadImage(SELECT1_B_OVER);
+
+	//load the setting botton
+	m.b2.image[1] = loadImage(SELECT2_B_STATIC);
+	m.b2.image[0] = loadImage(SELECT2_B_OVER);
+
+	//load the quit botton
+	m.b3.image[1] = loadImage(SELECT3_B_STATIC);
+	m.b3.image[0] = loadImage(SELECT3_B_OVER);
+
+	displayFormatFrame(m.b1.image,2);
+	displayFormatFrame(m.b2.image,2);
+	displayFormatFrame(m.b3.image,2);
+
+	m.b1.position = initPosition(m.b1.position,150 + m.menuLogo->w/ 2 - m.b1.image[0]->w / 2,PLAY_FROM,m.b1.image[0]->w,m.b1.image[0]->h);
+
+	m.b3.position = initPosition(m.b3.position,150 + m.menuLogo->w/ 2 - m.b3.image[0]->w / 2,QUIT_FROM,m.b3.image[0]->w,m.b3.image[0]->h);
+
+	m.b2.position = initPosition(m.b2.position,150 + m.menuLogo->w/ 2 - m.b2.image[0]->w / 2,SET_FROM,m.b2.image[0]->w,m.b2.image[0]->h);
+
+	m.over_b1 = 1;
+	m.over_b2 = 1;
+	m.over_b3 = 1;
+	m.over_b4 = 1;
+
+	m.background = NULL;
+	m.background = calloc(19,sizeof(SDL_Surface*));
+
+	if(m.background == NULL){
+		fprintf(stderr, "callocError\n");
+		exit(0);
+	}
+
+	loadFrames(m.background,19,SELECT_MENU);
+	displayFormatFrame(m.background,19);
+
+	return m;
+}
+
 menu initMainMenu(){
 	TTF_Font *fontGen = NULL;
 	SDL_Color fontColor = {255,255,255};
@@ -274,6 +321,10 @@ enigme loadTextForRiddle(enigme e){
 	TTF_Font *font = NULL;
 	SDL_Color fontColor = {63, 13, 58};
 
+	if(TTF_Init() == -1){
+		exit(0);
+	}
+	
 	font = TTF_OpenFont("../src/font/Baron Neue.otf",36);
 
 	e.Question = TTF_RenderText_Blended(font,e.question,fontColor);

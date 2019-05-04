@@ -5,8 +5,12 @@
 #include "SDL_animation.h"
 #include "SDL_collision.h"
 #include "SDL_arduino.h"
+<<<<<<< HEAD
 #include "AI.h"
 #include "ennemie.h"
+=======
+#include "SDL_multiplayer.h"
+>>>>>>> refs/remotes/origin/master
 
 /*_______________________________MAIN MENU EVENT HANDLER_________________________________*/
 
@@ -116,7 +120,7 @@ void openPlayMenu(char *ptr_job, Mix_Chunk *effect, menu playMenu, SDL_Surface *
 				switch(event.key.keysym.sym){
 					case SDLK_RETURN:
 						if(playmenu_key == 0){
-							play(&in_menu,&job,screen);
+							playMultiplayer(&in_menu,&job,screen);
 							in_menu = 1;
 						}else if(playmenu_key == 1){
 							next = 0;
@@ -247,10 +251,10 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	
 	//init position and images
 	set_clips(&villain);
-	villain = initHero(villain,"../src/characters/Rayen_left_right.png",5320,7427);
+	villain = initHero(villain,"../Sprites/Sprites Rayen/sprite_aio_half.png",5320,7427);
 
 	set_clips(&player);
-	player = initHero(player,"../src/characters/Rayen_left_right.png",2260,7645);
+	player = initHero(player,"../Sprites/Sprites Rayen/sprite_aio_half.png",2260,7645);
 
 	key = initObject(key,"../src/design/bazar/key.png",5321,7427);
 
@@ -291,8 +295,12 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 
 		moveToMouseDynamic(&player,positionMouse.x,positionMouse.y,calque_surface);
 
+<<<<<<< HEAD
 		transitionn(&E,player,camera,pos_e,&vie,screen,&f2,&animation2,&follow,&wait,&attack);
 		//moveBetweenTwoRandom(&villain,1,5120,5320,&oldTimeEntite,&randpoint);
+=======
+		moveBetweenTwoRandom(&villain,1,4700,5320,&oldTimeEntite,&randpoint);
+>>>>>>> refs/remotes/origin/master
 		
 
 
@@ -345,7 +353,12 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 		SDL_BlitSurface(number_key.font_key,NULL,screen,&number_key.position);
 
 		SDL_Flip(screen);
-		
+		if(player.position.x > 5311 && player.position.x < 5511 && player.position.y > 7002 && player.position.y < 7323){
+			if(number_key.keys >= 1){
+				SDL_Delay(500);
+				moveToMouse(&player,2089,3826);
+			}
+		}
         while( get_ticks(&started,&paused,&startTicks,&pausedTicks) < (1000 / FRAMES_PER_SECOND)){
 			SDL_Delay( ( 1000 / FRAMES_PER_SECOND) - get_ticks(&started, &paused, &startTicks, &pausedTicks));
         }
@@ -654,4 +667,79 @@ void settingsEventHandler(int *job, int *oldVolume, SDL_Rect fullBar, menu setti
 			}
 			break;
 	}
+}
+
+hero selectCharacter(SDL_Surface* screen){
+	menu selectMenu = initSelectMenu();
+	int job = 1;
+	int menu_key = -1;
+	int selected = -1;
+	Uint32 oldTimeKey;
+
+	while(job && selected == -1){
+		selected = eventSelect(selectMenu,&job,&menu_key,&oldTimeKey);
+		menuBlitter(screen,selectMenu,menu_key,0);
+	}
+	if(selected == 0){
+		
+	}else if(selected == 1){
+
+	}else{
+
+	}
+}
+
+int eventSelect(menu m, int *job, int *ptr_menuKey, Uint32 *oldTimeKey){
+	SDL_Event event;
+	int dx_cursor,dy_cursor;
+	SDL_PollEvent(&event);
+
+	switch(event.type){
+		case SDL_QUIT:
+			*job = 0;
+			break;
+		case SDL_KEYDOWN:
+			switch(event.key.keysym.sym){
+				case SDLK_RETURN:
+					return *ptr_menuKey;
+					break;
+				case SDLK_ESCAPE:
+					*job = 1;
+					break;
+				case SDLK_DOWN:
+					*ptr_menuKey = moveInMenuByKeyboard(*ptr_menuKey,1,2,0,oldTimeKey);
+					break;
+				case SDLK_UP:
+					*ptr_menuKey = moveInMenuByKeyboard(*ptr_menuKey,-1,0,2,oldTimeKey);
+					break;
+			}
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+			switch(event.button.button){
+				case SDL_BUTTON_LEFT:
+
+					SDL_GetMouseState(&dx_cursor,&dy_cursor);
+					if(dx_cursor >= m.b1.position.x && dx_cursor <= m.b1.position.w + m.b1.position.x){
+
+						// PLAY MENU
+						if(dy_cursor >= m.b1.position.y && dy_cursor <= m.b1.position.h + m.b1.position.y){
+							return 0;
+
+						}
+						//open the settings
+						if (dy_cursor >= m.b2.position.y && dy_cursor <= m.b2.position.h + m.b2.position.y){
+							return 1;
+						}
+						//quit the game
+						if (dy_cursor >= m.b3.position.y && dy_cursor <= m.b3.position.h + m.b3.position.y){
+							return 2;
+						}
+
+					}
+					break;
+
+			}
+			break;
+	}
+	return -1;
 }

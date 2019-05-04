@@ -1,8 +1,7 @@
 #include "SDL_arduino.h"
 
 int eventHandlerArduino(hero *player, SDL_Surface *calque_game){
-	char event = readFromArd();
-	printf("got -> %d\n",event);
+	int event = readFromArd();
 	player->orientation = 0;
 	switch(event){
 		case 1:
@@ -62,22 +61,22 @@ void turnOnOff(int e1, int e2){
 	}
 }
 
-char readFromArd(){
+int readFromArd(){
 	char path[] = "/dev/ttyACM0";
 	FILE* f;
-	char c;
+	int c;
 
 	f = fopen(path,"r");
 	if(f == NULL){
 		return -1;
 	}
-	fscanf(f,"%d",c);
+	fscanf(f,"%d",&c);
 	fclose(f);
 	return c;
 
 }
 
-char writeToArd(int x){
+int writeToArd(int x){
 	char path[] = "/dev/ttyACM0";
 	FILE* f;
 

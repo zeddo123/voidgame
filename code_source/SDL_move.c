@@ -66,7 +66,7 @@ void moveBetweenTwoRandom(ennemi *entit, int axe, int a, int b, Uint32 *oldTime,
 
 	}	
 
-	if(currentTime - (*oldTime) > 600){
+	if(currentTime - (*oldTime) > 200){
 		
 		if(entit->position.x >= *randpoint){
         	
