@@ -326,30 +326,33 @@ enigme loadTextForRiddle(enigme e){
 	}
 	
 	font = TTF_OpenFont("../src/font/Baron Neue.otf",36);
+	if(font == NULL){
+		exit(1);
+	}
 
 	e.Question = TTF_RenderText_Blended(font,e.question,fontColor);
-	if(e.Question == NULL || font == NULL){
+	if(e.Question == NULL){
 		printf("unable to TTF_RenderText_Solid\n");
 	}
 
 
 	e.Answer1 = TTF_RenderText_Blended(font,e.answer1,fontColor);
-	if(e.Answer1 == NULL || font == NULL){
+	if(e.Answer1 == NULL){
 		printf("unable to TTF_RenderText_Solid\n");
 	}
 
 	e.Answer2 = TTF_RenderText_Blended(font,e.answer2,fontColor);
-	if(e.Answer2 == NULL || font == NULL){
+	if(e.Answer2 == NULL){
 		printf("unable to TTF_RenderText_Solid\n");
 	}
 
 	e.Answer3 = TTF_RenderText_Blended(font,e.answer3,fontColor);
-	if(e.Answer3 == NULL || font == NULL){
+	if(e.Answer3 == NULL){
 		printf("unable to TTF_RenderText_Solid\n");
 	}
 
 	e.Answer4 = TTF_RenderText_Blended(font,e.answer4,fontColor);
-	if(e.Answer4 == NULL || font == NULL){
+	if(e.Answer4 == NULL){
 		printf("unable to TTF_RenderText_Solid\n");
 	}
 
