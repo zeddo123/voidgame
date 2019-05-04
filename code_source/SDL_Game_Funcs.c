@@ -199,7 +199,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	SDL_Surface *calque_surface = SDL_DisplayFormat(IMG_Load("../src/design/map/map_back_white.png"));
 
 	SDL_Rect positionMouse;
-	Uint32 oldTimeEntite = 0, oldTimeDamageVillain = 0, oldTimeDamageProjectile = 0;
+	Uint32 oldTimeEntite = 0, oldTimeDamageVillain = 0, oldTimeDamageProjectile = 0, animationTime = 0;
 	
 	hero villain, player;
 
@@ -224,7 +224,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	
 	int randpoint = -1;
 	
-	int quit, FRAMES_PER_SECOND = 120, paused, started, startTicks , pausedTicks;
+	int quit, FRAMES_PER_SECOND = 60, paused, started, startTicks , pausedTicks;
 	
 	SDL_Event animEvent;
 
@@ -290,7 +290,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
         //Mise en route du timer
         start(&started,&paused,&startTicks);
 		if(eventHandlerArduino(&player,calque_surface) == 0)
-			eventHandler(&player,&game,ptr_in_menu,ptr_job,calque_surface,camera,&positionMouse);
+			eventHandler(&player,&game,ptr_in_menu,ptr_job,calque_surface,camera,&positionMouse,&animationTime);
 
 		moveToMouseDynamic(&player,positionMouse.x,positionMouse.y,calque_surface);
 
@@ -405,11 +405,16 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 
 /*_______________________________GAME EVENT HANDLER_________________________________*/
 
-void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job, SDL_Surface *calque_game, SDL_Rect camera, SDL_Rect *positionMouse){
+void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job, SDL_Surface *calque_game, SDL_Rect camera, SDL_Rect *positionMouse, Uint32 *animationTime){
 	SDL_Event event;
 	int dx_cursor_in_game,dy_cursor_in_game;
 	
-	player->orientation = 0;
+	Uint32 currentTime = SDL_GetTicks();
+    if(currentTime - (*animationTime) > 300){
+		player->orientation = 0;
+		*animationTime = currentTime;
+	}
+
 	SDL_PollEvent(&event);
 	switch(event.type){
 		case SDL_QUIT:

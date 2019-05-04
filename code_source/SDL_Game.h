@@ -16,7 +16,7 @@
 #include "SDL_global_var.h"
 
 void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job, 
-					SDL_Surface *calque_game, SDL_Rect camera, SDL_Rect *positionMouse);
+					SDL_Surface *calque_game, SDL_Rect camera, SDL_Rect *positionMouse, Uint32 *animationTime);
 
 
 void menuEventHandler(menu *mainMenu, menu playMenu, menu settingMenu, char *ptr_job, int *ptr_menuFrame, int *ptr_menuKey, char *ptr_in_menu, Mix_Chunk *effect, Uint32 *oldTimeKey, SDL_Surface *screen, int *oldVolume);
