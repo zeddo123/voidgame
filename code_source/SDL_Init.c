@@ -292,17 +292,29 @@ SDL_Rect initPosition(SDL_Rect position, int x, int y, int w, int h){
 
 hero initHero(hero h, char image_name[], int x, int y){
 	h.image = NULL;
-	h.image = IMG_Load(image_name);
-	if(h.image == NULL){
-		fprintf(stderr, "%s\n",SDL_GetError());
-	}
-
+	h.image = loadImage(image_name);
+	set_clips(&h);
 	h.position = initPosition(h.position,x,y,h.clipsRight[0].w,h.clipsRight[0].h);
 	h.orientation = 0;
 	h.frame = 0;
 	h.status = 1;
 
 	return h;
+}
+
+ennemi initEnnemie(ennemi e, char image_name[], int x, int y){
+	e.image = NULL;
+	e.image = loadImage(image_name);
+	
+	set_clipsEnemie(&e);
+	
+	e.position = initPosition(e.position,x,y,e.clipsRight[0].w,e.clipsRight[0].h);
+	
+	e.orientation = 0;
+	e.frame = 0;
+	e.status = 1;
+
+	return e;
 }
 
 object initObject(object o, char image_name[], int x, int y){

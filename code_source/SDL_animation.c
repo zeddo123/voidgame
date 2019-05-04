@@ -206,18 +206,212 @@ void set_clips(hero *player){
     player->clipsLeft[19].y = 326 / 2;
     player->clipsLeft[19].w = 209 / 2;
     player->clipsLeft[19].h = 326 / 2;
-
 }
-/*
-//initialiser les parametres de mouvement / animation
-void build(hero *player){
-    player->pos=0;
-    player->speed=0;
-    player->frame=0;
-    player->status=1;
-}
-*/
 
+void set_clipsEnemie(ennemi *e){
+    //On coupe la feuille de sprite à droite 
+    e->clipsRight[0].x = 0;
+    e->clipsRight[0].y = 0;
+    e->clipsRight[0].w = 209 / 2;
+    e->clipsRight[0].h = 326 / 2;
+
+    e->clipsRight[1].x = 209 / 2;
+    e->clipsRight[1].y = 0;
+    e->clipsRight[1].w = 209 / 2;
+    e->clipsRight[1].h = 326 / 2;
+
+    e->clipsRight[2].x = 418 / 2;
+    e->clipsRight[2].y = 0;
+    e->clipsRight[2].w = 209 / 2;
+    e->clipsRight[2].h = 326 / 2;
+
+    e->clipsRight[3].x = 627 / 2;
+    e->clipsRight[3].y = 0 / 2;
+    e->clipsRight[3].w = 209 / 2;
+    e->clipsRight[3].h = 326 / 2;
+
+    e->clipsRight[4].x = 836 / 2;
+    e->clipsRight[4].y = 0 / 2;
+    e->clipsRight[4].w = 209 / 2;
+    e->clipsRight[4].h = 326 / 2;
+
+    e->clipsRight[5].x = 1045 / 2;
+    e->clipsRight[5].y = 0 / 2;
+    e->clipsRight[5].w = 209 / 2;
+    e->clipsRight[5].h = 326 / 2;
+
+    e->clipsRight[6].x = 1254 / 2;
+    e->clipsRight[6].y = 0 / 2;
+    e->clipsRight[6].w = 209 / 2;
+    e->clipsRight[6].h = 326 / 2;
+
+    e->clipsRight[7].x = 1463 / 2;
+    e->clipsRight[7].y = 0 / 2;
+    e->clipsRight[7].w = 209 / 2;
+    e->clipsRight[7].h = 326 / 2;
+
+    e->clipsRight[8].x = 1672 / 2;
+    e->clipsRight[8].y = 0 / 2;
+    e->clipsRight[8].w = 209 / 2;
+    e->clipsRight[8].h = 326 / 2;
+
+    e->clipsRight[9].x = 1881 / 2;
+    e->clipsRight[9].y = 0 / 2;
+    e->clipsRight[9].w = 209 / 2;
+    e->clipsRight[9].h = 326 / 2;
+
+    e->clipsRight[10].x = 2090 / 2;
+    e->clipsRight[10].y = 0 / 2;
+    e->clipsRight[10].w = 209 / 2;
+    e->clipsRight[10].h = 326 / 2;
+
+    e->clipsRight[11].x = 2299 / 2;
+    e->clipsRight[11].y = 0 / 2;
+    e->clipsRight[11].w = 209 / 2;
+    e->clipsRight[11].h = 326 / 2;
+
+    e->clipsRight[12].x = 2508 / 2;
+    e->clipsRight[12].y = 0 / 2;
+    e->clipsRight[12].w = 209 / 2;
+    e->clipsRight[12].h = 326 / 2;
+
+    e->clipsRight[13].x = 2717 / 2;
+    e->clipsRight[13].y = 0 / 2;
+    e->clipsRight[13].w = 209 / 2;
+    e->clipsRight[13].h = 326 / 2;
+
+    e->clipsRight[14].x = 2926 / 2;
+    e->clipsRight[14].y = 0 / 2;
+    e->clipsRight[14].w = 209 / 2;
+    e->clipsRight[14].h = 326 / 2;
+
+    e->clipsRight[15].x = 3135 / 2;
+    e->clipsRight[15].y = 0 / 2;
+    e->clipsRight[15].w = 209 / 2;
+    e->clipsRight[15].h = 326 / 2;
+
+    e->clipsRight[16].x = 3344 / 2;
+    e->clipsRight[16].y = 0 / 2;
+    e->clipsRight[16].w = 209 / 2;
+    e->clipsRight[16].h = 326 / 2;
+
+    e->clipsRight[17].x = 3553 / 2;
+    e->clipsRight[17].y = 0 / 2;
+    e->clipsRight[17].w = 209 / 2;
+    e->clipsRight[17].h = 326 / 2;
+
+    e->clipsRight[18].x = 3762 / 2;
+    e->clipsRight[18].y = 0 / 2;
+    e->clipsRight[18].w = 209 / 2;
+    e->clipsRight[18].h = 326 / 2;
+
+    e->clipsRight[19].x = 3971 / 2;
+    e->clipsRight[19].y = 0 / 2;
+    e->clipsRight[19].w = 209 / 2;
+    e->clipsRight[19].h = 326 / 2;
+
+
+    //On coupe la feuille de sprite à gauche 
+    e->clipsLeft[0].x = 0 / 2;
+    e->clipsLeft[0].y = 326 / 2;
+    e->clipsLeft[0].w = 209 / 2;
+    e->clipsLeft[0].h = 326 / 2;
+
+    e->clipsLeft[1].x = 209 / 2;
+    e->clipsLeft[1].y = 326 / 2;
+    e->clipsLeft[1].w = 209 / 2;
+    e->clipsLeft[1].h = 326 / 2;
+
+    e->clipsLeft[2].x = 418 / 2;
+    e->clipsLeft[2].y = 326 / 2;
+    e->clipsLeft[2].w = 209 / 2;
+    e->clipsLeft[2].h = 326 / 2;
+
+    e->clipsLeft[3].x = 627 / 2;
+    e->clipsLeft[3].y = 326 / 2;
+    e->clipsLeft[3].w = 209 / 2;
+    e->clipsLeft[3].h = 326 / 2;
+
+    e->clipsLeft[4].x = 836 / 2;
+    e->clipsLeft[4].y = 326 / 2;
+    e->clipsLeft[4].w = 209 / 2;
+    e->clipsLeft[4].h = 326 / 2;
+
+    e->clipsLeft[5].x = 1045 / 2;
+    e->clipsLeft[5].y = 326 / 2;
+    e->clipsLeft[5].w = 209 / 2;
+    e->clipsLeft[5].h = 326 / 2;
+
+    e->clipsLeft[6].x = 1254 / 2;
+    e->clipsLeft[6].y = 326 / 2;
+    e->clipsLeft[6].w = 209 / 2;
+    e->clipsLeft[6].h = 326 / 2;
+
+    e->clipsLeft[7].x = 1463 / 2;
+    e->clipsLeft[7].y = 326 / 2;
+    e->clipsLeft[7].w = 209 / 2;
+    e->clipsLeft[7].h = 326 / 2;
+
+    e->clipsLeft[8].x = 1672 / 2;
+    e->clipsLeft[8].y = 326 / 2;
+    e->clipsLeft[8].w = 209 / 2;
+    e->clipsLeft[8].h = 326 / 2;
+
+    e->clipsLeft[9].x = 1881 / 2;
+    e->clipsLeft[9].y = 326 / 2;
+    e->clipsLeft[9].w = 209 / 2;
+    e->clipsLeft[9].h = 326 / 2;
+
+    e->clipsLeft[10].x = 2090 / 2;
+    e->clipsLeft[10].y = 326 / 2;
+    e->clipsLeft[10].w = 209 / 2;
+    e->clipsLeft[10].h = 326 / 2;
+
+    e->clipsLeft[11].x = 2299 / 2;
+    e->clipsLeft[11].y = 326 / 2;
+    e->clipsLeft[11].w = 209 / 2;
+    e->clipsLeft[11].h = 326 / 2;
+
+    e->clipsLeft[12].x = 2508 / 2;
+    e->clipsLeft[12].y = 326 / 2;
+    e->clipsLeft[12].w = 209 / 2;
+    e->clipsLeft[12].h = 326 / 2;
+
+    e->clipsLeft[13].x = 2717 / 2;
+    e->clipsLeft[13].y = 326 / 2;
+    e->clipsLeft[13].w = 209 / 2;
+    e->clipsLeft[13].h = 326 / 2;
+
+    e->clipsLeft[14].x = 2926 / 2;
+    e->clipsLeft[14].y = 326 / 2;
+    e->clipsLeft[14].w = 209 / 2;
+    e->clipsLeft[14].h = 326 / 2;
+
+    e->clipsLeft[15].x = 3135 / 2;
+    e->clipsLeft[15].y = 326 / 2;
+    e->clipsLeft[15].w = 209 / 2;
+    e->clipsLeft[15].h = 326 / 2;
+
+    e->clipsLeft[16].x = 3344 / 2;
+    e->clipsLeft[16].y = 326 / 2;
+    e->clipsLeft[16].w = 209 / 2;
+    e->clipsLeft[16].h = 326 / 2;
+
+    e->clipsLeft[17].x = 3553 / 2;
+    e->clipsLeft[17].y = 326 / 2;
+    e->clipsLeft[17].w = 209 / 2;
+    e->clipsLeft[17].h = 326 / 2;
+
+    e->clipsLeft[18].x = 3762 / 2;
+    e->clipsLeft[18].y = 326 / 2;
+    e->clipsLeft[18].w = 209 / 2;
+    e->clipsLeft[18].h = 326 / 2;
+
+    e->clipsLeft[19].x = 3971 / 2;
+    e->clipsLeft[19].y = 326 / 2;
+    e->clipsLeft[19].w = 209 / 2;
+    e->clipsLeft[19].h = 326 / 2;
+}
 
 void apply_surface(int x, int y, SDL_Surface* source, SDL_Surface* destination, SDL_Rect* frame){
     //Make a temporary rectangle to hold the offsets
@@ -234,7 +428,7 @@ void show(hero *player, SDL_Surface *screen){
     //If player is moving left
     if(player->orientation < 0)
     {
-        //Set the animation to Right
+        //Set the animation to Left
         player->status = 0;
         //Move to the next frame in the animation
         player->frame++;

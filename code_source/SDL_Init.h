@@ -6,6 +6,7 @@
 #include "SDL_char.h"
 #include "SDL_enigme.h"
 #include "SDL_Game.h"
+#include "ennemie.h"
 
 menu initSelectMenu();
 
@@ -28,6 +29,8 @@ SDL_Surface* loadImage(char file_name[]);
 SDL_Rect initPosition(SDL_Rect position, int x, int y, int w, int h);
 
 hero initHero(hero h, char image_name[], int x, int y);
+
+ennemi initEnnemie(ennemi e, char image_name[], int x, int y);
 
 object initObject(object o, char image_name[], int x, int y);
 

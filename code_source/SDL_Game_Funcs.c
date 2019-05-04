@@ -203,9 +203,8 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	SDL_Rect positionMouse;
 	
 	Uint32 oldTimeEntite = 0, oldTimeDamageVillain = 0, oldTimeDamageProjectile = 0, animationTime = 0;
-	SDL_Rect pos_e;
 	
-	hero villain, player;
+	hero player;
 
 	projectile villainProjectile;
 	
@@ -221,18 +220,16 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	char bufferVie[5],bufferKey[10];
 	char game = 1;
 	
-	ennemi E;
+	ennemi villain;
 	health vie;
 	
 	int xKEY = -1, xKEY2 = -1,follow=0,wait=1,attack=0;
 	keys number_key;
 	int animation2=0;
-	int randpoint = -1,f2=0;
+	int randpoint = -1;
 	
 	int quit, FRAMES_PER_SECOND = 60, paused, started, startTicks , pausedTicks;
 	
-	SDL_Event animEvent;
-
 	if(TTF_Init() == -1){
 		exit(0);
 	}
@@ -253,11 +250,10 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	number_key.position = initPosition(number_key.position,SCREEN_WIDTH - 199,20,number_key.font_key->w,number_key.font_key->h);
 	
 	//init position and images
-	set_clips(&villain);
-	villain = initHero(villain,"../Sprites/Sprites Rayen/sprite_aio_half.png",5320,7427);
+	villain = initEnnemie(villain,"../Sprites/Sprites Rayen/sprite_aio_half.png",5320,7427);
+
 	villainProjectile.image = SDL_DisplayFormat(loadImage("../src/design/bazar/fire.png"));
 
-	set_clips(&player);
 	player = initHero(player,"../Sprites/Sprites Rayen/sprite_aio_half.png",2260,7645);
 
 	key = initObject(key,"../src/design/bazar/key.png",5321,7427);
@@ -298,9 +294,6 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 			eventHandler(&player,&game,ptr_in_menu,ptr_job,calque_surface,camera,&positionMouse,&animationTime);
 
 		moveToMouseDynamic(&player,positionMouse.x,positionMouse.y,calque_surface);
-
-		transitionn(&E,player,camera,pos_e,&vie,screen,&f2,&animation2,&follow,&wait,&attack);
-		//moveBetweenTwoRandom(&villain,1,5120,5320,&oldTimeEntite,&randpoint);
 		
 		camera = moveCamera(camera,player,game_surface); // gestion de la camera (scrolling)
 
@@ -323,6 +316,8 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 			SDL_BlitSurface(key2.image,NULL,screen,&key2.positionRelative);	
 		}
 		
+		/*---------------------------Launch the projectile------------------------------------------------*/
+		
 		if(!villainProjectile.active)
 			villainProjectile = launchProjectile(villainProjectile,villain.position,0);
 		
@@ -335,8 +330,16 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 		if(villainProjectile.active)
 			SDL_BlitSurface(villainProjectile.image,NULL,screen,&villainProjectile.positionRelative);
 
-		show(&villain,screen);
+		/*---------------------------END-----------------------------------------------------------------*/
+
+		
+		/*---------------------------Show moving characters------------------------------------------------*/
+
+		transitionn(&villain,player,camera,&vie,screen,&animation2,&follow,&wait,&attack);//Show the villain
+
 		show(&player,screen);
+
+		/*---------------------------END-----------------------------------------------------------------*/
 
 
 		if(xKEY == -1){
@@ -365,12 +368,17 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 		SDL_BlitSurface(number_key.font_key,NULL,screen,&number_key.position);
 
 		SDL_Flip(screen);
+		
+		/*---------------------------Move to next level--------------------------------------------------*/
 		if(player.position.x > 5311 && player.position.x < 5511 && player.position.y > 7002 && player.position.y < 7323){
 			if(number_key.keys >= 1){
 				SDL_Delay(100);
 				moveToMouse(&player,2089,3826);
 			}
 		}
+        /*---------------------------END-----------------------------------------------------------------*/
+
+
         while( get_ticks(&started,&paused,&startTicks,&pausedTicks) < (1000 / FRAMES_PER_SECOND)){
 			SDL_Delay( ( 1000 / FRAMES_PER_SECOND) - get_ticks(&started, &paused, &startTicks, &pausedTicks));
         }
@@ -400,6 +408,8 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	SDL_FreeSurface(vie.font_vie);
 
 	SDL_FreeSurface(villain.image);
+	SDL_FreeSurface(villainProjectile.image);
+
 	SDL_FreeSurface(player.image);
 
 	SDL_FreeSurface(key.image);
