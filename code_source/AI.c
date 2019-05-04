@@ -108,4 +108,14 @@ pos.y=E->position.y-camera.y;
 	E->position.y+=200;
 	break;*/
 }
+SDL_BlitSurface(E->image,NULL,ecran,&pos);
+                 
+                    if(SDL_GetTicks()- E->tempsActuel >50)
+{
+
+(*i)++;
+if(*i>=3)
+*i=0;
+                 E->tempsActuel=SDL_GetTicks();
+                 }
 }

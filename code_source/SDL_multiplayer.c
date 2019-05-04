@@ -31,7 +31,7 @@ void playMultiplayer(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	char game = 1;
 	
 	health vie_player1, vie_player2;
-	
+	ennemi E;
 	int xKEY_player1 = -1, xKEY2_player1 = -1;
 	int xKEY_player2 = -1, xKEY2_player2 = -1;
 	
@@ -150,7 +150,7 @@ void playMultiplayer(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 		moveToMouseDynamic(&player1,positionMouse1.x,positionMouse1.y,calque_surface);
 		moveToMouseDynamic(&player2,positionMouse2.x,positionMouse2.y,calque_surface);
 
-		moveBetweenTwoRandom(&villain,1,5120,5320,&oldTimeEntite,&randpoint);
+		moveBetweenTwoRandom(&E,1,5120,5320,&oldTimeEntite,&randpoint);
 		
 
 

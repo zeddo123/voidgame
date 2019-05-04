@@ -9,6 +9,7 @@
 #include "SDL_animation.h"
 #include "SDL_collision.h"
 #include "SDL_arduino.h"
+#include "ennemie.h"
 
 void playMultiplayer(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen);
 
