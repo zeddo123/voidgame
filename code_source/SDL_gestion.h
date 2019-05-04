@@ -21,7 +21,7 @@ struct keys{
 
 typedef struct keys keys;
 
-health gestionVie(hero player, hero villain, health vie, Uint32 *oldTime);
+health gestionVie(SDL_Rect playerPosition, SDL_Rect enemiePosition, health vie, Uint32 *oldTime);
 
 keys gestionKey(keys key, int x, int x2);
 

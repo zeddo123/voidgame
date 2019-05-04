@@ -1,10 +1,10 @@
 #include "SDL_gestion.h"
 
-health gestionVie(hero player, hero villain, health vie, Uint32 *oldTime){
+health gestionVie(SDL_Rect playerPosition, SDL_Rect enemiePosition, health vie, Uint32 *oldTime){
 
 	Uint32 currentTime = SDL_GetTicks();
     if(currentTime - (*oldTime) > 130){
-		int testCollistion = collisionBox(player.position, villain.position);
+		int testCollistion = collisionBox(playerPosition, enemiePosition);
 		if (testCollistion){
 			vie.vie -= 20;
 		}

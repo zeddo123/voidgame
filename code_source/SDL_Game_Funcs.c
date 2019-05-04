@@ -6,6 +6,7 @@
 #include "SDL_collision.h"
 #include "SDL_arduino.h"
 #include "SDL_multiplayer.h"
+#include "SDL_atack.h"
 
 /*_______________________________MAIN MENU EVENT HANDLER_________________________________*/
 
@@ -198,9 +199,11 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	SDL_Surface *calque_surface = SDL_DisplayFormat(IMG_Load("../src/design/map/map_back_white.png"));
 
 	SDL_Rect positionMouse;
-	Uint32 oldTimeEntite = 0, oldTimeDamage = 0;
+	Uint32 oldTimeEntite = 0, oldTimeDamageVillain = 0, oldTimeDamageProjectile = 0;
 	
 	hero villain, player;
+
+	projectile villainProjectile;
 	
 	object key, key2;
 	
@@ -209,7 +212,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	SDL_Rect camera = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
 	
 	TTF_Font *font = NULL;
-	SDL_Color fontColor = {63, 13, 58};
+	SDL_Color fontColor = {255, 255, 255};
 	
 	char bufferVie[5],bufferKey[10];
 	char game = 1;
@@ -247,6 +250,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	//init position and images
 	set_clips(&villain);
 	villain = initHero(villain,"../Sprites/Sprites Rayen/sprite_aio_half.png",5320,7427);
+	villainProjectile.image = SDL_DisplayFormat(loadImage("../src/design/bazar/fire.png"));
 
 	set_clips(&player);
 	player = initHero(player,"../Sprites/Sprites Rayen/sprite_aio_half.png",2260,7645);
@@ -296,12 +300,13 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 
 		camera = moveCamera(camera,player,game_surface); // gestion de la camera (scrolling)
 
-		vie = gestionVie(player, villain, vie, &oldTimeDamage); // gestion de points de vie
-
+		vie = gestionVie(player.position, villain.position, vie, &oldTimeDamageVillain); // gestion de points de vie
+		vie = gestionVie(player.position,villainProjectile.position,vie,&oldTimeDamageProjectile);
+		
 		player.positionRelative = makeItRelative(player.position,camera);
 		villain.positionRelative = makeItRelative(villain.position,camera);
 		key.positionRelative = makeItRelative(key.position,camera);
-		key2.positionRelative = makeItRelative(key2.position,camera);		
+		key2.positionRelative = makeItRelative(key2.position,camera);
 
 		SDL_BlitSurface(game_surface,&camera,screen,NULL); //show background
 		
@@ -314,9 +319,23 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 		if(key2.state){
 			SDL_BlitSurface(key2.image,NULL,screen,&key2.positionRelative);	
 		}
+		
+		if(!villainProjectile.active)
+			villainProjectile = launchProjectile(villainProjectile,villain.position,0);
+		
+		moveProjectile(&villainProjectile);
+				
+		
+		villainProjectile.positionRelative = makeItRelative(villainProjectile.position,camera);		
+		
+
+		if(villainProjectile.active)
+			SDL_BlitSurface(villainProjectile.image,NULL,screen,&villainProjectile.positionRelative);
+
 		show(&villain,screen);
 		show(&player,screen);
-		
+
+
 		if(xKEY == -1){
 			xKEY = riddle(firstEnigme,player,screen);
 			if(xKEY != -1){
@@ -345,7 +364,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 		SDL_Flip(screen);
 		if(player.position.x > 5311 && player.position.x < 5511 && player.position.y > 7002 && player.position.y < 7323){
 			if(number_key.keys >= 1){
-				SDL_Delay(500);
+				SDL_Delay(100);
 				moveToMouse(&player,2089,3826);
 			}
 		}

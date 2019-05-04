@@ -157,8 +157,8 @@ void playMultiplayer(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 		camera1 = moveCameraPlayer1(camera1,player1,game_surface); // gestion de la camera (scrolling)
 		camera2 = moveCameraPlayer2(camera2,player2,game_surface); // gestion de la camera (scrolling)
 
-		vie_player1 = gestionVie(player1, villain, vie_player1, &oldTimeDamage); // gestion de points de vie
-		vie_player2 = gestionVie(player2, villain, vie_player2, &oldTimeDamage); // gestion de points de vie
+		vie_player1 = gestionVie(player1.position, villain.position, vie_player1, &oldTimeDamage); // gestion de points de vie
+		vie_player2 = gestionVie(player2.position, villain.position, vie_player2, &oldTimeDamage); // gestion de points de vie
 
 		player1.positionRelative = makeItRelative(player1.position,camera1);		
 		villain.positionRelative = makeItRelative(villain.position,camera1);
@@ -171,23 +171,24 @@ void playMultiplayer(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 		key2_player2.positionRelative = makeItRelativePlayer2(key2_player2.position,camera2);		
 
 		SDL_BlitSurface(game_surface,&camera1,screen,&split1); //show background
-		SDL_BlitSurface(game_surface,&camera2,screen,&split2); //show background
-		
-		//SDL_BlitSurface(villain.image,&positionScreen,screen,&villain.positionRelative);
-		
+				
 		if(key_player1.state){
 			SDL_BlitSurface(key_player1.image,NULL,screen,&key_player1.positionRelative);
 		}
+		if(key2_player1.state){
+			SDL_BlitSurface(key2_player1.image,NULL,screen,&key2_player1.positionRelative);	
+		}
+
+		SDL_BlitSurface(game_surface,&camera2,screen,&split2); //show background
+		
 		if(key_player2.state){
 			SDL_BlitSurface(key_player2.image,NULL,screen,&key_player2.positionRelative);
 		}
 
-		if(key2_player1.state){
-			SDL_BlitSurface(key2_player1.image,NULL,screen,&key2_player1.positionRelative);	
-		}
 		if(key2_player2.state){
 			SDL_BlitSurface(key2_player2.image,NULL,screen,&key2_player2.positionRelative);	
 		}
+
 		show(&villain,screen);
 		show(&player1,screen);
 		show(&player2,screen);

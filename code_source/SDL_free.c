@@ -31,3 +31,7 @@ void freeSettingsMenu(menu m){
 	SDL_FreeSurface(m.background[0]);
 	free(m.background);
 }
+
+void freeProjectile(projectile p){
+	SDL_FreeSurface(p.image);
+}

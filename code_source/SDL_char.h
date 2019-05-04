@@ -25,6 +25,16 @@ typedef struct{
 	int state;
 }object;
 
+struct projectile{
+	SDL_Rect position;
+	SDL_Rect where;
+	SDL_Rect positionRelative;
+	SDL_Surface* image;
+	int active;
+	int axe;
+};
+
+typedef struct projectile projectile;
 typedef struct hero hero;
 
 #endif
