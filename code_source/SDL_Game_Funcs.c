@@ -311,7 +311,6 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 		villain.positionRelative = makeItRelative(villain.position,camera);
 		key.positionRelative = makeItRelative(key.position,camera);
 		key2.positionRelative = makeItRelative(key2.position,camera);
-
 		SDL_BlitSurface(game_surface,&camera,screen,NULL); //show background
 		
 		//SDL_BlitSurface(villain.image,&positionScreen,screen,&villain.positionRelative);

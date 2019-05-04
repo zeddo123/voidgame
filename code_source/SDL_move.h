@@ -9,7 +9,7 @@
 
 
 
-void moveBetweenTwo(hero *entit, int axe, int a, int b, Uint32 *oldTime);
+void moveBetweenTwo(ennemi *entit, int axe, int a, int b, Uint32 *oldTime);
 
 void moveBetweenTwoRandom(ennemi *entit, int axe, int a, int b, Uint32 *oldTime, int *randpoint);
 

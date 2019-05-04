@@ -414,11 +414,11 @@ enigme initPrintRiddle(enigme e){
 	e.positionButton4 = initPosition(e.positionButton2,xA4,yA3,e.Button[0]->w,e.Button[0]->h);
 
 	e.positionBackground = initPosition(e.positionBackground,xBackground,yBackground,e.Background->w,e.Background->h);
-	e.positionQuestion = initPosition(e.positionQuestion,xQuestion,yQuestion,e.Question->w,e.Question->h);
-	e.positionAnswer1 = initPosition(e.positionAnswer1,xAnswer1,yAnswer1,e.Answer1->w,e.Answer1->h);
-	e.positionAnswer2 = initPosition(e.positionAnswer2,xAnswer2,yAnswer2,e.Answer2->w,e.Answer2->h);
-	e.positionAnswer3 = initPosition(e.positionAnswer3,xAnswer3,yAnswer3,e.Answer3->w,e.Answer3->h);
-	e.positionAnswer4 = initPosition(e.positionAnswer4,xAnswer4,yAnswer4,e.Answer4->w,e.Answer4->h);
+	e.positionQuestion = initPosition(e.positionQuestion,xQuestion,yQuestion,0,0);
+	e.positionAnswer1 = initPosition(e.positionAnswer1,xAnswer1,yAnswer1,0,0);
+	e.positionAnswer2 = initPosition(e.positionAnswer2,xAnswer2,yAnswer2,0,0);
+	e.positionAnswer3 = initPosition(e.positionAnswer3,xAnswer3,yAnswer3,0,0);
+	e.positionAnswer4 = initPosition(e.positionAnswer4,xAnswer4,yAnswer4,0,0);
 
 	return e;
 }

@@ -9,7 +9,7 @@ struct Ennemi{
 	SDL_Surface *image,*right[3],*left[3],*up[3],*down[3];
 	SDL_Rect position;
 	SDL_Rect positionRelative;
-
+	int tempsActuel;
 	SDL_Rect clipsRight[4];
 	SDL_Rect clipsLeft[4];
 	
