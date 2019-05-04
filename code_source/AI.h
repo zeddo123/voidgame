@@ -11,5 +11,5 @@
 
 
 int distance(ennemi E,hero H,SDL_Rect camera);
-void transitionn(ennemi *E ,hero H ,SDL_Rect camera ,health *sc ,SDL_Surface *screen,
-									int *animation ,int *follow,int *wait,int *attack);
+void transitionn(ennemi *E ,hero H ,SDL_Rect camera ,health *sc ,SDL_Surface *screen,int *animation ,int *follow,int *wait,int *attack);
+void moveEnnemi(ennemi *E, SDL_Rect posHero);

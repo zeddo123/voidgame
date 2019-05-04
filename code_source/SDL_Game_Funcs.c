@@ -336,7 +336,6 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 		/*---------------------------Show moving characters------------------------------------------------*/
 
 		transitionn(&villain,player,camera,&vie,screen,&animation2,&follow,&wait,&attack);//Show the villain
-
 		show(&player,screen);
 
 		/*---------------------------END-----------------------------------------------------------------*/
