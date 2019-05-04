@@ -20,7 +20,21 @@ void moveEnnemi(ennemi *E, SDL_Rect posHero)
 {
 	if (posHero.x<E->position.x) 
 	{
-        	E->position.x -= 8; 
+        	E->position.x -= 3; 
+        	E->status = 0;
+	}
+		if (posHero.y<E->position.y) 
+	{
+        	E->position.y -= 3; 
+	}
+	if (posHero.x>E->position.x) 
+	{
+        	E->position.x += 3;
+        	E->status = 1; 
+	}
+		if (posHero.y>E->position.y) 
+	{
+        	E->position.y += 3; 
 	}
 }
 
@@ -68,29 +82,8 @@ void transitionn(ennemi *E ,hero H ,SDL_Rect camera ,health *sc,SDL_Surface *scr
 			*wait=1;
 			break;
 
-		case 1: 
-			/*H.position.x=camera.x+H.position.x;
-			H.position.y=camera.y+H.position.y;
-
-	
-			if (E->position.x<H.position.x){
-				E->status = 1;
-				E->position.x += 1;
-  			}
-  
-  			if (E->position.x>H.position.x){
-	   			E->status = 0;
-	   			E->position.x -= 1;
-  			}
-  			if (E->position.y<H.position.y){
-				E->position.y += 1;  
-  			}
-  			if (E->position.y>H.position.y){
-	  			E->position.y -= 1;
-  			}*/
-
+		case 1: 			
 			moveEnnemi(E,H.position);
-
   	
 			E->positionRelative = makeItRelative(E->position,camera);
  
