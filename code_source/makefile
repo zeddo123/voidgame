@@ -1,9 +1,8 @@
 libs = -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf
-allObjects = SDL_atack.o SDL_multiplayer.o SDL_animation.o SDL_gestion.o SDL_scrolling.o SDL_enigme.o SDL_arduino.o zoom.o SDL_collision.o SDL_Game.o SDL_Game_Funcs.o SDL_Init.o SDL_move.o SDL_free.o
+allObjects = AI.o SDL_atack.o SDL_multiplayer.o SDL_animation.o SDL_gestion.o SDL_scrolling.o SDL_enigme.o SDL_arduino.o zoom.o SDL_collision.o SDL_Game.o SDL_Game_Funcs.o SDL_Init.o SDL_move.o SDL_free.o
 
 game: $(allObjects)
-	gcc $(allObjects) -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf -lSDL_gfx -g -o game
-
+	gcc $(allObjects) -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf -lSDL_gfx -lm -ldl -g -o game
 
 SDL_Game.o:SDL_Game.c SDL_Game.h
 	gcc -c SDL_Game.c $(libs) -g
@@ -37,6 +36,9 @@ SDL_animation.o:SDL_animation.h SDL_animation.c
 
 SDL_arduino.o:SDL_arduino.h SDL_arduino.c
 	gcc -c SDL_arduino.c -lSDL -g
+
+AI.o:AI.h AI.c
+	gcc -c AI.c -lSDL -lm -ldl -g 	
 
 SDL_multiplayer.o:SDL_multiplayer.h SDL_multiplayer.c
 	gcc -c SDL_multiplayer.c -lSDL -g

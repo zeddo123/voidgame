@@ -5,6 +5,8 @@
 #include "SDL_animation.h"
 #include "SDL_collision.h"
 #include "SDL_arduino.h"
+#include "AI.h"
+#include "ennemie.h"
 #include "SDL_multiplayer.h"
 #include "SDL_atack.h"
 
@@ -199,7 +201,9 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	SDL_Surface *calque_surface = SDL_DisplayFormat(IMG_Load("../src/design/map/map_back_white.png"));
 
 	SDL_Rect positionMouse;
+	
 	Uint32 oldTimeEntite = 0, oldTimeDamageVillain = 0, oldTimeDamageProjectile = 0, animationTime = 0;
+	SDL_Rect pos_e;
 	
 	hero villain, player;
 
@@ -217,12 +221,13 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	char bufferVie[5],bufferKey[10];
 	char game = 1;
 	
+	ennemi E;
 	health vie;
 	
-	int xKEY = -1, xKEY2 = -1;
+	int xKEY = -1, xKEY2 = -1,follow=0,wait=1,attack=0;
 	keys number_key;
-	
-	int randpoint = -1;
+	int animation2=0;
+	int randpoint = -1,f2=0;
 	
 	int quit, FRAMES_PER_SECOND = 60, paused, started, startTicks , pausedTicks;
 	
@@ -294,10 +299,9 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 
 		moveToMouseDynamic(&player,positionMouse.x,positionMouse.y,calque_surface);
 
-		moveBetweenTwoRandom(&villain,1,4700,5320,&oldTimeEntite,&randpoint);
+		transitionn(&E,player,camera,pos_e,&vie,screen,&f2,&animation2,&follow,&wait,&attack);
+		//moveBetweenTwoRandom(&villain,1,5120,5320,&oldTimeEntite,&randpoint);
 		
-
-
 		camera = moveCamera(camera,player,game_surface); // gestion de la camera (scrolling)
 
 		vie = gestionVie(player.position, villain.position, vie, &oldTimeDamageVillain); // gestion de points de vie

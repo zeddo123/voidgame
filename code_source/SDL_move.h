@@ -5,12 +5,13 @@
 #include <SDL/SDL.h>
 #include "SDL_char.h"
 #include "SDL_Game.h"
+#include "ennemie.h"
 
 
 
 void moveBetweenTwo(hero *entit, int axe, int a, int b, Uint32 *oldTime);
 
-void moveBetweenTwoRandom(hero *entit, int axe, int a, int b, Uint32 *oldTime, int *randpoint);
+void moveBetweenTwoRandom(ennemi *entit, int axe, int a, int b, Uint32 *oldTime, int *randpoint);
 
 void moveToMouse(hero *player, int dx, int dy);
 
