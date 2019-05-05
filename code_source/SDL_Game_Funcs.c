@@ -254,7 +254,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	number_key.position = initPosition(number_key.position,SCREEN_WIDTH - 199,20,number_key.font_key->w,number_key.font_key->h);
 	
 	//init position and images
-	villain = initEnnemie(villain,"../Sprites/entité secondaire/entité_sprite_evil_jelly.png",5320,7427);
+	villain = initEnnemie(villain,"../Sprites/entité secondaire/entité_sprite_demon_breath.png",5320,7427);
 
 	init_minimap(&m,screen);
 
