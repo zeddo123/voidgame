@@ -7,6 +7,9 @@
 #include "SDL_enigme.h"
 #include "SDL_Game.h"
 #include "ennemie.h"
+#include "minimap.h"
+#include <SDL/SDL_rotozoom.h>
+
 
 menu initSelectMenu();
 
@@ -37,5 +40,7 @@ object initObject(object o, char image_name[], int x, int y);
 enigme loadTextForRiddle(enigme e);
 
 enigme initPrintRiddle(enigme e);
+
+void init_minimap(minimap *m,SDL_Surface *ecran);
 
 #endif

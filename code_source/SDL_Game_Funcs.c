@@ -9,6 +9,7 @@
 #include "ennemie.h"
 #include "SDL_multiplayer.h"
 #include "SDL_atack.h"
+#include "minimap.h"
 
 /*_______________________________MAIN MENU EVENT HANDLER_________________________________*/
 
@@ -206,10 +207,12 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	
 	hero player;
 
+	minimap m;
+
 	projectile villainProjectile;
 	
 	object key, key2;
-	
+	SDL_Event event;
 	enigme firstEnigme, secondEnigme;
 	
 	SDL_Rect camera = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
@@ -250,7 +253,9 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	number_key.position = initPosition(number_key.position,SCREEN_WIDTH - 199,20,number_key.font_key->w,number_key.font_key->h);
 	
 	//init position and images
-	villain = initEnnemie(villain,"../Sprites/Sprites Rayen/sprite_aio_half.png",5320,7427);
+	villain = initEnnemie(villain,"../Sprites/entité secondaire/entité_sprite_evil_jelly.png",5320,7427);
+
+	init_minimap(&m,screen);
 
 	villainProjectile.image = SDL_DisplayFormat(loadImage("../src/design/bazar/fire.png"));
 
@@ -332,11 +337,11 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 
 		/*---------------------------END-----------------------------------------------------------------*/
 
-		
+		Afficher_Minimap(screen,event,&m,player.position,villain.position);
+
 		/*---------------------------Show moving characters------------------------------------------------*/
 
 		transitionn(&villain,player,camera,&vie,screen,&animation2,&follow,&wait,&attack);//Show the villain
-
 		show(&player,screen);
 
 		/*---------------------------END-----------------------------------------------------------------*/

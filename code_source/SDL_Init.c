@@ -434,3 +434,17 @@ enigme initPrintRiddle(enigme e){
 
 	return e;
 }
+
+void init_minimap(minimap *m,SDL_Surface *ecran){
+	m->minimap = IMG_Load("../src/design/minimap/minimap.png");
+    m->minimap=rotozoomSurface(m->minimap,0,0.025,0);
+    m->posminimap.x=(ecran->w/2)-96.9;
+    m->posminimap.y=(ecran->h)-205;
+
+    m->Down=IMG_Load("../src/design/minimap/down.png");
+    m->Up=IMG_Load("../src/design/minimap/up.png");
+    m->Left=IMG_Load("../src/design/minimap/left.png");
+    m->Right=IMG_Load("../src/design/minimap/right.png");
+    m->entite=IMG_Load("../src/design/minimap/pointRouge.png");
+    m->image=m->Down;
+}

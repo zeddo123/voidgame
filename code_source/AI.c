@@ -6,6 +6,8 @@ int distance(ennemi E,hero H,SDL_Rect camera){
 	double c2;
 	H.position.x = camera.x+H.position.x;
 	H.position.y = camera.y+H.position.y;
+	E.position.x = E.position.x+camera.x;
+	E.position.y = E.position.y+camera.y;
 	
 	x = abs(H.position.x-E.position.x);
 	y = abs(H.position.y-E.position.y);
@@ -14,13 +16,34 @@ int distance(ennemi E,hero H,SDL_Rect camera){
 	return d;
 }
 
+void moveEnnemi(ennemi *E, SDL_Rect posHero)
+{
+	if (posHero.x<E->position.x) 
+	{
+        	E->position.x -= 3; 
+        	E->status = 0;
+	}
+		if (posHero.y<E->position.y) 
+	{
+        	E->position.y -= 3; 
+	}
+	if (posHero.x>E->position.x) 
+	{
+        	E->position.x += 3;
+        	E->status = 1; 
+	}
+		if (posHero.y>E->position.y) 
+	{
+        	E->position.y += 3; 
+	}
+}
+
 void transitionn(ennemi *E ,hero H ,SDL_Rect camera ,health *sc,SDL_Surface *screen, int *animation,int *follow,int *wait,int *attack){
-	int d, d1 = 200, d2 = 10;
+	int d, d1 = 300, d2 = 10;
 	Uint32 oldTimeEntite = 0;
 	int randpoint = -1;
 	
 	d = distance(*E,H,camera);
-	
 	if((*wait == 1) && (d <= d1) && (d != d2)){
 		*follow=1;
 		*wait=0;
@@ -54,36 +77,19 @@ void transitionn(ennemi *E ,hero H ,SDL_Rect camera ,health *sc,SDL_Surface *scr
     }
 	
 	switch (E->esprit){
-		case 2: 
+		case 3: 
 			moveBetweenTwoRandom(E,1,5120,5320,&oldTimeEntite,&randpoint);
 			*wait=1;
 			break;
 
-		case 1: 
-			H.position.x=camera.x+H.position.x;
-			H.position.y=camera.y+H.position.y;
-	
-			if (E->position.x<H.position.x){
-				E->status = 1;
-				E->position.x += 1;
-  			}
-  
-  			if (E->position.x>H.position.x){
-	   			E->status = 0;
-	   			E->position.x -= 1;
-  			}
-  			if (E->position.y<H.position.y){
-				E->position.y += 1;  
-  			}
-  			if (E->position.y>H.position.y){
-	  			E->position.y -= 1;
-  			}
+		case 1: 			
+			moveEnnemi(E,H.position);
   	
 			E->positionRelative = makeItRelative(E->position,camera);
  
 			break;
 
-		/*case 3:
+		/*case 2:
 			play_ennemi(s);
 			*attack=0;
 			*wait=1;
