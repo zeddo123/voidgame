@@ -7,7 +7,9 @@
 #include "SDL_Game.h"
 #include "ennemie.h"
 
+#define ground_level 250
+#define H 50
 
-void jump(hero *player)
+void jump(hero *player, SDL_Rect camera);
 
 #endif

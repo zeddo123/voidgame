@@ -42,7 +42,7 @@ void moveProjectile(projectile *p){
 			p->active = 0;
 	}else{
 		if(p->where.x < p->position.x)
-			p->position.x += STEP/4;
+			p->position.x -= STEP/4;
 		else
 			p->active = 0;
 	}

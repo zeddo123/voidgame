@@ -10,6 +10,7 @@
 #include "SDL_multiplayer.h"
 #include "SDL_atack.h"
 #include "minimap.h"
+#include "SDL_jump.h"
 
 /*_______________________________MAIN MENU EVENT HANDLER_________________________________*/
 
@@ -258,6 +259,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	init_minimap(&m,screen);
 
 	villainProjectile.image = SDL_DisplayFormat(loadImage("../src/design/bazar/fire.png"));
+	villainProjectile = launchProjectile(villainProjectile,villain.position,3);
 
 	player = initHero(player,"../Sprites/Sprites Rayen/sprite_aio_half.png",2260,7645);
 
@@ -299,6 +301,8 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 			eventHandler(&player,&game,ptr_in_menu,ptr_job,calque_surface,camera,&positionMouse,&animationTime);
 
 		moveToMouseDynamic(&player,positionMouse.x,positionMouse.y,calque_surface);
+
+		//jump(&player,camera);
 		
 		camera = moveCamera(camera,player,game_surface); // gestion de la camera (scrolling)
 
@@ -309,6 +313,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 		villain.positionRelative = makeItRelative(villain.position,camera);
 		key.positionRelative = makeItRelative(key.position,camera);
 		key2.positionRelative = makeItRelative(key2.position,camera);
+		
 		SDL_BlitSurface(game_surface,&camera,screen,NULL); //show background
 		
 		//SDL_BlitSurface(villain.image,&positionScreen,screen,&villain.positionRelative);
@@ -324,13 +329,12 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 		/*---------------------------Launch the projectile------------------------------------------------*/
 		
 		if(!villainProjectile.active)
-			villainProjectile = launchProjectile(villainProjectile,villain.position,0);
+			villainProjectile = launchProjectile(villainProjectile,villain.position,3);
 		
 		moveProjectile(&villainProjectile);
 				
 		
 		villainProjectile.positionRelative = makeItRelative(villainProjectile.position,camera);		
-		
 
 		if(villainProjectile.active)
 			SDL_BlitSurface(villainProjectile.image,NULL,screen,&villainProjectile.positionRelative);

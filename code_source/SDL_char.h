@@ -12,6 +12,7 @@ struct hero{
 	SDL_Rect clipsRight[20];
 	SDL_Rect clipsLeft[20];
 	
+	int vel;
 	int speed;
 	int frame;
 	int status;

@@ -1,5 +1,5 @@
 libs = -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf
-allObjects = minimap.o AI.o SDL_atack.o SDL_multiplayer.o SDL_animation.o SDL_gestion.o SDL_scrolling.o SDL_enigme.o SDL_arduino.o zoom.o SDL_collision.o SDL_Game.o SDL_Game_Funcs.o SDL_Init.o SDL_move.o SDL_free.o
+allObjects = SDL_jump.o minimap.o AI.o SDL_atack.o SDL_multiplayer.o SDL_animation.o SDL_gestion.o SDL_scrolling.o SDL_enigme.o SDL_arduino.o zoom.o SDL_collision.o SDL_Game.o SDL_Game_Funcs.o SDL_Init.o SDL_move.o SDL_free.o
 
 game: $(allObjects)
 	gcc $(allObjects) -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf -lSDL_gfx -lm -ldl -g -o game
@@ -51,6 +51,8 @@ zoom.o :zoom.c zoom.h
 
 SDL_atack.o:SDL_atack.c SDL_atack.h
 	gcc -c SDL_atack.c -lSDL -g
-	
+
+SDL_jump.o:SDL_jump.c SDL_jump.h
+	gcc -c SDL_jump.c -lSDL -g
 clean:
 	rm *.o
