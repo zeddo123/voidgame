@@ -13,7 +13,7 @@ DOXYFILE_ENCODING      = UTF-8
 
 PROJECT_NAME           = "code_source"
 
-PROJECT_NUMBER         = 1
+PROJECT_NUMBER         = 1.0
 # Keep the description short.
 
 PROJECT_BRIEF          = "game"
