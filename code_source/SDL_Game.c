@@ -3,6 +3,7 @@
 * @file SDL_Game.c
 * @brief Testing program
 * @author voidprod
+* @version 1.0
 * @date Apr 01,2019
 
 */
