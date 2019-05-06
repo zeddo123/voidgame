@@ -1,4 +1,11 @@
 //the main code of the game
+/**
+* @file SDL_Game.c
+* @brief Testing program
+* @author voidprod
+* @date Apr 01,2019
+
+*/
 #include "SDL_Game.h"
 
 
