@@ -468,6 +468,7 @@ void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job
 				case SDLK_LEFT:
 					if(collision_Parfaite(calque_game,player->position,STEP,3) != 1){
 						move(player,1,-1);
+						acceleration(player);
 						player->orientation = -1;
 						player->moveWithMouse = 0;
 					}
@@ -475,10 +476,13 @@ void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job
 				case SDLK_RIGHT:
 					if(collision_Parfaite(calque_game,player->position,STEP,2) != 1){
 						move(player,1,1);
+						acceleration(player);
 						player->orientation = 1;
 						player->moveWithMouse = 0;
 					}
-					break; 
+					break;
+				default:
+						decceleration(player);
 			}
 			break;
 

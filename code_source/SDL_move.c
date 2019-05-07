@@ -29,14 +29,14 @@ void moveToMouseDynamic(hero *player, int dx, int dy, SDL_Surface *calque_game){
 
 void move(hero *player, int xy, int i){
 	if(xy == 1){
-		player->position.x += i*STEP;
+		player->position.x += i*(STEP + player->step);
 		if((player->position.x < 0) || (player->position.x + player->position.w) > 8000){
-			player->position.x -= i*STEP;
+			player->position.x -= i*(STEP + player->step);
 		}
 	}else{
-		player->position.y += i*STEP;
+		player->position.y += i*(STEP+ player->step);
 		if((player->position.y < 0) || (player->position.y + player->position.h) > 8000){
-			player->position.y -= i*STEP;
+			player->position.y -= i*(STEP + player->step);
 		}
 	}
 }

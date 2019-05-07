@@ -2,6 +2,7 @@
 #ifndef CHAR_H_INCLUDED
 #define CHAR_H_INCLUDED
 
+
 struct hero{
 	int orientation;
 	int moveWithMouse;
@@ -12,8 +13,8 @@ struct hero{
 	SDL_Rect clipsRight[20];
 	SDL_Rect clipsLeft[20];
 	
+	int step;
 	int vel;
-	int speed;
 	int frame;
 	int status;
 
