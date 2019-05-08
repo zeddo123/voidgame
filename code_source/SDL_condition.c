@@ -4,6 +4,7 @@
 #include "SDL_gestion.h"
 #include "SDL_char.h"
 #include "SDL_CONDITION.h"
+#include "zoom.h"
 
 void condition_fin(char *game, hero player, health h, keys key, SDL_Surface* screen){
 	SDL_Surface* end_of_the_game;
@@ -14,12 +15,14 @@ void condition_fin(char *game, hero player, health h, keys key, SDL_Surface* scr
 	    SDL_BlitSurface(end_of_the_game,NULL,screen,NULL);
 		SDL_Flip(screen);
 		SDL_Delay(3000);
+		roto(screen,end_of_the_game,end_of_the_game,player.positionRelative);
 	}else if (key.keys == 2){ // ken l nombre mta3 l keys eli lezmna 2
 		IMG_Load ("../src/design/condition_fin/you_won.png");
 		*game=0;
 		SDL_BlitSurface(end_of_the_game,NULL,screen,NULL);
 		SDL_Flip(screen);
 		SDL_Delay(3000);
+		roto(screen,end_of_the_game,end_of_the_game,player.positionRelative);
 	}
 
 	
