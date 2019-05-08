@@ -1,18 +1,18 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <SDL_image.h>
+#include <SDL/SDL_image.h>
 #include "SDL_gestion.h"
-#include "SDL_Game.h"
+#include "SDL_char.h"
+#include "SDL_CONDITION.h"
 
+void condition_fin(char *game, hero player, health h, keys key){
+		if (h.vie<=0){ 
+			IMG_Load ("../src/design/condition_fin/killed.png");
+		    SDL_Delay(3000);
+		    *game =0;}
+		else if (key.keys==2){ // ken l nombre mta3 l keys eli lezmna 2
+			IMG_Load ("../src/design/condition_fin/you_won.png");
+		    SDL_Delay(3000);
+		    *game=0;}   
 
-int condition_fin ( ){
-		if (gestionVie(hero player, hero villain, health vie, Uint32 *oldTime)<=0){ 
-			IMG_Load ("../src/design/condition_fin/killed.png")
-		    SDL_Delay(3000);
-		    job=0;}
-		else if (gestionKey(keys key, int x, int x2)==4){ // ken l nombre mta3 l keys eli lezmna 4
-			IMG_Load ("../src/design/condition_fin/you_won.png")
-		    SDL_Delay(3000);
-		    job=0;}   
-	return job;
 }

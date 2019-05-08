@@ -13,6 +13,7 @@
 #include "SDL_jump.h"
 #include "SDL_acceleration.h"
 #include "SDL_savegame.h"
+#include "SDL_CONDITION.h"
 
 
 /*_______________________________MAIN MENU EVENT HANDLER_________________________________*/
@@ -399,6 +400,8 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
         while( get_ticks(&started,&paused,&startTicks,&pausedTicks) < (1000 / FRAMES_PER_SECOND)){
 			SDL_Delay( ( 1000 / FRAMES_PER_SECOND) - get_ticks(&started, &paused, &startTicks, &pausedTicks));
         }
+
+        condition_fin(&game,player,vie,number_key);
 
 	}
 	TTF_CloseFont(font);
