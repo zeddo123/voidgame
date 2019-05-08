@@ -11,6 +11,9 @@
 #include "SDL_atack.h"
 #include "minimap.h"
 #include "SDL_jump.h"
+#include "SDL_acceleration.h"
+#include "SDL_savegame.h"
+
 
 /*_______________________________MAIN MENU EVENT HANDLER_________________________________*/
 
@@ -103,6 +106,10 @@ void openPlayMenu(char *ptr_job, Mix_Chunk *effect, menu playMenu, SDL_Surface *
 	
 	int dx_cursor, dy_cursor;
 
+	health h;
+	hero player;
+	int keys;
+
 	Uint32 oldTimeKey , oldTimeBackground, currentTime;
 	SDL_Event event;
 
@@ -124,7 +131,7 @@ void openPlayMenu(char *ptr_job, Mix_Chunk *effect, menu playMenu, SDL_Surface *
 							in_menu = 1;
 						}else if(playmenu_key == 1){
 							next = 0;
-								//CODE TO LOAD GAME HERE!!!!
+							LoadGame(&player, &(h.vie), &keys, "savegame.txt");
 							in_menu = 0;
 						}else if(playmenu_key == 2){
 							job = 0;
@@ -162,7 +169,8 @@ void openPlayMenu(char *ptr_job, Mix_Chunk *effect, menu playMenu, SDL_Surface *
 							//Load game
 							if (dy_cursor >= playMenu.b2.position.y && dy_cursor <= playMenu.b2.position.h + playMenu.b2.position.y){
 								next = 0;
-								//CODE TO LOAD GAME HERE!!!!
+
+								LoadGame(&player, &(h.vie), &keys, "savegame.txt");
 								in_menu = 1;
 							}
 							//return 
@@ -468,21 +476,28 @@ void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job
 				case SDLK_LEFT:
 					if(collision_Parfaite(calque_game,player->position,STEP,3) != 1){
 						move(player,1,-1);
-						acceleration(player);
 						player->orientation = -1;
 						player->moveWithMouse = 0;
 					}
 					break;
+				
 				case SDLK_RIGHT:
 					if(collision_Parfaite(calque_game,player->position,STEP,2) != 1){
 						move(player,1,1);
-						acceleration(player);
 						player->orientation = 1;
 						player->moveWithMouse = 0;
 					}
 					break;
+
+				case SDLK_LSHIFT:
+					acceleration(player);
+					break;
+
+				case SDLK_F1:
+					SaveGame(*player,1000,2,"savegame.txt");
+
 				default:
-						decceleration(player);
+					decceleration(player);
 			}
 			break;
 

@@ -298,6 +298,7 @@ hero initHero(hero h, char image_name[], int x, int y){
 	h.orientation = 0;
 	h.frame = 0;
 	h.status = 1;
+	h.step = 0;
 
 	return h;
 }
