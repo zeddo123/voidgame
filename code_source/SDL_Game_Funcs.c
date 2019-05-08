@@ -107,10 +107,6 @@ void openPlayMenu(char *ptr_job, Mix_Chunk *effect, menu playMenu, SDL_Surface *
 	
 	int dx_cursor, dy_cursor;
 
-	health h;
-	hero player;
-	int keys;
-
 	Uint32 oldTimeKey , oldTimeBackground, currentTime;
 	SDL_Event event;
 
@@ -132,7 +128,7 @@ void openPlayMenu(char *ptr_job, Mix_Chunk *effect, menu playMenu, SDL_Surface *
 							in_menu = 1;
 						}else if(playmenu_key == 1){
 							next = 0;
-							LoadGame(&player, &(h.vie), &keys, "savegame.txt");
+							LoadGame(&in_menu,&job,screen);
 							in_menu = 0;
 						}else if(playmenu_key == 2){
 							job = 0;
@@ -171,7 +167,7 @@ void openPlayMenu(char *ptr_job, Mix_Chunk *effect, menu playMenu, SDL_Surface *
 							if (dy_cursor >= playMenu.b2.position.y && dy_cursor <= playMenu.b2.position.h + playMenu.b2.position.y){
 								next = 0;
 
-								LoadGame(&player, &(h.vie), &keys, "savegame.txt");
+								LoadGame(&in_menu,&job,screen);
 								in_menu = 1;
 							}
 							//return 
@@ -217,8 +213,6 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	
 	hero player;
 
-	minimap m;
-
 	projectile villainProjectile;
 	
 	object key, key2;
@@ -249,7 +243,6 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 
 	//init TTF Font
 	font = TTF_OpenFont("../src/font/Baron Neue.otf",50);
-
 	//Init health
 	vie.vie = 1000;
 	sprintf(bufferVie, "%d", vie.vie);
@@ -264,8 +257,6 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	
 	//init position and images
 	villain = initEnnemie(villain,"../Sprites/entité secondaire/entité_sprite_demon_breath.png",5320,7427);
-
-	init_minimap(&m,screen);
 
 	villainProjectile.image = SDL_DisplayFormat(loadImage("../src/design/bazar/fire.png"));
 	villainProjectile = launchProjectile(villainProjectile,villain.position,3);
@@ -302,7 +293,6 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	
 	moveToMouse(&player,2260,7427);
 	SDL_EnableKeyRepeat(10,15);
-	
 	while(game){
         //Mise en route du timer
         start(&started,&paused,&startTicks);
@@ -350,7 +340,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 
 		/*---------------------------END-----------------------------------------------------------------*/
 
-		Afficher_Minimap(screen,event,&m,player.position,villain.position);
+		Afficher_Minimap(screen,player.position,villain.position);
 
 		/*---------------------------Show moving characters------------------------------------------------*/
 
@@ -358,7 +348,6 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 		show(&player,screen);
 
 		/*---------------------------END-----------------------------------------------------------------*/
-
 
 		if(xKEY == -1){
 			xKEY = riddle(firstEnigme,player,screen);
@@ -380,7 +369,6 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 		sprintf(bufferVie, " %d", vie.vie);
 		vie.font_vie = TTF_RenderText_Blended(font,bufferVie,fontColor);
 		SDL_BlitSurface(vie.font_vie,NULL,screen,&vie.position);
-		
 		sprintf(bufferKey, "Key : %d", number_key.keys);
 		number_key.font_key = TTF_RenderText_Blended(font,bufferKey,fontColor);
 		SDL_BlitSurface(number_key.font_key,NULL,screen,&number_key.position);
@@ -401,7 +389,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 			SDL_Delay( ( 1000 / FRAMES_PER_SECOND) - get_ticks(&started, &paused, &startTicks, &pausedTicks));
         }
 
-        condition_fin(&game,player,vie,number_key);
+        condition_fin(&game,player,vie,number_key,screen);
 
 	}
 	TTF_CloseFont(font);
@@ -435,7 +423,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 	SDL_FreeSurface(key.image);
 
 }
-
+/*-----------------------Load the game-----------------------*/
 /*_______________________________GAME EVENT HANDLER_________________________________*/
 
 void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job, SDL_Surface *calque_game, SDL_Rect camera, SDL_Rect *positionMouse, Uint32 *animationTime){
@@ -445,6 +433,7 @@ void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job
 	Uint32 currentTime = SDL_GetTicks();
     if(currentTime - (*animationTime) > 300){
 		player->orientation = 0;
+		player->step = 0;
 		*animationTime = currentTime;
 	}
 
@@ -496,8 +485,8 @@ void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job
 					acceleration(player);
 					break;
 
-				case SDLK_F1:
-					SaveGame(*player,1000,2,"savegame.txt");
+				case SDLK_s:
+					SaveGame(*player,1000,1,"savegame.txt");
 
 				default:
 					decceleration(player);

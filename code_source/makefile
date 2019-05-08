@@ -1,5 +1,12 @@
 libs = -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf
-allObjects = SDL_jump.o minimap.o AI.o SDL_atack.o SDL_multiplayer.o SDL_animation.o SDL_gestion.o SDL_scrolling.o SDL_enigme.o SDL_arduino.o zoom.o SDL_collision.o SDL_Game.o SDL_Game_Funcs.o SDL_Init.o SDL_move.o SDL_free.o SDL_acceleration.o SDL_savegame.o SDL_condition.o
+
+printObject = minimap.o AI.o SDL_multiplayer.o SDL_animation.o SDL_enigme.o zoom.o SDL_Game_Funcs.o
+
+moveObject = SDL_jump.o SDL_atack.o SDL_scrolling.o SDL_arduino.o SDL_move.o SDL_acceleration.o
+
+initObject = SDL_gestion.o SDL_collision.o SDL_Game.o  SDL_Init.o SDL_free.o  SDL_savegame.o SDL_condition.o
+
+allObjects = $(printObject) $(moveObject) $(initObject)
 
 game: $(allObjects)
 	gcc $(allObjects) -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf -lSDL_gfx -lm -ldl -g -o game

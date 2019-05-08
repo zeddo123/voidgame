@@ -41,6 +41,4 @@ enigme loadTextForRiddle(enigme e);
 
 enigme initPrintRiddle(enigme e);
 
-void init_minimap(minimap *m,SDL_Surface *ecran);
-
 #endif

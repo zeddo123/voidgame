@@ -10,6 +10,6 @@
 
 
 void SaveGame(hero player, int vie, int keys,  char filename[50]);
-void LoadGame(hero *player, int* vie, int* keys, char filename[50]);
+void LoadGame(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen);
 
 #endif

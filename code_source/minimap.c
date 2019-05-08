@@ -1,43 +1,32 @@
 #include "minimap.h"
+#include "SDL_global_var.h"
 #include <string.h>
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 #include <unistd.h>
 
+void Afficher_Minimap(SDL_Surface * screen, SDL_Rect posplayer , SDL_Rect posEntite){
+    SDL_Rect minimap = {SCREEN_WIDTH/2 - 200 ,SCREEN_HEIGHT / 2 + 270,400,200};
+    SDL_Rect positionPlayer;
+    SDL_Rect positionEntite;
+    
+    Uint32 black = SDL_MapRGB(screen->format, 12, 12, 12);
+    Uint32 red = SDL_MapRGB(screen->format, 255, 12, 14);
+    Uint32 purple = SDL_MapRGB(screen->format, 128,0,128);
 
+    positionPlayer.x = minimap.x + 400 * posplayer.x / 8000;
+    positionPlayer.y = minimap.y + 200 * posplayer.y / 8000;
+    positionPlayer.h = 10;
+    positionPlayer.w = 10;
 
-void Afficher_Minimap(SDL_Surface * ecran, SDL_Event event,minimap *minimap,SDL_Rect posplayer , SDL_Rect posEntite)
-{
-   // switch(event.type)
-    //{
-      //  case SDL_KEYDOWN :
-            switch ( event . key . keysym . sym )
-            {
-            case SDLK_RIGHT:
-                minimap->image = minimap->Right ;
-                break;
-            case SDLK_LEFT:
-                minimap->image = minimap->Left ;
-                break;
-            case SDLK_UP:
-                minimap->image = minimap->Up ;
-                break;
-            case SDLK_DOWN:
-                minimap->image = minimap->Down ;
-                break;
-            }
-      //  break;
-    //}
+    positionEntite.x = minimap.x + 400 * posEntite.x / 8000;
+    positionEntite.y = minimap.y + 200 * posEntite.y / 8000;
+    positionEntite.h = 10;
+    positionEntite.w = 10;
 
-    minimap->pos.x = minimap->posminimap.x + ( posplayer.x ) * 0.23 ;
-    minimap->pos.y = minimap->posminimap.y + ( posplayer.y ) * 0.21 ;
+    SDL_FillRect(screen, &minimap, black);
+    SDL_FillRect(screen, &positionEntite, red);
+    SDL_FillRect(screen, &positionPlayer, purple);
 
-    minimap->pos2.x = minimap->posminimap.x + ( posEntite.x ) * 0.09 ;
-    minimap->pos2.y = minimap->posminimap.y + ( posEntite.y ) * 0.21 ;
-
-
-    SDL_BlitSurface(minimap->minimap, NULL, ecran,&minimap->posminimap);
-    SDL_BlitSurface(minimap->image, NULL, ecran, &minimap->pos);
-    SDL_BlitSurface(minimap->entite, NULL, ecran, &minimap->pos2);
-
+   
 }

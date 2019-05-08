@@ -12,5 +12,5 @@ void acceleration(hero *player){
 
 void decceleration(hero *player){
     if(player->step > 0)
-    player->step -= 5; 
+    	player->step -= 5; 
 }

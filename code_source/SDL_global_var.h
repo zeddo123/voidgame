@@ -1,7 +1,7 @@
 #define STEP 20
-#define SCREEN_WIDTH 1280
-#define SCREEN_HEIGHT 720
-#define HD // or HD
+#define SCREEN_WIDTH 1920
+#define SCREEN_HEIGHT 1080
+#define FHD // or HD
 
 #ifdef FHD
 //positions of the buttons

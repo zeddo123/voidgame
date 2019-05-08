@@ -7,6 +7,6 @@
 #include "SDL_gestion.h"
 #include "SDL_char.h"
 
-void condition_fin(char *game, hero player, health h, keys key);
+void condition_fin(char *game, hero player, health h, keys key, SDL_Surface* screen);
 
 #endif

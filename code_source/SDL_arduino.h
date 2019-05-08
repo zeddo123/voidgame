@@ -8,6 +8,6 @@ int eventHandlerArduino(hero *player, SDL_Surface *calque_game);
 
 void turnOnOff(int e1, int e2);
 
-int readFromArd();
+char readFromArd();
 
 int writeToArd(int x);
