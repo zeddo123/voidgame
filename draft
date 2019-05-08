@@ -1,0 +1,40 @@
+void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job, SDL_Surface *calque_game, SDL_Rect camera, SDL_Rect *positionMouse, Uint32 *animationTime){
+	SDL_Event event;
+	int dx_cursor_in_game,dy_cursor_in_game;
+    int ground_level=7645;
+    int H=50;
+    player->vel=0;
+    
+	
+	Uint32 currentTime = SDL_GetTicks();
+    if(currentTime - (*animationTime) > 300){
+		player->orientation = 0;
+		*animationTime = currentTime;
+	}
+
+	SDL_PollEvent(&event);
+	if ( player->position.y + H < ground_level ) 
+	{
+		player->vel += 1; // Add gravity if he is
+	}
+	else
+	{
+		// Keep player from falling through the ground
+		player->vel = 0; // put player->vel = -player->vel / 3;  to make the player bounce off the ground :)
+		player->position.y = ground_level - H;
+	}
+	player->position.y += player->vel;
+
+	switch(event.type){
+		case SDL_QUIT:
+			printf("..Quiting the game..\n");
+			*ptr_job = 0;
+			*ptr_game = 0;
+			break;
+		case SDL_KEYDOWN:
+		
+			switch(event.key.keysym.sym){
+				case SDLK_ESCAPE:
+				if ( player->position.y + H == ground_level )
+				player->vel = -8;
+					break;
