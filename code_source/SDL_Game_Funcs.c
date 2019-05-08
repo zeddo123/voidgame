@@ -340,7 +340,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 
 		/*---------------------------END-----------------------------------------------------------------*/
 
-		Afficher_Minimap(screen,player.position,villain.position);
+		Afficher_Minimap(screen,player.position,villain.position,key.position,key2.position);
 
 		/*---------------------------Show moving characters------------------------------------------------*/
 
