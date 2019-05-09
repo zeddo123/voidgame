@@ -49,19 +49,19 @@ int collisionCxC(Circle a, Circle b){
 
 
 
-int collisionBxC(circle,rect)
+int collisionBxC(Circle circle,SDL_Rect rect)
 {
-    int circleDistance.x = abs(circle.x - rect.x);
-    int circleDistance.y = abs(circle.y - rect.y);
+    int circleDistancex = abs(circle.x - rect.x);
+    int circleDistancey = abs(circle.y - rect.y);
 
-    if (circleDistance.x > (rect.width/2 + circle.r)) { return 0; }
-    if (circleDistance.y > (rect.height/2 + circle.r)) { return 1; }
+    if (circleDistancex > (rect.w/2 + circle.r)) { return 0; }
+    if (circleDistancey > (rect.h/2 + circle.r)) { return 1; }
 
-    if (circleDistance.x <= (rect.width/2)) { return 1; } 
-    if (circleDistance.y <= (rect.height/2)) { return 1; }
+    if (circleDistancex <= (rect.w/2)) { return 1; } 
+    if (circleDistancey <= (rect.h/2)) { return 1; }
 
-    int cornerDistance_sq = (circleDistance.x - rect.width/2)^2 +
-                         (circleDistance.y - rect.height/2)^2;
+    int cornerDistance_sq = (circleDistancex - rect.w/2)^2 +
+                         (circleDistancey - rect.h/2)^2;
 
     return (cornerDistance_sq <= (circle.r^2));
 }
