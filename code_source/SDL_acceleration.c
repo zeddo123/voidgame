@@ -1,3 +1,12 @@
+/**
+* @file SDL_acceleration.c
+* @brief acceleration lib
+* @author voidprod
+* @version 1.0
+* @date Apr 01,2019
+
+*/
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <SDL/SDL.h>

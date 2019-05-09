@@ -1,3 +1,11 @@
+/**
+* @file SDL_move.c
+* @brief moving a character lib
+* @author VoidProd
+* @version 3.0
+* @date May 8,2019
+
+*/
 #include "SDL_move.h"
 
 void moveToMouse(hero *player, int dx, int dy){

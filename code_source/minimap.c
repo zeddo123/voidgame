@@ -1,3 +1,12 @@
+/**
+* @file minimap.c
+* @brief minimap lib
+* @author voidprod
+* @version 1.0
+* @date Apr 01,2019
+
+*/
+
 #include "minimap.h"
 #include "SDL_global_var.h"
 #include <string.h>

@@ -1,3 +1,11 @@
+/**
+* @file SDL_Game_funcs.c
+* @brief main functions
+* @author Zeddo123
+* @version 1.0
+* @date Apr 1,2019
+
+*/
 #include <string.h>
 #include "SDL_Game.h"
 #include "SDL_scrolling.h"

@@ -1,3 +1,11 @@
+/**
+* @file SDL_init.c
+* @brief init libs
+* @author VoidProd
+* @version 5.0
+* @date Jan 1,2019
+
+*/
 #include "SDL_Init.h"
 
 menu initSelectMenu(){

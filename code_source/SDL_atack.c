@@ -1,3 +1,11 @@
+/**
+* @file SDL_atack.c
+* @brief save game
+* @author Zeddo123
+* @version 1.0
+* @date May 1,2019
+
+*/
 #include "SDL_atack.h"
 
 projectile launchProjectile(projectile p, SDL_Rect positionlaunch, int axe){

@@ -1,3 +1,11 @@
+/**
+* @file SDL_multiplayer.c
+* @brief Split sceen libs
+* @author Zeddo123
+* @version 2.0
+* @date May 8,2019
+
+*/
 #include "SDL_multiplayer.h"
 
 void playMultiplayer(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){

@@ -1,3 +1,11 @@
+/**
+* @file AI.c
+* @brief Ai libs
+* @author Taher
+* @version 1.0
+* @date May 2,2019
+
+*/
 #include "AI.h"
 #include <math.h>
 

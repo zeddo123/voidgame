@@ -1,3 +1,11 @@
+/**
+* @file SDL_scrolling.c
+* @brief scrolling libs
+* @author Zeddo123
+* @version 2.0
+* @date Apr 1,2019
+
+*/
 #include "SDL_scrolling.h"
 
 SDL_Rect moveCamera(SDL_Rect camera, hero player, SDL_Surface *game){

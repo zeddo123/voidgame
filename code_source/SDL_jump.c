@@ -1,3 +1,11 @@
+/**
+* @file SDL_jump.c
+* @brief save game
+* @author Kaisouneltahfoun
+* @version 0.5
+* @date May 9,2019
+
+*/
 #include "SDL_jump.h"
 
 void jump(hero *player, SDL_Rect camera){

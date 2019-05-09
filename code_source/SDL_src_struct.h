@@ -1,3 +1,11 @@
+/**
+* @file SDL_src_struct.c
+* @brief game inernal structs
+* @author Zeddo123
+* @version 2.0
+* @date May 1,2019
+
+*/
 #ifndef STRUCT_H_INCLUDED
 #define STRUCT_H_INCLUDED
 

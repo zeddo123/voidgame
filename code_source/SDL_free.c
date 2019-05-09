@@ -1,3 +1,11 @@
+/**
+* @file [SDL_free.c]
+* @brief free allocation libs
+* @author voidprod
+* @version 1.0
+* @date Apr 01,2019
+
+*/
 #include "SDL_free.h"
 
 

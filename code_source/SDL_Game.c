@@ -1,4 +1,5 @@
 //the main code of the game
+
 /**
 * @file SDL_Game.c
 * @brief Testing program
