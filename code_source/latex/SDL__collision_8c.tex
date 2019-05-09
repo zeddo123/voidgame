@@ -1,0 +1,63 @@
+\hypertarget{SDL__collision_8c}{}\section{S\+D\+L\+\_\+collision.\+c File Reference}
+\label{SDL__collision_8c}\index{SDL\_collision.c@{SDL\_collision.c}}
+{\ttfamily \#include \char`\"{}S\+D\+L\+\_\+collision.\+h\char`\"{}}\newline
+Include dependency graph for S\+D\+L\+\_\+collision.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{SDL__collision_8c_a00def301ecaedb9edf9fa5e9777dc094}{collision\+Box}} (S\+D\+L\+\_\+\+Rect a, S\+D\+L\+\_\+\+Rect b)
+\item 
+double \mbox{\hyperlink{SDL__collision_8c_acdda9762ac75a85a9b6c104fc0b81f92}{distance\+Squared}} (int x1, int y1, int x2, int y2)
+\item 
+int \mbox{\hyperlink{SDL__collision_8c_a648afd9d05d9ac08a2b6b08eb47c62fd}{collision\+CxC}} (\mbox{\hyperlink{structCircle}{Circle}} a, \mbox{\hyperlink{structCircle}{Circle}} b)
+\item 
+int \mbox{\hyperlink{SDL__collision_8c_ab61d83fd9b6aa776766672261c672569}{collision\+BxC}} (\mbox{\hyperlink{structCircle}{Circle}} circle, S\+D\+L\+\_\+\+Rect rect)
+\item 
+S\+D\+L\+\_\+\+Color \mbox{\hyperlink{SDL__collision_8c_a2fb9b6ab55879257b0d74bd5cd2eae61}{Get\+Pixel}} (S\+D\+L\+\_\+\+Surface $\ast$surface, int x, int y)
+\item 
+int \mbox{\hyperlink{SDL__collision_8c_a6a218474f4f9d8b148a523a35f51f12f}{collision\+\_\+\+Parfaite}} (S\+D\+L\+\_\+\+Surface $\ast$calque, S\+D\+L\+\_\+\+Rect posperso, int decalage, int direction)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{SDL__collision_8c_a6a218474f4f9d8b148a523a35f51f12f}\label{SDL__collision_8c_a6a218474f4f9d8b148a523a35f51f12f}} 
+\index{SDL\_collision.c@{SDL\_collision.c}!collision\_Parfaite@{collision\_Parfaite}}
+\index{collision\_Parfaite@{collision\_Parfaite}!SDL\_collision.c@{SDL\_collision.c}}
+\subsubsection{\texorpdfstring{collision\_Parfaite()}{collision\_Parfaite()}}
+{\footnotesize\ttfamily int collision\+\_\+\+Parfaite (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{calque,  }\item[{S\+D\+L\+\_\+\+Rect}]{posperso,  }\item[{int}]{decalage,  }\item[{int}]{direction }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{SDL__collision_8c_a00def301ecaedb9edf9fa5e9777dc094}\label{SDL__collision_8c_a00def301ecaedb9edf9fa5e9777dc094}} 
+\index{SDL\_collision.c@{SDL\_collision.c}!collisionBox@{collisionBox}}
+\index{collisionBox@{collisionBox}!SDL\_collision.c@{SDL\_collision.c}}
+\subsubsection{\texorpdfstring{collisionBox()}{collisionBox()}}
+{\footnotesize\ttfamily int collision\+Box (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Rect}]{a,  }\item[{S\+D\+L\+\_\+\+Rect}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{SDL__collision_8c_ab61d83fd9b6aa776766672261c672569}\label{SDL__collision_8c_ab61d83fd9b6aa776766672261c672569}} 
+\index{SDL\_collision.c@{SDL\_collision.c}!collisionBxC@{collisionBxC}}
+\index{collisionBxC@{collisionBxC}!SDL\_collision.c@{SDL\_collision.c}}
+\subsubsection{\texorpdfstring{collisionBxC()}{collisionBxC()}}
+{\footnotesize\ttfamily int collision\+BxC (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCircle}{Circle}}}]{circle,  }\item[{S\+D\+L\+\_\+\+Rect}]{rect }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{SDL__collision_8c_a648afd9d05d9ac08a2b6b08eb47c62fd}\label{SDL__collision_8c_a648afd9d05d9ac08a2b6b08eb47c62fd}} 
+\index{SDL\_collision.c@{SDL\_collision.c}!collisionCxC@{collisionCxC}}
+\index{collisionCxC@{collisionCxC}!SDL\_collision.c@{SDL\_collision.c}}
+\subsubsection{\texorpdfstring{collisionCxC()}{collisionCxC()}}
+{\footnotesize\ttfamily int collision\+CxC (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCircle}{Circle}}}]{a,  }\item[{\mbox{\hyperlink{structCircle}{Circle}}}]{b }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{SDL__collision_8c_acdda9762ac75a85a9b6c104fc0b81f92}\label{SDL__collision_8c_acdda9762ac75a85a9b6c104fc0b81f92}} 
+\index{SDL\_collision.c@{SDL\_collision.c}!distanceSquared@{distanceSquared}}
+\index{distanceSquared@{distanceSquared}!SDL\_collision.c@{SDL\_collision.c}}
+\subsubsection{\texorpdfstring{distanceSquared()}{distanceSquared()}}
+{\footnotesize\ttfamily double distance\+Squared (\begin{DoxyParamCaption}\item[{int}]{x1,  }\item[{int}]{y1,  }\item[{int}]{x2,  }\item[{int}]{y2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{SDL__collision_8c_a2fb9b6ab55879257b0d74bd5cd2eae61}\label{SDL__collision_8c_a2fb9b6ab55879257b0d74bd5cd2eae61}} 
+\index{SDL\_collision.c@{SDL\_collision.c}!GetPixel@{GetPixel}}
+\index{GetPixel@{GetPixel}!SDL\_collision.c@{SDL\_collision.c}}
+\subsubsection{\texorpdfstring{GetPixel()}{GetPixel()}}
+{\footnotesize\ttfamily S\+D\+L\+\_\+\+Color Get\+Pixel (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{surface,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+

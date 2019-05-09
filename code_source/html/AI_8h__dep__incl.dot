@@ -1,0 +1,13 @@
+digraph "AI.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Roboto",fontsize="10",labelfontname="Roboto",labelfontsize="10"];
+  node [fontname="Roboto",fontsize="10",shape=record];
+  Node26 [label="AI.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node26 -> Node27 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node27 [label="AI.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$AI_8c.html",tooltip="Ai libs."];
+  Node26 -> Node28 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node28 [label="SDL_Game_Funcs.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__Game__Funcs_8c.html",tooltip=" "];
+  Node26 -> Node29 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node29 [label="SDL_savegame.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__savegame_8c.html",tooltip="save game"];
+}

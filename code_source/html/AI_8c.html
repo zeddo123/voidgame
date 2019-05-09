@@ -73,19 +73,21 @@ $(function() {
 
 <p>Ai libs.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;AI.h&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="AI_8h_source.html">AI.h</a>&quot;</code><br />
 <code>#include &lt;math.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for AI.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="AI_8c__incl.png" border="0" usemap="#AI_8c" alt=""/></div>
+</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:afdda9b9d6e6368688ac61d458ea62990"><td class="memItemLeft" align="right" valign="top"><a id="afdda9b9d6e6368688ac61d458ea62990"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>distance</b> (<a class="el" href="structEnnemi.html">ennemi</a> E, <a class="el" href="structhero.html">hero</a> H, SDL_Rect camera)</td></tr>
+<tr class="memitem:afdda9b9d6e6368688ac61d458ea62990"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AI_8c.html#afdda9b9d6e6368688ac61d458ea62990">distance</a> (<a class="el" href="ennemie_8h.html#a2f6e9440e0fcb1d89f136ec153ee7917">ennemi</a> E, <a class="el" href="structhero.html">hero</a> H, SDL_Rect camera)</td></tr>
 <tr class="separator:afdda9b9d6e6368688ac61d458ea62990"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b66dca38fbed2c237956238a05dd6e5"><td class="memItemLeft" align="right" valign="top"><a id="a3b66dca38fbed2c237956238a05dd6e5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>moveEnnemi</b> (<a class="el" href="structEnnemi.html">ennemi</a> *E, SDL_Rect posHero)</td></tr>
+<tr class="memitem:a3b66dca38fbed2c237956238a05dd6e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AI_8c.html#a3b66dca38fbed2c237956238a05dd6e5">moveEnnemi</a> (<a class="el" href="ennemie_8h.html#a2f6e9440e0fcb1d89f136ec153ee7917">ennemi</a> *E, SDL_Rect posHero)</td></tr>
 <tr class="separator:a3b66dca38fbed2c237956238a05dd6e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0736f04af26a6b01f31a20ec2bb0adf2"><td class="memItemLeft" align="right" valign="top"><a id="a0736f04af26a6b01f31a20ec2bb0adf2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>transitionn</b> (<a class="el" href="structEnnemi.html">ennemi</a> *E, <a class="el" href="structhero.html">hero</a> H, SDL_Rect camera, <a class="el" href="structhealth.html">health</a> *sc, SDL_Surface *screen, int *animation, int *follow, int *wait, int *attack)</td></tr>
+<tr class="memitem:a0736f04af26a6b01f31a20ec2bb0adf2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AI_8c.html#a0736f04af26a6b01f31a20ec2bb0adf2">transitionn</a> (<a class="el" href="ennemie_8h.html#a2f6e9440e0fcb1d89f136ec153ee7917">ennemi</a> *E, <a class="el" href="structhero.html">hero</a> H, SDL_Rect camera, <a class="el" href="structhealth.html">health</a> *sc, SDL_Surface *screen, int *animation, int *follow, int *wait, int *attack)</td></tr>
 <tr class="separator:a0736f04af26a6b01f31a20ec2bb0adf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -93,7 +95,145 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>transitionn</b> (<a c
 <dl class="section author"><dt>Author</dt><dd>Taher </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>May 2,2019 </dd></dl>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="afdda9b9d6e6368688ac61d458ea62990"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdda9b9d6e6368688ac61d458ea62990">&#9670;&nbsp;</a></span>distance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int distance </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ennemie_8h.html#a2f6e9440e0fcb1d89f136ec153ee7917">ennemi</a>&#160;</td>
+          <td class="paramname"><em>E</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structhero.html">hero</a>&#160;</td>
+          <td class="paramname"><em>H</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Rect&#160;</td>
+          <td class="paramname"><em>camera</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3b66dca38fbed2c237956238a05dd6e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b66dca38fbed2c237956238a05dd6e5">&#9670;&nbsp;</a></span>moveEnnemi()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void moveEnnemi </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ennemie_8h.html#a2f6e9440e0fcb1d89f136ec153ee7917">ennemi</a> *&#160;</td>
+          <td class="paramname"><em>E</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Rect&#160;</td>
+          <td class="paramname"><em>posHero</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0736f04af26a6b01f31a20ec2bb0adf2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0736f04af26a6b01f31a20ec2bb0adf2">&#9670;&nbsp;</a></span>transitionn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void transitionn </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ennemie_8h.html#a2f6e9440e0fcb1d89f136ec153ee7917">ennemi</a> *&#160;</td>
+          <td class="paramname"><em>E</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structhero.html">hero</a>&#160;</td>
+          <td class="paramname"><em>H</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Rect&#160;</td>
+          <td class="paramname"><em>camera</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structhealth.html">health</a> *&#160;</td>
+          <td class="paramname"><em>sc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Surface *&#160;</td>
+          <td class="paramname"><em>screen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>animation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>follow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>wait</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>attack</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="AI_8c_a0736f04af26a6b01f31a20ec2bb0adf2_cgraph.png" border="0" usemap="#AI_8c_a0736f04af26a6b01f31a20ec2bb0adf2_cgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

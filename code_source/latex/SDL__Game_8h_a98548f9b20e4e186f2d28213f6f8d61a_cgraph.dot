@@ -1,0 +1,10 @@
+digraph "settingsEventHandler"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Roboto",fontsize="10",labelfontname="Roboto",labelfontsize="10"];
+  node [fontname="Roboto",fontsize="10",shape=record];
+  rankdir="LR";
+  Node212 [label="settingsEventHandler",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node212 -> Node213 [color="midnightblue",fontsize="10",style="solid"];
+  Node213 [label="setVolume",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__Game__Funcs_8c.html#a30fe22927d25800e7004a3cbc6ef9d65",tooltip=" "];
+}

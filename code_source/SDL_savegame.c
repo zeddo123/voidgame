@@ -23,7 +23,6 @@
 #include "SDL_multiplayer.h"
 #include "SDL_atack.h"
 #include "minimap.h"
-#include "SDL_jump.h"
 #include "SDL_acceleration.h"
 #include "SDL_savegame.h"
 #include "SDL_CONDITION.h"

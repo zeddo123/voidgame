@@ -1,0 +1,13 @@
+digraph "SDL_atack.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Roboto",fontsize="10",labelfontname="Roboto",labelfontsize="10"];
+  node [fontname="Roboto",fontsize="10",shape=record];
+  Node23 [label="SDL_atack.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node23 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node24 [label="SDL_atack.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__atack_8c.html",tooltip="save game"];
+  Node23 -> Node25 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node25 [label="SDL_Game_Funcs.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__Game__Funcs_8c.html",tooltip=" "];
+  Node23 -> Node26 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node26 [label="SDL_savegame.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__savegame_8c.html",tooltip="save game"];
+}

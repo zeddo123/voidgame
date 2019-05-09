@@ -1,0 +1,16 @@
+digraph "SDL_gestion.c"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Roboto",fontsize="10",labelfontname="Roboto",labelfontsize="10"];
+  node [fontname="Roboto",fontsize="10",shape=record];
+  Node0 [label="SDL_gestion.c",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node1 [label="SDL_gestion.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__gestion_8h.html",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node2 [label="SDL/SDL.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node3 [label="SDL_collision.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__collision_8h.html",tooltip=" "];
+  Node3 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node4 [label="SDL_char.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__char_8h.html",tooltip=" "];
+}

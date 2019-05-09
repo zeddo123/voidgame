@@ -1,0 +1,10 @@
+digraph "show"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Roboto",fontsize="10",labelfontname="Roboto",labelfontsize="10"];
+  node [fontname="Roboto",fontsize="10",shape=record];
+  rankdir="LR";
+  Node4 [label="show",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="apply_surface",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__animation_8c.html#a87468ff26c3de0d98037c2cff18aa20f",tooltip=" "];
+}

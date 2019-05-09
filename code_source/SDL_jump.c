@@ -6,7 +6,7 @@
 * @date May 9,2019
 
 */
-#include "SDL_jump.h"
+//#include "SDL_jump.h"
 
 void jump(hero *player, SDL_Rect camera){
 	// Les variables lkol 7atithom random khatr naarach lmap mte3na kifeni

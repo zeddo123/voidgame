@@ -1,0 +1,19 @@
+digraph "SDL_arduino.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Roboto",fontsize="10",labelfontname="Roboto",labelfontsize="10"];
+  node [fontname="Roboto",fontsize="10",shape=record];
+  Node23 [label="SDL_arduino.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node23 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node24 [label="SDL_arduino.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__arduino_8c.html",tooltip=" "];
+  Node23 -> Node25 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node25 [label="SDL_Game_Funcs.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__Game__Funcs_8c.html",tooltip=" "];
+  Node23 -> Node26 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node26 [label="SDL_multiplayer.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__multiplayer_8h.html",tooltip=" "];
+  Node26 -> Node25 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node26 -> Node27 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node27 [label="SDL_multiplayer.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__multiplayer_8c.html",tooltip="Split sceen libs."];
+  Node26 -> Node28 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node28 [label="SDL_savegame.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__savegame_8c.html",tooltip="save game"];
+  Node23 -> Node28 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+}

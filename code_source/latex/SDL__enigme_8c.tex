@@ -1,0 +1,90 @@
+\hypertarget{SDL__enigme_8c}{}\section{S\+D\+L\+\_\+enigme.\+c File Reference}
+\label{SDL__enigme_8c}\index{SDL\_enigme.c@{SDL\_enigme.c}}
+{\ttfamily \#include \char`\"{}S\+D\+L\+\_\+enigme.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for S\+D\+L\+\_\+enigme.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{SDL__enigme_8c_a4143c32173f2ea6e72c73342b2fbd75f}{find\+Index}} (char string\mbox{[}$\,$\mbox{]}, char x)
+\item 
+void \mbox{\hyperlink{SDL__enigme_8c_a2e157e71610302b772cc5231a54866dd}{erase}} (char string\mbox{[}$\,$\mbox{]}, int pos)
+\item 
+\mbox{\hyperlink{SDL__enigme_8h_acb800697b95ebd495a92f3a543193edc}{enigme}} \mbox{\hyperlink{SDL__enigme_8c_a39c76700dff530c844926f769b9e5e2f}{fetch\+Question}} (char file\+\_\+q\mbox{[}$\,$\mbox{]}, char file\+\_\+a\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{SDL__enigme_8h_acb800697b95ebd495a92f3a543193edc}{enigme}} \mbox{\hyperlink{SDL__enigme_8c_a366df1c03f8c6ca9f110a8d71af474c8}{create\+Qustion}} ()
+\item 
+void \mbox{\hyperlink{SDL__enigme_8c_a3467afd42435399ceb0c3fc02a558afa}{generate\+Fake}} (int value, int color, int $\ast$value2, int $\ast$color2, int $\ast$value3, int $\ast$color3, int $\ast$value4, int $\ast$color4)
+\item 
+char $\ast$ \mbox{\hyperlink{SDL__enigme_8c_a93772ce62fdaccc83db762a25f6dc63c}{format\+Carte}} (int value, int color)
+\item 
+int \mbox{\hyperlink{SDL__enigme_8c_a4b8fbab12a6932d122a2ebd9f3f4e7eb}{riddle}} (\mbox{\hyperlink{SDL__enigme_8h_acb800697b95ebd495a92f3a543193edc}{enigme}} e, \mbox{\hyperlink{structhero}{hero}} player, S\+D\+L\+\_\+\+Surface $\ast$screen)
+\item 
+int \mbox{\hyperlink{SDL__enigme_8c_a3bf3997a463f1a0d6bcc4cce96ccb12b}{get\+Selection}} (\mbox{\hyperlink{SDL__enigme_8h_acb800697b95ebd495a92f3a543193edc}{enigme}} e, int $\ast$answer\+\_\+selected)
+\item 
+int \mbox{\hyperlink{SDL__enigme_8c_ad6b9608845d3195ea6d87176390dbc63}{verify\+Answer}} (\mbox{\hyperlink{SDL__enigme_8h_acb800697b95ebd495a92f3a543193edc}{enigme}} e, int answer\+\_\+selected)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{SDL__enigme_8c_a366df1c03f8c6ca9f110a8d71af474c8}\label{SDL__enigme_8c_a366df1c03f8c6ca9f110a8d71af474c8}} 
+\index{SDL\_enigme.c@{SDL\_enigme.c}!createQustion@{createQustion}}
+\index{createQustion@{createQustion}!SDL\_enigme.c@{SDL\_enigme.c}}
+\subsubsection{\texorpdfstring{createQustion()}{createQustion()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{SDL__enigme_8h_acb800697b95ebd495a92f3a543193edc}{enigme}} create\+Qustion (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{SDL__enigme_8c_a2e157e71610302b772cc5231a54866dd}\label{SDL__enigme_8c_a2e157e71610302b772cc5231a54866dd}} 
+\index{SDL\_enigme.c@{SDL\_enigme.c}!erase@{erase}}
+\index{erase@{erase}!SDL\_enigme.c@{SDL\_enigme.c}}
+\subsubsection{\texorpdfstring{erase()}{erase()}}
+{\footnotesize\ttfamily void erase (\begin{DoxyParamCaption}\item[{char}]{string\mbox{[}$\,$\mbox{]},  }\item[{int}]{pos }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{SDL__enigme_8c_a39c76700dff530c844926f769b9e5e2f}\label{SDL__enigme_8c_a39c76700dff530c844926f769b9e5e2f}} 
+\index{SDL\_enigme.c@{SDL\_enigme.c}!fetchQuestion@{fetchQuestion}}
+\index{fetchQuestion@{fetchQuestion}!SDL\_enigme.c@{SDL\_enigme.c}}
+\subsubsection{\texorpdfstring{fetchQuestion()}{fetchQuestion()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{SDL__enigme_8h_acb800697b95ebd495a92f3a543193edc}{enigme}} fetch\+Question (\begin{DoxyParamCaption}\item[{char}]{file\+\_\+q\mbox{[}$\,$\mbox{]},  }\item[{char}]{file\+\_\+a\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{SDL__enigme_8c_a4143c32173f2ea6e72c73342b2fbd75f}\label{SDL__enigme_8c_a4143c32173f2ea6e72c73342b2fbd75f}} 
+\index{SDL\_enigme.c@{SDL\_enigme.c}!findIndex@{findIndex}}
+\index{findIndex@{findIndex}!SDL\_enigme.c@{SDL\_enigme.c}}
+\subsubsection{\texorpdfstring{findIndex()}{findIndex()}}
+{\footnotesize\ttfamily int find\+Index (\begin{DoxyParamCaption}\item[{char}]{string\mbox{[}$\,$\mbox{]},  }\item[{char}]{x }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{SDL__enigme_8c_a93772ce62fdaccc83db762a25f6dc63c}\label{SDL__enigme_8c_a93772ce62fdaccc83db762a25f6dc63c}} 
+\index{SDL\_enigme.c@{SDL\_enigme.c}!formatCarte@{formatCarte}}
+\index{formatCarte@{formatCarte}!SDL\_enigme.c@{SDL\_enigme.c}}
+\subsubsection{\texorpdfstring{formatCarte()}{formatCarte()}}
+{\footnotesize\ttfamily char$\ast$ format\+Carte (\begin{DoxyParamCaption}\item[{int}]{value,  }\item[{int}]{color }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{SDL__enigme_8c_a3467afd42435399ceb0c3fc02a558afa}\label{SDL__enigme_8c_a3467afd42435399ceb0c3fc02a558afa}} 
+\index{SDL\_enigme.c@{SDL\_enigme.c}!generateFake@{generateFake}}
+\index{generateFake@{generateFake}!SDL\_enigme.c@{SDL\_enigme.c}}
+\subsubsection{\texorpdfstring{generateFake()}{generateFake()}}
+{\footnotesize\ttfamily void generate\+Fake (\begin{DoxyParamCaption}\item[{int}]{value,  }\item[{int}]{color,  }\item[{int $\ast$}]{value2,  }\item[{int $\ast$}]{color2,  }\item[{int $\ast$}]{value3,  }\item[{int $\ast$}]{color3,  }\item[{int $\ast$}]{value4,  }\item[{int $\ast$}]{color4 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{SDL__enigme_8c_a3bf3997a463f1a0d6bcc4cce96ccb12b}\label{SDL__enigme_8c_a3bf3997a463f1a0d6bcc4cce96ccb12b}} 
+\index{SDL\_enigme.c@{SDL\_enigme.c}!getSelection@{getSelection}}
+\index{getSelection@{getSelection}!SDL\_enigme.c@{SDL\_enigme.c}}
+\subsubsection{\texorpdfstring{getSelection()}{getSelection()}}
+{\footnotesize\ttfamily int get\+Selection (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{SDL__enigme_8h_acb800697b95ebd495a92f3a543193edc}{enigme}}}]{e,  }\item[{int $\ast$}]{answer\+\_\+selected }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{SDL__enigme_8c_a4b8fbab12a6932d122a2ebd9f3f4e7eb}\label{SDL__enigme_8c_a4b8fbab12a6932d122a2ebd9f3f4e7eb}} 
+\index{SDL\_enigme.c@{SDL\_enigme.c}!riddle@{riddle}}
+\index{riddle@{riddle}!SDL\_enigme.c@{SDL\_enigme.c}}
+\subsubsection{\texorpdfstring{riddle()}{riddle()}}
+{\footnotesize\ttfamily int riddle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{SDL__enigme_8h_acb800697b95ebd495a92f3a543193edc}{enigme}}}]{e,  }\item[{\mbox{\hyperlink{structhero}{hero}}}]{player,  }\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{screen }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{SDL__enigme_8c_ad6b9608845d3195ea6d87176390dbc63}\label{SDL__enigme_8c_ad6b9608845d3195ea6d87176390dbc63}} 
+\index{SDL\_enigme.c@{SDL\_enigme.c}!verifyAnswer@{verifyAnswer}}
+\index{verifyAnswer@{verifyAnswer}!SDL\_enigme.c@{SDL\_enigme.c}}
+\subsubsection{\texorpdfstring{verifyAnswer()}{verifyAnswer()}}
+{\footnotesize\ttfamily int verify\+Answer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{SDL__enigme_8h_acb800697b95ebd495a92f3a543193edc}{enigme}}}]{e,  }\item[{int}]{answer\+\_\+selected }\end{DoxyParamCaption})}
+

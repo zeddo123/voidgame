@@ -1,0 +1,10 @@
+digraph "Afficher_Minimap"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Roboto",fontsize="10",labelfontname="Roboto",labelfontsize="10"];
+  node [fontname="Roboto",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="Afficher_Minimap",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node1 [label="makeItSmall",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$minimap_8c.html#a71b27710c1dad331f8c84e5a9be05f1c",tooltip=" "];
+}

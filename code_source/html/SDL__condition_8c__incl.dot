@@ -1,0 +1,35 @@
+digraph "SDL_condition.c"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Roboto",fontsize="10",labelfontname="Roboto",labelfontsize="10"];
+  node [fontname="Roboto",fontsize="10",shape=record];
+  Node0 [label="SDL_condition.c",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="roto zoom"];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node1 [label="stdlib.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node0 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node2 [label="stdio.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node0 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node3 [label="SDL/SDL_image.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node0 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node4 [label="SDL_gestion.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__gestion_8h.html",tooltip=" "];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node5 [label="SDL/SDL.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node4 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node6 [label="SDL_collision.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__collision_8h.html",tooltip=" "];
+  Node6 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node4 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node7 [label="SDL_char.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__char_8h.html",tooltip=" "];
+  Node0 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node0 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node8 [label="SDL_CONDITION.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__CONDITION_8h.html",tooltip=" "];
+  Node8 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node8 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node8 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node8 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node8 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node0 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node9 [label="zoom.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$zoom_8h.html",tooltip=" "];
+  Node9 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node9 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node9 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+}

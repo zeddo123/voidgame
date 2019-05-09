@@ -1,0 +1,36 @@
+digraph "SDL_gestion.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Roboto",fontsize="10",labelfontname="Roboto",labelfontsize="10"];
+  node [fontname="Roboto",fontsize="10",shape=record];
+  Node4 [label="SDL_gestion.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="AI.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$AI_8h.html",tooltip=" "];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="AI.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$AI_8c.html",tooltip="Ai libs."];
+  Node5 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="SDL_Game_Funcs.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__Game__Funcs_8c.html",tooltip=" "];
+  Node5 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="SDL_savegame.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__savegame_8c.html",tooltip="save game"];
+  Node4 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="SDL_condition.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__condition_8c.html",tooltip="roto zoom"];
+  Node4 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="SDL_CONDITION.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__CONDITION_8h.html",tooltip=" "];
+  Node10 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="SDL_multiplayer.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__multiplayer_8h.html",tooltip=" "];
+  Node11 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node12 [label="SDL_multiplayer.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__multiplayer_8c.html",tooltip="Split sceen libs."];
+  Node11 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node13 [label="SDL_savegame.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__savegame_8h.html",tooltip=" "];
+  Node13 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node13 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node14 [label="SDL_gestion.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__gestion_8c.html",tooltip=" "];
+  Node4 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

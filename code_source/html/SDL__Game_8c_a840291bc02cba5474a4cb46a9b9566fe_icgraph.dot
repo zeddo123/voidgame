@@ -1,0 +1,12 @@
+digraph "main"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Roboto",fontsize="10",labelfontname="Roboto",labelfontsize="10"];
+  node [fontname="Roboto",fontsize="10",shape=record];
+  rankdir="RL";
+  Node80 [label="main",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node80 -> Node81 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node81 [label="initPlayMenu",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__Init_8h.html#aca9c8f6654a287dc225addf7bc93188d",tooltip=" "];
+  Node80 -> Node82 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node82 [label="initSettingsMenu",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__Init_8h.html#a3accead2e0742f15fb1a705e001bf66e",tooltip=" "];
+}

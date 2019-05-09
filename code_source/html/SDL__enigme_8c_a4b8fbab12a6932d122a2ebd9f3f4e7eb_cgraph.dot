@@ -1,0 +1,14 @@
+digraph "riddle"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Roboto",fontsize="10",labelfontname="Roboto",labelfontsize="10"];
+  node [fontname="Roboto",fontsize="10",shape=record];
+  rankdir="LR";
+  Node11 [label="riddle",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node11 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node12 [label="collisionBox",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__collision_8c.html#a00def301ecaedb9edf9fa5e9777dc094",tooltip=" "];
+  Node11 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node13 [label="getSelection",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__enigme_8c.html#a3bf3997a463f1a0d6bcc4cce96ccb12b",tooltip=" "];
+  Node11 -> Node14 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node14 [label="verifyAnswer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__enigme_8c.html#ad6b9608845d3195ea6d87176390dbc63",tooltip=" "];
+}

@@ -1,0 +1,25 @@
+digraph "SDL_scrolling.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Roboto",fontsize="10",labelfontname="Roboto",labelfontsize="10"];
+  node [fontname="Roboto",fontsize="10",shape=record];
+  Node23 [label="SDL_scrolling.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node23 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node24 [label="AI.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$AI_8h.html",tooltip=" "];
+  Node24 -> Node25 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node25 [label="AI.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$AI_8c.html",tooltip="Ai libs."];
+  Node24 -> Node26 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node26 [label="SDL_Game_Funcs.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__Game__Funcs_8c.html",tooltip=" "];
+  Node24 -> Node27 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node27 [label="SDL_savegame.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__savegame_8c.html",tooltip="save game"];
+  Node23 -> Node26 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node23 -> Node28 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node28 [label="SDL_multiplayer.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__multiplayer_8h.html",tooltip=" "];
+  Node28 -> Node26 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node28 -> Node29 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node29 [label="SDL_multiplayer.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__multiplayer_8c.html",tooltip="Split sceen libs."];
+  Node28 -> Node27 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node23 -> Node27 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node23 -> Node30 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node30 [label="SDL_scrolling.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__scrolling_8c.html",tooltip="scrolling libs"];
+}

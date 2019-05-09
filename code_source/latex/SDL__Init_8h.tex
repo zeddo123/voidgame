@@ -1,0 +1,160 @@
+\hypertarget{SDL__Init_8h}{}\section{S\+D\+L\+\_\+\+Init.\+h File Reference}
+\label{SDL__Init_8h}\index{SDL\_Init.h@{SDL\_Init.h}}
+{\ttfamily \#include $<$S\+D\+L/\+S\+D\+L.\+h$>$}\newline
+{\ttfamily \#include $<$S\+D\+L/\+S\+D\+L\+\_\+image.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}S\+D\+L\+\_\+char.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}S\+D\+L\+\_\+enigme.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}S\+D\+L\+\_\+\+Game.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ennemie.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}minimap.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$S\+D\+L/\+S\+D\+L\+\_\+rotozoom.\+h$>$}\newline
+Include dependency graph for S\+D\+L\+\_\+\+Init.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}} \mbox{\hyperlink{SDL__Init_8h_aabc8b158095214740751a603323a2615}{init\+Select\+Menu}} ()
+\item 
+\mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}} \mbox{\hyperlink{SDL__Init_8h_a45cc18c9330197ff2a6f8eaa0433defd}{init\+Main\+Menu}} ()
+\item 
+\mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}} \mbox{\hyperlink{SDL__Init_8h_aca9c8f6654a287dc225addf7bc93188d}{init\+Play\+Menu}} (\mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}} \mbox{\hyperlink{SDL__Game_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}})
+\item 
+\mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}} \mbox{\hyperlink{SDL__Init_8h_a3accead2e0742f15fb1a705e001bf66e}{init\+Settings\+Menu}} (\mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}} \mbox{\hyperlink{SDL__Game_8c_a840291bc02cba5474a4cb46a9b9566fe}{main}})
+\item 
+int \mbox{\hyperlink{SDL__Init_8h_a9c86961353b17cdaa6160b5e226e4de6}{check\+Image\+Load}} (S\+D\+L\+\_\+\+Surface $\ast$set\mbox{[}$\,$\mbox{]}, int index, int max\+Index)
+\item 
+void \mbox{\hyperlink{SDL__Init_8h_a9d15a4099a1c7eb98981e2f641be3411}{display\+Format\+Frame}} (S\+D\+L\+\_\+\+Surface $\ast$set\mbox{[}$\,$\mbox{]}, int maxframes)
+\item 
+void \mbox{\hyperlink{SDL__Init_8h_ab9c3e21cec256bd230c50af3a31b8d04}{next\+Frame}} (int $\ast$frame, int maxframes)
+\item 
+void \mbox{\hyperlink{SDL__Init_8h_ab29215e3467fdc78a5b43cb5417fb9e9}{load\+Frames}} (S\+D\+L\+\_\+\+Surface $\ast$set\mbox{[}$\,$\mbox{]}, int maxframes, char file\+\_\+name\mbox{[}$\,$\mbox{]})
+\item 
+S\+D\+L\+\_\+\+Surface $\ast$ \mbox{\hyperlink{SDL__Init_8h_a2ab4a75877abd9b57b1867af16899f30}{load\+Image}} (char file\+\_\+name\mbox{[}$\,$\mbox{]})
+\item 
+S\+D\+L\+\_\+\+Rect \mbox{\hyperlink{SDL__Init_8h_aacba2767ef1793cfcf9d9cfba91a62e7}{init\+Position}} (S\+D\+L\+\_\+\+Rect position, int x, int y, int w, int h)
+\item 
+\mbox{\hyperlink{structhero}{hero}} \mbox{\hyperlink{SDL__Init_8h_a537870b91a0bcb420da19fa92a506311}{init\+Hero}} (\mbox{\hyperlink{structhero}{hero}} h, char image\+\_\+name\mbox{[}$\,$\mbox{]}, int x, int y)
+\item 
+\mbox{\hyperlink{ennemie_8h_a2f6e9440e0fcb1d89f136ec153ee7917}{ennemi}} \mbox{\hyperlink{SDL__Init_8h_aebec659dbc0fced3e684a805336a2e0b}{init\+Ennemie}} (\mbox{\hyperlink{ennemie_8h_a2f6e9440e0fcb1d89f136ec153ee7917}{ennemi}} e, char image\+\_\+name\mbox{[}$\,$\mbox{]}, int x, int y)
+\item 
+\mbox{\hyperlink{structobject}{object}} \mbox{\hyperlink{SDL__Init_8h_a8a5afe773164b262326832d98dc6104c}{init\+Object}} (\mbox{\hyperlink{structobject}{object}} o, char image\+\_\+name\mbox{[}$\,$\mbox{]}, int x, int y)
+\item 
+\mbox{\hyperlink{SDL__enigme_8h_acb800697b95ebd495a92f3a543193edc}{enigme}} \mbox{\hyperlink{SDL__Init_8h_a6b45aea4a0ac66457461752d48769da0}{load\+Text\+For\+Riddle}} (\mbox{\hyperlink{SDL__enigme_8h_acb800697b95ebd495a92f3a543193edc}{enigme}} e)
+\item 
+\mbox{\hyperlink{SDL__enigme_8h_acb800697b95ebd495a92f3a543193edc}{enigme}} \mbox{\hyperlink{SDL__Init_8h_a24db4a5a8e8fd689b3c7e195c8895548}{init\+Print\+Riddle}} (\mbox{\hyperlink{SDL__enigme_8h_acb800697b95ebd495a92f3a543193edc}{enigme}} e)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{SDL__Init_8h_a9c86961353b17cdaa6160b5e226e4de6}\label{SDL__Init_8h_a9c86961353b17cdaa6160b5e226e4de6}} 
+\index{SDL\_Init.h@{SDL\_Init.h}!checkImageLoad@{checkImageLoad}}
+\index{checkImageLoad@{checkImageLoad}!SDL\_Init.h@{SDL\_Init.h}}
+\subsubsection{\texorpdfstring{checkImageLoad()}{checkImageLoad()}}
+{\footnotesize\ttfamily int check\+Image\+Load (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{set\mbox{[}$\,$\mbox{]},  }\item[{int}]{index,  }\item[{int}]{max\+Index }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{SDL__Init_8h_a9d15a4099a1c7eb98981e2f641be3411}\label{SDL__Init_8h_a9d15a4099a1c7eb98981e2f641be3411}} 
+\index{SDL\_Init.h@{SDL\_Init.h}!displayFormatFrame@{displayFormatFrame}}
+\index{displayFormatFrame@{displayFormatFrame}!SDL\_Init.h@{SDL\_Init.h}}
+\subsubsection{\texorpdfstring{displayFormatFrame()}{displayFormatFrame()}}
+{\footnotesize\ttfamily void display\+Format\+Frame (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{set\mbox{[}$\,$\mbox{]},  }\item[{int}]{maxframes }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{SDL__Init_8h_aebec659dbc0fced3e684a805336a2e0b}\label{SDL__Init_8h_aebec659dbc0fced3e684a805336a2e0b}} 
+\index{SDL\_Init.h@{SDL\_Init.h}!initEnnemie@{initEnnemie}}
+\index{initEnnemie@{initEnnemie}!SDL\_Init.h@{SDL\_Init.h}}
+\subsubsection{\texorpdfstring{initEnnemie()}{initEnnemie()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ennemie_8h_a2f6e9440e0fcb1d89f136ec153ee7917}{ennemi}} init\+Ennemie (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ennemie_8h_a2f6e9440e0fcb1d89f136ec153ee7917}{ennemi}}}]{e,  }\item[{char}]{image\+\_\+name\mbox{[}$\,$\mbox{]},  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{SDL__Init_8h_a537870b91a0bcb420da19fa92a506311}\label{SDL__Init_8h_a537870b91a0bcb420da19fa92a506311}} 
+\index{SDL\_Init.h@{SDL\_Init.h}!initHero@{initHero}}
+\index{initHero@{initHero}!SDL\_Init.h@{SDL\_Init.h}}
+\subsubsection{\texorpdfstring{initHero()}{initHero()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structhero}{hero}} init\+Hero (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhero}{hero}}}]{h,  }\item[{char}]{image\+\_\+name\mbox{[}$\,$\mbox{]},  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{SDL__Init_8h_a45cc18c9330197ff2a6f8eaa0433defd}\label{SDL__Init_8h_a45cc18c9330197ff2a6f8eaa0433defd}} 
+\index{SDL\_Init.h@{SDL\_Init.h}!initMainMenu@{initMainMenu}}
+\index{initMainMenu@{initMainMenu}!SDL\_Init.h@{SDL\_Init.h}}
+\subsubsection{\texorpdfstring{initMainMenu()}{initMainMenu()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}} init\+Main\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{SDL__Init_8h_a8a5afe773164b262326832d98dc6104c}\label{SDL__Init_8h_a8a5afe773164b262326832d98dc6104c}} 
+\index{SDL\_Init.h@{SDL\_Init.h}!initObject@{initObject}}
+\index{initObject@{initObject}!SDL\_Init.h@{SDL\_Init.h}}
+\subsubsection{\texorpdfstring{initObject()}{initObject()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structobject}{object}} init\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structobject}{object}}}]{o,  }\item[{char}]{image\+\_\+name\mbox{[}$\,$\mbox{]},  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 7
+\mbox{\Hypertarget{SDL__Init_8h_aca9c8f6654a287dc225addf7bc93188d}\label{SDL__Init_8h_aca9c8f6654a287dc225addf7bc93188d}} 
+\index{SDL\_Init.h@{SDL\_Init.h}!initPlayMenu@{initPlayMenu}}
+\index{initPlayMenu@{initPlayMenu}!SDL\_Init.h@{SDL\_Init.h}}
+\subsubsection{\texorpdfstring{initPlayMenu()}{initPlayMenu()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}} init\+Play\+Menu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}}}]{main }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 8
+\mbox{\Hypertarget{SDL__Init_8h_aacba2767ef1793cfcf9d9cfba91a62e7}\label{SDL__Init_8h_aacba2767ef1793cfcf9d9cfba91a62e7}} 
+\index{SDL\_Init.h@{SDL\_Init.h}!initPosition@{initPosition}}
+\index{initPosition@{initPosition}!SDL\_Init.h@{SDL\_Init.h}}
+\subsubsection{\texorpdfstring{initPosition()}{initPosition()}}
+{\footnotesize\ttfamily S\+D\+L\+\_\+\+Rect init\+Position (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Rect}]{position,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{w,  }\item[{int}]{h }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{SDL__Init_8h_a24db4a5a8e8fd689b3c7e195c8895548}\label{SDL__Init_8h_a24db4a5a8e8fd689b3c7e195c8895548}} 
+\index{SDL\_Init.h@{SDL\_Init.h}!initPrintRiddle@{initPrintRiddle}}
+\index{initPrintRiddle@{initPrintRiddle}!SDL\_Init.h@{SDL\_Init.h}}
+\subsubsection{\texorpdfstring{initPrintRiddle()}{initPrintRiddle()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{SDL__enigme_8h_acb800697b95ebd495a92f3a543193edc}{enigme}} init\+Print\+Riddle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{SDL__enigme_8h_acb800697b95ebd495a92f3a543193edc}{enigme}}}]{e }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 9
+\mbox{\Hypertarget{SDL__Init_8h_aabc8b158095214740751a603323a2615}\label{SDL__Init_8h_aabc8b158095214740751a603323a2615}} 
+\index{SDL\_Init.h@{SDL\_Init.h}!initSelectMenu@{initSelectMenu}}
+\index{initSelectMenu@{initSelectMenu}!SDL\_Init.h@{SDL\_Init.h}}
+\subsubsection{\texorpdfstring{initSelectMenu()}{initSelectMenu()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}} init\+Select\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 10
+\mbox{\Hypertarget{SDL__Init_8h_a3accead2e0742f15fb1a705e001bf66e}\label{SDL__Init_8h_a3accead2e0742f15fb1a705e001bf66e}} 
+\index{SDL\_Init.h@{SDL\_Init.h}!initSettingsMenu@{initSettingsMenu}}
+\index{initSettingsMenu@{initSettingsMenu}!SDL\_Init.h@{SDL\_Init.h}}
+\subsubsection{\texorpdfstring{initSettingsMenu()}{initSettingsMenu()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}} init\+Settings\+Menu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}}}]{main }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 11
+\mbox{\Hypertarget{SDL__Init_8h_ab29215e3467fdc78a5b43cb5417fb9e9}\label{SDL__Init_8h_ab29215e3467fdc78a5b43cb5417fb9e9}} 
+\index{SDL\_Init.h@{SDL\_Init.h}!loadFrames@{loadFrames}}
+\index{loadFrames@{loadFrames}!SDL\_Init.h@{SDL\_Init.h}}
+\subsubsection{\texorpdfstring{loadFrames()}{loadFrames()}}
+{\footnotesize\ttfamily void load\+Frames (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{set\mbox{[}$\,$\mbox{]},  }\item[{int}]{maxframes,  }\item[{char}]{file\+\_\+name\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{SDL__Init_8h_a2ab4a75877abd9b57b1867af16899f30}\label{SDL__Init_8h_a2ab4a75877abd9b57b1867af16899f30}} 
+\index{SDL\_Init.h@{SDL\_Init.h}!loadImage@{loadImage}}
+\index{loadImage@{loadImage}!SDL\_Init.h@{SDL\_Init.h}}
+\subsubsection{\texorpdfstring{loadImage()}{loadImage()}}
+{\footnotesize\ttfamily S\+D\+L\+\_\+\+Surface$\ast$ load\+Image (\begin{DoxyParamCaption}\item[{char}]{file\+\_\+name\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{SDL__Init_8h_a6b45aea4a0ac66457461752d48769da0}\label{SDL__Init_8h_a6b45aea4a0ac66457461752d48769da0}} 
+\index{SDL\_Init.h@{SDL\_Init.h}!loadTextForRiddle@{loadTextForRiddle}}
+\index{loadTextForRiddle@{loadTextForRiddle}!SDL\_Init.h@{SDL\_Init.h}}
+\subsubsection{\texorpdfstring{loadTextForRiddle()}{loadTextForRiddle()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{SDL__enigme_8h_acb800697b95ebd495a92f3a543193edc}{enigme}} load\+Text\+For\+Riddle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{SDL__enigme_8h_acb800697b95ebd495a92f3a543193edc}{enigme}}}]{e }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{SDL__Init_8h_ab9c3e21cec256bd230c50af3a31b8d04}\label{SDL__Init_8h_ab9c3e21cec256bd230c50af3a31b8d04}} 
+\index{SDL\_Init.h@{SDL\_Init.h}!nextFrame@{nextFrame}}
+\index{nextFrame@{nextFrame}!SDL\_Init.h@{SDL\_Init.h}}
+\subsubsection{\texorpdfstring{nextFrame()}{nextFrame()}}
+{\footnotesize\ttfamily void next\+Frame (\begin{DoxyParamCaption}\item[{int $\ast$}]{frame,  }\item[{int}]{maxframes }\end{DoxyParamCaption})}
+

@@ -1,0 +1,27 @@
+digraph "selectCharacter"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Roboto",fontsize="10",labelfontname="Roboto",labelfontsize="10"];
+  node [fontname="Roboto",fontsize="10",shape=record];
+  rankdir="LR";
+  Node202 [label="selectCharacter",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node202 -> Node203 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node203 [label="initSelectMenu",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__Init_8c.html#aabc8b158095214740751a603323a2615",tooltip=" "];
+  Node203 -> Node204 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node204 [label="loadImage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__Init_8c.html#a2ab4a75877abd9b57b1867af16899f30",tooltip=" "];
+  Node203 -> Node205 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node205 [label="displayFormatFrame",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__Init_8c.html#a9d15a4099a1c7eb98981e2f641be3411",tooltip=" "];
+  Node205 -> Node206 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node206 [label="checkImageLoad",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__Init_8c.html#a9c86961353b17cdaa6160b5e226e4de6",tooltip=" "];
+  Node206 -> Node206 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node203 -> Node207 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node207 [label="initPosition",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__Init_8c.html#aacba2767ef1793cfcf9d9cfba91a62e7",tooltip=" "];
+  Node203 -> Node208 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node208 [label="loadFrames",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__Init_8c.html#ab29215e3467fdc78a5b43cb5417fb9e9",tooltip=" "];
+  Node202 -> Node209 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node209 [label="eventSelect",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__Game__Funcs_8c.html#abc396448cd422c6bd1225d4e217080c0",tooltip=" "];
+  Node209 -> Node210 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node210 [label="moveInMenuByKeyboard",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__Game__Funcs_8c.html#abb7d818f056c1225238351459f3b00af",tooltip=" "];
+  Node202 -> Node211 [color="midnightblue",fontsize="10",style="solid",fontname="Roboto"];
+  Node211 [label="menuBlitter",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__Game__Funcs_8c.html#a553d43496bd0c6e9c6b82d0402fa115a",tooltip=" "];
+}

@@ -1,0 +1,57 @@
+\hypertarget{AI_8c}{}\section{A\+I.\+c File Reference}
+\label{AI_8c}\index{AI.c@{AI.c}}
+
+
+Ai libs.  
+
+
+{\ttfamily \#include \char`\"{}A\+I.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+Include dependency graph for A\+I.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{AI_8c_afdda9b9d6e6368688ac61d458ea62990}{distance}} (\mbox{\hyperlink{ennemie_8h_a2f6e9440e0fcb1d89f136ec153ee7917}{ennemi}} E, \mbox{\hyperlink{structhero}{hero}} H, S\+D\+L\+\_\+\+Rect camera)
+\item 
+void \mbox{\hyperlink{AI_8c_a3b66dca38fbed2c237956238a05dd6e5}{move\+Ennemi}} (\mbox{\hyperlink{ennemie_8h_a2f6e9440e0fcb1d89f136ec153ee7917}{ennemi}} $\ast$E, S\+D\+L\+\_\+\+Rect pos\+Hero)
+\item 
+void \mbox{\hyperlink{AI_8c_a0736f04af26a6b01f31a20ec2bb0adf2}{transitionn}} (\mbox{\hyperlink{ennemie_8h_a2f6e9440e0fcb1d89f136ec153ee7917}{ennemi}} $\ast$E, \mbox{\hyperlink{structhero}{hero}} H, S\+D\+L\+\_\+\+Rect camera, \mbox{\hyperlink{structhealth}{health}} $\ast$sc, S\+D\+L\+\_\+\+Surface $\ast$screen, int $\ast$animation, int $\ast$follow, int $\ast$wait, int $\ast$attack)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Ai libs. 
+
+\begin{DoxyAuthor}{Author}
+Taher 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+May 2,2019 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{AI_8c_afdda9b9d6e6368688ac61d458ea62990}\label{AI_8c_afdda9b9d6e6368688ac61d458ea62990}} 
+\index{AI.c@{AI.c}!distance@{distance}}
+\index{distance@{distance}!AI.c@{AI.c}}
+\subsubsection{\texorpdfstring{distance()}{distance()}}
+{\footnotesize\ttfamily int distance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ennemie_8h_a2f6e9440e0fcb1d89f136ec153ee7917}{ennemi}}}]{E,  }\item[{\mbox{\hyperlink{structhero}{hero}}}]{H,  }\item[{S\+D\+L\+\_\+\+Rect}]{camera }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{AI_8c_a3b66dca38fbed2c237956238a05dd6e5}\label{AI_8c_a3b66dca38fbed2c237956238a05dd6e5}} 
+\index{AI.c@{AI.c}!moveEnnemi@{moveEnnemi}}
+\index{moveEnnemi@{moveEnnemi}!AI.c@{AI.c}}
+\subsubsection{\texorpdfstring{moveEnnemi()}{moveEnnemi()}}
+{\footnotesize\ttfamily void move\+Ennemi (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ennemie_8h_a2f6e9440e0fcb1d89f136ec153ee7917}{ennemi}} $\ast$}]{E,  }\item[{S\+D\+L\+\_\+\+Rect}]{pos\+Hero }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{AI_8c_a0736f04af26a6b01f31a20ec2bb0adf2}\label{AI_8c_a0736f04af26a6b01f31a20ec2bb0adf2}} 
+\index{AI.c@{AI.c}!transitionn@{transitionn}}
+\index{transitionn@{transitionn}!AI.c@{AI.c}}
+\subsubsection{\texorpdfstring{transitionn()}{transitionn()}}
+{\footnotesize\ttfamily void transitionn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ennemie_8h_a2f6e9440e0fcb1d89f136ec153ee7917}{ennemi}} $\ast$}]{E,  }\item[{\mbox{\hyperlink{structhero}{hero}}}]{H,  }\item[{S\+D\+L\+\_\+\+Rect}]{camera,  }\item[{\mbox{\hyperlink{structhealth}{health}} $\ast$}]{sc,  }\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{screen,  }\item[{int $\ast$}]{animation,  }\item[{int $\ast$}]{follow,  }\item[{int $\ast$}]{wait,  }\item[{int $\ast$}]{attack }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 1

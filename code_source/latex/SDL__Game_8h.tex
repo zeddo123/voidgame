@@ -1,0 +1,146 @@
+\hypertarget{SDL__Game_8h}{}\section{S\+D\+L\+\_\+\+Game.\+h File Reference}
+\label{SDL__Game_8h}\index{SDL\_Game.h@{SDL\_Game.h}}
+{\ttfamily \#include $<$S\+D\+L/\+S\+D\+L.\+h$>$}\newline
+{\ttfamily \#include $<$S\+D\+L/\+S\+D\+L\+\_\+image.\+h$>$}\newline
+{\ttfamily \#include $<$S\+D\+L/\+S\+D\+L\+\_\+mixer.\+h$>$}\newline
+{\ttfamily \#include $<$S\+D\+L/\+S\+D\+L\+\_\+ttf.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}S\+D\+L\+\_\+src\+\_\+struct.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}S\+D\+L\+\_\+char.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}S\+D\+L\+\_\+move.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}S\+D\+L\+\_\+animation.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}S\+D\+L\+\_\+collision.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}S\+D\+L\+\_\+free.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}S\+D\+L\+\_\+\+Init.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}S\+D\+L\+\_\+global\+\_\+var.\+h\char`\"{}}\newline
+Include dependency graph for S\+D\+L\+\_\+\+Game.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{SDL__Game_8h_a18035437e05820f7700f0f8b7ba3d66f}{event\+Handler}} (\mbox{\hyperlink{structhero}{hero}} $\ast$player, char $\ast$ptr\+\_\+game, char $\ast$ptr\+\_\+in\+\_\+menu, char $\ast$ptr\+\_\+job, S\+D\+L\+\_\+\+Surface $\ast$calque\+\_\+game, S\+D\+L\+\_\+\+Rect camera, S\+D\+L\+\_\+\+Rect $\ast$position\+Mouse, Uint32 $\ast$animation\+Time)
+\item 
+void \mbox{\hyperlink{SDL__Game_8h_a9489d33a83d76c6d00dcef0c9bf7eb93}{menu\+Event\+Handler}} (\mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}} $\ast$main\+Menu, \mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}} play\+Menu, \mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}} setting\+Menu, char $\ast$ptr\+\_\+job, int $\ast$ptr\+\_\+menu\+Frame, int $\ast$ptr\+\_\+menu\+Key, char $\ast$ptr\+\_\+in\+\_\+menu, Mix\+\_\+\+Chunk $\ast$effect, Uint32 $\ast$old\+Time\+Key, S\+D\+L\+\_\+\+Surface $\ast$screen, int $\ast$old\+Volume)
+\item 
+void \mbox{\hyperlink{SDL__Game_8h_a61c31102f6b34e46e97373cc417e2d42}{open\+Play\+Menu}} (char $\ast$ptr\+\_\+job, Mix\+\_\+\+Chunk $\ast$effect, \mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}} play\+Menu, S\+D\+L\+\_\+\+Surface $\ast$screen)
+\item 
+void \mbox{\hyperlink{SDL__Game_8h_a440e6575323c8ce399149d2819fe1a2a}{play}} (char $\ast$ptr\+\_\+in\+\_\+menu, char $\ast$ptr\+\_\+job, S\+D\+L\+\_\+\+Surface $\ast$screen)
+\item 
+\mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}} \mbox{\hyperlink{SDL__Game_8h_a4eada93f766d4bf4776fd5a501a60404}{over\+What}} (Mix\+\_\+\+Chunk $\ast$effect, int $\ast$menu\+\_\+key, \mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}} m)
+\item 
+void \mbox{\hyperlink{SDL__Game_8h_a553d43496bd0c6e9c6b82d0402fa115a}{menu\+Blitter}} (S\+D\+L\+\_\+\+Surface $\ast$screen, \mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}} m, int menu\+\_\+key, int next)
+\item 
+int \mbox{\hyperlink{SDL__Game_8h_abb7d818f056c1225238351459f3b00af}{move\+In\+Menu\+By\+Keyboard}} (int pointeur, int operation, int a, int b, Uint32 $\ast$old\+Time)
+\item 
+void \mbox{\hyperlink{SDL__Game_8h_a04650a18e406952388193902adbf476f}{twist}} (int $\ast$a, int $\ast$b, int $\ast$c, int $\ast$d)
+\item 
+void \mbox{\hyperlink{SDL__Game_8h_a98548f9b20e4e186f2d28213f6f8d61a}{settings\+Event\+Handler}} (int $\ast$job, int $\ast$old\+Volume, S\+D\+L\+\_\+\+Rect full\+Bar, \mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}} settings)
+\item 
+void \mbox{\hyperlink{SDL__Game_8h_accbf7160c9661c47ebcbfb34d1f89028}{open\+Setting\+Menu}} (int $\ast$old\+Volume, S\+D\+L\+\_\+\+Surface $\ast$screen, \mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}} settings)
+\item 
+void \mbox{\hyperlink{SDL__Game_8h_a30fe22927d25800e7004a3cbc6ef9d65}{set\+Volume}} (int volume\+Value)
+\item 
+\mbox{\hyperlink{structhero}{hero}} \mbox{\hyperlink{SDL__Game_8h_a218c5f4cdd76aa66216988717d14abfd}{select\+Character}} (S\+D\+L\+\_\+\+Surface $\ast$screen)
+\item 
+int \mbox{\hyperlink{SDL__Game_8h_abc396448cd422c6bd1225d4e217080c0}{event\+Select}} (\mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}} m, int $\ast$job, int $\ast$ptr\+\_\+menu\+Key, Uint32 $\ast$old\+Time\+Key)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{SDL__Game_8h_a18035437e05820f7700f0f8b7ba3d66f}\label{SDL__Game_8h_a18035437e05820f7700f0f8b7ba3d66f}} 
+\index{SDL\_Game.h@{SDL\_Game.h}!eventHandler@{eventHandler}}
+\index{eventHandler@{eventHandler}!SDL\_Game.h@{SDL\_Game.h}}
+\subsubsection{\texorpdfstring{eventHandler()}{eventHandler()}}
+{\footnotesize\ttfamily void event\+Handler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhero}{hero}} $\ast$}]{player,  }\item[{char $\ast$}]{ptr\+\_\+game,  }\item[{char $\ast$}]{ptr\+\_\+in\+\_\+menu,  }\item[{char $\ast$}]{ptr\+\_\+job,  }\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{calque\+\_\+game,  }\item[{S\+D\+L\+\_\+\+Rect}]{camera,  }\item[{S\+D\+L\+\_\+\+Rect $\ast$}]{position\+Mouse,  }\item[{Uint32 $\ast$}]{animation\+Time }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{SDL__Game_8h_abc396448cd422c6bd1225d4e217080c0}\label{SDL__Game_8h_abc396448cd422c6bd1225d4e217080c0}} 
+\index{SDL\_Game.h@{SDL\_Game.h}!eventSelect@{eventSelect}}
+\index{eventSelect@{eventSelect}!SDL\_Game.h@{SDL\_Game.h}}
+\subsubsection{\texorpdfstring{eventSelect()}{eventSelect()}}
+{\footnotesize\ttfamily int event\+Select (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}}}]{m,  }\item[{int $\ast$}]{job,  }\item[{int $\ast$}]{ptr\+\_\+menu\+Key,  }\item[{Uint32 $\ast$}]{old\+Time\+Key }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{SDL__Game_8h_a553d43496bd0c6e9c6b82d0402fa115a}\label{SDL__Game_8h_a553d43496bd0c6e9c6b82d0402fa115a}} 
+\index{SDL\_Game.h@{SDL\_Game.h}!menuBlitter@{menuBlitter}}
+\index{menuBlitter@{menuBlitter}!SDL\_Game.h@{SDL\_Game.h}}
+\subsubsection{\texorpdfstring{menuBlitter()}{menuBlitter()}}
+{\footnotesize\ttfamily void menu\+Blitter (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{screen,  }\item[{\mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}}}]{m,  }\item[{int}]{menu\+\_\+key,  }\item[{int}]{next }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{SDL__Game_8h_a9489d33a83d76c6d00dcef0c9bf7eb93}\label{SDL__Game_8h_a9489d33a83d76c6d00dcef0c9bf7eb93}} 
+\index{SDL\_Game.h@{SDL\_Game.h}!menuEventHandler@{menuEventHandler}}
+\index{menuEventHandler@{menuEventHandler}!SDL\_Game.h@{SDL\_Game.h}}
+\subsubsection{\texorpdfstring{menuEventHandler()}{menuEventHandler()}}
+{\footnotesize\ttfamily void menu\+Event\+Handler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}} $\ast$}]{main\+Menu,  }\item[{\mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}}}]{play\+Menu,  }\item[{\mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}}}]{setting\+Menu,  }\item[{char $\ast$}]{ptr\+\_\+job,  }\item[{int $\ast$}]{ptr\+\_\+menu\+Frame,  }\item[{int $\ast$}]{ptr\+\_\+menu\+Key,  }\item[{char $\ast$}]{ptr\+\_\+in\+\_\+menu,  }\item[{Mix\+\_\+\+Chunk $\ast$}]{effect,  }\item[{Uint32 $\ast$}]{old\+Time\+Key,  }\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{screen,  }\item[{int $\ast$}]{old\+Volume }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 4
+\mbox{\Hypertarget{SDL__Game_8h_abb7d818f056c1225238351459f3b00af}\label{SDL__Game_8h_abb7d818f056c1225238351459f3b00af}} 
+\index{SDL\_Game.h@{SDL\_Game.h}!moveInMenuByKeyboard@{moveInMenuByKeyboard}}
+\index{moveInMenuByKeyboard@{moveInMenuByKeyboard}!SDL\_Game.h@{SDL\_Game.h}}
+\subsubsection{\texorpdfstring{moveInMenuByKeyboard()}{moveInMenuByKeyboard()}}
+{\footnotesize\ttfamily int move\+In\+Menu\+By\+Keyboard (\begin{DoxyParamCaption}\item[{int}]{pointeur,  }\item[{int}]{operation,  }\item[{int}]{a,  }\item[{int}]{b,  }\item[{Uint32 $\ast$}]{old\+Time }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{SDL__Game_8h_a61c31102f6b34e46e97373cc417e2d42}\label{SDL__Game_8h_a61c31102f6b34e46e97373cc417e2d42}} 
+\index{SDL\_Game.h@{SDL\_Game.h}!openPlayMenu@{openPlayMenu}}
+\index{openPlayMenu@{openPlayMenu}!SDL\_Game.h@{SDL\_Game.h}}
+\subsubsection{\texorpdfstring{openPlayMenu()}{openPlayMenu()}}
+{\footnotesize\ttfamily void open\+Play\+Menu (\begin{DoxyParamCaption}\item[{char $\ast$}]{ptr\+\_\+job,  }\item[{Mix\+\_\+\+Chunk $\ast$}]{effect,  }\item[{\mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}}}]{play\+Menu,  }\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{screen }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{SDL__Game_8h_accbf7160c9661c47ebcbfb34d1f89028}\label{SDL__Game_8h_accbf7160c9661c47ebcbfb34d1f89028}} 
+\index{SDL\_Game.h@{SDL\_Game.h}!openSettingMenu@{openSettingMenu}}
+\index{openSettingMenu@{openSettingMenu}!SDL\_Game.h@{SDL\_Game.h}}
+\subsubsection{\texorpdfstring{openSettingMenu()}{openSettingMenu()}}
+{\footnotesize\ttfamily void open\+Setting\+Menu (\begin{DoxyParamCaption}\item[{int $\ast$}]{old\+Volume,  }\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{screen,  }\item[{\mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}}}]{settings }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{SDL__Game_8h_a4eada93f766d4bf4776fd5a501a60404}\label{SDL__Game_8h_a4eada93f766d4bf4776fd5a501a60404}} 
+\index{SDL\_Game.h@{SDL\_Game.h}!overWhat@{overWhat}}
+\index{overWhat@{overWhat}!SDL\_Game.h@{SDL\_Game.h}}
+\subsubsection{\texorpdfstring{overWhat()}{overWhat()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}} over\+What (\begin{DoxyParamCaption}\item[{Mix\+\_\+\+Chunk $\ast$}]{effect,  }\item[{int $\ast$}]{menu\+\_\+key,  }\item[{\mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}}}]{m }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 7
+\mbox{\Hypertarget{SDL__Game_8h_a440e6575323c8ce399149d2819fe1a2a}\label{SDL__Game_8h_a440e6575323c8ce399149d2819fe1a2a}} 
+\index{SDL\_Game.h@{SDL\_Game.h}!play@{play}}
+\index{play@{play}!SDL\_Game.h@{SDL\_Game.h}}
+\subsubsection{\texorpdfstring{play()}{play()}}
+{\footnotesize\ttfamily void play (\begin{DoxyParamCaption}\item[{char $\ast$}]{ptr\+\_\+in\+\_\+menu,  }\item[{char $\ast$}]{ptr\+\_\+job,  }\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{screen }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 8
+\mbox{\Hypertarget{SDL__Game_8h_a218c5f4cdd76aa66216988717d14abfd}\label{SDL__Game_8h_a218c5f4cdd76aa66216988717d14abfd}} 
+\index{SDL\_Game.h@{SDL\_Game.h}!selectCharacter@{selectCharacter}}
+\index{selectCharacter@{selectCharacter}!SDL\_Game.h@{SDL\_Game.h}}
+\subsubsection{\texorpdfstring{selectCharacter()}{selectCharacter()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structhero}{hero}} select\+Character (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{screen }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 9
+\mbox{\Hypertarget{SDL__Game_8h_a98548f9b20e4e186f2d28213f6f8d61a}\label{SDL__Game_8h_a98548f9b20e4e186f2d28213f6f8d61a}} 
+\index{SDL\_Game.h@{SDL\_Game.h}!settingsEventHandler@{settingsEventHandler}}
+\index{settingsEventHandler@{settingsEventHandler}!SDL\_Game.h@{SDL\_Game.h}}
+\subsubsection{\texorpdfstring{settingsEventHandler()}{settingsEventHandler()}}
+{\footnotesize\ttfamily void settings\+Event\+Handler (\begin{DoxyParamCaption}\item[{int $\ast$}]{job,  }\item[{int $\ast$}]{old\+Volume,  }\item[{S\+D\+L\+\_\+\+Rect}]{full\+Bar,  }\item[{\mbox{\hyperlink{SDL__src__struct_8h_a2ffc0e804434b0268d50c6403d878b78}{menu}}}]{settings }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 10
+\mbox{\Hypertarget{SDL__Game_8h_a30fe22927d25800e7004a3cbc6ef9d65}\label{SDL__Game_8h_a30fe22927d25800e7004a3cbc6ef9d65}} 
+\index{SDL\_Game.h@{SDL\_Game.h}!setVolume@{setVolume}}
+\index{setVolume@{setVolume}!SDL\_Game.h@{SDL\_Game.h}}
+\subsubsection{\texorpdfstring{setVolume()}{setVolume()}}
+{\footnotesize\ttfamily void set\+Volume (\begin{DoxyParamCaption}\item[{int}]{volume\+Value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{SDL__Game_8h_a04650a18e406952388193902adbf476f}\label{SDL__Game_8h_a04650a18e406952388193902adbf476f}} 
+\index{SDL\_Game.h@{SDL\_Game.h}!twist@{twist}}
+\index{twist@{twist}!SDL\_Game.h@{SDL\_Game.h}}
+\subsubsection{\texorpdfstring{twist()}{twist()}}
+{\footnotesize\ttfamily void twist (\begin{DoxyParamCaption}\item[{int $\ast$}]{a,  }\item[{int $\ast$}]{b,  }\item[{int $\ast$}]{c,  }\item[{int $\ast$}]{d }\end{DoxyParamCaption})}
+

@@ -1,0 +1,68 @@
+\hypertarget{SDL__animation_8h}{}\section{S\+D\+L\+\_\+animation.\+h File Reference}
+\label{SDL__animation_8h}\index{SDL\_animation.h@{SDL\_animation.h}}
+{\ttfamily \#include $<$S\+D\+L/\+S\+D\+L.\+h$>$}\newline
+{\ttfamily \#include $<$S\+D\+L/\+S\+D\+L\+\_\+image.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}S\+D\+L\+\_\+char.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ennemie.\+h\char`\"{}}\newline
+Include dependency graph for S\+D\+L\+\_\+animation.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{SDL__animation_8h_ad6dbccd99321dabd7f2e29f652b523e6}{start}} (int $\ast$started, int $\ast$paused, int $\ast$start\+Ticks)
+\item 
+void \mbox{\hyperlink{SDL__animation_8h_a51ec49799835d087b8e6f2d707c4d76d}{show}} (\mbox{\hyperlink{structhero}{hero}} $\ast$player, S\+D\+L\+\_\+\+Surface $\ast$screen)
+\item 
+void \mbox{\hyperlink{SDL__animation_8h_a87468ff26c3de0d98037c2cff18aa20f}{apply\+\_\+surface}} (int x, int y, S\+D\+L\+\_\+\+Surface $\ast$source, S\+D\+L\+\_\+\+Surface $\ast$destination, S\+D\+L\+\_\+\+Rect $\ast$frame)
+\item 
+void \mbox{\hyperlink{SDL__animation_8h_a77f54ee083e4f28c4176cf9602603964}{set\+\_\+clips}} (\mbox{\hyperlink{structhero}{hero}} $\ast$player)
+\item 
+void \mbox{\hyperlink{SDL__animation_8h_a928a44742a275da162517abcdb9fc9e8}{set\+\_\+clips\+Enemie}} (\mbox{\hyperlink{ennemie_8h_a2f6e9440e0fcb1d89f136ec153ee7917}{ennemi}} $\ast$e)
+\item 
+int \mbox{\hyperlink{SDL__animation_8h_aa3e2cb9730547c3f0e2aa7f8d4aa451c}{get\+\_\+ticks}} (int $\ast$started, int $\ast$paused, int $\ast$start\+Ticks, int $\ast$paused\+Ticks)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{SDL__animation_8h_a87468ff26c3de0d98037c2cff18aa20f}\label{SDL__animation_8h_a87468ff26c3de0d98037c2cff18aa20f}} 
+\index{SDL\_animation.h@{SDL\_animation.h}!apply\_surface@{apply\_surface}}
+\index{apply\_surface@{apply\_surface}!SDL\_animation.h@{SDL\_animation.h}}
+\subsubsection{\texorpdfstring{apply\_surface()}{apply\_surface()}}
+{\footnotesize\ttfamily void apply\+\_\+surface (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{source,  }\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{destination,  }\item[{S\+D\+L\+\_\+\+Rect $\ast$}]{frame }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{SDL__animation_8h_aa3e2cb9730547c3f0e2aa7f8d4aa451c}\label{SDL__animation_8h_aa3e2cb9730547c3f0e2aa7f8d4aa451c}} 
+\index{SDL\_animation.h@{SDL\_animation.h}!get\_ticks@{get\_ticks}}
+\index{get\_ticks@{get\_ticks}!SDL\_animation.h@{SDL\_animation.h}}
+\subsubsection{\texorpdfstring{get\_ticks()}{get\_ticks()}}
+{\footnotesize\ttfamily int get\+\_\+ticks (\begin{DoxyParamCaption}\item[{int $\ast$}]{started,  }\item[{int $\ast$}]{paused,  }\item[{int $\ast$}]{start\+Ticks,  }\item[{int $\ast$}]{paused\+Ticks }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{SDL__animation_8h_a77f54ee083e4f28c4176cf9602603964}\label{SDL__animation_8h_a77f54ee083e4f28c4176cf9602603964}} 
+\index{SDL\_animation.h@{SDL\_animation.h}!set\_clips@{set\_clips}}
+\index{set\_clips@{set\_clips}!SDL\_animation.h@{SDL\_animation.h}}
+\subsubsection{\texorpdfstring{set\_clips()}{set\_clips()}}
+{\footnotesize\ttfamily void set\+\_\+clips (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhero}{hero}} $\ast$}]{player }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{SDL__animation_8h_a928a44742a275da162517abcdb9fc9e8}\label{SDL__animation_8h_a928a44742a275da162517abcdb9fc9e8}} 
+\index{SDL\_animation.h@{SDL\_animation.h}!set\_clipsEnemie@{set\_clipsEnemie}}
+\index{set\_clipsEnemie@{set\_clipsEnemie}!SDL\_animation.h@{SDL\_animation.h}}
+\subsubsection{\texorpdfstring{set\_clipsEnemie()}{set\_clipsEnemie()}}
+{\footnotesize\ttfamily void set\+\_\+clips\+Enemie (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ennemie_8h_a2f6e9440e0fcb1d89f136ec153ee7917}{ennemi}} $\ast$}]{e }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{SDL__animation_8h_a51ec49799835d087b8e6f2d707c4d76d}\label{SDL__animation_8h_a51ec49799835d087b8e6f2d707c4d76d}} 
+\index{SDL\_animation.h@{SDL\_animation.h}!show@{show}}
+\index{show@{show}!SDL\_animation.h@{SDL\_animation.h}}
+\subsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily void show (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhero}{hero}} $\ast$}]{player,  }\item[{S\+D\+L\+\_\+\+Surface $\ast$}]{screen }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{SDL__animation_8h_ad6dbccd99321dabd7f2e29f652b523e6}\label{SDL__animation_8h_ad6dbccd99321dabd7f2e29f652b523e6}} 
+\index{SDL\_animation.h@{SDL\_animation.h}!start@{start}}
+\index{start@{start}!SDL\_animation.h@{SDL\_animation.h}}
+\subsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void start (\begin{DoxyParamCaption}\item[{int $\ast$}]{started,  }\item[{int $\ast$}]{paused,  }\item[{int $\ast$}]{start\+Ticks }\end{DoxyParamCaption})}
+

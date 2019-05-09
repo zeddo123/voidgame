@@ -437,18 +437,17 @@ void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job
 	int dx_cursor_in_game,dy_cursor_in_game;
     int ground_level=7645;
     int H=0;
-int i;
-
-    player->vel=0;
+	int i;
     
-	
 	Uint32 currentTime = SDL_GetTicks();
     if(currentTime - (*animationTime) > 300){
+		player->step = 0;
 		player->orientation = 0;
 		*animationTime = currentTime;
 	}
 
 	SDL_PollEvent(&event);
+	/*
 	if ( player->position.y + H < ground_level ) 
 	{
 		player->vel += 2; // Add gravity if he is
@@ -460,7 +459,7 @@ int i;
 		player->position.y = ground_level - H;
 	}
 	player->position.y += player->vel;
-
+	*/
 	switch(event.type){
 		case SDL_QUIT:
 			printf("..Quiting the game..\n");
@@ -470,16 +469,15 @@ int i;
 		case SDL_KEYDOWN:
 		
 			switch(event.key.keysym.sym){				
-case SDLK_SPACE:
+				/*case SDLK_SPACE:
 
-if( player->position.y + H == ground_level )
-				player->vel = -8;
-player->position.y -=20;
-for(i=0;i<5;i++)
-player->position.x +=player->orientation*20;
+					if( player->position.y + H == ground_level )
+						player->vel = -8;
+						player->position.y -=20;
+						for(i=0;i<5;i++)
+							player->position.x +=player->orientation*20;
 
-break;
-
+					break;*/
 				case SDLK_UP:
 					if(collision_Parfaite(calque_game,player->position,STEP,0) != 1){
 						move(player,0,-1);

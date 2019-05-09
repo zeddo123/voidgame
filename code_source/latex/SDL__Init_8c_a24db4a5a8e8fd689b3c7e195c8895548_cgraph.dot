@@ -1,0 +1,10 @@
+digraph "initPrintRiddle"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Roboto",fontsize="10",labelfontname="Roboto",labelfontsize="10"];
+  node [fontname="Roboto",fontsize="10",shape=record];
+  rankdir="LR";
+  Node100 [label="initPrintRiddle",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node100 -> Node101 [color="midnightblue",fontsize="10",style="solid"];
+  Node101 [label="initPosition",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$SDL__Init_8c.html#aacba2767ef1793cfcf9d9cfba91a62e7",tooltip=" "];
+}
