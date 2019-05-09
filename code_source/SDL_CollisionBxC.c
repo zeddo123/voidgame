@@ -1,4 +1,4 @@
-int intersects(Circle circle, Rect rect)
+int intersects(Circle circle, SDL_Rect rect)
 {
     circleDistance.x = abs(circle.x - rect.x);
     circleDistance.y = abs(circle.y - rect.y);
