@@ -89,16 +89,7 @@ void transitionn(ennemi *E ,hero H ,SDL_Rect camera ,health *sc,SDL_Surface *scr
  
 			break;
 
-		/*case 2:
-			play_ennemi(s);
-			*attack=0;
-			*wait=1;
-			if(sc->n_vie>0)
-				sc->n_vie--;
-				*animation=1;
-			E->position.x+=200;
-			E->position.y+=200;
-			break;*/
+		
 	}
 	
 	if(E->status == 1){
