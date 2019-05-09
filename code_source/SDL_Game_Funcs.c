@@ -10,7 +10,6 @@
 #include "SDL_multiplayer.h"
 #include "SDL_atack.h"
 #include "minimap.h"
-#include "SDL_jump.h"
 #include "SDL_acceleration.h"
 #include "SDL_savegame.h"
 #include "SDL_CONDITION.h"
@@ -301,7 +300,7 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 
 		moveToMouseDynamic(&player,positionMouse.x,positionMouse.y,calque_surface);
 
-		//jump(&player,camera);
+		
 		
 		camera = moveCamera(camera,player,game_surface); // gestion de la camera (scrolling)
 
@@ -425,19 +424,35 @@ void play(char *ptr_in_menu, char *ptr_job, SDL_Surface *screen){
 }
 /*-----------------------Load the game-----------------------*/
 /*_______________________________GAME EVENT HANDLER_________________________________*/
-
 void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job, SDL_Surface *calque_game, SDL_Rect camera, SDL_Rect *positionMouse, Uint32 *animationTime){
 	SDL_Event event;
 	int dx_cursor_in_game,dy_cursor_in_game;
+    int ground_level=7645;
+    int H=0;
+int i;
+
+    player->vel=0;
+    
 	
 	Uint32 currentTime = SDL_GetTicks();
     if(currentTime - (*animationTime) > 300){
 		player->orientation = 0;
-		player->step = 0;
 		*animationTime = currentTime;
 	}
 
 	SDL_PollEvent(&event);
+	if ( player->position.y + H < ground_level ) 
+	{
+		player->vel += 2; // Add gravity if he is
+	}
+	else
+	{
+		// Keep player from falling through the ground
+		player->vel = 0; //player->vel = -player->vel / 3
+		player->position.y = ground_level - H;
+	}
+	player->position.y += player->vel;
+
 	switch(event.type){
 		case SDL_QUIT:
 			printf("..Quiting the game..\n");
@@ -446,9 +461,17 @@ void eventHandler(hero *player, char *ptr_game, char *ptr_in_menu, char *ptr_job
 			break;
 		case SDL_KEYDOWN:
 		
-			switch(event.key.keysym.sym){
-				case SDLK_ESCAPE:
-					break;
+			switch(event.key.keysym.sym){				
+case SDLK_SPACE:
+
+if( player->position.y + H == ground_level )
+				player->vel = -8;
+player->position.y -=20;
+for(i=0;i<5;i++)
+player->position.x +=player->orientation*20;
+
+break;
+
 				case SDLK_UP:
 					if(collision_Parfaite(calque_game,player->position,STEP,0) != 1){
 						move(player,0,-1);
