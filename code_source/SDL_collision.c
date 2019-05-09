@@ -48,32 +48,22 @@ int collisionCxC(Circle a, Circle b){
 
 
 
-int collisionBxC(Circle a, SDL_Rect b){
-    int centreX, centreY;
 
-    if(a.x < b.x){
-        centreX = b.x;
-    }else if( a.x > b.x + b.w ){
-        centreX = b.x + b.w;
-    }else{
-        centreX = a.x;
-    }
+int collisionBxC(Circle circle,SDL_Rect rect)
+{
+    int circleDistancex = abs(circle.x - rect.x);
+    int circleDistancey = abs(circle.y - rect.y);
 
-    if(a.y < b.y){
-        centreY = b.y;
-    }else if( a.y > b.y + b.h ){
-        centreY = b.y + b.h;
-    }else{
-        centreY = a.y;
-    }
+    if (circleDistancex > (rect.w/2 + circle.r)) { return 0; }
+    if (circleDistancey > (rect.h/2 + circle.r)) { return 1; }
 
+    if (circleDistancex <= (rect.w/2)) { return 1; } 
+    if (circleDistancey <= (rect.h/2)) { return 1; }
 
-    if( distanceSquared(a.x, a.y, centreX, centreY) < a.r * a.r ){
-        //This box and the circle have collided
-        return 1;
-    }
+    int cornerDistance_sq = (circleDistancex - rect.w/2)^2 +
+                         (circleDistancey - rect.h/2)^2;
 
-    return 0;
+    return (cornerDistance_sq <= (circle.r^2));
 }
 
 

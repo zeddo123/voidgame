@@ -2,7 +2,7 @@ libs = -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf
 
 printObject = minimap.o AI.o SDL_multiplayer.o SDL_animation.o SDL_enigme.o zoom.o SDL_Game_Funcs.o
 
-moveObject = SDL_jump.o SDL_atack.o SDL_scrolling.o SDL_arduino.o SDL_move.o SDL_acceleration.o
+moveObject = SDL_atack.o SDL_scrolling.o SDL_arduino.o SDL_move.o SDL_acceleration.o
 
 initObject = SDL_gestion.o SDL_collision.o SDL_Game.o  SDL_Init.o SDL_free.o  SDL_savegame.o SDL_condition.o
 
@@ -58,9 +58,6 @@ zoom.o :zoom.c zoom.h
 
 SDL_atack.o:SDL_atack.c SDL_atack.h
 	gcc -c SDL_atack.c -lSDL -g
-
-SDL_jump.o:SDL_jump.c SDL_jump.h
-	gcc -c SDL_jump.c -lSDL -g
 
 SDL_acceleration.o:SDL_acceleration.h SDL_acceleration.c
 	gcc -c SDL_acceleration.c -lSDL -g
