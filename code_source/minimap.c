@@ -31,12 +31,6 @@ void Afficher_Minimap(SDL_Surface * screen, SDL_Rect posplayer , SDL_Rect posEnt
     positionKey2 = makeItSmall(minimap,poskey2);
     positionKey1 = makeItSmall(minimap,poskey1);
 
-
-    positionEntite.x = minimap.x + 400 * posEntite.x / 8000;
-    positionEntite.y = minimap.y + 200 * posEntite.y / 8000;
-    positionEntite.h = 10;
-    positionEntite.w = 10;
-
     SDL_FillRect(screen, &minimap, black);
     SDL_FillRect(screen, &positionEntite, red);
     SDL_FillRect(screen, &positionPlayer, purple);
